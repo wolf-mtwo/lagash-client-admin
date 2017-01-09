@@ -10,6 +10,7 @@ import { LoginController } from './demo/login.controller';
 import { GithubContributorService } from '../app/components/githubContributor/githubContributor.service';
 import { WebDevTecService } from '../app/components/webDevTec/webDevTec.service';
 import { AuthService } from '../app/components/auth/auth.service';
+import { AuthInterceptorService } from '../app/components/auth/auth.interceptor.service';
 import { NavbarDirective } from '../app/components/navbar/navbar.directive';
 import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive';
 
@@ -22,6 +23,7 @@ angular.module('wargos', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ng
   .service('githubContributor', GithubContributorService)
   .service('webDevTec', WebDevTecService)
   .service('authService', AuthService)
+  .service('authInterceptorService', AuthInterceptorService)
   .controller('MainController', MainController)
   .controller('HomeController', HomeController)
   .controller('SignupController', SignupController)
