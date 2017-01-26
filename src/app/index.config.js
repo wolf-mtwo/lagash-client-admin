@@ -10,5 +10,5 @@ export function config ($logProvider, toastrConfig, $httpProvider) {
   toastrConfig.preventDuplicates = true;
   toastrConfig.progressBar = true;
 
-   $httpProvider.interceptors.push('authInterceptorService');
+  // $httpProvider.interceptors.push('authInterceptorService');
 }
