@@ -4,11 +4,12 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
     url: '/',
     templateUrl: 'app/home/index.html',
     controller: 'HomeController',
-    resolve: {
-       simpleObj: function(Global) {
-          Global.start();
-       }
-    }
+    // resolve: {
+    //    simpleObj: function(Global) {
+    //       Global.start();
+    //    }
+    // }
   });
+    
   $urlRouterProvider.otherwise('/');
 }
