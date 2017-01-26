@@ -1,32 +1,14 @@
-export function routerConfig ($routeProvider) {
+export function routerConfig ($stateProvider, $urlRouterProvider) {
   'ngInject';
-  $routeProvider.when("/home", {
-      controller: "HomeController",
-      templateUrl: "/app/demo/views/home.html"
+  $stateProvider.state('home', {
+    url: '/',
+    templateUrl: 'app/home/index.html',
+    controller: 'HomeController',
+    resolve: {
+       simpleObj: function(Global) {
+          Global.start();
+       }
+    }
   });
-
-  $routeProvider.when("/login", {
-      controller: "LoginController",
-      templateUrl: "/app/demo/views/login.html"
-  });
-
-  $routeProvider.when("/signup", {
-      controller: "SignupController",
-      templateUrl: "/app/demo/views/signup.html"
-  });
-
-  $routeProvider.when("/orders", {
-      controller: "OrdersController",
-      templateUrl: "/app/demo/views/orders.html"
-  });
-
-  $routeProvider
-    .when('/', {
-      templateUrl: 'app/main/main.html',
-      controller: 'MainController',
-      controllerAs: 'main'
-    })
-    .otherwise({
-      redirectTo: '/'
-    });
+  $urlRouterProvider.otherwise('/');
 }
