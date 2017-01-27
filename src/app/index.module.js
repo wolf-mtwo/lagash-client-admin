@@ -4,6 +4,8 @@ import { config } from './index.config';
 import { routerConfig } from './index.route';
 import { runBlock } from './index.run';
 import { HomeController } from './home/controller';
+import Module from './auth/module';
+// console.log(Module);
 // import { AuthInterceptorService } from '../app/components/auth/auth.interceptor.service';
 
 angular.module('wolf', [
@@ -17,7 +19,8 @@ angular.module('wolf', [
   'ngRoute',
   'ngMaterial',
   'toastr',
-  'ui.router'
+  'ui.router',
+  'wolf.auth'
 ])
 .constant('malarkey', malarkey)
 .constant('moment', moment)
