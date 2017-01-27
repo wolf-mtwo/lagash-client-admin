@@ -1,4 +1,4 @@
-export class Sess {
+export class Session {
   constructor() {
 
   }

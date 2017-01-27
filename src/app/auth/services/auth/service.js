@@ -1,4 +1,4 @@
-export class Sess {
+export class Auth {
   constructor() {
     var subcriptors = [];
   }
@@ -13,5 +13,9 @@ export class Sess {
   subcrive(func) {
     subcriptors.push(func);
     this.loadUser();
+  }
+
+  init() {
+    console.log('init!!');
   }
 }

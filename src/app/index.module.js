@@ -5,8 +5,6 @@ import { routerConfig } from './index.route';
 import { runBlock } from './index.run';
 import { HomeController } from './home/controller';
 import Module from './auth/module';
-// console.log(Module);
-// import { AuthInterceptorService } from '../app/components/auth/auth.interceptor.service';
 
 angular.module('wolf', [
   'ngAnimate',
@@ -27,10 +25,4 @@ angular.module('wolf', [
 .config(config)
 .config(routerConfig)
 .run(runBlock)
-// .service('authService', AuthService)
-// .service('authInterceptorService', AuthInterceptorService)
-.controller('HomeController', HomeController)
-// .run(function (authService) {
-//     console.log('run auth service');
-//     // authService.fillAuthData();
-// });
+.controller('HomeController', HomeController);
