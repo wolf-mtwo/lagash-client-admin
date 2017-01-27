@@ -1,6 +1,6 @@
 export class Sess {
-  constructor() {
 
+  constructor() {
   }
 
   saveUser(user) {

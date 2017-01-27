@@ -1,4 +1,5 @@
 export class Users {
+
   constructor() {
     var url = Global.PATH + '/p1/users';
      return $resource(url + '/:_id', {

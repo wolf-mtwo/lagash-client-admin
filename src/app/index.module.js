@@ -4,7 +4,8 @@ import { config } from './index.config';
 import { routerConfig } from './index.route';
 import { runBlock } from './index.run';
 import { HomeController } from './home/controller';
-import Module from './auth/module';
+import Auth from './auth/module';
+import Components from './components/module';
 
 angular.module('wolf', [
   'ngAnimate',
@@ -18,6 +19,7 @@ angular.module('wolf', [
   'ngMaterial',
   'toastr',
   'ui.router',
+  'wolf.components',
   'wolf.auth'
 ])
 .constant('malarkey', malarkey)

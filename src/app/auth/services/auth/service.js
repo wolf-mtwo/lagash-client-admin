@@ -1,4 +1,5 @@
 export class Auth {
+
   constructor() {
     var subcriptors = [];
   }

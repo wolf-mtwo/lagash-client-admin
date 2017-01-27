@@ -1,4 +1,5 @@
 export class SignupController {
+
   constructor() {
     // Users
     // Session
@@ -24,5 +25,5 @@ export class SignupController {
         });
       });
     }, LocalError.request);
-  };
+  }
 }

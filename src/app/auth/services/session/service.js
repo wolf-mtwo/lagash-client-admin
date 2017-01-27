@@ -1,6 +1,6 @@
 export class Session {
-  constructor() {
 
+  constructor() {
   }
 
   saveUser(user) {
