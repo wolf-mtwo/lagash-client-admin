@@ -1,5 +1,4 @@
 export class LoginController {
-  constructor () {
-    'ngInject';
+  constructor() {
   }
 }

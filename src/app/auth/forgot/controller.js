@@ -1,5 +1,4 @@
-export class LoginController {
-  constructor () {
-    'ngInject';
+export class ForgotController {
+  constructor() {
   }
 }

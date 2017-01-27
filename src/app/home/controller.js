@@ -1,5 +1,5 @@
 export class HomeController {
-  constructor () {
+  constructor() {
     'ngInject';
   }
 }

@@ -2,21 +2,21 @@ export function router($stateProvider) {
   'ngInject';
   var base_url = 'app/auth';
 
-  $stateProvider.state('home.sign', {
-    url: 'sign',
-    templateUrl: base_url + '/sign/index.html',
-    controller: 'SessionRegisterController'
+  $stateProvider.state('home.signup', {
+    url: 'signup',
+    templateUrl: base_url + '/signup/index.html',
+    controller: 'SignupController'
   });
 
   $stateProvider.state('home.login', {
     url: 'login',
     templateUrl: base_url + '/login/index.html',
-    controller: 'SessionLoginController'
+    controller: 'LoginController'
   });
 
   $stateProvider.state('home.forgot', {
     url: 'forgot',
-    templateUrl: base_url + 'forgot.html',
-    controller: 'SessionsController'
+    templateUrl: base_url + '/forgot/index.html',
+    controller: 'ForgotController'
   });
 }
