@@ -6,7 +6,7 @@ import { runBlock } from './index.run';
 import { HomeController } from './home/controller';
 // import { AuthInterceptorService } from '../app/components/auth/auth.interceptor.service';
 
-angular.module('wargos', [
+angular.module('wolf', [
   'ngAnimate',
   'ngCookies',
   'ngTouch',
