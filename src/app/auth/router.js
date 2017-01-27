@@ -5,18 +5,21 @@ export function router($stateProvider) {
   $stateProvider.state('home.signup', {
     url: 'signup',
     templateUrl: base_url + '/signup/index.html',
-    controller: 'SignupController'
+    controller: 'SignupController',
+    controllerAs:'vm'
   });
 
   $stateProvider.state('home.login', {
     url: 'login',
     templateUrl: base_url + '/login/index.html',
-    controller: 'LoginController'
+    controller: 'LoginController',
+    controllerAs:'vm'
   });
 
   $stateProvider.state('home.forgot', {
     url: 'forgot',
     templateUrl: base_url + '/forgot/index.html',
-    controller: 'ForgotController'
+    controller: 'ForgotController',
+    controllerAs:'vm'
   });
 }
