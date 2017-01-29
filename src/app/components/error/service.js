@@ -1,14 +1,16 @@
 export class WError {
 
   constructor($mdToast) {
+    'ngInject';
+    this.$mdToast = $mdToast;
   }
 
   displayError(msg) {
     if (!msg) {
       throw new Error('msg is not defined');
     }
-    $mdToast.show(
-      $mdToast.simple(msg)
+    this.$mdToast.show(
+      this.$mdToast.simple(msg)
       .content(msg)
       .position('bottom left')
       .hideDelay(3000)
@@ -19,17 +21,17 @@ export class WError {
     var msg;
     if (response.status === -1) {
       msg = 'ERROR: ' + 'CONECCION RECHAZADA';
-      displayError(msg);
+      this.displayError(msg);
       return;
     }
     if (response.status === 408) {
       msg = 'ERROR: ' + response.data;
-      displayError(msg);
+      this.displayError(msg);
       return;
     }
     if (response.data) {
       msg = 'ERROR: ' + response.data.message;
-      displayError(msg);
+      this.displayError(msg);
       return;
     } else {
       console.log('NOT HANDLED ERROR:', response);
@@ -39,6 +41,6 @@ export class WError {
 
   display(error) {
     var msg = "ERROR: " + error;
-    displayError(msg);
+    this.displayError(msg);
   }
 }

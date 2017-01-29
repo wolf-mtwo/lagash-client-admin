@@ -1,11 +1,13 @@
 export class SignupController {
 
-  constructor() {
-    // Users
-    // Session
-    // Sess
-    // LocalError
-    // 'ngInject';
+  constructor(Users, Session, Sess, WError) {
+    'ngInject';
+    this.item = {
+      name: 'wolf',
+      email: 'wolf@wolf.com',
+      cel: '70156988',
+      password: 'wolf'
+    };
   }
 
   register(item) {
