@@ -22,6 +22,7 @@ export class WError {
     if (response.status === -1) {
       msg = 'ERROR: ' + 'CONECCION RECHAZADA';
       this.displayError(msg);
+      // console.log();
       return;
     }
     if (response.status === 408) {
@@ -34,7 +35,7 @@ export class WError {
       this.displayError(msg);
       return;
     } else {
-      console.log('NOT HANDLED ERROR:', response);
+      console.error('NOT HANDLED ERROR:', response);
       return;
     }
   }

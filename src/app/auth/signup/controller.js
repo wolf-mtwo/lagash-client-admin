@@ -1,7 +1,12 @@
 export class SignupController {
 
-  constructor(Users, Session, Sess, WError) {
+  constructor($state, Users, Session, Sess, WError) {
     'ngInject';
+    this.$state = $state;
+    this.Users = Users;
+    this.Session = Session;
+    this.Sess = Sess;
+    this.WError = WError;
     this.item = {
       name: 'wolf',
       email: 'wolf@wolf.com',
@@ -12,20 +17,26 @@ export class SignupController {
 
   register(item) {
     item.role = "admin";
-    Users.save(item, function() {
-      var sessionCredentiales = {
+    this.Users.save(item)
+    .$promise
+    .then((response) => {
+      var credentials = {
         email: item.email,
         password: item.password
       };
-      Session.login(sessionCredentiales, function(user) {
-        Sess.login(user, function() {
-          if (user.role === 'admin') {
-            $state.go('lagash');
-          } else {
-            throw new Error('not role asigned');
-          }
-        });
+      return this.Session.login(credentials).$promise;
+    })
+    .then((user) => {
+      return this.Sess.login(user, () => {
+        if (user.role === 'admin') {
+          this.$state.go('lagash');
+        } else {
+          throw new Error('not role asigned');
+        }
       });
-    }, LocalError.request);
+    })
+    .catch((err) => {
+      this.WError.request(err);
+    });
   }
 }

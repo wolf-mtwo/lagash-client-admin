@@ -2,6 +2,7 @@ export class Global {
 
   constructor(Store) {
     'ngInject';
+    this.Store = Store;
     // SERVICE PATH
     this.PATH = 'http://localhost:5570';
     this.user = null;
@@ -10,7 +11,7 @@ export class Global {
 
   start() {
     console.info('Starts the application!!');
-    this.user = Store.load('user');
+    this.user = this.Store.load('user');
     console.log(this);
   }
 }

@@ -1,18 +1,20 @@
 export class Auth {
 
-  constructor() {
-    var subcriptors = [];
+  constructor(Store) {
+    'ngInject';
+    this.Store = Store;
+    this.subcriptors = [];
   }
 
   loadUser() {
-    service.user = Store.load('user');
-    subcriptors.forEach(function(item) {
-      item(service.user);
+    let user = this.Store.load('user');
+    this.subcriptors.forEach(function(item) {
+      item(user);
     });
   }
 
   subcrive(func) {
-    subcriptors.push(func);
+    this.subcriptors.push(func);
     this.loadUser();
   }
 

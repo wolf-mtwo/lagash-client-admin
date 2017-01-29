@@ -1,6 +1,11 @@
 export class Sess {
 
-  constructor() {
+  constructor($http, Auth, Store, Global) {
+    'ngInject';
+    this.$http = $http;
+    this.Auth = Auth;
+    this.Store = Store;
+    this.Global = Global;
   }
 
   saveUser(user) {
@@ -13,27 +18,27 @@ export class Sess {
     var token = user.token;
     // Saving on local storage
     delete user['token'];
-    Store.save('token', token);
-    Store.save('user', user);
+    this.Store.save('token', token);
+    this.Store.save('user', user);
 
     // TODO it's repeated on index.config
     if (token) {
-      $http.defaults.headers.common['x-access-token'] = token.session_id;
+      this.$http.defaults.headers.common['x-access-token'] = token.session_id;
     }
   }
 
   login(user, callback) {
     localStorage.clear();
-    saveUser(user);
-    Auth.loadUser();
-    Global.start();
+    this.saveUser(user);
+    this.Auth.loadUser();
+    this.Global.start();
     callback();
   }
 
   logout(callback) {
     localStorage.clear();
-    Auth.loadUser();
-    Global.start();
+    this.Auth.loadUser();
+    this.Global.start();
     callback();
   }
 }
