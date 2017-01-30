@@ -6,6 +6,7 @@ import { runBlock } from './index.run';
 import { HomeController } from './home/controller';
 import Auth from './auth/module';
 import Components from './components/module';
+import Lagash from './lagash/module';
 
 angular.module('wolf', [
   'ngAnimate',
@@ -20,7 +21,8 @@ angular.module('wolf', [
   'toastr',
   'ui.router',
   'wolf.components',
-  'wolf.auth'
+  'wolf.auth',
+  'wolf.lagash'
 ])
 .constant('malarkey', malarkey)
 .constant('moment', moment)
