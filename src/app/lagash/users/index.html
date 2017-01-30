@@ -4,7 +4,9 @@
       Lagash
     </h3>
     <span flex></span>
-    <md-button class="md-icon-button" aria-label="add">
+    <md-button class="md-icon-button"
+               aria-label="add"
+               ui-sref="lagash.users.create">
       <ng-md-icon icon="add"></ng-md-icon>
     </md-button>
     <md-button class="md-icon-button" aria-label="more">
@@ -13,38 +15,6 @@
   </div>
 </md-toolbar>
 <md-content>
-  <!-- {{vm.users}} -->
-  <md-table-container>
-    <table md-table multiple>
-      <thead md-head>
-        <tr md-row>
-          <th md-column><span>Nombre</span></th>
-          <th md-column><span>Email</span></th>
-          <th md-column><span># Telefono movil</span></th>
-          <th md-column><span>Accion</span></th>
-        </tr>
-      </thead>
-      <tbody md-body>
-        <tr md-row
-            ng-repeat="user in vm.users">
-          <td md-cell>{{user.name}}</td>
-          <td md-cell>{{user.email}}</td>
-          <td md-cell>{{user.cel}}</td>
-          <td md-cell>
-            <md-button class="md-icon-button" aria-label="details">
-              <ng-md-icon icon="details"></ng-md-icon>
-            </md-button>
-            <md-button class="md-icon-button" aria-label="edit">
-              <ng-md-icon icon="edit"></ng-md-icon>
-            </md-button>
-            <md-button class="md-icon-button" aria-label="delete">
-              <ng-md-icon icon="delete"></ng-md-icon>
-            </md-button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </md-table-container>
   <ui-view>
   </ui-view>
 </md-content>

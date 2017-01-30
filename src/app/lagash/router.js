@@ -18,6 +18,18 @@ export function router($stateProvider) {
     url: '/users',
     templateUrl: base_url + '/users/index.html',
     controller: 'LagashUsersController',
+    controllerAs:'vm'
+  });
+  $stateProvider.state('lagash.users.create', {
+    url: '/create',
+    templateUrl: base_url + '/users/create/index.html',
+    controller: 'LagashUsersCreateController',
+    controllerAs:'vm'
+  });
+  $stateProvider.state('lagash.users.list', {
+    url: '/list',
+    templateUrl: base_url + '/users/list/index.html',
+    controller: 'LagashUsersListController',
     controllerAs:'vm',
     resolve: {
       users: function(Users) {
