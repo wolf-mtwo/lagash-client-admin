@@ -20,6 +20,8 @@ angular.module('wolf', [
   'ngMaterial',
   'toastr',
   'ui.router',
+  'md.data.table',
+  'ngMdIcons',
   'wolf.components',
   'wolf.auth',
   'wolf.lagash'

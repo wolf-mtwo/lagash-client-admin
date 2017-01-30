@@ -14,4 +14,18 @@ export function router($stateProvider) {
     controller: 'LagashHomeController',
     controllerAs:'vm'
   });
+  $stateProvider.state('lagash.users', {
+    url: '/users',
+    templateUrl: base_url + '/users/index.html',
+    controller: 'LagashUsersController',
+    controllerAs:'vm',
+    resolve: {
+      users: function(Users) {
+        return Users.query().$promise
+        .then((response) => {
+          return response;
+        });
+      }
+    }
+  });
 }
