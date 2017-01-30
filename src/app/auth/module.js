@@ -5,6 +5,7 @@ import { ForgotController } from './forgot/controller';
 import { Auth } from './services/auth/service';
 import { Sess } from './services/sess/service';
 import { Session } from './services/session/service';
+import { AuthInterceptorService } from './services/interceptor/service';
 import { Users } from './services/users.service';
 
 angular.module('wolf.auth', [
@@ -15,6 +16,7 @@ angular.module('wolf.auth', [
 .service('Auth', Auth)
 .service('Session', Session)
 .service('Users', Users)
+.service('authInterceptorService', AuthInterceptorService)
 .controller('LoginController', LoginController)
 .controller('SignupController', SignupController)
 .controller('ForgotController', ForgotController)

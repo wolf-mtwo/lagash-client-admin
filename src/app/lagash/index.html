@@ -1,28 +1,30 @@
-<md-sidenav layout="column"
-            class="md-sidenav-left md-whiteframe-z2"
-            md-component-id="left"
-            md-is-locked-open="$mdMedia('gt-md')">
-  <md-toolbar class="md-tall md-hue-2">
-    <span flex></span>
-    <div layout="column" class="md-toolbar-tools-bottom inset">
-      <user-avatar></user-avatar>
-      <span></span>
-      <div ng-click="vm.showDialog($event)">{{user.name}}</div>
-      <div ng-click="vm.showDialog($event)">{{user.email}}</div>
-      <small ng-click="vm.logout()">salir session</small>
-    </div>
-  </md-toolbar>
-  <md-list>
-    <!-- SETTINGS -->
-    <md-divider></md-divider>
-    <md-subheader class="md-no-sticky">Administracion</md-subheader>
-    <md-list-item ng-repeat="option in vm.options" ng-click="vm.selectOption(option)">
-       <ng-md-icon icon="done" style="fill: black"></ng-md-icon>
-       <p>{{option.title}}</p>
-    </md-list-item>
-    <md-divider></md-divider>
-  </md-list>
-</md-sidenav>
+<div layout="row" layout-fill>
+  <md-sidenav layout="column"
+              class="md-sidenav-left md-whiteframe-z2"
+              md-component-id="left"
+              md-is-locked-open="$mdMedia('gt-md')">
+    <md-toolbar class="md-tall md-hue-2">
+      <span flex></span>
+      <div layout="column" class="md-toolbar-tools-bottom inset">
+        <user-avatar></user-avatar>
+        <span></span>
+        <div ng-click="vm.showDialog($event)">{{vm.user.name}}</div>
+        <div ng-click="vm.showDialog($event)">{{vm.user.email}}</div>
+        <small ng-click="vm.logout()">salir session</small>
+      </div>
+    </md-toolbar>
+    <md-list>
+      <!-- SETTINGS -->
+      <md-divider></md-divider>
+      <md-subheader class="md-no-sticky">Administracion</md-subheader>
+      <md-list-item ng-repeat="option in vm.options" ng-click="vm.selectOption(option)">
+         <ng-md-icon icon="done" style="fill: black"></ng-md-icon>
+         <p>{{option.title}}</p>
+      </md-list-item>
+      <md-divider></md-divider>
+    </md-list>
+  </md-sidenav>
 
-<ui-view layout="column" layout-fill>
-</ui-view>
+  <ui-view layout="column" layout-fill>
+  </ui-view>
+</div>

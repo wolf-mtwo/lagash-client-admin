@@ -1,4 +1,3 @@
-<!-- <header-navbar options="options"></header-navbar> -->
 <div class="main-login">
   <md-toolbar class="md-whiteframe-2dp">
     <h1 class="md-toolbar-tools">
@@ -6,21 +5,21 @@
     </h1>
   </md-toolbar>
   <md-content>
-    <form ng-submit="login(item)">
-    <md-input-container class="md-block" flex-gt-xs>
-      <label>Email</label>
-      <input ng-model="item.email" required>
-    </md-input-container>
-    <md-input-container class="md-block" flex-gt-xs>
-      <label>Password</label>
-      <input ng-model="item.password" type="password" required>
-    </md-input-container>
-    <div layout="row">
-      <md-button class="md-raised" ui-sref="home">Cancelar</md-button>
-      <md-button type="submit" class="md-raised md-primary">Aceptar</md-button>
-      <a ui-sref="home.register">registrarse</a>
-    </div>
-  </form>
+    <form ng-submit="vm.login(vm.item)">
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>Email</label>
+        <input ng-model="vm.item.email" required>
+      </md-input-container>
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>Password</label>
+        <input ng-model="vm.item.password" type="password" required>
+      </md-input-container>
+      <div layout="row">
+        <md-button class="md-raised" ui-sref="home">Cancelar</md-button>
+        <md-button type="submit" class="md-raised md-primary">Aceptar</md-button>
+        <a ui-sref="home.register">registrarse</a>
+      </div>
+    </form>
   </md-content>
     <!-- <a ui-sref="home.forgot">Olvide mi contraseña</a> -->
 </div>

@@ -1,5 +1,15 @@
-export function config ($logProvider, toastrConfig, $httpProvider) {
+export function config(
+  $logProvider,
+  toastrConfig,
+  $httpProvider,
+  $mdThemingProvider
+) {
   'ngInject';
+
+  // Theme
+  $mdThemingProvider.theme('default')
+  .primaryPalette('blue-grey');
+
   // Enable log
   $logProvider.debugEnabled(true);
 
@@ -10,5 +20,17 @@ export function config ($logProvider, toastrConfig, $httpProvider) {
   toastrConfig.preventDuplicates = true;
   toastrConfig.progressBar = true;
 
-  // $httpProvider.interceptors.push('authInterceptorService');
+  // Session
+  $httpProvider.interceptors.push('authInterceptorService');
+
+  // Loading token
+  var token = localStorage.getItem('token');
+  if (token) {
+    try {
+      var session = JSON.parse(token).session_id;
+      $httpProvider.defaults.headers.common['x-access-token'] = session;
+    } catch (e) {
+      console.log('Session is no longer alive');
+    }
+  }
 }
