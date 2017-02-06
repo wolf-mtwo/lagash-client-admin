@@ -91,11 +91,9 @@ export function router($stateProvider) {
         controller: 'LagashUsersUpdateController',
         controllerAs:'vm',
         resolve: {
-          user: function($state, Users) {
-            console.log($state);
-            console.log($state.params.user_id);
+          user: function($stateParams, Users) {
             return Users.get({
-              _id: $state.params.user_id
+              _id: $stateParams.user_id
             }).$promise
             .then((response) => {
               return response;

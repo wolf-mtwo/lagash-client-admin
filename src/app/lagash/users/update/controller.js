@@ -1,22 +1,16 @@
 export class LagashUsersUpdateController {
 
-  constructor($state, Users, WError) {
+  constructor($state, WError, Users, user) {
     'ngInject';
-    console.log($state);
     this.$state = $state;
     this.Users = Users;
     this.WError = WError;
-    this.item = {
-      name: 'wolf',
-      email: 'wolf@wolf.com',
-      cel: '70156988',
-      password: 'wolf'
-    };
+    this.item = user;
   }
 
-  register(item) {
+  update(item) {
     item.role = "admin";
-    this.Users.save(item)
+    this.Users.update(item)
     .$promise
     .then((response) => {
       this.$state.go('lagash.users.detail.list');
