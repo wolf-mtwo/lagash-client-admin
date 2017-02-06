@@ -1,7 +1,8 @@
-export class LagashUsersCreateController {
+export class LagashUsersUpdateController {
 
   constructor($state, Users, WError) {
     'ngInject';
+    console.log($state);
     this.$state = $state;
     this.Users = Users;
     this.WError = WError;

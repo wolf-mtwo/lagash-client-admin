@@ -1,10 +1,25 @@
-<md-list>
-    <md-subheader class="md-no-sticky">Opciones globales</md-subheader>
-    <md-list-item ng-repeat="user in vm.users" ng-click="selectOption(option)">
-       <ng-md-icon icon="person"></ng-md-icon>
-       <p>{{user.name}}</p>
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <h1 class="md-toolbar-tools">
+      Usuarios
+    </h1>
+    <span flex></span>
+    <md-button class="md-icon-button"
+               aria-label="add"
+               ui-sref="lagash.users.detail.create">
+      <ng-md-icon icon="add"></ng-md-icon>
+    </md-button>
+  </div>
+</md-toolbar>
+<md-content>
+  <md-list>
+    <md-list-item ng-repeat="user in vm.users" ng-click="vm.select(user)">
+      <ng-md-icon icon="person"></ng-md-icon>
+      <p>{{user.name}}</p>
     </md-list-item>
   </md-list>
+</md-content>
+
 
 <!-- <md-table-container>
   <table md-table multiple>

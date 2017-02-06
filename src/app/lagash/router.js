@@ -21,7 +21,6 @@ export function router($stateProvider) {
     controllerAs:'vm'
   });
   $stateProvider.state('lagash.users.detail', {
-    // url: '/detail',
     abstract: true,
     templateUrl: base_url + '/users/detail/index.html',
     controller: 'LagashUsersDetailController',
@@ -30,7 +29,7 @@ export function router($stateProvider) {
   $stateProvider.state('lagash.users.detail.list', {
     url: '/list',
     views: {
-      'toolbar': {
+      'toolbar@lagash.users.detail': {
         templateUrl: base_url + '/users/list/index.html',
         controller: 'LagashUsersListController',
         controllerAs:'vm',
@@ -42,27 +41,68 @@ export function router($stateProvider) {
             });
           }
         }
+      },
+      'container@lagash.users.detail': {
+        templateUrl: base_url + '/template/index.html'
       }
     }
   });
-  // $stateProvider.state('lagash.users.create', {
-  //   url: '/create',
-  //   templateUrl: base_url + '/users/create/index.html',
-  //   controller: 'LagashUsersCreateController',
-  //   controllerAs:'vm'
-  // });
-  // $stateProvider.state('lagash.users.list', {
-  //   url: '/list',
-  //   templateUrl: base_url + '/users/list/index.html',
-  //   controller: 'LagashUsersListController',
-  //   controllerAs:'vm',
-  //   resolve: {
-  //     users: function(Users) {
-  //       return Users.query().$promise
-  //       .then((response) => {
-  //         return response;
-  //       });
-  //     }
-  //   }
-  // });
+  $stateProvider.state('lagash.users.detail.create', {
+    url: '/create',
+    views: {
+      'toolbar@lagash.users.detail': {
+        templateUrl: base_url + '/users/list/index.html',
+        controller: 'LagashUsersListController',
+        controllerAs:'vm',
+        resolve: {
+          users: function(Users) {
+            return Users.query().$promise
+            .then((response) => {
+              return response;
+            });
+          }
+        }
+      },
+      'container@lagash.users.detail': {
+        templateUrl: base_url + '/users/create/index.html',
+        controller: 'LagashUsersCreateController',
+        controllerAs:'vm'
+      }
+    }
+  });
+  $stateProvider.state('lagash.users.detail.preview', {
+    url: '/:user_id',
+    views: {
+      'toolbar@lagash.users.detail': {
+        templateUrl: base_url + '/users/list/index.html',
+        controller: 'LagashUsersListController',
+        controllerAs:'vm',
+        resolve: {
+          users: function(Users) {
+            return Users.query().$promise
+            .then((response) => {
+              return response;
+            });
+          }
+        }
+      },
+      'container@lagash.users.detail': {
+        templateUrl: base_url + '/users/update/index.html',
+        controller: 'LagashUsersUpdateController',
+        controllerAs:'vm',
+        resolve: {
+          user: function($state, Users) {
+            console.log($state);
+            console.log($state.params.user_id);
+            return Users.get({
+              _id: $state.params.user_id
+            }).$promise
+            .then((response) => {
+              return response;
+            });
+          }
+        }
+      }
+    }
+  });
 }
