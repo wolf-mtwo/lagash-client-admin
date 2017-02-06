@@ -20,24 +20,49 @@ export function router($stateProvider) {
     controller: 'LagashUsersController',
     controllerAs:'vm'
   });
-  $stateProvider.state('lagash.users.create', {
-    url: '/create',
-    templateUrl: base_url + '/users/create/index.html',
-    controller: 'LagashUsersCreateController',
+  $stateProvider.state('lagash.users.detail', {
+    // url: '/detail',
+    abstract: true,
+    templateUrl: base_url + '/users/detail/index.html',
+    controller: 'LagashUsersDetailController',
     controllerAs:'vm'
   });
-  $stateProvider.state('lagash.users.list', {
+  $stateProvider.state('lagash.users.detail.list', {
     url: '/list',
-    templateUrl: base_url + '/users/list/index.html',
-    controller: 'LagashUsersListController',
-    controllerAs:'vm',
-    resolve: {
-      users: function(Users) {
-        return Users.query().$promise
-        .then((response) => {
-          return response;
-        });
+    views: {
+      'toolbar': {
+        templateUrl: base_url + '/users/list/index.html',
+        controller: 'LagashUsersListController',
+        controllerAs:'vm',
+        resolve: {
+          users: function(Users) {
+            return Users.query().$promise
+            .then((response) => {
+              return response;
+            });
+          }
+        }
       }
     }
   });
+  // $stateProvider.state('lagash.users.create', {
+  //   url: '/create',
+  //   templateUrl: base_url + '/users/create/index.html',
+  //   controller: 'LagashUsersCreateController',
+  //   controllerAs:'vm'
+  // });
+  // $stateProvider.state('lagash.users.list', {
+  //   url: '/list',
+  //   templateUrl: base_url + '/users/list/index.html',
+  //   controller: 'LagashUsersListController',
+  //   controllerAs:'vm',
+  //   resolve: {
+  //     users: function(Users) {
+  //       return Users.query().$promise
+  //       .then((response) => {
+  //         return response;
+  //       });
+  //     }
+  //   }
+  // });
 }

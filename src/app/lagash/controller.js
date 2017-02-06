@@ -7,7 +7,7 @@ export class LagashController {
     this.Auth = Auth;
     this.options = [{
       title: 'Admintradores',
-      route: 'lagash.users'
+      route: 'lagash.users.detail.list'
     }];
 
     Auth.subcrive((user) => {
