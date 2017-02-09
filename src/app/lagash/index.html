@@ -25,6 +25,21 @@
     </md-list>
   </md-sidenav>
 
-  <ui-view layout="column" layout-fill>
-  </ui-view>
+  <div flex layout="column">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h3>
+          Lagash
+        </h3>
+        <span flex></span>
+        <md-button class="md-icon-button" aria-label="more">
+          <ng-md-icon icon="more_vert"></ng-md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-content flex>
+      <ui-view layout="column" layout-fill>
+      </ui-view>
+    </md-content>
+  </div>
 </div>

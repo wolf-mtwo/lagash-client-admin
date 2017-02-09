@@ -15,21 +15,16 @@ export function router($stateProvider) {
     controllerAs:'vm'
   });
   $stateProvider.state('lagash.users', {
+    // abstract: true,
     url: '/users',
     templateUrl: base_url + '/users/index.html',
     controller: 'LagashUsersController',
     controllerAs:'vm'
   });
-  $stateProvider.state('lagash.users.detail', {
-    abstract: true,
-    templateUrl: base_url + '/users/detail/index.html',
-    controller: 'LagashUsersDetailController',
-    controllerAs:'vm'
-  });
-  $stateProvider.state('lagash.users.detail.list', {
+  $stateProvider.state('lagash.users.list', {
     url: '/list',
     views: {
-      'toolbar@lagash.users.detail': {
+      'toolbar@lagash.users': {
         templateUrl: base_url + '/users/list/index.html',
         controller: 'LagashUsersListController',
         controllerAs:'vm',
@@ -42,7 +37,7 @@ export function router($stateProvider) {
           }
         }
       },
-      'container@lagash.users.detail': {
+      'container@lagash.users': {
         templateUrl: base_url + '/template/index.html'
       }
     }
@@ -50,7 +45,7 @@ export function router($stateProvider) {
   $stateProvider.state('lagash.users.detail.create', {
     url: '/create',
     views: {
-      'toolbar@lagash.users.detail': {
+      'toolbar@lagash.users': {
         templateUrl: base_url + '/users/list/index.html',
         controller: 'LagashUsersListController',
         controllerAs:'vm',
@@ -63,7 +58,7 @@ export function router($stateProvider) {
           }
         }
       },
-      'container@lagash.users.detail': {
+      'container@lagash.users': {
         templateUrl: base_url + '/users/create/index.html',
         controller: 'LagashUsersCreateController',
         controllerAs:'vm'
@@ -73,7 +68,7 @@ export function router($stateProvider) {
   $stateProvider.state('lagash.users.detail.preview', {
     url: '/:user_id',
     views: {
-      'toolbar@lagash.users.detail': {
+      'toolbar@lagash.users': {
         templateUrl: base_url + '/users/list/index.html',
         controller: 'LagashUsersListController',
         controllerAs:'vm',
@@ -86,7 +81,7 @@ export function router($stateProvider) {
           }
         }
       },
-      'container@lagash.users.detail': {
+      'container@lagash.users': {
         templateUrl: base_url + '/users/update/index.html',
         controller: 'LagashUsersUpdateController',
         controllerAs:'vm',
