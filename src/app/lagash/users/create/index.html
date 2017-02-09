@@ -1,16 +1,17 @@
-<md-toolbar>
-  <div class="md-toolbar-tools">
-    <h1 class="md-toolbar-tools">
-      Registrar nuevo usuario
-    </h1>
-    <span flex></span>
-    <md-button class="md-icon-button" aria-label="more">
-      <ng-md-icon icon="more_vert"></ng-md-icon>
-    </md-button>
-  </div>
-</md-toolbar>
-<md-content layout-padding>
-  <form name="form" ng-submit="vm.register(vm.item)">
+<form layout="column" name="form" ng-submit="vm.register(vm.item)">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h1 class="md-toolbar-tools">
+        Registrar nuevo usuario
+      </h1>
+      <span flex></span>
+      <md-button type="submit" class="md-raised">Aceptar</md-button>
+      <md-button class="md-icon-button" aria-label="more">
+        <ng-md-icon icon="more_vert"></ng-md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-content layout-padding>
     <md-input-container class="md-block" flex-gt-xs>
       <label>Email</label>
       <input required type="email" ng-model="vm.item.email" />
@@ -39,8 +40,5 @@
         <div ng-message="required">This is required.</div>
       </div>
     </md-input-container>
-    <div layout="row">
-      <md-button type="submit" class="md-raised md-primary">Aceptar</md-button>
-    </div>
-  </form>
-</md-content>
+  </md-content>
+</form>

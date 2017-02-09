@@ -15,7 +15,6 @@ export function router($stateProvider) {
     controllerAs:'vm'
   });
   $stateProvider.state('lagash.users', {
-    // abstract: true,
     url: '/users',
     templateUrl: base_url + '/users/index.html',
     controller: 'LagashUsersController',

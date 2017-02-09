@@ -8,6 +8,10 @@ export class LagashUsersUpdateController {
     this.item = user;
   }
 
+  openMenu($mdOpenMenu, ev) {
+    $mdOpenMenu(ev);
+  };
+
   delete(user) {
     this.Users.remove(user).$promise
     .then((response) => {
@@ -17,6 +21,7 @@ export class LagashUsersUpdateController {
       this.WError.request(err);
     });
   }
+
   update(item) {
     item.role = "admin";
     this.Users.update(item)
