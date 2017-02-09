@@ -8,18 +8,8 @@ export class LagashUsersListController {
     this.users = users;
   }
 
-  // delete(user, index) {
-  //   this.Users.remove(user).$promise
-  //   .then((response) => {
-  //     this.users.splice(index, 1);
-  //   })
-  //   .catch((err) => {
-  //     this.WError.request(err);
-  //   });
-  // }
-
   select(user) {
-    this.$state.go('lagash.users.detail.preview', {
+    this.$state.go('lagash.users.preview', {
       user_id: user._id
     });
   }

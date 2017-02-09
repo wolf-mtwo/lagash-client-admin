@@ -42,7 +42,7 @@ export function router($stateProvider) {
       }
     }
   });
-  $stateProvider.state('lagash.users.detail.create', {
+  $stateProvider.state('lagash.users.create', {
     url: '/create',
     views: {
       'toolbar@lagash.users': {
@@ -65,7 +65,7 @@ export function router($stateProvider) {
       }
     }
   });
-  $stateProvider.state('lagash.users.detail.preview', {
+  $stateProvider.state('lagash.users.preview', {
     url: '/:user_id',
     views: {
       'toolbar@lagash.users': {

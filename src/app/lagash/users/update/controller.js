@@ -8,12 +8,21 @@ export class LagashUsersUpdateController {
     this.item = user;
   }
 
+  delete(user) {
+    this.Users.remove(user).$promise
+    .then((response) => {
+      this.$state.go('lagash.users.list');
+    })
+    .catch((err) => {
+      this.WError.request(err);
+    });
+  }
   update(item) {
     item.role = "admin";
     this.Users.update(item)
     .$promise
     .then((response) => {
-      this.$state.go('lagash.users.detail.list');
+      this.$state.go('lagash.users.list');
     })
     .catch((err) => {
       this.WError.request(err);
