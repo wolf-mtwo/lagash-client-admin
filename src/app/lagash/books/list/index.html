@@ -1,0 +1,28 @@
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <h1>
+      Libros
+    </h1>
+    <span flex></span>
+    <md-button class="md-icon-button"
+               aria-label="add"
+               ui-sref="lagash.books.create">
+      <ng-md-icon icon="add"></ng-md-icon>
+    </md-button>
+    <md-button class="md-icon-button" aria-label="more">
+      <ng-md-icon icon="more_vert"></ng-md-icon>
+    </md-button>
+  </div>
+</md-toolbar>
+<md-content flex>
+  <md-list>
+    <md-list-item ng-repeat="book in vm.books" ng-click="vm.select(book)">
+      <ng-md-icon icon="book"></ng-md-icon>
+      <p>{{book.title}}</p>
+      <p> {{ setting.name }} </p>
+    <md-switch class="md-secondary"
+               ng-model="book.enabled"
+               ng-change="vm.change_state(book)"></md-switch>
+    </md-list-item>
+  </md-list>
+</md-content>

@@ -1,0 +1,155 @@
+<form layout="column" name="form" ng-submit="vm.register(vm.item)">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h1 class="md-toolbar-tools">
+        Nuevo libro
+      </h1>
+      <span flex></span>
+      <md-button type="submit" class="md-raised">Aceptar</md-button>
+      <md-button class="md-icon-button" aria-label="more">
+        <ng-md-icon icon="more_vert"></ng-md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="general">
+        <md-content layout-padding>
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>Titulo</label>
+            <input required ng-model="vm.item.title" md-maxlength="250">
+            <div ng-messages="form.title.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <!-- <md-input-container class="md-block" flex-gt-xs>
+            <label>Titulo</label>
+            <textarea required ng-model="vm.item.title" md-maxlength="250" rows="5">
+            </textarea>
+          </md-input-container> -->
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>UUID</label>
+            <input required ng-model="vm.item.uuid" disabled md-maxlength="36">
+            <div ng-messages="form.uuid.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>Inventario</label>
+            <input required ng-model="vm.item.inventory" md-maxlength="100">
+            <div ng-messages="form.inventory.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>Codigo</label>
+            <input required ng-model="vm.item.code" md-maxlength="50">
+            <div ng-messages="form.code.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>ISBN</label>
+            <input required ng-model="vm.item.isbn" md-maxlength="20">
+            <div ng-messages="form.isbn.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>Descripcion</label>
+            <textarea required ng-model="vm.item.description" md-maxlength="250" rows="5">
+            </textarea>
+          </md-input-container>
+        </md-content>
+      </md-tab>
+      <md-tab label="detalle">
+        <md-content layout-padding>
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>Volumen</label>
+            <input ng-model="vm.item.volumen" md-maxlength="10">
+            <div ng-messages="form.volumen.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>Tomo</label>
+            <input ng-model="vm.item.tome" md-maxlength="10">
+            <div ng-messages="form.tome.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>Editorial</label>
+            <input ng-model="vm.item.editorial" md-maxlength="100">
+            <div ng-messages="form.editorial.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>Pais</label>
+            <input ng-model="vm.item.country" md-maxlength="50">
+            <div ng-messages="form.country.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>Ciudad</label>
+            <input ng-model="vm.item.city" md-maxlength="50">
+            <div ng-messages="form.city.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>Trae (DC, etc)</label>
+            <input ng-model="vm.item.brings" md-maxlength="100">
+            <div ng-messages="form.brings.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>Type</label>
+            <input ng-model="vm.item.type" md-maxlength="50">
+            <div ng-messages="form.type.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>Ilustracion</label>
+            <input ng-model="vm.item.illustration" md-maxlength="100">
+            <div ng-messages="form.illustration.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>Tamaño</label>
+            <input ng-model="vm.item.size" md-maxlength="20">
+            <div ng-messages="form.size.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>Indice</label>
+            <textarea ng-model="vm.item.index" md-maxlength="1000" rows="10">
+            </textarea>
+          </md-input-container>
+        </md-content>
+      </md-tab>
+      <md-tab label="ejemplares">
+        <md-content layout-padding>
+          <h1 class="md-display-2">Tab Three</h1>
+          <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</form>
+
+10 volumen
+10 tome
+100 editorial
+50 country
+50 city
+100 brings
+50 type
+100 illustration
+20 size
