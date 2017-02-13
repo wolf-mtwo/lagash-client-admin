@@ -22,7 +22,6 @@ export class WError {
     if (response.status === -1) {
       msg = 'ERROR: ' + 'CONECCION RECHAZADA';
       this.displayError(msg);
-      // console.log();
       return;
     }
     if (response.status === 408) {
