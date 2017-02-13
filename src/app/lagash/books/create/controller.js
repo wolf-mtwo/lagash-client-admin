@@ -6,7 +6,7 @@ export class LagashBooksCreateController {
     this.Books = Books;
     this.WError = WError;
     this.item = {
-      uuid: UUID.next(),
+      _id: UUID.next(),
       enabled : false,
 
       // fake

@@ -8,6 +8,9 @@ export class LagashController {
     this.options = [{
       title: 'Admintradores',
       route: 'lagash.users.list'
+    }, {
+      title: 'Libros',
+      route: 'lagash.books.list'
     }];
 
     Auth.subcrive((user) => {

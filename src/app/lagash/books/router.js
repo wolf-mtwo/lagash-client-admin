@@ -83,6 +83,14 @@ export function router($stateProvider) {
             .then((response) => {
               return response;
             });
+          },
+          replicas: function($stateParams, Replicas) {
+            return Replicas.query({
+              book_id: $stateParams.book_id
+            }).$promise
+            .then((response) => {
+              return response;
+            });
           }
         }
       }
