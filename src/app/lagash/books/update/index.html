@@ -180,9 +180,12 @@
             <md-list-item ng-repeat="replica in vm.replicas"
                           ng-click="vm.select_replica(replica)">
               <p><b>{{replica.index}}</b> - {{replica._id}}</p>
-              <md-button class="md-secondary">
+              <!-- <md-button class="md-secondary">
                 {{replica.status.es}}
-              </md-button>
+              </md-button> -->
+              <md-switch class="md-secondary"
+                         ng-model="replica.enabled"
+                         ng-change="vm.change_replica_state(replica)"></md-switch>
             </md-list-item>
           </md-list>
         </md-content>

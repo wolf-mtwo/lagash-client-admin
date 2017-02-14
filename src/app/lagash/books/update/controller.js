@@ -10,7 +10,8 @@ export class LagashBooksUpdateController {
     this.UUID = UUID;
     this.Replicas = Replicas;
     this.item = book;
-    this.replicas = this.change_state(replicas);
+    this.replicas = replicas;
+    // this.replicas = this.change_state(replicas);
     this.create_replica_state = false;
   }
 
@@ -42,13 +43,14 @@ export class LagashBooksUpdateController {
 
   save_replica(item) {
     item.book_id = this.book_id;
-    item.state = "ENABLED"; // 1
+    item.enabled = false;
+    item.state = 'STORED'; // 0
     this.Replicas.save(item)
     .$promise
     .then((response) => {
       this.create_replica_state = false;
       this.WToast.show('El ejemplar se guardo correctamente');
-      response.status = this.get_state(response.state);
+      // response.status = this.get_state(response.state);
       this.replicas.push(response);
     })
     .catch((err) => {
@@ -56,12 +58,12 @@ export class LagashBooksUpdateController {
     });
   }
 
-  change_state(replicas) {
-    return replicas.map((item) => {
-      item.status = this.get_state(item.state);
-      return item;
-    })
-  }
+  // change_state(replicas) {
+  //   return replicas.map((item) => {
+  //     item.status = this.get_state(item.state);
+  //     return item;
+  //   })
+  // }
 
   create_replica() {
     this.create_replica_state = true;
@@ -72,7 +74,6 @@ export class LagashBooksUpdateController {
   }
 
   select_replica(replica) {
-    console.log(replica);
     this.$state.go('lagash.books.replica', {
       book_id: this.book_id,
       replica_id: replica._id
@@ -103,38 +104,49 @@ export class LagashBooksUpdateController {
   BOOKED = 3,
   BORROWED = 4
   */
-  get_state(state) {
-    switch (state) {
-      case 1:
-        return {
-          key: 1,
-          es: 'habilitado',
-          value: 'ENABLED'
-        };
-        break;
-      case 2:
-        return {
-          key: 2,
-          es: 'deshabilitado',
-          value: 'DISABLED'
-        };
-        break;
-      case 3:
-        return {
-          key: 3,
-          es: 'reservado',
-          value: 'BOOKED'
-        };
-        break;
-      case 4:
-        return {
-          key: 4,
-          es: 'prestado',
-          value: 'BORROWED'
-        };
-        break;
-      default:
-        console.log('state is not defined');
-    }
+  // get_state(state) {
+  //   switch (state) {
+  //     case 1:
+  //       return {
+  //         key: 1,
+  //         es: 'habilitado',
+  //         value: 'ENABLED'
+  //       };
+  //       break;
+  //     case 2:
+  //       return {
+  //         key: 2,
+  //         es: 'deshabilitado',
+  //         value: 'DISABLED'
+  //       };
+  //       break;
+  //     case 3:
+  //       return {
+  //         key: 3,
+  //         es: 'reservado',
+  //         value: 'BOOKED'
+  //       };
+  //       break;
+  //     case 4:
+  //       return {
+  //         key: 4,
+  //         es: 'prestado',
+  //         value: 'BORROWED'
+  //       };
+  //       break;
+  //     default:
+  //       console.log('state is not defined');
+  //   }
+  // }
+
+  change_replica_state(replica) {
+    this.Replicas.update(replica)
+    .$promise
+    .then((response) => {
+      this.WToast.show('El ejemplar se actualizo correctamente');
+    })
+    .catch((err) => {
+      this.WError.request(err);
+    });
   }
 }
