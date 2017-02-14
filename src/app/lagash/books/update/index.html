@@ -145,7 +145,7 @@
         <md-toolbar>
           <div class="md-toolbar-tools">
             <h1>
-              Actualizar libro
+              Nuevo ejemplar - {{vm.replicas.length}}
             </h1>
             <span flex></span>
             <md-button aria-label="Open demo menu"
@@ -177,11 +177,11 @@
         </md-content>
         <md-content>
           <md-list>
-            <md-list-item ng-repeat="replica in vm.replicas" ng-click="vm.select(replica)">
+            <md-list-item ng-repeat="replica in vm.replicas"
+                          ng-click="vm.select_replica(replica)">
               <p><b>{{replica.index}}</b> - {{replica._id}}</p>
-              <md-button class="md-secondary"
-                         ng-click="vm.select_replica(replica, $event)">
-              {{replica.status.es}}
+              <md-button class="md-secondary">
+                {{replica.status.es}}
               </md-button>
             </md-list-item>
           </md-list>

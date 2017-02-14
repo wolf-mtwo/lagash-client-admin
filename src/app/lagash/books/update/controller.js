@@ -72,7 +72,11 @@ export class LagashBooksUpdateController {
   }
 
   select_replica(replica) {
-    //this.$state.go('lagash.books.preview');
+    console.log(replica);
+    this.$state.go('lagash.books.replica', {
+      book_id: this.book_id,
+      replica_id: replica._id
+    });
   }
 
   getIndex() {

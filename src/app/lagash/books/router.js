@@ -96,4 +96,46 @@ export function router($stateProvider) {
       }
     }
   });
+
+  $stateProvider.state('lagash.books.replica', {
+    url: '/:book_id/replicas/:replica_id',
+    views: {
+      'toolbar@lagash.books': {
+        templateUrl: base_url + '/list/index.html',
+        controller: 'LagashBooksListController',
+        controllerAs:'vm',
+        resolve: {
+          books: function(Books) {
+            return Books.query().$promise
+            .then((response) => {
+              return response;
+            });
+          }
+        }
+      },
+      'container@lagash.books': {
+        templateUrl: base_url + '/replica/index.html',
+        controller: 'LagashBooksReplicaController',
+        controllerAs:'vm',
+        resolve: {
+          book: function($stateParams, Books) {
+            return Books.get({
+              _id: $stateParams.book_id
+            }).$promise
+            .then((response) => {
+              return response;
+            });
+          },
+          replica: function($stateParams, Replicas) {
+            return Replicas.get({
+              _id: $stateParams.replica_id
+            }).$promise
+            .then((response) => {
+              return response;
+            });
+          }
+        }
+      }
+    }
+  });
 }
