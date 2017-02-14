@@ -1,10 +1,11 @@
 export class LagashBooksUpdateController {
 
-  constructor($state, WError, Books, UUID, Replicas, book, replicas) {
+  constructor($state, WError, WToast, Books, UUID, Replicas, book, replicas) {
     'ngInject';
     this.book_id = $state.params.book_id;
     this.$state = $state;
     this.WError = WError;
+    this.WToast = WToast;
     this.Books = Books;
     this.UUID = UUID;
     this.Replicas = Replicas;
@@ -40,13 +41,15 @@ export class LagashBooksUpdateController {
   }
 
   save_replica(item) {
-    console.log(this.book_id);
     item.book_id = this.book_id;
     item.state = "ENABLED"; // 1
     this.Replicas.save(item)
     .$promise
     .then((response) => {
-      this.create_replica_state = true;
+      this.create_replica_state = false;
+      this.WToast.show('El ejemplar se guardo correctamente');
+      response.status = this.get_state(response.state);
+      this.replicas.push(response);
     })
     .catch((err) => {
       this.WError.request(err);
@@ -55,7 +58,7 @@ export class LagashBooksUpdateController {
 
   change_state(replicas) {
     return replicas.map((item) => {
-      item.state = this.get_state(item.state);
+      item.status = this.get_state(item.state);
       return item;
     })
   }
@@ -63,8 +66,31 @@ export class LagashBooksUpdateController {
   create_replica() {
     this.create_replica_state = true;
     this.replica_item = {
-      _id: this.UUID.next()
+      _id: this.UUID.next(),
+      index: this.getIndex()
     }
+  }
+
+  select_replica(replica) {
+    //this.$state.go('lagash.books.preview');
+  }
+
+  getIndex() {
+    let existElement = (index) => {
+      let result = false;
+      this.replicas.map((item) => {
+        if (item.index === index) {
+          result = true;
+        }
+      })
+      return result;
+    };
+    let count = 0;
+    let isTrue = true;
+    while(isTrue) {
+      isTrue = existElement(++count);
+    }
+    return count;
   }
 
   /*
@@ -76,21 +102,35 @@ export class LagashBooksUpdateController {
   get_state(state) {
     switch (state) {
       case 1:
-        return 'ENABLED';
+        return {
+          key: 1,
+          es: 'habilitado',
+          value: 'ENABLED'
+        };
         break;
       case 2:
-        return 'DISABLED';
+        return {
+          key: 2,
+          es: 'deshabilitado',
+          value: 'DISABLED'
+        };
         break;
       case 3:
-        return 'BOOKED';
+        return {
+          key: 3,
+          es: 'reservado',
+          value: 'BOOKED'
+        };
         break;
       case 4:
-        return 'BORROWED';
+        return {
+          key: 4,
+          es: 'prestado',
+          value: 'BORROWED'
+        };
         break;
       default:
-        // throw new Error('state is not defined');
         console.log('state is not defined');
     }
   }
-
 }

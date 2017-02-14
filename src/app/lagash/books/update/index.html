@@ -163,27 +163,25 @@
               <div ng-message="required">This is required.</div>
             </div>
           </md-input-container>
-          <div layout="row">
-            <md-input-container class="md-block" flex-gt-xs flex>
-              <label>Index</label>
-              <input ng-model="vm.replica_item.index" md-maxlength="10">
-              <div ng-messages="form.index.$error">
-                <div ng-message="required">This is required.</div>
-              </div>
-            </md-input-container>
-            <md-button class="md-raised md-primary"
-                       ng-click="vm.save_replica(vm.replica_item)">
-              create nueva replica
-            </md-button>
-          </div>
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>Index</label>
+            <input ng-model="vm.replica_item.index" md-maxlength="10" class="md-secondary">
+            <div ng-messages="form.index.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-button class="md-raised md-primary md-secondary"
+                     ng-click="vm.save_replica(vm.replica_item)">
+            Create nueva replica
+          </md-button>
         </md-content>
-        <md-content layout-padding>
+        <md-content>
           <md-list>
             <md-list-item ng-repeat="replica in vm.replicas" ng-click="vm.select(replica)">
-              <b><h5>{{replica.index}}</h5></b>
-              <p>{{replica._id}}</p>
-              <md-button class="md-raised">
-                {{replica.state}}
+              <p><b>{{replica.index}}</b> - {{replica._id}}</p>
+              <md-button class="md-secondary"
+                         ng-click="vm.select_replica(replica, $event)">
+              {{replica.status.es}}
               </md-button>
             </md-list-item>
           </md-list>
