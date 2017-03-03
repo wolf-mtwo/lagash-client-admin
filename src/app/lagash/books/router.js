@@ -85,8 +85,8 @@ export function router($stateProvider) {
             });
           },
           replicas: function($stateParams, Replicas) {
-            return Replicas.query({
-              book_id: $stateParams.book_id
+            return Replicas.find({
+              _id: $stateParams.book_id
             }).$promise
             .then((response) => {
               return response;

@@ -9,9 +9,9 @@ export class Replicas {
       update: {
         method: 'PUT'
       },
-      findByEmail: {
+      find: {
         method: 'GET',
-        // TODO made an specific method
+        url: Global.PATH + '/v2/books/:_id/replicas',
         isArray: true
       }
     });
