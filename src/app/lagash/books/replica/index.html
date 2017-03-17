@@ -21,14 +21,6 @@
     <label>Ejemplar</label>
     <input disabled ng-model="vm.replica._id">
   </md-input-container>
-  <md-input-container class="md-block" flex-gt-xs>
-    <label>Inventario</label>
-    <input disabled ng-model="vm.item.inventory">
-  </md-input-container>
-  <md-input-container class="md-block" flex-gt-xs>
-    <label>Codigo</label>
-    <input disabled ng-model="vm.item.code">
-  </md-input-container>
   <md-toolbar>
     <div class="md-toolbar-tools">
       <h1>
@@ -44,6 +36,20 @@
       <label>Index</label>
       <input ng-model="vm.replica.index" md-maxlength="10" class="md-secondary">
       <div ng-messages="form.index.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block" flex-gt-xs>
+      <label>Inventario</label>
+      <input ng-model="vm.replica.inventory" md-maxlength="10" class="md-secondary">
+      <div ng-messages="form.inventory.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block" flex-gt-xs>
+      <label>Codigo</label>
+      <input ng-model="vm.replica.code" md-maxlength="10" class="md-secondary">
+      <div ng-messages="form.price.$error">
         <div ng-message="required">This is required.</div>
       </div>
     </md-input-container>
