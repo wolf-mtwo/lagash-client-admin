@@ -84,8 +84,8 @@ export function router($stateProvider) {
               return response;
             });
           },
-          replicas: function($stateParams, Replicas) {
-            return Replicas.find({
+          ejemplares: function($stateParams, Ejemplares) {
+            return Ejemplares.find({
               _id: $stateParams.book_id
             }).$promise
             .then((response) => {
@@ -97,8 +97,8 @@ export function router($stateProvider) {
     }
   });
 
-  $stateProvider.state('lagash.books.replica', {
-    url: '/:book_id/replicas/:replica_id',
+  $stateProvider.state('lagash.books.ejemplar', {
+    url: '/:book_id/ejemplares/:ejemplar_id',
     views: {
       'toolbar@lagash.books': {
         templateUrl: base_url + '/list/index.html',
@@ -114,8 +114,8 @@ export function router($stateProvider) {
         }
       },
       'container@lagash.books': {
-        templateUrl: base_url + '/replica/index.html',
-        controller: 'LagashBooksReplicaController',
+        templateUrl: base_url + '/ejemplar/index.html',
+        controller: 'LagashBooksEjemplarController',
         controllerAs:'vm',
         resolve: {
           book: function($stateParams, Books) {
@@ -126,13 +126,10 @@ export function router($stateProvider) {
               return response;
             });
           },
-          replica: function($stateParams, Replicas) {
-            return Replicas.get({
-              _id: $stateParams.replica_id
+          ejemplares: function($stateParams, Ejemplares) {
+            return Ejemplares.get({
+              _id: $stateParams.ejemplar_id
             }).$promise
-            .then((response) => {
-              return response;
-            });
           }
         }
       }

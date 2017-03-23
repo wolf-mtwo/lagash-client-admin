@@ -1,6 +1,6 @@
 export class LagashBooksUpdateController {
 
-  constructor($state, WError, WToast, Books, UUID, Replicas, book, replicas) {
+  constructor($state, WError, WToast, Books, UUID, Ejemplares, book, ejemplares) {
     'ngInject';
     this.book_id = $state.params.book_id;
     this.$state = $state;
@@ -8,11 +8,11 @@ export class LagashBooksUpdateController {
     this.WToast = WToast;
     this.Books = Books;
     this.UUID = UUID;
-    this.Replicas = Replicas;
+    this.Ejemplares = Ejemplares;
     this.item = book;
-    this.replicas = replicas;
-    // this.replicas = this.change_state(replicas);
-    this.create_replica_state = false;
+    this.ejemplares = ejemplares;
+    // this.ejemplares = this.change_state(ejemplares);
+    this.create_ejemplar_state = false;
   }
 
   openMenu($mdOpenMenu, ev) {
@@ -41,49 +41,49 @@ export class LagashBooksUpdateController {
     });
   }
 
-  save_replica(item) {
+  save_ejemplar(item) {
     item.book_id = this.book_id;
     item.enabled = false;
     item.state = 'STORED'; // 0
-    this.Replicas.save(item)
+    this.Ejemplares.save(item)
     .$promise
     .then((response) => {
-      this.create_replica_state = false;
+      this.create_ejemplar_state = false;
       this.WToast.show('El ejemplar se guardo correctamente');
       // response.status = this.get_state(response.state);
-      this.replicas.push(response);
+      this.ejemplares.push(response);
     })
     .catch((err) => {
       this.WError.request(err);
     });
   }
 
-  // change_state(replicas) {
-  //   return replicas.map((item) => {
+  // change_state(ejemplares) {
+  //   return ejemplares.map((item) => {
   //     item.status = this.get_state(item.state);
   //     return item;
   //   })
   // }
 
-  create_replica() {
-    this.create_replica_state = true;
-    this.replica_item = {
+  create_ejemplar() {
+    this.create_ejemplar_state = true;
+    this.ejemplar_item = {
       _id: this.UUID.next(),
       index: this.getIndex()
     }
   }
 
-  select_replica(replica) {
-    this.$state.go('lagash.books.replica', {
+  select_ejemplar(ejemplar) {
+    this.$state.go('lagash.books.ejemplar', {
       book_id: this.book_id,
-      replica_id: replica._id
+      ejemplar_id: ejemplar._id
     });
   }
 
   getIndex() {
     let existElement = (index) => {
       let result = false;
-      this.replicas.map((item) => {
+      this.ejemplares.map((item) => {
         if (item.index === index) {
           result = true;
         }
@@ -139,8 +139,8 @@ export class LagashBooksUpdateController {
   //   }
   // }
 
-  change_replica_state(replica) {
-    this.Replicas.update(replica)
+  change_ejemplar_state(ejemplar) {
+    this.Ejemplares.update(ejemplar)
     .$promise
     .then((response) => {
       this.WToast.show('El ejemplar se actualizo correctamente');

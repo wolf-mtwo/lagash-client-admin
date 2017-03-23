@@ -29,61 +29,61 @@
         <md-toolbar>
           <div class="md-toolbar-tools">
             <h1>
-              Nuevo ejemplar ({{vm.replicas.length}})
+              Ejemplar ({{vm.ejemplares.length}})
             </h1>
             <span flex></span>
             <md-button aria-label="Open demo menu"
                        class="md-icon-button"
-                         ng-click="vm.create_replica()">
-              <ng-md-icon icon="control_point_duplicate"></ng-md-icon>
+                         ng-click="vm.create_ejemplar()">
+              <ng-md-icon icon="add"></ng-md-icon>
             </md-button>
           </div>
         </md-toolbar>
-        <md-content ng-if="vm.create_replica_state">
+        <md-content ng-if="vm.create_ejemplar_state">
           <md-input-container class="md-block" flex-gt-xs flex>
             <label>UUID</label>
-            <input ng-model="vm.replica_item._id" md-maxlength="10" disabled>
+            <input ng-model="vm.ejemplar_item._id" md-maxlength="10" disabled>
             <div ng-messages="form._id.$error">
               <div ng-message="required">This is required.</div>
             </div>
           </md-input-container>
           <md-input-container class="md-block" flex-gt-xs>
             <label>Signatura topográfica</label>
-            <input required ng-model="vm.replica_item.code" md-maxlength="50">
+            <input required ng-model="vm.ejemplar_item.code" md-maxlength="50">
             <div ng-messages="form.code.$error">
               <div ng-message="required">This is required.</div>
             </div>
           </md-input-container>
           <md-input-container class="md-block" flex-gt-xs>
             <label>Inventario</label>
-            <input required ng-model="vm.replica_item.inventory" md-maxlength="100">
+            <input required ng-model="vm.ejemplar_item.inventory" md-maxlength="100">
             <div ng-messages="form.inventory.$error">
               <div ng-message="required">This is required.</div>
             </div>
           </md-input-container>
           <md-input-container class="md-block" flex-gt-xs>
             <label>Index</label>
-            <input ng-model="vm.replica_item.index" md-maxlength="10" class="md-secondary">
+            <input ng-model="vm.ejemplar_item.index" md-maxlength="10" class="md-secondary">
             <div ng-messages="form.index.$error">
               <div ng-message="required">This is required.</div>
             </div>
           </md-input-container>
           <md-button class="md-raised md-primary md-secondary"
-                     ng-click="vm.save_replica(vm.replica_item)">
-            Create nueva replica
+                     ng-click="vm.save_ejemplar(vm.ejemplar_item)">
+            Crear nuevo ejemplar
           </md-button>
         </md-content>
         <md-content>
           <md-list>
-            <md-list-item ng-repeat="replica in vm.replicas"
-                          ng-click="vm.select_replica(replica)">
-              <p><b>{{replica.index}}</b> - {{replica._id}}</p>
+            <md-list-item ng-repeat="ejemplar in vm.ejemplares"
+                          ng-click="vm.select_ejemplar(ejemplar)">
+              <p><b>{{ejemplar.index}}</b> - {{ejemplar._id}}</p>
               <!-- <md-button class="md-secondary">
-                {{replica.status.es}}
+                {{ejemplar.status.es}}
               </md-button> -->
               <md-switch class="md-secondary"
-                         ng-model="replica.enabled"
-                         ng-change="vm.change_replica_state(replica)"></md-switch>
+                         ng-model="ejemplar.enabled"
+                         ng-change="vm.change_ejemplar_state(ejemplar)"></md-switch>
             </md-list-item>
           </md-list>
         </md-content>
@@ -184,13 +184,19 @@
             </div>
           </md-input-container>
           <md-input-container class="md-block" flex-gt-xs>
+            <label>Precio</label>
+            <input ng-model="vm.item.price" md-maxlength="20">
+            <div ng-messages="form.price.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-xs>
             <label>Indice</label>
             <textarea ng-model="vm.item.index" md-maxlength="1000" rows="10">
             </textarea>
           </md-input-container>
         </md-content>
       </md-tab>
-
     </md-tabs>
   </md-content>
 </form>

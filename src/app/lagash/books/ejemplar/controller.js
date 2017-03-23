@@ -1,14 +1,14 @@
-export class LagashBooksReplicaController {
+export class LagashBooksEjemplarController {
 
-  constructor($state, WError, WToast, Books, UUID, Replicas, book, replica) {
+  constructor($state, WError, WToast, Books, UUID, Ejemplares, book, ejemplar) {
     'ngInject';
     this.$state = $state;
     this.Books = Books;
     this.WError = WError;
     this.WToast = WToast;
-    this.Replicas = Replicas;
+    this.Ejemplares = Ejemplares;
     this.item = book;
-    this.replica = replica;
+    this.ejemplar = ejemplar;
 
     this.states = [{
       value: 'Guardado',
@@ -20,11 +20,11 @@ export class LagashBooksReplicaController {
       value: 'Prestado',
       key: 'BORROWED'
     }];
-    this.replica.state = this.states[replica.state].key;
+    this.ejemplar.state = this.states[ejemplar.state].key;
   }
 
-  save_replica(replica) {
-    this.Replicas.update(replica)
+  save_ejemplar(ejemplar) {
+    this.Ejemplares.update(ejemplar)
     .$promise
     .then((response) => {
       response.state = this.states[response.state].key;
