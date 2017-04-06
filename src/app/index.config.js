@@ -7,8 +7,8 @@ export function config(
   'ngInject';
 
   // Theme
-  $mdThemingProvider.theme('default')
-  .primaryPalette('blue-grey');
+  $mdThemingProvider.theme('cean')
+  .primaryPalette('red');
 
   // Enable log
   $logProvider.debugEnabled(true);
@@ -29,8 +29,8 @@ export function config(
     try {
       var session = JSON.parse(token).session_id;
       $httpProvider.defaults.headers.common['x-access-token'] = session;
-    } catch (e) {
-      console.log('Session is no longer alive');
+    } catch(e) {
+      console.error('Session is no longer alive');
     }
   }
 }

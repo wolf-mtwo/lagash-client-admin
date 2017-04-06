@@ -6,6 +6,7 @@ export class LagashUsersUpdateController {
     this.Users = Users;
     this.WError = WError;
     this.item = user;
+    console.log(this);
   }
 
   openMenu($mdOpenMenu, ev) {

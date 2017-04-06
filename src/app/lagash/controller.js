@@ -7,7 +7,7 @@ export class LagashController {
     this.Auth = Auth;
     this.options = [{
       title: 'Admintradores',
-      route: 'lagash.users.list'
+      route: 'lagash.users'
     }, {
       title: 'Libros',
       route: 'lagash.books.list'
