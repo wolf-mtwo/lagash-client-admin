@@ -7,8 +7,8 @@ export function config(
   'ngInject';
 
   // Theme
-  $mdThemingProvider.theme('cean')
-  .primaryPalette('red');
+  $mdThemingProvider.theme('default')
+  .primaryPalette('teal');
 
   // Enable log
   $logProvider.debugEnabled(true);

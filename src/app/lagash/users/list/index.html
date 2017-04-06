@@ -1,62 +1,49 @@
-<md-toolbar>
-  <div class="md-toolbar-tools">
-    <h1>
-      Usuarios
-    </h1>
-    <span flex></span>
-    <md-button class="md-icon-button"
-               aria-label="add"
-               ui-sref="lagash.users.create">
-      <ng-md-icon icon="add"></ng-md-icon>
-    </md-button>
-    <md-button class="md-icon-button" aria-label="more">
-      <ng-md-icon icon="more_vert"></ng-md-icon>
-    </md-button>
+<div layout="row" layout-fill>
+  <div flex="25"layout="column">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h1>
+          Usuarios
+        </h1>
+        <span flex></span>
+        <md-button class="md-icon-button"
+                   aria-label="add"
+                   ui-sref="lagash.users.list.create">
+          <ng-md-icon icon="add"></ng-md-icon>
+        </md-button>
+        <md-button class="md-icon-button" aria-label="more">
+          <ng-md-icon icon="more_vert"></ng-md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-content flex>
+      <md-list>
+        <md-list-item ng-repeat="user in vm.users" ng-click="vm.select(user)">
+          <ng-md-icon icon="person"></ng-md-icon>
+          <p>{{user.name}}</p>
+        </md-list-item>
+      </md-list>
+    </md-content>
   </div>
-</md-toolbar>
-<md-content flex>
-  <md-list>
-    <md-list-item ng-repeat="user in vm.users" ng-click="vm.select(user)">
-      <ng-md-icon icon="person"></ng-md-icon>
-      <p>{{user.name}}</p>
-    </md-list-item>
-  </md-list>
-</md-content>
-
-
-<!-- <md-table-container>
-  <table md-table multiple>
-    <thead md-head>
-      <tr md-row>
-        <th md-column><span>Nombre</span></th>
-        <th md-column><span>Email</span></th>
-        <th md-column><span># Telefono movil</span></th>
-        <th md-column><span>Accion</span></th>
-      </tr>
-    </thead>
-    <tbody md-body>
-      <tr md-row
-          ng-repeat="user in vm.users">
-        <td md-cell>{{user.name}}</td>
-        <td md-cell>{{user.email}}</td>
-        <td md-cell>{{user.cel}}</td>
-        <td md-cell>
-          <md-button class="md-icon-button" aria-label="details">
-            <ng-md-icon icon="details"></ng-md-icon>
-          </md-button>
-          <md-button class="md-icon-button" aria-label="edit">
-            <ng-md-icon icon="edit"></ng-md-icon>
-          </md-button>
-          <md-button class="md-icon-button"
-                     aria-label="delete"
-                     ng-click="vm.delete(user, $index)">
-            <ng-md-icon icon="delete"></ng-md-icon>
-          </md-button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</md-table-container>
-<div layout="row" layout-align="center center" ng-if="vm.users.length < 1">
-  <p class="md-title">No existe <b>usuarios</b> registrados</p>
-</div> -->
+  <div flex="75" ui-view layout="column">
+        <md-toolbar>
+          <div class="md-toolbar-tools">
+            <h1>
+              Lista de usuarios
+            </h1>
+            <span flex></span>
+            <md-button class="md-icon-button" aria-label="more">
+              <ng-md-icon icon="more_vert"></ng-md-icon>
+            </md-button>
+          </div>
+        </md-toolbar>
+        <md-content flex>
+          <div layout="row" layout-align="center center" ng-if="vm.users.length === 0">
+            <p class="md-title">No existe <b>usuarios</b> registrados</p>
+          </div>
+          <div layout="row" layout-align="center center" ng-if="vm.users.length > 0">
+            <p class="md-title">Selecione un <b>usuarios</b> registrados</p>
+          </div>
+        </md-content>
+  </div>
+</div>

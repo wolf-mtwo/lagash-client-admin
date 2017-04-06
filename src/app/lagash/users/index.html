@@ -9,54 +9,5 @@
     </md-button>
   </div>
 </md-toolbar>
-<md-content flex>
-  <div layout="row" layout-fill>
-    <div flex="25"layout="column">
-      <md-toolbar>
-        <div class="md-toolbar-tools">
-          <h1>
-            Usuarios
-          </h1>
-          <span flex></span>
-          <md-button class="md-icon-button"
-                     aria-label="add"
-                     ui-sref="lagash.users.create">
-            <ng-md-icon icon="add"></ng-md-icon>
-          </md-button>
-          <md-button class="md-icon-button" aria-label="more">
-            <ng-md-icon icon="more_vert"></ng-md-icon>
-          </md-button>
-        </div>
-      </md-toolbar>
-      <md-content flex>
-        <md-list>
-          <md-list-item ng-repeat="user in vm.users" ng-click="vm.select(user)">
-            <ng-md-icon icon="person"></ng-md-icon>
-            <p>{{user.name}}</p>
-          </md-list-item>
-        </md-list>
-      </md-content>
-    </div>
-    <div flex="75" ui-view layout="column">
-          <md-toolbar>
-            <div class="md-toolbar-tools">
-              <h1>
-                Lista de usuarios
-              </h1>
-              <span flex></span>
-              <md-button class="md-icon-button" aria-label="more">
-                <ng-md-icon icon="more_vert"></ng-md-icon>
-              </md-button>
-            </div>
-          </md-toolbar>
-          <md-content flex>
-            <div layout="row" layout-align="center center" ng-if="vm.users.length === 0">
-              <p class="md-title">No existe <b>usuarios</b> registrados</p>
-            </div>
-            <div layout="row" layout-align="center center" ng-if="vm.users.length > 0">
-              <p class="md-title">Selecione un <b>usuarios</b> registrados</p>
-            </div>
-          </md-content>
-    </div>
-  </div>
+<md-content ui-view flex>
 </md-content>

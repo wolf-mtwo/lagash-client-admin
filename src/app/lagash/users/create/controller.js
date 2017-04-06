@@ -14,7 +14,6 @@ export class LagashUsersCreateController {
   }
 
   register(item) {
-    item.role = "admin";
     this.Users.save(item)
     .$promise
     .then((response) => {

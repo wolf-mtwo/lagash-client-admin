@@ -3,9 +3,15 @@ export function router($stateProvider) {
   var base_url = 'app/lagash/users';
 
   $stateProvider.state('lagash.users', {
-    url: '/users',
+    abstract: true,
     templateUrl: base_url + '/index.html',
-    controller: 'LagashUsersController',
+    controller: 'LagashUsersController'
+  });
+
+  $stateProvider.state('lagash.users.list', {
+    url: '/users',
+    templateUrl: base_url + '/list/index.html',
+    controller: 'LagashUsersListController',
     controllerAs:'vm',
     resolve: {
       users: function(Users) {
@@ -14,14 +20,14 @@ export function router($stateProvider) {
     }
   });
 
-  $stateProvider.state('lagash.users.create', {
+  $stateProvider.state('lagash.users.list.create', {
     url: '/create',
     templateUrl: base_url + '/create/index.html',
     controller: 'LagashUsersCreateController',
     controllerAs:'vm'
   });
 
-  $stateProvider.state('lagash.users.update', {
+  $stateProvider.state('lagash.users.list.update', {
     url: '/:user_id',
     templateUrl: base_url + '/update/index.html',
     controller: 'LagashUsersUpdateController',
