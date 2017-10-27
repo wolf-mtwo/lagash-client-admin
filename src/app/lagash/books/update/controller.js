@@ -45,7 +45,7 @@ export class LagashBooksUpdateController {
     item.book_id = this.book_id;
     item.enabled = false;
     item.state = 'STORED'; // 0
-    this.Ejemplares.save(item)
+    this.Ejemplares.save({}, item)
     .$promise
     .then((response) => {
       this.create_ejemplar_state = false;

@@ -2,7 +2,7 @@ export class Ejemplares {
 
   constructor($resource, Global) {
     'ngInject';
-    var url = Global.PATH + '/p1/ejemplares';
+    var url = Global.PATH + '/v1/ejemplares';
     return $resource(url + '/:_id', {
       _id: '@_id'
     }, {
@@ -11,7 +11,7 @@ export class Ejemplares {
       },
       find: {
         method: 'GET',
-        url: Global.PATH + '/v2/books/:_id/replicas',
+        url: Global.PATH + '/v2/books/:_id/ejemplares',
         isArray: true
       }
     });

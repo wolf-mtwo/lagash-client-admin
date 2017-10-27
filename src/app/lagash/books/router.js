@@ -126,7 +126,7 @@ export function router($stateProvider) {
               return response;
             });
           },
-          ejemplares: function($stateParams, Ejemplares) {
+          ejemplar: function($stateParams, Ejemplares) {
             return Ejemplares.get({
               _id: $stateParams.ejemplar_id
             }).$promise

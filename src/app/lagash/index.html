@@ -4,21 +4,30 @@
               md-component-id="left"
               md-is-locked-open="$mdMedia('gt-md')">
     <md-toolbar class="md-tall md-hue-2">
-      <span flex></span>
+      <div class="md-toolbar-tools">
+        <h3>
+          Lagash
+        </h3>
+        <span flex></span>
+        <md-button class="md-icon-button" aria-label="more">
+          <ng-md-icon icon="more_vert"></ng-md-icon>
+        </md-button>
+      </div>
+      <!-- <span flex></span>
       <div layout="column" class="md-toolbar-tools-bottom inset">
         <user-avatar></user-avatar>
         <span></span>
         <div ng-click="vm.showDialog($event)">{{vm.user.name}}</div>
         <div ng-click="vm.showDialog($event)">{{vm.user.email}}</div>
         <small ng-click="vm.logout()">salir session</small>
-      </div>
+      </div> -->
     </md-toolbar>
     <md-list>
       <!-- SETTINGS -->
       <md-divider></md-divider>
       <md-subheader class="md-no-sticky">Administracion</md-subheader>
       <md-list-item ng-repeat="option in vm.options" ng-click="vm.selectOption(option)">
-         <ng-md-icon icon="done" style="fill: black"></ng-md-icon>
+         <ng-md-icon icon="{{option.icon}}" style="fill: black"></ng-md-icon>
          <p>{{option.title}}</p>
       </md-list-item>
       <md-divider></md-divider>
