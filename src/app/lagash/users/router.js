@@ -3,40 +3,76 @@ export function router($stateProvider) {
   var base_url = 'app/lagash/users';
 
   $stateProvider.state('lagash.users', {
-    abstract: true,
+    url: '/users',
     templateUrl: base_url + '/index.html',
-    controller: 'LagashUsersController'
+    controller: 'LagashUsersController',
+    controllerAs:'vm'
   });
 
   $stateProvider.state('lagash.users.list', {
-    url: '/users',
-    templateUrl: base_url + '/list/index.html',
-    controller: 'LagashUsersListController',
-    controllerAs:'vm',
-    resolve: {
-      users: function(Users) {
-        return Users.query().$promise;
+    url: '/list',
+    views: {
+      'toolbar@lagash.users': {
+        templateUrl: base_url + '/list/index.html',
+        controller: 'LagashUsersListController',
+        controllerAs:'vm',
+        resolve: {
+          users: function(Users) {
+            return Users.query().$promise;
+          }
+        }
+      },
+      'container@lagash.users': {
+        templateUrl: base_url + '/../template/index.html'
       }
     }
   });
 
-  $stateProvider.state('lagash.users.list.create', {
+  $stateProvider.state('lagash.users.create', {
     url: '/create',
-    templateUrl: base_url + '/create/index.html',
-    controller: 'LagashUsersCreateController',
-    controllerAs:'vm'
+    views: {
+      'toolbar@lagash.users': {
+        templateUrl: base_url + '/list/index.html',
+        controller: 'LagashUsersListController',
+        controllerAs:'vm',
+        resolve: {
+          users: function(Users) {
+            return Users.query().$promise;
+          }
+        }
+      },
+      'container@lagash.users': {
+        templateUrl: base_url + '/create/index.html',
+        controller: 'LagashUsersCreateController',
+        controllerAs:'vm'
+      }
+    }
   });
 
-  $stateProvider.state('lagash.users.list.update', {
+  $stateProvider.state('lagash.users.preview', {
     url: '/:user_id',
-    templateUrl: base_url + '/update/index.html',
-    controller: 'LagashUsersUpdateController',
-    controllerAs:'vm',
-    resolve: {
-      user: function($stateParams, Users) {
-        return Users.get({
-          _id: $stateParams.user_id
-        }).$promise;
+    views: {
+      'toolbar@lagash.users': {
+        templateUrl: base_url + '/list/index.html',
+        controller: 'LagashUsersListController',
+        controllerAs:'vm',
+        resolve: {
+          users: function(Users) {
+            return Users.query().$promise;
+          }
+        }
+      },
+      'container@lagash.users': {
+        templateUrl: base_url + '/update/index.html',
+        controller: 'LagashUsersUpdateController',
+        controllerAs:'vm',
+        resolve: {
+          user: function($stateParams, Users) {
+            return Users.get({
+              _id: $stateParams.user_id
+            }).$promise;
+          }
+        }
       }
     }
   });

@@ -7,7 +7,7 @@ export class LagashUsersListController {
   }
 
   select(user) {
-    this.$state.go('lagash.users.list.update', {
+    this.$state.go('lagash.users.preview', {
       user_id: user._id
     });
   }

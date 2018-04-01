@@ -18,10 +18,7 @@ export function router($stateProvider) {
         controllerAs:'vm',
         resolve: {
           books: function(Books) {
-            return Books.query().$promise
-            .then((response) => {
-              return response;
-            });
+            return Books.query().$promise;
           }
         }
       },
@@ -40,10 +37,7 @@ export function router($stateProvider) {
         controllerAs:'vm',
         resolve: {
           books: function(Books) {
-            return Books.query().$promise
-            .then((response) => {
-              return response;
-            });
+            return Books.query().$promise;
           }
         }
       },

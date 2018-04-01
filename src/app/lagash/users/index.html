@@ -9,5 +9,9 @@
     </md-button>
   </div>
 </md-toolbar>
-<md-content ui-view flex>
+<md-content flex>
+  <div layout="row" layout-fill>
+    <div flex="40" ui-view="toolbar" layout="column"></div>
+    <div flex="60" ui-view="container" layout="column"></div>
+  </div>
 </md-content>
