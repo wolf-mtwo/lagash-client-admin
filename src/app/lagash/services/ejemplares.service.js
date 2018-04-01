@@ -4,15 +4,18 @@ export class Ejemplares {
     'ngInject';
     var url = Global.PATH + '/v1/ejemplares';
     return $resource(url + '/:_id', {
-      _id: '@_id'
     }, {
       update: {
         method: 'PUT'
       },
       find: {
         method: 'GET',
-        url: Global.PATH + '/v2/books/:_id/ejemplares',
+        url: Global.PATH + '/v2/books/:book_id/ejemplares',
         isArray: true
+      },
+      save: {
+        method: 'POST',
+        url: Global.PATH + '/v2/books/:book_id/ejemplares'
       }
     });
   }

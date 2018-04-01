@@ -4,10 +4,13 @@ export class Books {
     'ngInject';
     var url = Global.PATH + '/v1/books';
     return $resource(url + '/:_id', {
-      _id: '@_id'
     }, {
       update: {
         method: 'PUT'
+      },
+      save: {
+        method: 'POST',
+        url: url,
       },
       findByEmail: {
         method: 'GET',

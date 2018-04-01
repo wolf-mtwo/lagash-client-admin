@@ -12,8 +12,10 @@ export class LagashUsersUpdateController {
     $mdOpenMenu(ev);
   };
 
-  delete(user) {
-    this.Users.remove(user).$promise
+  delete(item) {
+    this.Users.remove({
+      _id: item._id
+    }, item).$promise
     .then((response) => {
       this.$state.go('lagash.users.list');
     })
@@ -24,7 +26,9 @@ export class LagashUsersUpdateController {
 
   update(item) {
     item.role = "admin";
-    this.Users.update(item)
+    this.Users.update({
+      _id: item._id
+    }, item)
     .$promise
     .then((response) => {
       this.$state.go('lagash.users.list');

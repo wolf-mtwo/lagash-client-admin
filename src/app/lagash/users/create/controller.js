@@ -1,11 +1,12 @@
 export class LagashUsersCreateController {
 
-  constructor($state, Users, WError) {
+  constructor($state, Users, WError, UUID) {
     'ngInject';
     this.$state = $state;
     this.Users = Users;
     this.WError = WError;
     this.item = {
+      _id: UUID.next(),
       name: 'wolf',
       email: 'wolf@wolf.com',
       cel: '70156988',

@@ -20,7 +20,9 @@ export class LagashBooksUpdateController {
   };
 
   delete(book) {
-    this.Books.remove(book).$promise
+    this.Books.remove({
+      _id: item._id
+    }, book).$promise
     .then((response) => {
       this.$state.go('lagash.books.list');
     })
@@ -31,7 +33,9 @@ export class LagashBooksUpdateController {
 
   update(item) {
     item.role = "admin";
-    this.Books.update(item)
+    this.Books.update({
+      _id: item._id
+    }, item)
     .$promise
     .then((response) => {
       this.$state.go('lagash.books.list');
@@ -45,7 +49,9 @@ export class LagashBooksUpdateController {
     item.book_id = this.book_id;
     item.enabled = false;
     item.state = 'STORED'; // 0
-    this.Ejemplares.save({}, item)
+    this.Ejemplares.save({
+      book_id: this.book_id
+    }, item)
     .$promise
     .then((response) => {
       this.create_ejemplar_state = false;
@@ -57,13 +63,6 @@ export class LagashBooksUpdateController {
       this.WError.request(err);
     });
   }
-
-  // change_state(ejemplares) {
-  //   return ejemplares.map((item) => {
-  //     item.status = this.get_state(item.state);
-  //     return item;
-  //   })
-  // }
 
   create_ejemplar() {
     this.create_ejemplar_state = true;

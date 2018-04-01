@@ -9,7 +9,7 @@ export class LagashBooksEjemplarController {
     this.Ejemplares = Ejemplares;
     this.item = book;
     this.ejemplar = ejemplar;
-
+    console.log(this.ejemplar);
     this.states = [{
       value: 'Guardado',
       key: 'STORED'
@@ -20,7 +20,6 @@ export class LagashBooksEjemplarController {
       value: 'Prestado',
       key: 'BORROWED'
     }];
-    this.ejemplar.state = this.states[ejemplar.state].key;
   }
 
   save_ejemplar(ejemplar) {

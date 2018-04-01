@@ -4,14 +4,16 @@ export class Users {
     'ngInject';
     var url = Global.PATH + '/p1/users';
     return $resource(url + '/:_id', {
-      _id: '@_id'
     }, {
       update: {
         method: 'PUT'
       },
+      save: {
+        method: 'POST',
+        url: url,
+      },
       findByEmail: {
         method: 'GET',
-        // TODO made an specific method
         isArray: true
       }
     });

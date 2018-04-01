@@ -58,10 +58,7 @@ export function router($stateProvider) {
         controllerAs:'vm',
         resolve: {
           books: function(Books) {
-            return Books.query().$promise
-            .then((response) => {
-              return response;
-            });
+            return Books.query().$promise;
           }
         }
       },
@@ -73,18 +70,12 @@ export function router($stateProvider) {
           book: function($stateParams, Books) {
             return Books.get({
               _id: $stateParams.book_id
-            }).$promise
-            .then((response) => {
-              return response;
-            });
+            }).$promise;
           },
           ejemplares: function($stateParams, Ejemplares) {
             return Ejemplares.find({
-              _id: $stateParams.book_id
-            }).$promise
-            .then((response) => {
-              return response;
-            });
+              book_id: $stateParams.book_id
+            }).$promise;
           }
         }
       }
@@ -100,10 +91,7 @@ export function router($stateProvider) {
         controllerAs:'vm',
         resolve: {
           books: function(Books) {
-            return Books.query().$promise
-            .then((response) => {
-              return response;
-            });
+            return Books.query().$promise;
           }
         }
       },
@@ -115,15 +103,12 @@ export function router($stateProvider) {
           book: function($stateParams, Books) {
             return Books.get({
               _id: $stateParams.book_id
-            }).$promise
-            .then((response) => {
-              return response;
-            });
+            }).$promise;
           },
           ejemplar: function($stateParams, Ejemplares) {
             return Ejemplares.get({
               _id: $stateParams.ejemplar_id
-            }).$promise
+            }).$promise;
           }
         }
       }
