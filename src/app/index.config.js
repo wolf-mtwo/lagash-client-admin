@@ -8,7 +8,8 @@ export function config(
 
   // Theme
   $mdThemingProvider.theme('default')
-  .primaryPalette('teal');
+  .primaryPalette('blue')
+  .dark();
 
   // Enable log
   $logProvider.debugEnabled(true);

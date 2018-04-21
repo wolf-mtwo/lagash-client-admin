@@ -7,26 +7,88 @@ export class LagashBooksCreateController {
     this.WError = WError;
     this.$q = $q;
     this.$timeout = $timeout;
+
     this.item = {
       _id: UUID.next(),
-      enabled : false,
+      enabled: false,
+      tags: ['otros'],
+      type: null,
+      cover: null,
+      illustrations: ['otros'],
+      length: 0,
+      width: 0,
+      brings: ['otros'],
+      pages: 0,
+      year: 0,
 
       // fake
-      inventory : 'lorem insum inventory dolor',
-      code : 'lorem insum code dolor',
-      title : 'lorem insum title dolor',
-      isbn : 'lorem insum',
-      description : 'lorem insum description dolor'
+      title: 'lorem insum title dolor',
+      isbn: 'lorem insum'
     };
 
+    this.types =[{
+      key: 'otros',
+      value: 'Otros'
+    }, {
+      key: 'volumen',
+      value: 'Volumen'
+    }, {
+      key: 'tomo',
+      value: 'Tomo'
+    }];
+
+    this.covers = [{
+      key: 'otros',
+      value: 'Otros'
+    }, {
+      key: 'rustico',
+      value: 'Rustico'
+    }, {
+      key: 'empastado',
+      value: 'Empastado'
+    }, {
+      key: 'anillado',
+      value: 'Anillado'
+    }];
+
+    this.illustrations = [{
+      key: 'otros',
+      value: 'Otros'
+    }, {
+      key: 'cuadros',
+      value: 'Cuadros'
+    }, {
+      key: 'fotos',
+      value: 'Fotos'
+    }, {
+      key: 'tablas',
+      value: 'Tablas'
+    }, {
+      key: 'figuras',
+      value: 'Figuras'
+    }];
+
+    this.brings = [{
+      key: 'otros',
+      value: 'Otros'
+    }, {
+      key: 'cd',
+      value: 'CD'
+    }];
+
+    this.years = this.getYears();
     this.states = this.loadAll();
     this.searchText = null;
     this.selectedItem = null;
   }
 
   register(item) {
-    item.role = "admin";
-    this.Books.save(item)
+    var data = {};
+    angular.copy(item, data);
+    data.tags = data.tags.join(',');
+    data.illustrations = data.illustrations.join(',');
+    data.brings = data.brings.join(',');
+    this.Books.save(data)
     .$promise
     .then((response) => {
       this.$state.go('lagash.books.list');
@@ -75,5 +137,35 @@ export class LagashBooksCreateController {
     return function filterFn(state) {
       return (state.value.indexOf(lowercaseQuery) === 0);
     };
+  }
+
+  toggle(item, list) {
+    var idx = list.indexOf(item.key);
+    if (idx > -1) {
+      list.splice(idx, 1);
+    }
+    else {
+      list.push(item.key);
+    }
+  }
+
+  exists(item, list) {
+    return list.indexOf(item.key) > -1;
+  }
+
+  getYears() {
+    var date = new Date();
+    var counter = date.getFullYear();
+    this.item.year = counter;
+    counter -= 5;
+    var result = [];
+    for (var i = 0; i < 10; i++) {
+      result.push({
+        key: counter,
+        value: counter
+      });
+      counter++;
+    }
+    return result;
   }
 }

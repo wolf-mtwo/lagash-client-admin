@@ -22,16 +22,17 @@
         <small ng-click="vm.logout()">salir session</small>
       </div> -->
     </md-toolbar>
-    <md-list>
-      <!-- SETTINGS -->
-      <md-divider></md-divider>
-      <md-subheader class="md-no-sticky">Administracion</md-subheader>
-      <md-list-item ng-repeat="option in vm.options" ng-click="vm.selectOption(option)">
-         <ng-md-icon icon="{{option.icon}}" style="fill: black"></ng-md-icon>
-         <p>{{option.title}}</p>
-      </md-list-item>
-      <md-divider></md-divider>
-    </md-list>
+    <md-content flex>
+      <md-list>
+        <md-divider></md-divider>
+        <md-subheader class="md-no-sticky">Administracion</md-subheader>
+        <md-list-item ng-repeat="option in vm.options" ng-click="vm.selectOption(option)">
+           <ng-md-icon icon="{{option.icon}}"></ng-md-icon>
+           <p>{{option.title}}</p>
+        </md-list-item>
+        <md-divider></md-divider>
+      </md-list>
+    </md-content>
   </md-sidenav>
 
   <ui-view layout="column" layout-fill>
