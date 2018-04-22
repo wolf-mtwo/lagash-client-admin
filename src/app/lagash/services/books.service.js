@@ -12,10 +12,14 @@ export class Books {
         method: 'POST',
         url: url,
       },
-      findByEmail: {
+      pagination: {
         method: 'GET',
-        // TODO made an specific method
-        isArray: true
+        isArray: true,
+        url: url + '/page/:page/limit/:limit'
+      },
+      size: {
+        method: 'GET',
+        url: url + '/size'
       }
     });
   }

@@ -1,12 +1,24 @@
 export class LagashBooksListController {
 
-  constructor($state, WError, WToast, Books, books) {
+  constructor($state, WError, WToast, Books, size) {
     'ngInject';
     this.$state = $state;
-    this.books = books;
     this.WToast = WToast;
     this.Books = Books;
     this.WError = WError;
+
+    this.query = {
+      total: size.total,
+      limit: 40,
+      page: 1
+    };
+    var self = this;
+    this.on_pagination = function() {
+      Books.pagination(self.query, function(items) {
+        self.books = items;
+      }).$promise;
+    }
+    this.on_pagination();
   }
 
   select(book) {
@@ -25,4 +37,6 @@ export class LagashBooksListController {
       this.WError.request(err);
     });
   }
+
+
 }

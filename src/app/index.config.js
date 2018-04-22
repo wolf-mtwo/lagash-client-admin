@@ -9,7 +9,7 @@ export function config(
   // Theme
   $mdThemingProvider.theme('default')
   .primaryPalette('blue')
-  .dark();
+  // .dark();
 
   // Enable log
   $logProvider.debugEnabled(true);

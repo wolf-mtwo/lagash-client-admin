@@ -15,11 +15,15 @@
   </div>
 </md-toolbar>
 <md-content flex>
+  <md-table-pagination md-limit="vm.query.limit" md-limit-options="[30, 40, 50]" md-page="vm.query.page" md-total="{{vm.query.total}}" md-on-paginate="vm.on_pagination" md-page-select></md-table-pagination>
+  <div ng-if="vm.books.length == 0" class="wargos-text-align">
+    <b>No existe <i>libros</i> registrados</b>
+  </div>
+
   <md-list>
     <md-list-item ng-repeat="book in vm.books" ng-click="vm.select(book)">
       <ng-md-icon icon="book"></ng-md-icon>
       <p>{{book.title}}</p>
-      <p> {{ setting.name }} </p>
     <md-switch class="md-secondary"
                ng-model="book.enabled"
                ng-change="vm.change_state(book)"></md-switch>

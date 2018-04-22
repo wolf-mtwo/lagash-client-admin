@@ -17,8 +17,11 @@ export function router($stateProvider) {
         controller: 'LagashBooksListController',
         controllerAs:'vm',
         resolve: {
-          books: function(Books) {
-            return Books.query().$promise;
+          // books: function(Books) {
+          //   return Books.query().$promise;
+          // },
+          size: function(Books) {
+            return Books.size().$promise;
           }
         }
       },
@@ -36,8 +39,8 @@ export function router($stateProvider) {
         controller: 'LagashBooksListController',
         controllerAs:'vm',
         resolve: {
-          books: function(Books) {
-            return Books.query().$promise;
+          size: function(Books) {
+            return Books.size().$promise;
           }
         }
       },
@@ -57,8 +60,8 @@ export function router($stateProvider) {
         controller: 'LagashBooksListController',
         controllerAs:'vm',
         resolve: {
-          books: function(Books) {
-            return Books.query().$promise;
+          size: function(Books) {
+            return Books.size().$promise;
           }
         }
       },
@@ -90,8 +93,8 @@ export function router($stateProvider) {
         controller: 'LagashBooksListController',
         controllerAs:'vm',
         resolve: {
-          books: function(Books) {
-            return Books.query().$promise;
+          size: function(Books) {
+            return Books.size().$promise;
           }
         }
       },
