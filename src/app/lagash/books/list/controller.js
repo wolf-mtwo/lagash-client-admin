@@ -27,8 +27,10 @@ export class LagashBooksListController {
     });
   }
 
-  change_state(book) {
-    this.Books.update(book)
+  change_state(item) {
+    this.Books.update({
+      _id: item._id
+    }, item)
     .$promise
     .then((response) => {
       this.WToast.show('El libro se actualizo correctamente');

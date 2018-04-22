@@ -1,12 +1,14 @@
 export class LagashBooksCreateController {
 
-  constructor($timeout, $q, $state, WError, Books, UUID) {
+  constructor($timeout, $mdDialog, $q, $state, WError, Books, UUID) {
     'ngInject';
     this.$state = $state;
+    this.$mdDialog = $mdDialog;
     this.Books = Books;
     this.WError = WError;
     this.$q = $q;
     this.$timeout = $timeout;
+    this.authors = [];
 
     this.item = {
       _id: UUID.next(),
@@ -77,7 +79,7 @@ export class LagashBooksCreateController {
     }];
 
     this.years = this.getYears();
-    this.states = this.loadAll();
+
     this.searchText = null;
     this.selectedItem = null;
   }
@@ -98,46 +100,54 @@ export class LagashBooksCreateController {
     });
   }
 
-  /**
-   * Search for states... use $timeout to simulate
-   * remote dataservice call.
-   */
-  querySearch(query) {
-    var results = query ? this.states.filter(this.createFilterFor(query)) : this.states;
-    var deferred = this.$q.defer();
-    this.$timeout(function () { deferred.resolve(results); }, Math.random() * 1000, false);
-    return deferred.promise;
+  remove_author(item, index) {
+    if (!item) {
+        throw new Error('item is undefined');
+    }
+    // item.$remove(function(response) {
+    this.authors.splice(index, 1);
+    // }, LocalError.request);
   }
 
-  /**
-   * Build `states` list of key/value pairs
-   */
-  loadAll() {
-    var allStates = 'Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware,\
-            Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana,\
-            Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana,\
-            Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina,\
-            North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina,\
-            South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia,\
-            Wisconsin, Wyoming';
-
-    return allStates.split(/, +/g).map( function (state) {
-      return {
-        value: state.toLowerCase(),
-        display: state
-      };
+  show_book_create_dialog(ev) {
+    var self = this;
+    this.$mdDialog.show({
+      controller: DialogAuthorCreateController,
+      templateUrl: 'app/lagash/books/create/author/create.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose: true,
+      fullscreen: false,
+      locals: {
+         item: null
+      }
+    })
+    .then(function(answer) {
+      self.authors.push(answer);
+    }, function() {
+      console.info('You cancelled the dialog.');
     });
-  }
+  };
 
-  /**
-   * Create filter function for a query string
-   */
-  createFilterFor(query) {
-    var lowercaseQuery = angular.lowercase(query);
-    return function filterFn(state) {
-      return (state.value.indexOf(lowercaseQuery) === 0);
-    };
-  }
+  show_book_search_dialog(ev) {
+    var self = this;
+    this.$mdDialog.show({
+      controller: DialogAuthorSearchController,
+      templateUrl: 'app/lagash/books/create/author/search.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose: true,
+      fullscreen: false,
+      locals: {
+         item: null
+      }
+    })
+    .then(function(answer) {
+      self.authors.push(answer);
+    }, function() {
+      console.info('You cancelled the dialog.');
+    });
+  };
 
   toggle(item, list) {
     var idx = list.indexOf(item.key);
@@ -168,4 +178,77 @@ export class LagashBooksCreateController {
     }
     return result;
   }
+}
+
+function DialogAuthorCreateController($scope, $mdDialog, WError, UUID, Country, Author, item) {
+  'ngInject';
+
+  $scope.item = {
+    _id: UUID.next()
+  };
+
+  $scope.countries = Country.get();
+
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+
+  $scope.answer = function(answer) {
+    Author.save(answer).$promise
+    .then((res) => {
+      $mdDialog.hide(res);
+    })
+    .catch((err) => {
+      WError.request(err);
+    });
+  };
+}
+
+function DialogAuthorSearchController($scope, $mdDialog, WError, UUID, Author, item) {
+  'ngInject';
+
+  $scope.item = {
+    _id: UUID.next()
+  };
+
+  $scope.query = {
+    total: 100,
+    limit: 40,
+    page: 1
+  };
+
+  $scope.on_pagination = function() {
+    Author.pagination($scope.query, function(items) {
+      $scope.authors = items;
+    }).$promise;
+  }
+
+  Author.size().$promise
+  .then((res) => {
+    $scope.query.total = res.total;
+    $scope.on_pagination();
+  })
+  .catch((err) => {
+    WError.request(err);
+  });
+
+  $scope.select_author = function(item) {
+    $mdDialog.hide(item);
+  };
+
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+
+  $scope.answer = function(answer) {
+    $mdDialog.hide(answer);
+  };
 }

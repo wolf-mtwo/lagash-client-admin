@@ -5,6 +5,8 @@ import LagashUsers from './users/module';
 import LagashBooks from './books/module';
 import { Books } from './services/books.service';
 import { UUID } from './services/uuid.service';
+import { Author } from './services/author.service';
+import { Country } from './services/country.service';
 import { Ejemplares } from './services/ejemplares.service';
 
 angular.module('wolf.lagash', [
@@ -14,6 +16,8 @@ angular.module('wolf.lagash', [
 ])
 .config(router)
 .service('Books', Books)
+.service('Author', Author)
+.service('Country', Country)
 .service('UUID', UUID)
 .service('Ejemplares', Ejemplares)
 .controller('LagashController', LagashController)
