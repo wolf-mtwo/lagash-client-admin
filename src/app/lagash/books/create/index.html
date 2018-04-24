@@ -13,7 +13,7 @@
   </md-toolbar>
   <md-content>
     <md-tabs md-dynamic-height md-border-bottom>
-      <md-tab label="autores">
+      <md-tab label="Editorial">
         <div layout-padding>
           <md-content>
             <md-list>
@@ -26,59 +26,21 @@
               </md-list-item>
             </md-list>
             <div layout="row" layout-align="end">
-              <md-button aria-label="book"
+              <md-button aria-label="editorial"
                          class="md-raised md-primary"
-                         ng-click="vm.show_book_search_dialog($event)">
+                         ng-click="vm.show_editorial_search_dialog($event)">
                 <ng-md-icon icon="search"></ng-md-icon>
-                Buscar autor
+                Buscar editorial
               </md-button>
-              <md-button aria-label="book"
+              <md-button aria-label="editorial"
                          class="md-raised"
-                         ng-click="vm.show_book_create_dialog($event)">
+                         ng-click="vm.show_editorial_create_dialog($event)">
                 <ng-md-icon icon="book"></ng-md-icon>
-                Crear autor
+                Crear editorial
               </md-button>
             </div>
           </md-content>
         </div>
-      </md-tab>
-      <md-tab label="Editorial">
-        <md-content layout-padding>
-          <md-input-container class="md-block" flex-gt-xs>
-            <label>Buscar</label>
-            <input ng-model="vm.search" md-maxlength="30">
-          </md-input-container>
-          <!-- <form ng-submit="$event.preventDefault()" name="searchForm">
-            <p>The following example demonstrates floating labels being used as a normal form element.</p>
-            <div layout-gt-sm="row">
-              <md-input-container flex>
-                <label>Name</label>
-                <input type="text"/>
-              </md-input-container>
-              <md-autocomplete flex required
-                  md-input-name="autocompleteField"
-                  md-input-minlength="2"
-                  md-input-maxlength="18"
-                  md-no-cache="vm.noCache"
-                  md-selected-item="vm.selectedItem"
-                  md-search-text="vm.searchText"
-                  md-items="item in vm.querySearch(vm.searchText)"
-                  md-item-text="item.display"
-                  md-require-match
-                  md-floating-label="Favorite state">
-                <md-item-template>
-                  <span md-highlight-text="vm.searchText">{{item.display}}</span>
-                </md-item-template>
-                <div ng-messages="searchForm.autocompleteField.$error" ng-if="searchForm.autocompleteField.$touched">
-                  <div ng-message="required">You <b>must</b> have a favorite state.</div>
-                  <div ng-message="md-require-match">Please select an existing state.</div>
-                  <div ng-message="minlength">Your entry is not long enough.</div>
-                  <div ng-message="maxlength">Your entry is too long.</div>
-                </div>
-              </md-autocomplete>
-            </div>
-          </form> -->
-        </md-content>
       </md-tab>
       <md-tab label="general">
         <div layout-padding>
@@ -140,28 +102,6 @@
                 </div>
               </div>
             </md-input-container>
-            <!-- <md-input-container class="md-block" flex-gt-xs>
-              <label>Editorial</label>
-              <input ng-model="vm.item.editorial" md-maxlength="100">
-              <div ng-messages="form.editorial.$error">
-                <div ng-message="required">This is required.</div>
-              </div>
-            </md-input-container>
-            <md-input-container class="md-block" flex-gt-xs>
-              <label>Pais</label>
-              <input ng-model="vm.item.country" md-maxlength="50">
-              <div ng-messages="form.country.$error">
-                <div ng-message="required">This is required.</div>
-              </div>
-            </md-input-container>
-            <md-input-container class="md-block" flex-gt-xs>
-              <label>Ciudad</label>
-              <input ng-model="vm.item.city" md-maxlength="50">
-              <div ng-messages="form.city.$error">
-                <div ng-message="required">This is required.</div>
-              </div>
-            </md-input-container> -->
-
             <div layout="row">
               <md-input-container class="md-block" flex="50">
                 <label>Largo</label>
@@ -218,7 +158,35 @@
           </md-content>
         </div>
       </md-tab>
-
+      <md-tab label="autores">
+        <div layout-padding>
+          <md-content>
+            <md-list>
+              <md-list-item ng-repeat="author in vm.authors">
+                <ng-md-icon icon="person"></ng-md-icon>
+                <p>{{author.last_name}} {{author.first_name}}</p>
+                <md-button class="md-icon-button" aria-label="delete" ng-click="vm.remove_author(author, $index)">
+                  <ng-md-icon icon="delete"></ng-md-icon>
+                </md-button>
+              </md-list-item>
+            </md-list>
+            <div layout="row" layout-align="end">
+              <md-button aria-label="book"
+                         class="md-raised md-primary"
+                         ng-click="vm.show_book_search_dialog($event)">
+                <ng-md-icon icon="search"></ng-md-icon>
+                Buscar autor
+              </md-button>
+              <md-button aria-label="book"
+                         class="md-raised"
+                         ng-click="vm.show_book_create_dialog($event)">
+                <ng-md-icon icon="book"></ng-md-icon>
+                Crear autor
+              </md-button>
+            </div>
+          </md-content>
+        </div>
+      </md-tab>
     </md-tabs>
   </md-content>
 </form>

@@ -20,9 +20,9 @@
       <b>No existe <i>autores</i> registrados</b>
     </div>
     <md-list>
-      <md-list-item ng-repeat="author in authors" ng-click="select_author(author)">
-        <ng-md-icon icon="person"></ng-md-icon>
-        <p>{{author.last_name}} {{author.first_name}}</p>
+      <md-list-item ng-repeat="editorial in editorials" ng-click="select_editorial(editorial)">
+        <ng-md-icon icon="book"></ng-md-icon>
+        <p>{{editorial.name}}</p>
       </md-list-item>
     </md-list>
   </md-dialog-content>

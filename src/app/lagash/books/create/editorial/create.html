@@ -1,9 +1,8 @@
 <md-dialog aria-label="Message" style="width: 500px">
-  <!-- <form layout="column" name="form" ng-submit="vm.register(vm.item)"> -->
   <form ng-cloak ng-submit="answer(item)">
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>Crear autor</h2>
+        <h2>Crear editorial</h2>
         <span flex></span>
         <md-button class="md-icon-button" aria-label="Close dialog" ng-click="cancel()">
           <ng-md-icon icon="close"></ng-md-icon>
@@ -13,23 +12,16 @@
     <md-dialog-content layout-padding>
       <div>
         <md-input-container class="md-block" flex-gt-xs>
-          <label>Codigo</label>
-          <input required ng-model="item.code" md-maxlength="50">
-          <div ng-messages="form.code.$error">
-            <div ng-message="required">This is required.</div>
-          </div>
-        </md-input-container>
-        <md-input-container class="md-block" flex-gt-xs>
           <label>Nombre</label>
-          <input required ng-model="item.first_name" md-maxlength="100">
-          <div ng-messages="form.first_name.$error">
+          <input ng-model="item.name" md-maxlength="100">
+          <div ng-messages="form.name.$error">
             <div ng-message="required">This is required.</div>
           </div>
         </md-input-container>
         <md-input-container class="md-block" flex-gt-xs>
-          <label>apellido</label>
-          <input required ng-model="item.last_name" md-maxlength="100">
-          <div ng-messages="form.last_name.$error">
+          <label>Ciudad</label>
+          <input ng-model="item.city" md-maxlength="100">
+          <div ng-messages="form.city.$error">
             <div ng-message="required">This is required.</div>
           </div>
         </md-input-container>
@@ -48,9 +40,6 @@
       <md-button ng-click="cancel()">
         cancelar
       </md-button>
-      <!-- <md-button class="md-raised md-primary" ng-click="answer(item)">
-        Guardar
-      </md-button> -->
       <md-button class="md-raised md-primary" type="submit">
         Guardar
       </md-button>

@@ -104,9 +104,7 @@ export class LagashBooksCreateController {
     if (!item) {
         throw new Error('item is undefined');
     }
-    // item.$remove(function(response) {
     this.authors.splice(index, 1);
-    // }, LocalError.request);
   }
 
   show_book_create_dialog(ev) {
@@ -134,6 +132,46 @@ export class LagashBooksCreateController {
     this.$mdDialog.show({
       controller: DialogAuthorSearchController,
       templateUrl: 'app/lagash/books/create/author/search.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose: true,
+      fullscreen: false,
+      locals: {
+         item: null
+      }
+    })
+    .then(function(answer) {
+      self.authors.push(answer);
+    }, function() {
+      console.info('You cancelled the dialog.');
+    });
+  };
+
+  show_editorial_create_dialog(ev) {
+    var self = this;
+    this.$mdDialog.show({
+      controller: DialogEditorialCreateController,
+      templateUrl: 'app/lagash/books/create/editorial/create.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose: true,
+      fullscreen: false,
+      locals: {
+         item: null
+      }
+    })
+    .then(function(answer) {
+      self.authors.push(answer);
+    }, function() {
+      console.info('You cancelled the dialog.');
+    });
+  };
+
+  show_editorial_search_dialog(ev) {
+    var self = this;
+    this.$mdDialog.show({
+      controller: DialogEditorialSearchController,
+      templateUrl: 'app/lagash/books/create/editorial/search.html',
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose: true,
@@ -208,7 +246,7 @@ function DialogAuthorCreateController($scope, $mdDialog, WError, UUID, Country, 
   };
 }
 
-function DialogAuthorSearchController($scope, $mdDialog, WError, UUID, Author, item) {
+function DialogAuthorSearchController($scope, $mdDialog, WError, UUID, Editorial, item) {
   'ngInject';
 
   $scope.item = {
@@ -222,10 +260,17 @@ function DialogAuthorSearchController($scope, $mdDialog, WError, UUID, Author, i
   };
 
   $scope.on_pagination = function() {
-    Author.pagination($scope.query, function(items) {
+    Editorial.pagination($scope.query, function(items) {
       $scope.authors = items;
     }).$promise;
   }
+
+  $scope.search_author = function(search) {
+    $scope.query.search = search;
+    Author.search($scope.query, function(items) {
+      $scope.authors = items;
+    }).$promise;
+  };
 
   Author.size().$promise
   .then((res) => {
@@ -237,6 +282,86 @@ function DialogAuthorSearchController($scope, $mdDialog, WError, UUID, Author, i
   });
 
   $scope.select_author = function(item) {
+    $mdDialog.hide(item);
+  };
+
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+
+  $scope.answer = function(answer) {
+    $mdDialog.hide(answer);
+  };
+}
+
+function DialogEditorialCreateController($scope, $mdDialog, WError, UUID, Country, Editorial, item) {
+  'ngInject';
+
+  $scope.item = {
+    _id: UUID.next()
+  };
+
+  $scope.countries = Country.get();
+
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+
+  $scope.answer = function(answer) {
+    Editorial.save(answer).$promise
+    .then((res) => {
+      $mdDialog.hide(res);
+    })
+    .catch((err) => {
+      WError.request(err);
+    });
+  };
+}
+
+function DialogEditorialSearchController($scope, $mdDialog, WError, UUID, Editorial, item) {
+  'ngInject';
+
+  $scope.item = {
+    _id: UUID.next()
+  };
+
+  $scope.query = {
+    total: 100,
+    limit: 40,
+    page: 1
+  };
+
+  $scope.on_pagination = function() {
+    Editorial.pagination($scope.query, function(items) {
+      $scope.editorials = items;
+    }).$promise;
+  }
+
+  $scope.search_author = function(search) {
+    $scope.query.search = search;
+    Editorial.search($scope.query, function(items) {
+      $scope.editorials = items;
+    }).$promise;
+  };
+
+  Editorial.size().$promise
+  .then((res) => {
+    $scope.query.total = res.total;
+    $scope.on_pagination();
+  })
+  .catch((err) => {
+    WError.request(err);
+  });
+
+  $scope.select_editorial = function(item) {
     $mdDialog.hide(item);
   };
 

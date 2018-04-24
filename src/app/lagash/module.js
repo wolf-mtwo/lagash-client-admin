@@ -7,6 +7,7 @@ import { Books } from './services/books.service';
 import { UUID } from './services/uuid.service';
 import { Author } from './services/author.service';
 import { Country } from './services/country.service';
+import { Editorial } from './services/editorial.service';
 import { Ejemplares } from './services/ejemplares.service';
 
 angular.module('wolf.lagash', [
@@ -18,6 +19,7 @@ angular.module('wolf.lagash', [
 .service('Books', Books)
 .service('Author', Author)
 .service('Country', Country)
+.service('Editorial', Editorial)
 .service('UUID', UUID)
 .service('Ejemplares', Ejemplares)
 .controller('LagashController', LagashController)
