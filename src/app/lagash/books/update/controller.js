@@ -1,18 +1,44 @@
 export class LagashBooksUpdateController {
 
-  constructor($state, WError, WToast, Books, UUID, Ejemplares, book, ejemplares) {
+  constructor($state, WError, WToast, Books, UUID, Ejemplares, book, Author, Editorial, AuthorMap, EditorialMap, ejemplares, BookOption) {
     'ngInject';
     this.book_id = $state.params.book_id;
     this.$state = $state;
     this.WError = WError;
     this.WToast = WToast;
     this.Books = Books;
+    this.AuthorMap = AuthorMap;
+    this.EditorialMap = EditorialMap;
     this.UUID = UUID;
     this.Ejemplares = Ejemplares;
-    this.item = book;
+
     this.ejemplares = ejemplares;
-    // this.ejemplares = this.change_state(ejemplares);
     this.create_ejemplar_state = false;
+
+    this.authors = [];
+    this.editorials = [];
+
+    this.types = BookOption.types;
+    this.covers = BookOption.covers;
+    this.illustrations = BookOption.illustrations;
+    this.brings = BookOption.brings;
+    this.years = BookOption.getYears();
+
+    book.tags = book.tags ? book.tags.split(',') : null;
+    book.illustrations = book.illustrations ? book.illustrations.split(',') : null;
+    book.brings = book.brings ? book.brings.split(',') : null;
+    this.item = book;
+
+    // Editorial
+    Author.find_authors({
+      resource_id: this.book_id
+    }).$promise
+    .then((res) => {
+      // this.$state.go('lagash.books.list');
+    })
+    .catch((err) => {
+      this.WError.request(err);
+    });
   }
 
   openMenu($mdOpenMenu, ev) {
@@ -51,8 +77,7 @@ export class LagashBooksUpdateController {
     item.state = 'STORED'; // 0
     this.Ejemplares.save({
       book_id: this.book_id
-    }, item)
-    .$promise
+    }, item).$promise
     .then((response) => {
       this.create_ejemplar_state = false;
       this.WToast.show('El ejemplar se guardo correctamente');
@@ -97,55 +122,27 @@ export class LagashBooksUpdateController {
     return count;
   }
 
-  /*
-  ENABLED = 1,
-  DISABLED = 2,
-  BOOKED = 3,
-  BORROWED = 4
-  */
-  // get_state(state) {
-  //   switch (state) {
-  //     case 1:
-  //       return {
-  //         key: 1,
-  //         es: 'habilitado',
-  //         value: 'ENABLED'
-  //       };
-  //       break;
-  //     case 2:
-  //       return {
-  //         key: 2,
-  //         es: 'deshabilitado',
-  //         value: 'DISABLED'
-  //       };
-  //       break;
-  //     case 3:
-  //       return {
-  //         key: 3,
-  //         es: 'reservado',
-  //         value: 'BOOKED'
-  //       };
-  //       break;
-  //     case 4:
-  //       return {
-  //         key: 4,
-  //         es: 'prestado',
-  //         value: 'BORROWED'
-  //       };
-  //       break;
-  //     default:
-  //       console.log('state is not defined');
-  //   }
-  // }
-
   change_ejemplar_state(ejemplar) {
-    this.Ejemplares.update(ejemplar)
-    .$promise
+    this.Ejemplares.update(ejemplar).$promise
     .then((response) => {
       this.WToast.show('El ejemplar se actualizo correctamente');
     })
     .catch((err) => {
       this.WError.request(err);
     });
+  }
+
+  toggle(item, list) {
+    var idx = list.indexOf(item.key);
+    if (idx > -1) {
+      list.splice(idx, 1);
+    }
+    else {
+      list.push(item.key);
+    }
+  }
+
+  exists(item, list) {
+    return list.indexOf(item.key) > -1;
   }
 }

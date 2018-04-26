@@ -30,6 +30,11 @@ export class Author {
       size: {
         method: 'GET',
         url: url + '/size'
+      },
+      find_authors: {
+        method: 'GET',
+        isArray: true,
+        url: url + '/find'
       }
     });
   }

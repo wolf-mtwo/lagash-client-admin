@@ -11,6 +11,7 @@ import { Editorial } from './services/editorial.service';
 import { AuthorMap } from './services/author.map.service';
 import { EditorialMap } from './services/editorial.map.service';
 import { Ejemplares } from './services/ejemplares.service';
+import { BookOption } from './services/helpers/book.option.service';
 
 angular.module('wolf.lagash', [
   'ui.router',
@@ -23,6 +24,7 @@ angular.module('wolf.lagash', [
 .service('Country', Country)
 .service('Editorial', Editorial)
 .service('AuthorMap', AuthorMap)
+.service('BookOption', BookOption)
 .service('EditorialMap', EditorialMap)
 .service('UUID', UUID)
 .service('Ejemplares', Ejemplares)
