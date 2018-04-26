@@ -5,9 +5,11 @@ import LagashUsers from './users/module';
 import LagashBooks from './books/module';
 import { Books } from './services/books.service';
 import { UUID } from './services/uuid.service';
-import { Author } from './services/author.service';
 import { Country } from './services/country.service';
+import { Author } from './services/author.service';
 import { Editorial } from './services/editorial.service';
+import { AuthorMap } from './services/author.map.service';
+import { EditorialMap } from './services/editorial.map.service';
 import { Ejemplares } from './services/ejemplares.service';
 
 angular.module('wolf.lagash', [
@@ -20,6 +22,8 @@ angular.module('wolf.lagash', [
 .service('Author', Author)
 .service('Country', Country)
 .service('Editorial', Editorial)
+.service('AuthorMap', AuthorMap)
+.service('EditorialMap', EditorialMap)
 .service('UUID', UUID)
 .service('Ejemplares', Ejemplares)
 .controller('LagashController', LagashController)
