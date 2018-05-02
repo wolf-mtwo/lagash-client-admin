@@ -92,7 +92,7 @@ export class LagashBooksUpdateController {
   save_ejemplar(item) {
     item.book_id = this.book_id;
     item.enabled = false;
-    item.state = 'STORED'; // 0
+    item.state = 'STORED';
     this.Ejemplares.save({
       book_id: this.book_id
     }, item).$promise
@@ -141,7 +141,9 @@ export class LagashBooksUpdateController {
   }
 
   change_ejemplar_state(ejemplar) {
-    this.Ejemplares.update(ejemplar).$promise
+    this.Ejemplares.update({
+      _id: ejemplar._id
+    }, ejemplar).$promise
     .then((response) => {
       this.WToast.show('El ejemplar se actualizo correctamente');
     })
