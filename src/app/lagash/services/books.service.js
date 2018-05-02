@@ -22,6 +22,11 @@ export class Books {
         isArray: true,
         url: url + '/page/:page/limit/:limit'
       },
+      search: {
+        method: 'GET',
+        isArray: true,
+        url: url + '/page/:page/limit/:limit/search'
+      },
       size: {
         method: 'GET',
         url: url + '/size'

@@ -7,8 +7,8 @@ export class LagashBooksListController {
     this.Books = Books;
     this.WError = WError;
 
+    this.total = size.total;
     this.query = {
-      total: size.total,
       limit: 40,
       page: 1
     };
@@ -19,6 +19,16 @@ export class LagashBooksListController {
       }).$promise;
     }
     this.on_pagination();
+  }
+
+
+  search_books(search) {
+    var self = this;
+    this.query.search = search;
+    this.Books.search(self.query, function(items) {
+      delete self.query['search'];
+      self.books = items;
+    }).$promise;
   }
 
   select(book) {

@@ -9,7 +9,7 @@ export class LagashBooksEjemplarController {
     this.Ejemplares = Ejemplares;
     this.item = book;
     this.ejemplar = ejemplar;
-    console.log(this.ejemplar);
+
     this.states = [{
       value: 'Guardado',
       key: 'STORED'
@@ -23,10 +23,13 @@ export class LagashBooksEjemplarController {
   }
 
   save_ejemplar(ejemplar) {
-    this.Ejemplares.update(ejemplar)
+    this.Ejemplares.update({
+      _id: ejemplar._id
+    }, ejemplar)
     .$promise
     .then((response) => {
-      response.state = this.states[response.state].key;
+      console.log(response);
+      // response.state = this.states[response.state].key;
       this.WToast.show('El ejemplar se actualizo correctamente');
     })
     .catch((err) => {

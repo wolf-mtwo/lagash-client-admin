@@ -77,7 +77,7 @@
           <md-list>
             <md-list-item ng-repeat="ejemplar in vm.ejemplares"
                           ng-click="vm.select_ejemplar(ejemplar)">
-              <p><b>{{ejemplar.index}}</b> - {{ejemplar._id}}</p>
+              <p><b>{{ejemplar.index}}</b> - {{ejemplar.inventory}}</p>
               <md-switch class="md-secondary"
                          ng-model="ejemplar.enabled"
                          ng-change="vm.change_ejemplar_state(ejemplar)"></md-switch>
