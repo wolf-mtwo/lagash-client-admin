@@ -13,6 +13,10 @@ export class Editorial {
         url: url + '/:_id',
         method: 'PUT'
       },
+      remove: {
+        url: url + '/:_id',
+        method: 'DELETE'
+      },
       save: {
         method: 'POST',
         url: url,
@@ -30,6 +34,11 @@ export class Editorial {
       size: {
         method: 'GET',
         url: url + '/size'
+      },
+      find_editorials: {
+        method: 'GET',
+        isArray: true,
+        url: url + '/find'
       }
     });
   }

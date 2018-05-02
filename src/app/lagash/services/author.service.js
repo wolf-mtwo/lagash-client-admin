@@ -13,6 +13,10 @@ export class Author {
         url: url + '/:_id',
         method: 'PUT'
       },
+      remove: {
+        url: url + '/:_id',
+        method: 'DELETE'
+      },
       save: {
         method: 'POST',
         url: url,

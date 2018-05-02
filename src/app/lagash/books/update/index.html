@@ -78,9 +78,6 @@
             <md-list-item ng-repeat="ejemplar in vm.ejemplares"
                           ng-click="vm.select_ejemplar(ejemplar)">
               <p><b>{{ejemplar.index}}</b> - {{ejemplar._id}}</p>
-              <!-- <md-button class="md-secondary">
-                {{ejemplar.status.es}}
-              </md-button> -->
               <md-switch class="md-secondary"
                          ng-model="ejemplar.enabled"
                          ng-change="vm.change_ejemplar_state(ejemplar)"></md-switch>
@@ -219,13 +216,13 @@
             <div layout="row" layout-align="end">
               <md-button aria-label="book"
                          class="md-raised md-primary"
-                         ng-click="vm.show_book_search_dialog($event)">
+                         ng-click="vm.show_author_search_dialog($event)">
                 <ng-md-icon icon="search"></ng-md-icon>
                 Buscar autor
               </md-button>
               <md-button aria-label="book"
                          class="md-raised"
-                         ng-click="vm.show_book_create_dialog($event)">
+                         ng-click="vm.show_author_create_dialog($event)">
                 <ng-md-icon icon="book"></ng-md-icon>
                 Crear autor
               </md-button>

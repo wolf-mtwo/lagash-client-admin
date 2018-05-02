@@ -73,13 +73,13 @@ export class LagashBooksCreateController {
     })
   }
 
-  save_editorials(editorial) {
+  save_editorials(book) {
     this.editorials.forEach((item) => {
       this.EditorialMap.save({
         _id: this.UUID.next(),
         editorial_id: item._id,
         type: 'book',
-        resource_id: editorial._id
+        resource_id: book._id
       }).$promise
       .catch((err) => {
         this.WError.request(err);
@@ -101,7 +101,7 @@ export class LagashBooksCreateController {
     this.editorials.splice(index, 1);
   }
 
-  show_book_create_dialog(ev) {
+  show_author_create_dialog(ev) {
     var self = this;
     this.$mdDialog.show({
       controller: DialogAuthorCreateController,
@@ -121,7 +121,7 @@ export class LagashBooksCreateController {
     });
   };
 
-  show_book_search_dialog(ev) {
+  show_author_search_dialog(ev) {
     var self = this;
     this.$mdDialog.show({
       controller: DialogAuthorSearchController,
