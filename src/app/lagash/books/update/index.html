@@ -234,6 +234,13 @@
         <div layout-padding>
           <md-content>
             <md-list>
+              <md-list-item ng-if="vm.editorial">
+                <ng-md-icon icon="person"></ng-md-icon>
+                <p>{{vm.editorial.name}}</p>
+                <md-button class="md-icon-button" aria-label="delete" ng-click="vm.remove_editorial(vm.editorial)">
+                  <ng-md-icon icon="delete"></ng-md-icon>
+                </md-button>
+              </md-list-item>
               <md-list-item ng-repeat="editorial in vm.editorials">
                 <ng-md-icon icon="person"></ng-md-icon>
                 <p>{{editorial.name}}</p>

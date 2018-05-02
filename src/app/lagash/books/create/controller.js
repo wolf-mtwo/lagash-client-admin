@@ -12,7 +12,7 @@ export class LagashBooksCreateController {
     this.$q = $q;
     this.$timeout = $timeout;
     this.authors = [];
-    this.editorials = [];
+    this.editorial = null;
 
     this.item = {
       _id: UUID.next(),
@@ -52,7 +52,7 @@ export class LagashBooksCreateController {
     .then((res) => {
       this.$state.go('lagash.books.list');
       this.save_authors(res);
-      this.save_editorials(res);
+      // this.save_editorial(res);
     })
     .catch((err) => {
       this.WError.request(err);
@@ -73,19 +73,18 @@ export class LagashBooksCreateController {
     })
   }
 
-  save_editorials(book) {
-    this.editorials.forEach((item) => {
-      this.EditorialMap.save({
-        _id: this.UUID.next(),
-        editorial_id: item._id,
-        type: 'book',
-        resource_id: book._id
-      }).$promise
-      .catch((err) => {
-        this.WError.request(err);
-      });
-    })
-  }
+  // save_editorial(book) {
+  //     this.EditorialMap.save({
+  //       _id: this.UUID.next(),
+  //       editorial_id: item._id,
+  //       type: 'book',
+  //       resource_id: book._id
+  //     }).$promise
+  //     .catch((err) => {
+  //       this.WError.request(err);
+  //     });
+  //   })
+  // }
 
   remove_author(item, index) {
     if (!item) {
@@ -94,11 +93,12 @@ export class LagashBooksCreateController {
     this.authors.splice(index, 1);
   }
 
-  remove_editorial(item, index) {
+  remove_editorial(item) {
     if (!item) {
         throw new Error('item is undefined');
     }
-    this.editorials.splice(index, 1);
+    this.editorial = null;
+    this.item.editorial_id = null;
   }
 
   show_author_create_dialog(ev) {
@@ -155,7 +155,8 @@ export class LagashBooksCreateController {
       }
     })
     .then(function(answer) {
-      self.editorials.push(answer);
+      self.editorial = answer;
+      self.item.editorial_id = answer._id;
     }, function() {
       console.info('You cancelled the dialog.');
     });
@@ -175,7 +176,8 @@ export class LagashBooksCreateController {
       }
     })
     .then(function(answer) {
-      self.editorials.push(answer);
+      self.editorial = answer;
+      self.item.editorial_id = answer._id;
     }, function() {
       console.info('You cancelled the dialog.');
     });

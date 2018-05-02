@@ -1,7 +1,7 @@
 <md-dialog aria-label="Message" style="width: 500px">
   <md-toolbar>
     <div class="md-toolbar-tools">
-      <h2>Crear autor</h2>
+      <h2>Buscar editorial</h2>
       <span flex></span>
       <md-button class="md-icon-button" aria-label="Close dialog" ng-click="cancel()">
         <ng-md-icon icon="close"></ng-md-icon>
@@ -11,7 +11,7 @@
   <md-dialog-content>
     <div layout-padding>
       <md-input-container class="md-block" flex-gt-xs>
-        <label>Nombre o apellido</label>
+        <label>Nombre de la editorial</label>
         <input ng-model="search" ng-change="search_author(search)" md-maxlength="250">
       </md-input-container>
     </div>

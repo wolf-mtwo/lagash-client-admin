@@ -9,6 +9,7 @@ export class LagashBooksUpdateController {
     this.$mdDialog = $mdDialog;
     this.Books = Books;
     this.AuthorMap = AuthorMap;
+    this.Editorial = Editorial;
     this.EditorialMap = EditorialMap;
     this.UUID = UUID;
     this.Ejemplares = Ejemplares;
@@ -17,7 +18,7 @@ export class LagashBooksUpdateController {
     this.create_ejemplar_state = false;
 
     this.authors = [];
-    this.editorials = [];
+    this.editorial = null;
 
     this.types = BookOption.types;
     this.covers = BookOption.covers;
@@ -41,11 +42,15 @@ export class LagashBooksUpdateController {
       this.WError.request(err);
     });
 
-    Editorial.find_editorials({
-      resource_id: this.book_id
+    if (!this.item.editorial_id) {
+       console.log('no tiene editorial');
+       return;
+    }
+    Editorial.get({
+      _id: this.item.editorial_id
     }).$promise
     .then((res) => {
-      this.editorials = res;
+      this.editorial = res;
     })
     .catch((err) => {
       this.WError.request(err);
@@ -181,19 +186,12 @@ export class LagashBooksUpdateController {
     });
   }
 
-  remove_editorial(item, index) {
+  remove_editorial(item) {
     if (!item) {
         throw new Error('item is undefined');
     }
-    this.EditorialMap.remove({
-      _id: item.map._id
-    }).$promise
-    .then((res) => {
-      this.editorials.splice(index, 1);
-    })
-    .catch((err) => {
-      this.WError.request(err);
-    });
+    this.editorial = null;
+    this.item.editorial_id = null;
   }
 
   save_author(book, item) {
@@ -212,21 +210,21 @@ export class LagashBooksUpdateController {
     });
   }
 
-  save_editorial(book, item) {
-    this.EditorialMap.save({
-      _id: this.UUID.next(),
-      editorial_id: item._id,
-      type: 'book',
-      resource_id: book._id
-    }).$promise
-    .then((res) => {
-      item.map = res;
-      this.editorials.push(item);
-    })
-    .catch((err) => {
-      this.WError.request(err);
-    });
-  }
+  // save_editorial(book, item) {
+  //   this.EditorialMap.save({
+  //     _id: this.UUID.next(),
+  //     editorial_id: item._id,
+  //     type: 'book',
+  //     resource_id: book._id
+  //   }).$promise
+  //   .then((res) => {
+  //     item.map = res;
+  //     this.editorials.push(item);
+  //   })
+  //   .catch((err) => {
+  //     this.WError.request(err);
+  //   });
+  // }
 
   // operations
   show_author_create_dialog(ev) {
@@ -283,7 +281,8 @@ export class LagashBooksUpdateController {
       }
     })
     .then(function(answer) {
-      self.save_editorial(self.item, answer);
+      self.editorial = answer;
+      self.item.editorial_id = answer._id;
     }, function() {
       console.info('You cancelled the dialog.');
     });
@@ -303,7 +302,8 @@ export class LagashBooksUpdateController {
       }
     })
     .then(function(answer) {
-      self.save_editorial(self.item, answer);
+      self.editorial = answer;
+      self.item.editorial_id = answer._id;
     }, function() {
       console.info('You cancelled the dialog.');
     });
