@@ -18,9 +18,9 @@ export class LagashThesisUpdateController {
     this.create_ejemplar_state = false;
 
     this.authors = [];
-    this.editorial = null;
+    // this.editorial = null;
 
-    this.types = ThesisOption.types;
+    // this.types = ThesisOption.types;
     this.covers = ThesisOption.covers;
     this.illustrations = ThesisOption.illustrations;
     this.brings = ThesisOption.brings;
@@ -210,22 +210,6 @@ export class LagashThesisUpdateController {
     });
   }
 
-  // save_editorial(thesis, item) {
-  //   this.EditorialMap.save({
-  //     _id: this.UUID.next(),
-  //     editorial_id: item._id,
-  //     type: 'thesis',
-  //     resource_id: thesis._id
-  //   }).$promise
-  //   .then((res) => {
-  //     item.map = res;
-  //     this.editorials.push(item);
-  //   })
-  //   .catch((err) => {
-  //     this.WError.request(err);
-  //   });
-  // }
-
   // operations
   show_author_create_dialog(ev) {
     var self = this;
@@ -267,56 +251,55 @@ export class LagashThesisUpdateController {
     });
   };
 
-  show_editorial_create_dialog(ev) {
-    var self = this;
-    this.$mdDialog.show({
-      controller: DialogEditorialCreateController2,
-      templateUrl: 'app/lagash/thesiss/create/editorial/create.html',
-      parent: angular.element(document.body),
-      targetEvent: ev,
-      clickOutsideToClose: true,
-      fullscreen: false,
-      locals: {
-         item: null
-      }
-    })
-    .then(function(answer) {
-      self.editorial = answer;
-      self.item.editorial_id = answer._id;
-    }, function() {
-      console.info('You cancelled the dialog.');
-    });
-  };
-
-  show_editorial_search_dialog(ev) {
-    var self = this;
-    this.$mdDialog.show({
-      controller: DialogEditorialSearchController2,
-      templateUrl: 'app/lagash/thesiss/create/editorial/search.html',
-      parent: angular.element(document.body),
-      targetEvent: ev,
-      clickOutsideToClose: true,
-      fullscreen: false,
-      locals: {
-         item: null
-      }
-    })
-    .then(function(answer) {
-      self.editorial = answer;
-      self.item.editorial_id = answer._id;
-    }, function() {
-      console.info('You cancelled the dialog.');
-    });
-  };
+  // show_editorial_create_dialog(ev) {
+  //   var self = this;
+  //   this.$mdDialog.show({
+  //     controller: DialogEditorialCreateController2,
+  //     templateUrl: 'app/lagash/thesiss/create/editorial/create.html',
+  //     parent: angular.element(document.body),
+  //     targetEvent: ev,
+  //     clickOutsideToClose: true,
+  //     fullscreen: false,
+  //     locals: {
+  //        item: null
+  //     }
+  //   })
+  //   .then(function(answer) {
+  //     self.editorial = answer;
+  //     self.item.editorial_id = answer._id;
+  //   }, function() {
+  //     console.info('You cancelled the dialog.');
+  //   });
+  // };
+  //
+  // show_editorial_search_dialog(ev) {
+  //   var self = this;
+  //   this.$mdDialog.show({
+  //     controller: DialogEditorialSearchController2,
+  //     templateUrl: 'app/lagash/thesiss/create/editorial/search.html',
+  //     parent: angular.element(document.body),
+  //     targetEvent: ev,
+  //     clickOutsideToClose: true,
+  //     fullscreen: false,
+  //     locals: {
+  //        item: null
+  //     }
+  //   })
+  //   .then(function(answer) {
+  //     self.editorial = answer;
+  //     self.item.editorial_id = answer._id;
+  //   }, function() {
+  //     console.info('You cancelled the dialog.');
+  //   });
+  // };
 }
-
-
 
 function DialogAuthorCreateController2($scope, $mdDialog, WError, UUID, Country, Author, item) {
   'ngInject';
 
   $scope.item = {
-    _id: UUID.next()
+    _id: UUID.next(),
+    country: 'bolivia'
   };
 
   $scope.countries = Country.get();
@@ -387,79 +370,79 @@ function DialogAuthorSearchController2($scope, $mdDialog, WError, UUID, Author, 
     $mdDialog.cancel();
   };
 }
-
-function DialogEditorialCreateController2($scope, $mdDialog, WError, UUID, Country, Editorial, item) {
-  'ngInject';
-
-  $scope.item = {
-    _id: UUID.next()
-  };
-
-  $scope.countries = Country.get();
-
-  $scope.hide = function() {
-    $mdDialog.hide();
-  };
-
-  $scope.cancel = function() {
-    $mdDialog.cancel();
-  };
-
-  $scope.answer = function(answer) {
-    Editorial.save(answer).$promise
-    .then((res) => {
-      $mdDialog.hide(res);
-    })
-    .catch((err) => {
-      WError.request(err);
-    });
-  };
-}
-
-function DialogEditorialSearchController2($scope, $mdDialog, WError, UUID, Editorial, item) {
-  'ngInject';
-
-  $scope.query = {
-    total: 100,
-    limit: 40,
-    page: 1
-  };
-
-  $scope.on_pagination = function() {
-    Editorial.pagination($scope.query, function(items) {
-      $scope.editorials = items;
-    }).$promise;
-  }
-
-  $scope.search_author = function(search) {
-    $scope.query.search = search;
-    Editorial.search($scope.query, function(items) {
-      $scope.editorials = items;
-    }).$promise;
-  };
-
-  Editorial.size().$promise
-  .then((res) => {
-    $scope.query.total = res.total;
-    $scope.on_pagination();
-  })
-  .catch((err) => {
-    WError.request(err);
-  });
-
-  $scope.select_editorial = function(item) {
-    if (item) {
-      $mdDialog.hide(item);
-    } else {
-      console.log('no existe un editorial seleccionado');
-    }
-  };
-
-  $scope.hide = function() {
-    $mdDialog.hide();
-  };
-
-  $scope.cancel = function() {
-    $mdDialog.cancel();
-  };
-}
+//
+// function DialogEditorialCreateController2($scope, $mdDialog, WError, UUID, Country, Editorial, item) {
+//   'ngInject';
+//
+//   $scope.item = {
+//     _id: UUID.next()
+//   };
+//
+//   $scope.countries = Country.get();
+//
+//   $scope.hide = function() {
+//     $mdDialog.hide();
+//   };
+//
+//   $scope.cancel = function() {
+//     $mdDialog.cancel();
+//   };
+//
+//   $scope.answer = function(answer) {
+//     Editorial.save(answer).$promise
+//     .then((res) => {
+//       $mdDialog.hide(res);
+//     })
+//     .catch((err) => {
+//       WError.request(err);
+//     });
+//   };
+// }
+//
+// function DialogEditorialSearchController2($scope, $mdDialog, WError, UUID, Editorial, item) {
+//   'ngInject';
+//
+//   $scope.query = {
+//     total: 100,
+//     limit: 40,
+//     page: 1
+//   };
+//
+//   $scope.on_pagination = function() {
+//     Editorial.pagination($scope.query, function(items) {
+//       $scope.editorials = items;
+//     }).$promise;
+//   }
+//
+//   $scope.search_author = function(search) {
+//     $scope.query.search = search;
+//     Editorial.search($scope.query, function(items) {
+//       $scope.editorials = items;
+//     }).$promise;
+//   };
+//
+//   Editorial.size().$promise
+//   .then((res) => {
+//     $scope.query.total = res.total;
+//     $scope.on_pagination();
+//   })
+//   .catch((err) => {
+//     WError.request(err);
+//   });
+//
+//   $scope.select_editorial = function(item) {
+//     if (item) {
+//       $mdDialog.hide(item);
+//     } else {
+//       console.log('no existe un editorial seleccionado');
+//     }
+//   };
+//
+//   $scope.hide = function() {
+//     $mdDialog.hide();
+//   };
+//
+//   $scope.cancel = function() {
+//     $mdDialog.cancel();
+//   };
+// }

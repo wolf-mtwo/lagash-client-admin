@@ -7,6 +7,7 @@ export class LagashThesisListController {
     this.Thesis = Thesis;
     this.WError = WError;
 
+    this.thesis = [];
     this.total = size.total;
     this.query = {
       limit: 40,
@@ -15,19 +16,19 @@ export class LagashThesisListController {
     var self = this;
     self.on_pagination = function() {
       Thesis.pagination(self.query, function(items) {
-        self.thesiss = items;
+        self.thesis = items;
       }).$promise;
     }
     self.on_pagination();
   }
 
 
-  search_thesiss(search) {
+  search_thesis(search) {
     var self = this;
     this.query.search = search;
     this.Thesis.search(self.query, function(items) {
       delete self.query['search'];
-      self.thesiss = items;
+      self.thesis = items;
     }).$promise;
   }
 
@@ -43,12 +44,10 @@ export class LagashThesisListController {
     }, item)
     .$promise
     .then((response) => {
-      this.WToast.show('El libro se actualizo correctamente');
+      this.WToast.show('La tesis se actualizo correctamente');
     })
     .catch((err) => {
       this.WError.request(err);
     });
   }
-
-
 }

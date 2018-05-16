@@ -598,4 +598,110 @@ export class Country {
       value: 'Zimbabue'
     }];
   }
+
+  getAmerica() {
+    return [{
+      key: 'alemania',
+      value: 'Alemania'
+    }, {
+      key: 'argentina',
+      value: 'Argentina'
+    }, {
+      key: 'australia',
+      value: 'Australia'
+    }, {
+      key: 'belgica',
+      value: 'Bélgica'
+    }, {
+      key: 'bolivia',
+      value: 'Bolivia'
+    }, {
+      key: 'brasil',
+      value: 'Brasil'
+    }, {
+      key: 'canada',
+      value: 'Canadá'
+    }, {
+      key: 'chile',
+      value: 'Chile'
+    }, {
+      key: 'china',
+      value: 'China'
+    }, {
+      key: 'colombia',
+      value: 'Colombia'
+    }, {
+      key: 'costa-rica',
+      value: 'Costa Rica'
+    }, {
+      key: 'cuba',
+      value: 'Cuba'
+    }, {
+      key: 'ecuador',
+      value: 'Ecuador'
+    }, {
+      key: 'el-salvador',
+      value: 'El Salvador'
+    }, {
+      key: 'espania',
+      value: 'España'
+    }, {
+      key: 'estados-unidos',
+      value: 'Estados Unidos'
+    }, {
+      key: 'francia',
+      value: 'Francia'
+    }, {
+      key: 'guatemala',
+      value: 'Guatemala'
+    }, {
+      key: 'haiti',
+      value: 'Haití'
+    }, {
+      key: 'honduras',
+      value: 'Honduras'
+    }, {
+      key: 'india',
+      value: 'India'
+    }, {
+      key: 'israel',
+      value: 'Israel'
+    }, {
+      key: 'italia',
+      value: 'Italia'
+    }, {
+      key: 'mexico',
+      value: 'México'
+    }, {
+      key: 'panama',
+      value: 'Panamá'
+    }, {
+      key: 'paraguay',
+      value: 'Paraguay'
+    }, {
+      key: 'peru',
+      value: 'Perú'
+    }, {
+      key: 'polonia',
+      value: 'Polonia'
+    }, {
+      key: 'portugal',
+      value: 'Portugal'
+    }, {
+      key: 'reino-unido',
+      value: 'Reino Unido'
+    }, {
+      key: 'rusia',
+      value: 'Rusia'
+    }, {
+      key: 'suecia',
+      value: 'Suecia'
+    }, {
+      key: 'suiza',
+      value: 'Suiza'
+    }, {
+      key: 'uruguay',
+      value: 'Uruguay'
+    }];
+  }
 }

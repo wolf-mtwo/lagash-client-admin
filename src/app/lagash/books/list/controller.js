@@ -7,6 +7,7 @@ export class LagashBooksListController {
     this.Books = Books;
     this.WError = WError;
 
+    this.books = [];
     this.total = size.total;
     this.query = {
       limit: 40,

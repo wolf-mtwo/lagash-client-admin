@@ -7,6 +7,7 @@ import LagashThesis from './thesis/module';
 // Thesis
 import { Thesis } from './services/thesis/thesis.service';
 import { ThesisOption } from './services/thesis/option.service';
+import { ThesisEjemplares } from './services/thesis/ejemplares.service';
 
 import { Books } from './services/books.service';
 import { UUID } from './services/uuid.service';
@@ -28,6 +29,7 @@ angular.module('wolf.lagash', [
 // thesis
 .service('Thesis', Thesis)
 .service('ThesisOption', ThesisOption)
+.service('ThesisEjemplares', ThesisEjemplares)
 
 .service('Books', Books)
 .service('Author', Author)
