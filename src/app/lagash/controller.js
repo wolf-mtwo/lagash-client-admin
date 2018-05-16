@@ -14,6 +14,10 @@ export class LagashController {
       title: 'Libros',
       icon: 'book',
       route: 'lagash.books.list.main'
+    }, {
+      title: 'Thesis',
+      icon: 'book',
+      route: 'lagash.thesis.list.main'
     }];
 
     Auth.subcrive((user) => {

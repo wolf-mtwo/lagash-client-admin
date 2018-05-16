@@ -1,0 +1,197 @@
+<form layout="column" name="form" ng-submit="vm.register(vm.item)" layout-fill>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h1>
+        Nuevo libro
+      </h1>
+      <span flex></span>
+      <md-button type="submit" class="md-raised">Aceptar</md-button>
+      <md-button class="md-icon-button" aria-label="more">
+        <ng-md-icon icon="more_vert"></ng-md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="general">
+        <div layout-padding>
+          <md-content>
+            <md-input-container class="md-block" flex-gt-xs>
+              <label>UUID</label>
+              <input required ng-model="vm.item._id" disabled md-maxlength="36">
+              <div ng-messages="form._id.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+              <label>Titulo</label>
+              <input required ng-model="vm.item.title" md-maxlength="250">
+              <div ng-messages="form.title.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+              <label>ISBN</label>
+              <input required ng-model="vm.item.isbn" md-maxlength="20">
+              <div ng-messages="form.isbn.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+              <label>Descriptores</label>
+              <md-chips ng-model="vm.item.tags" readonly="false" md-removable="true"></md-chips>
+            </md-input-container>
+          </md-content>
+        </div>
+      </md-tab>
+      <md-tab label="detalle">
+        <div layout-padding>
+          <md-content>
+            <md-input-container class="md-block" flex-gt-xs>
+              <label>Tipo</label>
+              <md-select ng-model="vm.item.type">
+                <md-option ng-repeat="type in vm.types" ng-value="type.key">
+                  {{type.value}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+              <label>Tipo de tapa</label>
+              <md-select ng-model="vm.item.cover">
+                <md-option ng-repeat="cover in vm.covers" ng-value="cover.key">
+                  {{cover.value}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+              <legend class="demo-legend">Ilustraciones</legend>
+              <div layout="row" layout-wrap flex>
+                <div flex="50" ng-repeat="illustration in vm.illustrations">
+                  <md-checkbox ng-checked="vm.exists(illustration, vm.item.illustrations)" ng-click="vm.toggle(illustration, vm.item.illustrations)">
+                    {{ illustration.value }}
+                  </md-checkbox>
+                </div>
+              </div>
+            </md-input-container>
+            <div layout="row">
+              <md-input-container class="md-block" flex="50">
+                <label>Largo</label>
+                <input ng-model="vm.item.length" type="number">
+                <div ng-messages="form.length.$error">
+                  <div ng-message="required">This is required.</div>
+                </div>
+              </md-input-container>
+              <md-input-container class="md-block" flex="50">
+                <label>Ancho</label>
+                <input ng-model="vm.item.width" type="number">
+                <div ng-messages="form.width.$error">
+                  <div ng-message="required">This is required.</div>
+                </div>
+              </md-input-container>
+              <md-input-container class="md-block" flex="50">
+                <label>Pages</label>
+                <input ng-model="vm.item.pages" type="number">
+                <div ng-messages="form.pages.$error">
+                  <div ng-message="required">This is required.</div>
+                </div>
+              </md-input-container>
+              <md-input-container class="md-block" flex="50">
+                <label>Año</label>
+                <md-select ng-model="vm.item.year">
+                  <md-option ng-repeat="year in vm.years" ng-value="year.key">
+                    {{year.value}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+            </div>
+            <md-input-container class="md-block" flex-gt-xs>
+              <label>Precio</label>
+              <input ng-model="vm.item.price" type="number">
+              <div ng-messages="form.price.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+              <legend>Trae (DC, etc)</legend>
+              <div layout="row" layout-wrap flex>
+                <div flex="50" ng-repeat="bring in vm.brings">
+                  <md-checkbox ng-checked="vm.exists(bring, vm.item.brings)" ng-click="vm.toggle(bring, vm.item.brings)">
+                    {{ bring.value }}
+                  </md-checkbox>
+                </div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+              <label>Indice</label>
+              <textarea ng-model="vm.item.index" md-maxlength="1000" rows="10">
+              </textarea>
+            </md-input-container>
+          </md-content>
+        </div>
+      </md-tab>
+      <md-tab label="autores">
+        <div layout-padding>
+          <md-content>
+            <md-list>
+              <md-list-item ng-repeat="author in vm.authors">
+                <ng-md-icon icon="person"></ng-md-icon>
+                <p>{{author.last_name}} {{author.first_name}}</p>
+                <md-button class="md-icon-button" aria-label="delete" ng-click="vm.remove_author(author, $index)">
+                  <ng-md-icon icon="delete"></ng-md-icon>
+                </md-button>
+              </md-list-item>
+            </md-list>
+            <div layout="row" layout-align="end">
+              <md-button aria-label="thesis"
+                         class="md-raised md-primary"
+                         ng-click="vm.show_author_search_dialog($event)">
+                <ng-md-icon icon="search"></ng-md-icon>
+                Buscar autor
+              </md-button>
+              <md-button aria-label="thesis"
+                         class="md-raised"
+                         ng-click="vm.show_author_create_dialog($event)">
+                <ng-md-icon icon="thesis"></ng-md-icon>
+                Crear autor
+              </md-button>
+            </div>
+          </md-content>
+        </div>
+      </md-tab>
+      <md-tab label="Editorial">
+        <div layout-padding>
+          <md-content>
+            <md-list>
+              <md-list-item ng-if="vm.editorial">
+                <ng-md-icon icon="person"></ng-md-icon>
+                <p>{{vm.editorial.name}}</p>
+                <md-button class="md-icon-button" aria-label="delete" ng-click="vm.remove_editorial(vm.editorial)">
+                  <ng-md-icon icon="delete"></ng-md-icon>
+                </md-button>
+              </md-list-item>
+            </md-list>
+            <div layout="row" layout-align="end">
+              <md-button aria-label="editorial"
+                         class="md-raised md-primary"
+                         ng-click="vm.show_editorial_search_dialog($event)">
+                <ng-md-icon icon="search"></ng-md-icon>
+                Buscar editorial
+              </md-button>
+              <md-button aria-label="editorial"
+                         class="md-raised"
+                         ng-click="vm.show_editorial_create_dialog($event)">
+                <ng-md-icon icon="thesis"></ng-md-icon>
+                Crear editorial
+              </md-button>
+            </div>
+          </md-content>
+        </div>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</form>
+<style media="screen">
+legend {
+  padding: 10px;
+}
+</style>
