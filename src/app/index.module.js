@@ -20,6 +20,7 @@ angular.module('wolf', [
   'ngMaterial',
   'toastr',
   'ui.router',
+  'ngFileUpload',
   'md.data.table',
   'ngMdIcons',
   'wolf.components',

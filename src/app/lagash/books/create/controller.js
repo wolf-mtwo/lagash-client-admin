@@ -1,6 +1,6 @@
 export class LagashBooksCreateController {
 
-  constructor($timeout, $mdDialog, $q, $state, WError, Books, UUID, AuthorMap, EditorialMap, BookOption) {
+  constructor($timeout, $mdDialog, $q, $state, WError, Books, UUID, AuthorMap, EditorialMap, BookOption, Global, Upload) {
     'ngInject';
     this.$state = $state;
     this.$mdDialog = $mdDialog;
@@ -11,6 +11,8 @@ export class LagashBooksCreateController {
     this.WError = WError;
     this.$q = $q;
     this.$timeout = $timeout;
+    this.Upload = Upload;
+    this.Global = Global;
     this.authors = [];
     this.editorial = null;
 
@@ -40,6 +42,29 @@ export class LagashBooksCreateController {
 
     this.searchText = null;
     this.selectedItem = null;
+  }
+
+  upload(file) {
+    var STORE_PATH = this.Global.PATH + '/v1/upload';
+    var count = 0;
+    let self = this;
+    self.Upload.upload({
+          url: STORE_PATH,
+          data: {avatar: file}
+      })
+      .then(function (resp) {
+        var data = resp.data;
+        self.item.image = data.name;
+        self.image = self.Global.PATH + '/files/' + data.name;
+      }, function (resp) {
+          console.log(resp);
+          // LocalError.display(resp.status);
+      }, function (evt) {
+          var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+          var msg = 'progress: ' + progressPercentage + '% ';
+          // Toast.show(msg);
+          console.log(msg);
+      });
   }
 
   register(item) {
