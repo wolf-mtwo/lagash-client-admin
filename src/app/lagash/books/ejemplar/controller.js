@@ -1,12 +1,12 @@
 export class LagashBooksEjemplarController {
 
-  constructor($state, WError, WToast, Books, UUID, Ejemplares, book, ejemplar) {
+  constructor($state, WError, WToast, Books, UUID, BooksEjemplares, book, ejemplar) {
     'ngInject';
     this.$state = $state;
     this.Books = Books;
     this.WError = WError;
     this.WToast = WToast;
-    this.Ejemplares = Ejemplares;
+    this.BooksEjemplares = BooksEjemplares;
     this.item = book;
     this.ejemplar = ejemplar;
 
@@ -23,7 +23,7 @@ export class LagashBooksEjemplarController {
   }
 
   save_ejemplar(ejemplar) {
-    this.Ejemplares.update({
+    this.BooksEjemplares.update({
       _id: ejemplar._id
     }, ejemplar)
     .$promise

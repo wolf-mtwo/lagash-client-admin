@@ -10,7 +10,7 @@ import { Author } from './services/author.service';
 import { Editorial } from './services/editorial.service';
 import { AuthorMap } from './services/author.map.service';
 import { EditorialMap } from './services/editorial.map.service';
-import { Ejemplares } from './services/ejemplares.service';
+import { BooksEjemplares } from './services/books/ejemplares.service';
 import { BookOption } from './services/helpers/book.option.service';
 
 angular.module('wolf.lagash', [
@@ -27,7 +27,7 @@ angular.module('wolf.lagash', [
 .service('BookOption', BookOption)
 .service('EditorialMap', EditorialMap)
 .service('UUID', UUID)
-.service('Ejemplares', Ejemplares)
+.service('BooksEjemplares', BooksEjemplares)
 .controller('LagashController', LagashController)
 .controller('LagashHomeController', LagashHomeController)
 .run(($log) => {

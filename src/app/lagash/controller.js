@@ -7,13 +7,13 @@ export class LagashController {
     this.Auth = Auth;
     this.Sess = Sess;
     this.options = [{
-      title: 'Users',
+      title: 'Usuarios',
       icon: 'person',
       route: 'lagash.users.list'
     }, {
       title: 'Libros',
       icon: 'book',
-      route: 'lagash.books.list'
+      route: 'lagash.books.list.main'
     }];
 
     Auth.subcrive((user) => {

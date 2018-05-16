@@ -50,7 +50,7 @@ export class LagashBooksCreateController {
     data.brings = data.brings.join(',');
     this.Books.save(data).$promise
     .then((res) => {
-      this.$state.go('lagash.books.list');
+      this.$state.go('lagash.books.list.main', {}, {reload: true});
       this.save_authors(res);
       // this.save_editorial(res);
     })

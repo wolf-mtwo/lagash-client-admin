@@ -13,12 +13,12 @@ export class LagashBooksListController {
       page: 1
     };
     var self = this;
-    this.on_pagination = function() {
+    self.on_pagination = function() {
       Books.pagination(self.query, function(items) {
         self.books = items;
       }).$promise;
     }
-    this.on_pagination();
+    self.on_pagination();
   }
 
 
@@ -32,7 +32,7 @@ export class LagashBooksListController {
   }
 
   select(book) {
-    this.$state.go('lagash.books.preview', {
+    this.$state.go('lagash.books.list.preview', {
       book_id: book._id
     });
   }

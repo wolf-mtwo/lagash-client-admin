@@ -1,6 +1,6 @@
 export class LagashBooksUpdateController {
 
-  constructor($state, WError, $mdDialog, WToast, Books, UUID, Ejemplares, book, Author, Editorial, AuthorMap, EditorialMap, ejemplares, BookOption) {
+  constructor($state, WError, $mdDialog, WToast, Books, UUID, BooksEjemplares, book, Author, Editorial, AuthorMap, EditorialMap, ejemplares, BookOption) {
     'ngInject';
     this.book_id = $state.params.book_id;
     this.$state = $state;
@@ -12,7 +12,7 @@ export class LagashBooksUpdateController {
     this.Editorial = Editorial;
     this.EditorialMap = EditorialMap;
     this.UUID = UUID;
-    this.Ejemplares = Ejemplares;
+    this.BooksEjemplares = BooksEjemplares;
 
     this.ejemplares = ejemplares;
     this.create_ejemplar_state = false;
@@ -64,12 +64,12 @@ export class LagashBooksUpdateController {
     $mdOpenMenu(ev);
   };
 
-  delete(book) {
+  delete(item) {
     this.Books.remove({
       _id: item._id
-    }, book).$promise
+    }, item).$promise
     .then((response) => {
-      this.$state.go('lagash.books.list');
+      this.$state.go('lagash.books.list.main', {}, {reload: true});
     })
     .catch((err) => {
       this.WError.request(err);
@@ -87,7 +87,7 @@ export class LagashBooksUpdateController {
     }, data)
     .$promise
     .then((response) => {
-      this.$state.go('lagash.books.list');
+      this.$state.go('lagash.books.list.main', {}, {reload: true});
     })
     .catch((err) => {
       this.WError.request(err);
@@ -98,7 +98,7 @@ export class LagashBooksUpdateController {
     item.book_id = this.book_id;
     item.enabled = false;
     item.state = 'STORED';
-    this.Ejemplares.save({
+    this.BooksEjemplares.save({
       book_id: this.book_id
     }, item).$promise
     .then((response) => {
@@ -121,7 +121,7 @@ export class LagashBooksUpdateController {
   }
 
   select_ejemplar(ejemplar) {
-    this.$state.go('lagash.books.ejemplar', {
+    this.$state.go('lagash.books.list.ejemplar', {
       book_id: this.book_id,
       ejemplar_id: ejemplar._id
     });
@@ -146,7 +146,7 @@ export class LagashBooksUpdateController {
   }
 
   change_ejemplar_state(ejemplar) {
-    this.Ejemplares.update({
+    this.BooksEjemplares.update({
       _id: ejemplar._id
     }, ejemplar).$promise
     .then((response) => {
