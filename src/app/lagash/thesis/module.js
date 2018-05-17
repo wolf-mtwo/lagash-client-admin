@@ -7,6 +7,7 @@ import { LagashThesisListController } from './list/controller';
 
 angular.module('wolf.lagash.thesis', [
   'ui.router',
+  'wolf.lagash.services',
   'wolf.lagash.helpers'
 ])
 .config(router)
