@@ -74,10 +74,14 @@
           </md-button>
         </md-content>
         <md-content>
-          <md-list>
-            <md-list-item ng-repeat="ejemplar in vm.ejemplares"
+          <md-list class="md-dense">
+            <md-list-item class="md-2-line"
+                          ng-repeat="ejemplar in vm.ejemplares"
                           ng-click="vm.select_ejemplar(ejemplar)">
-              <p><b>{{ejemplar.index}}</b> - {{ejemplar.inventory}}</p>
+              <div class="md-list-item-text">
+                <h3>{{ejemplar.code}}</h3>
+                <p><b>Ejemplar:</b> {{ejemplar.index}} <b>Inventario:</b> {{ejemplar.inventory}}</p>
+              </div>
               <md-switch class="md-secondary"
                          ng-model="ejemplar.enabled"
                          ng-change="vm.change_ejemplar_state(ejemplar)"></md-switch>

@@ -28,7 +28,6 @@
         <div ng-if="vm.books.length == 0" class="wargos-text-align">
           <b>No existe <i>libros</i> registrados</b>
         </div>
-
         <md-list>
           <md-list-item ng-repeat="book in vm.books" ng-click="vm.select(book)">
             <ng-md-icon icon="book"></ng-md-icon>
