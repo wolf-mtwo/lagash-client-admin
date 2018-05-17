@@ -6,7 +6,8 @@ import { LagashBooksEjemplarController } from './ejemplar/controller';
 import { LagashBooksListController } from './list/controller';
 
 angular.module('wolf.lagash.books', [
-  'ui.router'
+  'ui.router',
+  'wolf.lagash.helpers'
 ])
 .config(router)
 .controller('LagashBooksController', LagashBooksController)

@@ -1,8 +1,9 @@
 export class LagashThesisUpdateController {
 
-  constructor($state, WError, $mdDialog, WToast, Thesis, UUID, ThesisEjemplares, thesis, Author, Editorial, AuthorMap, EditorialMap, ejemplares, ThesisOption) {
+  constructor($state, WError, $mdDialog, WToast, Thesis, UUID, ThesisEjemplares, thesis, Author, Editorial, AuthorMap, EditorialMap, ejemplares, ThesisOption, ImageService) {
     'ngInject';
     this.thesis_id = $state.params.thesis_id;
+    this.ImageService = ImageService;
     this.$state = $state;
     this.WError = WError;
     this.WToast = WToast;
@@ -58,6 +59,13 @@ export class LagashThesisUpdateController {
 
     // AuthorMap
     // EditorialMap
+  }
+
+  upload(file) {
+    const self = this;
+    this.ImageService.upload(file, function(res) {
+      self.item.image = res.name;
+    });
   }
 
   openMenu($mdOpenMenu, ev) {
@@ -215,7 +223,7 @@ export class LagashThesisUpdateController {
     var self = this;
     this.$mdDialog.show({
       controller: DialogAuthorCreateController2,
-      templateUrl: 'app/lagash/thesiss/create/author/create.html',
+      templateUrl: 'app/lagash/thesis/create/author/create.html',
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose: true,
@@ -235,7 +243,7 @@ export class LagashThesisUpdateController {
     var self = this;
     this.$mdDialog.show({
       controller: DialogAuthorSearchController2,
-      templateUrl: 'app/lagash/thesiss/create/author/search.html',
+      templateUrl: 'app/lagash/thesis/create/author/search.html',
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose: true,

@@ -4,6 +4,8 @@ import { LagashHomeController } from './home/controller';
 import LagashUsers from './users/module';
 import LagashBooks from './books/module';
 import LagashThesis from './thesis/module';
+import LagashHelpers from './services/helpers/module';
+
 // Thesis
 import { Thesis } from './services/thesis/thesis.service';
 import { ThesisOption } from './services/thesis/option.service';

@@ -266,6 +266,14 @@
           </md-content>
         </div>
       </md-tab>
+      <md-tab label="Imagen">
+        <div layout-padding>
+          <md-content class="wargos-text-align wargos-image">
+            <img class="md-card-image" ng-if="vm.item.image" ng-src="{{vm.ImageService.getPath(vm.item.image)}}" />
+            <button type="button" ngf-select="vm.upload($file)">Cargar una foto</button>
+          </md-content>
+        </div>
+      </md-tab>
     </md-tabs>
   </md-content>
 </form>

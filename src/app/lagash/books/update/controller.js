@@ -1,8 +1,9 @@
 export class LagashBooksUpdateController {
 
-  constructor($state, WError, $mdDialog, WToast, Books, UUID, BooksEjemplares, book, Author, Editorial, AuthorMap, EditorialMap, ejemplares, BookOption) {
+  constructor($state, WError, $mdDialog, WToast, Books, UUID, BooksEjemplares, book, Author, Editorial, AuthorMap, EditorialMap, ejemplares, BookOption, ImageService) {
     'ngInject';
     this.book_id = $state.params.book_id;
+    this.ImageService = ImageService;
     this.$state = $state;
     this.WError = WError;
     this.WToast = WToast;
@@ -55,9 +56,13 @@ export class LagashBooksUpdateController {
     .catch((err) => {
       this.WError.request(err);
     });
+  }
 
-    // AuthorMap
-    // EditorialMap
+  upload(file) {
+    const self = this;
+    this.ImageService.upload(file, function(res) {
+      self.item.image = res.name;
+    });
   }
 
   openMenu($mdOpenMenu, ev) {

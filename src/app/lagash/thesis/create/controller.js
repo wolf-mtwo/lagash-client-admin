@@ -1,8 +1,9 @@
 export class LagashThesisCreateController {
 
-  constructor($timeout, $mdDialog, $q, $state, WError, Thesis, UUID, AuthorMap, EditorialMap, ThesisOption) {
+  constructor($timeout, $mdDialog, $q, $state, WError, Thesis, UUID, AuthorMap, EditorialMap, ThesisOption, ImageService) {
     'ngInject';
     this.$state = $state;
+    this.ImageService = ImageService;
     this.$mdDialog = $mdDialog;
     this.Thesis = Thesis;
     this.AuthorMap = AuthorMap;
@@ -40,6 +41,13 @@ export class LagashThesisCreateController {
 
     this.searchText = null;
     this.selectedItem = null;
+  }
+
+  upload(file) {
+    const self = this;
+    this.ImageService.upload(file, function(res) {
+      self.item.image = res.name;
+    });
   }
 
   register(item) {
