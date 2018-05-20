@@ -1,10 +1,13 @@
 export class LagashBooksListController {
 
-  constructor($state, WError, WToast, Books, size) {
+  constructor($state, $mdDialog, WError, WToast, Books, size, UUID, BasicOption) {
     'ngInject';
     this.$state = $state;
+    this.$mdDialog = $mdDialog;
     this.WToast = WToast;
     this.Books = Books;
+    this.BasicOption = BasicOption;
+    this.UUID = UUID;
     this.WError = WError;
 
     this.books = [];
@@ -22,7 +25,6 @@ export class LagashBooksListController {
     self.on_pagination();
   }
 
-
   search_books(search) {
     var self = this;
     this.query.search = search;
@@ -32,9 +34,9 @@ export class LagashBooksListController {
     }).$promise;
   }
 
-  select(book) {
+  select_book(item) {
     this.$state.go('lagash.books.list.preview', {
-      book_id: book._id
+      book_id: item._id
     });
   }
 
@@ -51,5 +53,64 @@ export class LagashBooksListController {
     });
   }
 
+  create_book(title) {
+    var data = {
+      _id: this.UUID.next(),
+      enabled: false,
+      tags: null,
+      type: null,
+      cover: null,
+      length: 0,
+      width: 0,
+      pages: 0,
+      price: 0,
+      illustrations: null,
+      brings: null,
+      year: this.BasicOption.get_year(),
+      title: title || 'SIN NOMBRE',
+      isbn: null
+    };
+    this.Books.save(data).$promise
+    .then((res) => {
+      this.books.unshift(res);
+      this.select_book(res);
+    })
+    .catch((err) => {
+      this.WError.request(err);
+    });
+  }
 
+  show_book_create_dialog(ev) {
+    var self = this;
+    this.$mdDialog.show({
+      controller: function DialogEditorialCreateController($scope, $mdDialog, item) {
+        'ngInject';
+
+        $scope.hide = function() {
+          $mdDialog.hide();
+        };
+
+        $scope.cancel = function() {
+          $mdDialog.cancel();
+        };
+
+        $scope.answer = function(answer) {
+          $mdDialog.hide(answer);
+        };
+      },
+      templateUrl: 'app/lagash/books/list/create.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose: true,
+      fullscreen: false,
+      locals: {
+         item: null
+      }
+    })
+    .then(function(answer) {
+      self.create_book(answer);
+    }, function() {
+      console.info('You cancelled the dialog.');
+    });
+  };
 }

@@ -8,11 +8,14 @@ import { ThesisEjemplares } from './thesis/ejemplares.service';
 import { Books } from './books/books.service';
 import { BookOption } from './books/option.service';
 import { BooksEjemplares } from './books/ejemplares.service';
+import { BooksCatalog } from './books/catalog.service';
 
 import { Author } from './author.service';
 import { Editorial } from './editorial.service';
 import { AuthorMap } from './author.map.service';
 import { EditorialMap } from './editorial.map.service';
+
+import { Ejemplares } from './history/ejemplares.service';
 
 angular.module('wolf.lagash.services', [
   'wolf.lagash.helpers'
@@ -25,9 +28,12 @@ angular.module('wolf.lagash.services', [
 .service('Books', Books)
 .service('BookOption', BookOption)
 .service('BooksEjemplares', BooksEjemplares)
+.service('BooksCatalog', BooksCatalog)
+
 .service('Author', Author)
 .service('Editorial', Editorial)
 .service('AuthorMap', AuthorMap)
+.service('Ejemplares', Ejemplares)
 .service('EditorialMap', EditorialMap)
 .run(($log) => {
   $log.debug('run lagash end');

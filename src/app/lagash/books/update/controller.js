@@ -1,6 +1,6 @@
 export class LagashBooksUpdateController {
 
-  constructor($state, WError, $mdDialog, WToast, Books, UUID, BooksEjemplares, book, Author, Editorial, AuthorMap, EditorialMap, ejemplares, BookOption, ImageService) {
+  constructor($state, WError, $mdDialog, WToast, Books, UUID, Ejemplares, book, Author, Editorial, AuthorMap, EditorialMap, ejemplares, BookOption, ImageService) {
     'ngInject';
     this.book_id = $state.params.book_id;
     this.ImageService = ImageService;
@@ -13,23 +13,23 @@ export class LagashBooksUpdateController {
     this.Editorial = Editorial;
     this.EditorialMap = EditorialMap;
     this.UUID = UUID;
-    this.BooksEjemplares = BooksEjemplares;
+    this.Ejemplares = Ejemplares;
 
-    this.ejemplares = ejemplares;
     this.create_ejemplar_state = false;
-
-    this.authors = [];
-    this.editorial = null;
-
     this.types = BookOption.types;
     this.covers = BookOption.covers;
     this.illustrations = BookOption.illustrations;
     this.brings = BookOption.brings;
     this.years = BookOption.getYears();
 
-    book.tags = book.tags ? book.tags.split(',') : null;
-    book.illustrations = book.illustrations ? book.illustrations.split(',') : null;
-    book.brings = book.brings ? book.brings.split(',') : null;
+    this.authors = [];
+    this.editorial = null;
+
+    this.ejemplares = ejemplares;
+
+    book.tags = book.tags ? book.tags.split(',') : [];
+    book.illustrations = book.illustrations ? book.illustrations.split(',') : [];
+    book.brings = book.brings ? book.brings.split(',') : [];
     this.item = book;
 
     // Editorial
@@ -42,7 +42,6 @@ export class LagashBooksUpdateController {
     .catch((err) => {
       this.WError.request(err);
     });
-
     if (!this.item.editorial_id) {
        console.log('no tiene editorial');
        return;
@@ -100,16 +99,16 @@ export class LagashBooksUpdateController {
   }
 
   save_ejemplar(item) {
-    item.book_id = this.book_id;
+    item.data_id = this.book_id;
     item.enabled = false;
     item.state = 'STORED';
-    this.BooksEjemplares.save({
-      book_id: this.book_id
+    item.type = 'BOOK';
+    this.Ejemplares.save({
+      data_id: item.data_id
     }, item).$promise
     .then((response) => {
       this.create_ejemplar_state = false;
       this.WToast.show('El ejemplar se guardo correctamente');
-      // response.status = this.get_state(response.state);
       this.ejemplares.push(response);
     })
     .catch((err) => {
@@ -151,7 +150,7 @@ export class LagashBooksUpdateController {
   }
 
   change_ejemplar_state(ejemplar) {
-    this.BooksEjemplares.update({
+    this.Ejemplares.update({
       _id: ejemplar._id
     }, ejemplar).$promise
     .then((response) => {
@@ -214,22 +213,6 @@ export class LagashBooksUpdateController {
       this.WError.request(err);
     });
   }
-
-  // save_editorial(book, item) {
-  //   this.EditorialMap.save({
-  //     _id: this.UUID.next(),
-  //     editorial_id: item._id,
-  //     type: 'book',
-  //     resource_id: book._id
-  //   }).$promise
-  //   .then((res) => {
-  //     item.map = res;
-  //     this.editorials.push(item);
-  //   })
-  //   .catch((err) => {
-  //     this.WError.request(err);
-  //   });
-  // }
 
   // operations
   show_author_create_dialog(ev) {
