@@ -32,6 +32,18 @@ export function router($stateProvider) {
     controllerAs: 'vm'
   });
 
+  $stateProvider.state('lagash.books.list.catalog', {
+    url: '/catalog',
+    templateUrl: base_url + '/catalog/index.html',
+    controller: 'LagashBooksCatalogController',
+    controllerAs: 'vm',
+    resolve: {
+      size: function(BooksCatalog) {
+        return BooksCatalog.size().$promise;
+      }
+    }
+  });
+
   $stateProvider.state('lagash.books.list.preview', {
     url: '/:book_id',
     templateUrl: base_url + '/update/index.html',
@@ -51,19 +63,6 @@ export function router($stateProvider) {
     }
   });
 
-  $stateProvider.state('lagash.books.list.catalog', {
-    url: '/:catalog_id',
-    templateUrl: base_url + '/catalog/index.html',
-    controller: 'LagashBooksCatalogController',
-    controllerAs: 'vm',
-    resolve: {
-      ejemplares: function($stateParams, BooksCatalog) {
-        return BooksCatalog.find({
-          book_id: $stateParams.book_id
-        }).$promise;
-      }
-    }
-  });
 
   $stateProvider.state('lagash.books.list.ejemplar', {
     url: '/:book_id/ejemplares/:ejemplar_id',

@@ -1,39 +1,27 @@
 export class LagashBooksCatalogController {
 
-  constructor($state, WError, WToast, Books, UUID, BooksEjemplares, book, ejemplar) {
+  constructor($state, WError, WToast, UUID, size, BookCatalog) {
     'ngInject';
-    this.$state = $state;
-    this.Books = Books;
-    this.WError = WError;
-    this.WToast = WToast;
-    this.BooksEjemplares = BooksEjemplares;
-    this.item = book;
-    this.ejemplar = ejemplar;
+    // this.$state = $state;
+    // this.Books = Books;
+    // this.WError = WError;
+    // this.WToast = WToast;
+    this.BookCatalog = BookCatalog;
+    // this.item = book;
+    // this.ejemplar = ejemplar;
 
-    this.states = [{
-      value: 'Guardado',
-      key: 'STORED'
-    }, {
-      value: 'Reservado',
-      key: 'BOOKED'
-    }, {
-      value: 'Prestado',
-      key: 'BORROWED'
-    }];
-  }
-
-  save_ejemplar(ejemplar) {
-    this.BooksEjemplares.update({
-      _id: ejemplar._id
-    }, ejemplar)
-    .$promise
-    .then((response) => {
-      console.log(response);
-      // response.state = this.states[response.state].key;
-      this.WToast.show('El ejemplar se actualizo correctamente');
-    })
-    .catch((err) => {
-      this.WError.request(err);
-    });
+    this.items = [];
+    this.total = size.total;
+    this.query = {
+      limit: 40,
+      page: 1
+    };
+    var self = this;
+    self.on_pagination = function() {
+      Books.pagination(self.query, function(items) {
+        self.books = items;
+      }).$promise;
+    }
+    self.on_pagination();
   }
 }
