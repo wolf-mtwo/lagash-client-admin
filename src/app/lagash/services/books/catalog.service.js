@@ -2,7 +2,7 @@ export class BooksCatalog {
 
   constructor($resource, Global) {
     'ngInject';
-    var url = Global.PATH + '/v1/books/catalogs';
+    var url = Global.PATH + '/v1/book/catalogs';
     return $resource(url, {
     }, {
       get: {

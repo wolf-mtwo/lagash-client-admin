@@ -1,12 +1,14 @@
 export class LagashBooksCatalogController {
 
-  constructor($state, WError, WToast, UUID, size, BookCatalog) {
+  constructor($state, $mdDialog, WError, WToast, UUID, size, BooksCatalog) {
     'ngInject';
     // this.$state = $state;
     // this.Books = Books;
-    // this.WError = WError;
-    // this.WToast = WToast;
-    this.BookCatalog = BookCatalog;
+    this.$mdDialog = $mdDialog;
+    this.UUID = UUID;
+    this.WError = WError;
+    this.WToast = WToast;
+    this.BooksCatalog = BooksCatalog;
     // this.item = book;
     // this.ejemplar = ejemplar;
 
@@ -18,10 +20,72 @@ export class LagashBooksCatalogController {
     };
     var self = this;
     self.on_pagination = function() {
-      Books.pagination(self.query, function(items) {
-        self.books = items;
+      BooksCatalog.pagination(self.query, function(items) {
+        self.items = items;
       }).$promise;
     }
     self.on_pagination();
   }
+
+  change_state(item) {
+    this.BooksCatalog.update({
+      _id: item._id
+    }, item)
+    .$promise
+    .then((response) => {
+      this.WToast.show('El catalogo se actualizo correctamente');
+    })
+    .catch((err) => {
+      this.WError.request(err);
+    });
+  }
+
+  create_catalog(title) {
+    var data = {
+      _id: this.UUID.next(),
+      enabled: false,
+      title: title || 'SIN NOMBRE'
+    };
+    this.BooksCatalog.save(data).$promise
+    .then((res) => {
+      this.items.unshift(res);
+    })
+    .catch((err) => {
+      this.WError.request(err);
+    });
+  }
+
+  show_catalog_create_dialog(ev) {
+    var self = this;
+    this.$mdDialog.show({
+      controller: function DialogEditorialCreateController($scope, $mdDialog, item) {
+        'ngInject';
+
+        $scope.hide = function() {
+          $mdDialog.hide();
+        };
+
+        $scope.cancel = function() {
+          $mdDialog.cancel();
+        };
+
+        $scope.answer = function(answer) {
+          $mdDialog.hide(answer);
+        };
+      },
+      templateUrl: 'app/lagash/books/catalog/create.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose: true,
+      fullscreen: false,
+      locals: {
+         item: null
+      }
+    })
+    .then(function(answer) {
+      self.create_catalog(answer);
+    }, function() {
+      console.info('You cancelled the dialog.');
+    });
+  };
 }
