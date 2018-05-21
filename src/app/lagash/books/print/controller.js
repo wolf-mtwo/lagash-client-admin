@@ -1,4 +1,4 @@
-export class LagashBooksEjemplarController {
+export class LagashBooksPrintController {
 
   constructor($state, WError, WToast, Books, UUID, Ejemplares, book, ejemplar) {
     'ngInject';
@@ -35,15 +35,4 @@ export class LagashBooksEjemplarController {
     });
   }
 
-  print_ejemplar() {
-    console.log('sss');
-    console.log({
-      book_id: this.item._id,
-      ejemplar_id: this.ejemplar._id
-    });
-    this.$state.go('print_book', {
-      book_id: this.item._id,
-      ejemplar_id: this.ejemplar._id
-    });
-  }
 }

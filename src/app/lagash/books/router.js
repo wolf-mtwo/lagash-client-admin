@@ -69,14 +69,13 @@ export function router($stateProvider) {
           _id: $stateParams.book_id
         }).$promise;
       },
-      ejemplares: function($stateParams, BooksEjemplares) {
-        return BooksEjemplares.find({
-          book_id: $stateParams.book_id
+      ejemplares: function($stateParams, Ejemplares) {
+        return Ejemplares.find({
+          data_id: $stateParams.book_id
         }).$promise;
       }
     }
   });
-
 
   $stateProvider.state('lagash.books.list.ejemplar', {
     url: '/:book_id/ejemplares/:ejemplar_id',
@@ -89,8 +88,27 @@ export function router($stateProvider) {
           _id: $stateParams.book_id
         }).$promise;
       },
-      ejemplar: function($stateParams, BooksEjemplares) {
-        return BooksEjemplares.get({
+      ejemplar: function($stateParams, Ejemplares) {
+        return Ejemplares.get({
+          _id: $stateParams.ejemplar_id
+        }).$promise;
+      }
+    }
+  });
+
+  $stateProvider.state('print_book', {
+    url: '/print/book/:book_id/ejemplares/:ejemplar_id',
+    templateUrl: base_url + '/print/index.html',
+    controller: 'LagashBooksPrintController',
+    controllerAs: 'vm',
+    resolve: {
+      book: function($stateParams, Books) {
+        return Books.get({
+          _id: $stateParams.book_id
+        }).$promise;
+      },
+      ejemplar: function($stateParams, Ejemplares) {
+        return Ejemplares.get({
           _id: $stateParams.ejemplar_id
         }).$promise;
       }

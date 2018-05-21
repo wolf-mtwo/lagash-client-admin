@@ -8,6 +8,7 @@ export function router($stateProvider) {
     controller: 'LagashController',
     controllerAs:'vm'
   });
+
   $stateProvider.state('lagash.home', {
     url: '/home',
     templateUrl: base_url + '/home/index.html',
