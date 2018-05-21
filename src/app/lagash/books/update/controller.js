@@ -1,6 +1,6 @@
 export class LagashBooksUpdateController {
 
-  constructor($state, WError, $mdDialog, WToast, Books, UUID, Ejemplares, book, Author, Editorial, AuthorMap, EditorialMap, ejemplares, BookOption, ImageService) {
+  constructor($state, WError, $mdDialog, WToast, Books, UUID, Ejemplares, book, Author, Editorial, AuthorMap, EditorialMap, ejemplares, BookOption, ImageService, BooksCatalog) {
     'ngInject';
     this.book_id = $state.params.book_id;
     this.ImageService = ImageService;
@@ -10,6 +10,7 @@ export class LagashBooksUpdateController {
     this.$mdDialog = $mdDialog;
     this.Books = Books;
     this.AuthorMap = AuthorMap;
+    this.BooksCatalog = BooksCatalog;
     this.Editorial = Editorial;
     this.EditorialMap = EditorialMap;
     this.UUID = UUID;
@@ -24,6 +25,7 @@ export class LagashBooksUpdateController {
 
     this.authors = [];
     this.editorial = null;
+    this.catalog = null;
 
     this.ejemplares = ejemplares;
 
@@ -42,15 +44,37 @@ export class LagashBooksUpdateController {
     .catch((err) => {
       this.WError.request(err);
     });
+
+    this.load_editorial();
+    this.load_catalog();
+  }
+
+  load_editorial() {
     if (!this.item.editorial_id) {
-       console.log('no tiene editorial');
+       console.log('editorial_id is undefined');
        return;
     }
-    Editorial.get({
+    this.Editorial.get({
       _id: this.item.editorial_id
     }).$promise
     .then((res) => {
       this.editorial = res;
+    })
+    .catch((err) => {
+      this.WError.request(err);
+    });
+  }
+
+  load_catalog() {
+    if (!this.item.catalog_id) {
+       console.log('catalog_id is undefined');
+       return;
+    }
+    this.BooksCatalog.get({
+      _id: this.item.catalog_id
+    }).$promise
+    .then((res) => {
+      this.catalog = res;
     })
     .catch((err) => {
       this.WError.request(err);
@@ -198,6 +222,11 @@ export class LagashBooksUpdateController {
     this.item.editorial_id = null;
   }
 
+  remove_catalog() {
+    this.catalog = null;
+    this.item.catalog_id = null;
+  }
+
   save_author(book, item) {
     this.AuthorMap.save({
       _id: this.UUID.next(),
@@ -295,10 +324,29 @@ export class LagashBooksUpdateController {
     }, function() {
       console.info('You cancelled the dialog.');
     });
-  };
+  }
+
+  show_catalog_search_dialog(ev) {
+    var self = this;
+    this.$mdDialog.show({
+      controller: DialogCatalogSearchController2,
+      templateUrl: 'app/lagash/books/create/catalog/search.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose: true,
+      fullscreen: false,
+      locals: {
+         item: null
+      }
+    })
+    .then(function(answer) {
+      self.catalog = answer;
+      self.item.catalog_id = answer._id;
+    }, function() {
+      console.info('You cancelled the dialog.');
+    });
+  }
 }
-
-
 
 function DialogAuthorCreateController2($scope, $mdDialog, WError, UUID, Country, Author, item) {
   'ngInject';
@@ -419,7 +467,7 @@ function DialogEditorialSearchController2($scope, $mdDialog, WError, UUID, Edito
     }).$promise;
   }
 
-  $scope.search_author = function(search) {
+  $scope.search_item = function(search) {
     $scope.query.search = search;
     Editorial.search($scope.query, function(items) {
       $scope.editorials = items;
@@ -450,4 +498,54 @@ function DialogEditorialSearchController2($scope, $mdDialog, WError, UUID, Edito
   $scope.cancel = function() {
     $mdDialog.cancel();
   };
+}
+
+function DialogCatalogSearchController2($scope, $mdDialog, WError, UUID, BooksCatalog, item) {
+  'ngInject';
+
+  $scope.zise = {
+    total: 0
+  };
+  $scope.query = {
+    limit: 40,
+    page: 1
+  };
+
+  $scope.on_pagination = function() {
+    BooksCatalog.pagination($scope.query, function(items) {
+      $scope.items = items;
+    }).$promise;
+  }
+
+  $scope.search_items = function(search) {
+    $scope.query.search = search;
+    BooksCatalog.search($scope.query, function(items) {
+      $scope.items = items;
+    }).$promise;
+  }
+
+  BooksCatalog.size().$promise
+  .then((res) => {
+    $scope.zise = res;
+    $scope.on_pagination();
+  })
+  .catch((err) => {
+    WError.request(err);
+  });
+
+  $scope.select_item = function(item) {
+    if (item) {
+      $mdDialog.hide(item);
+    } else {
+      console.log('no existe un editorial seleccionado');
+    }
+  }
+
+  $scope.hide = function() {
+    $mdDialog.hide();
+  }
+
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  }
 }

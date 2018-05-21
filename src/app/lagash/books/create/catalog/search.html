@@ -1,7 +1,7 @@
 <md-dialog aria-label="Message" style="width: 500px">
   <md-toolbar>
     <div class="md-toolbar-tools">
-      <h2>Buscar editorial</h2>
+      <h2>Buscar catalogo</h2>
       <span flex></span>
       <md-button class="md-icon-button" aria-label="Close dialog" ng-click="cancel()">
         <ng-md-icon icon="close"></ng-md-icon>
@@ -11,18 +11,18 @@
   <md-dialog-content>
     <div layout-padding>
       <md-input-container class="md-block" flex-gt-xs>
-        <label>Nombre de la editorial</label>
-        <input ng-model="search" ng-change="search_item(search)" md-maxlength="250">
+        <label>Nombre del catalogo</label>
+        <input ng-model="search" ng-change="search_items(search)" md-maxlength="250">
       </md-input-container>
     </div>
-    <md-table-pagination md-limit="query.limit" md-limit-options="[30, 40, 50]" md-page="query.page" md-total="{{query.total}}" md-on-paginate="on_pagination" md-page-select></md-table-pagination>
-    <div ng-if="authors.length == 0" class="wargos-text-align">
-      <b>No existe <i>autores</i> registrados</b>
+    <md-table-pagination md-limit="query.limit" md-limit-options="[30, 40, 50]" md-page="query.page" md-total="{{size.total}}" md-on-paginate="on_pagination" md-page-select></md-table-pagination>
+    <div ng-if="items.length == 0" class="wargos-text-align">
+      <b>No existe <i>catalogos</i> registrados</b>
     </div>
     <md-list>
-      <md-list-item ng-repeat="editorial in editorials" ng-click="select_editorial(editorial)">
-        <ng-md-icon icon="book"></ng-md-icon>
-        <p>{{editorial.name}}</p>
+      <md-list-item ng-repeat="item in items" ng-click="select_item(item)">
+        <ng-md-icon icon="list"></ng-md-icon>
+        <p>{{item.title}}</p>
       </md-list-item>
     </md-list>
   </md-dialog-content>
@@ -31,7 +31,7 @@
     <md-button ng-click="cancel()">
       cancelar
     </md-button>
-    <md-button class="md-raised md-primary" ng-click="select_editorial()">
+    <md-button class="md-raised md-primary" ng-click="select_item()">
       Guardar
     </md-button>
   </md-dialog-actions>

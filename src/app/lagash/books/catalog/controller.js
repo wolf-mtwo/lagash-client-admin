@@ -2,7 +2,7 @@ export class LagashBooksCatalogController {
 
   constructor($state, $mdDialog, WError, WToast, UUID, size, BooksCatalog) {
     'ngInject';
-    // this.$state = $state;
+    this.$state = $state;
     // this.Books = Books;
     this.$mdDialog = $mdDialog;
     this.UUID = UUID;
@@ -27,6 +27,15 @@ export class LagashBooksCatalogController {
     self.on_pagination();
   }
 
+  search_catalogs(search) {
+    var self = this;
+    this.query.search = search;
+    this.BooksCatalog.search(self.query, function(items) {
+      delete self.query['search'];
+      self.items = items;
+    }).$promise;
+  }
+
   change_state(item) {
     this.BooksCatalog.update({
       _id: item._id
@@ -37,6 +46,12 @@ export class LagashBooksCatalogController {
     })
     .catch((err) => {
       this.WError.request(err);
+    });
+  }
+
+  select_item(item) {
+    this.$state.go('lagash.books.list.catalog_preview', {
+      catalog_id: item._id
     });
   }
 

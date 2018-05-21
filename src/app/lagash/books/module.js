@@ -4,6 +4,7 @@ import { LagashBooksCreateController } from './create/controller';
 import { LagashBooksUpdateController } from './update/controller';
 import { LagashBooksEjemplarController } from './ejemplar/controller';
 import { LagashBooksCatalogController } from './catalog/controller';
+import { LagashBooksCatalogUpdateController } from './catalog/update/controller';
 import { LagashBooksListController } from './list/controller';
 
 angular.module('wolf.lagash.books', [
@@ -18,6 +19,7 @@ angular.module('wolf.lagash.books', [
 .controller('LagashBooksEjemplarController', LagashBooksEjemplarController)
 .controller('LagashBooksListController', LagashBooksListController)
 .controller('LagashBooksCatalogController', LagashBooksCatalogController)
+.controller('LagashBooksCatalogUpdateController', LagashBooksCatalogUpdateController)
 .run(($log) => {
   $log.debug('run lagash books end');
 });

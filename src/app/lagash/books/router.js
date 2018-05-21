@@ -44,6 +44,20 @@ export function router($stateProvider) {
     }
   });
 
+  $stateProvider.state('lagash.books.list.catalog_preview', {
+    url: '/catalog/:catalog_id',
+    templateUrl: base_url + '/catalog/update/index.html',
+    controller: 'LagashBooksCatalogUpdateController',
+    controllerAs: 'vm',
+    resolve: {
+      catalog: function($stateParams, BooksCatalog) {
+        return BooksCatalog.get({
+          _id: $stateParams.catalog_id
+        }).$promise;
+      },
+    }
+  });
+
   $stateProvider.state('lagash.books.list.preview', {
     url: '/:book_id',
     templateUrl: base_url + '/update/index.html',
