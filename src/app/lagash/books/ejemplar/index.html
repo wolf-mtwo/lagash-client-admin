@@ -4,9 +4,21 @@
       Libro
     </h1>
     <span flex></span>
-    <md-button class="md-icon-button" aria-label="more">
-      <ng-md-icon icon="more_vert"></ng-md-icon>
-    </md-button>
+    <md-menu md-position-mode="target-right target">
+      <md-button aria-label="Open demo menu"
+                 class="md-icon-button"
+                 ng-click="vm.openMenu($mdOpenMenu, $event)">
+        <ng-md-icon icon="more_vert"></ng-md-icon>
+      </md-button>
+      <md-menu-content width="3">
+        <md-menu-item ng-click="vm.delete_ejemplar(vm.ejemplar)">
+          <md-button>
+            <ng-md-icon icon="delete"></ng-md-icon>
+            Eliminar
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
   </div>
 </md-toolbar>
 <md-content layout-padding class="ejemplar-detail">

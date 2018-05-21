@@ -22,6 +22,10 @@ export class LagashBooksEjemplarController {
     }];
   }
 
+  openMenu($mdOpenMenu, ev) {
+    $mdOpenMenu(ev);
+  }
+
   save_ejemplar(ejemplar) {
     this.Ejemplares.update({
       _id: ejemplar._id
@@ -35,15 +39,23 @@ export class LagashBooksEjemplarController {
     });
   }
 
+  delete_ejemplar(item) {
+    this.Ejemplares.remove({
+      _id: item._id
+    }, item).$promise
+    .then((response) => {
+      this.$state.go('lagash.books.list.main');
+    })
+    .catch((err) => {
+      this.WError.request(err);
+    });
+  }
+
   print_ejemplar() {
-    console.log('sss');
-    console.log({
+    var url = this.$state.href('print_book', {
       book_id: this.item._id,
       ejemplar_id: this.ejemplar._id
     });
-    this.$state.go('print_book', {
-      book_id: this.item._id,
-      ejemplar_id: this.ejemplar._id
-    });
+    window.open(url, '_blank');
   }
 }
