@@ -1,8 +1,8 @@
-export class BooksCatalog {
+export class ThesisCatalog {
 
   constructor($resource, Global) {
     'ngInject';
-    var url = Global.PATH + '/v2/books/catalogs';
+    var url = Global.PATH + '/v2/thesis/catalogs';
     return $resource(url, {
     }, {
       get: {

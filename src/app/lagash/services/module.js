@@ -4,6 +4,7 @@ import LagashHelpers from './helpers/module';
 import { Thesis } from './thesis/thesis.service';
 import { ThesisOption } from './thesis/option.service';
 import { ThesisEjemplares } from './thesis/ejemplares.service';
+import { ThesisCatalog } from './thesis/catalog.service';
 // books
 import { Books } from './books/books.service';
 import { BookOption } from './books/option.service';
@@ -24,6 +25,7 @@ angular.module('wolf.lagash.services', [
 .service('Thesis', Thesis)
 .service('ThesisOption', ThesisOption)
 .service('ThesisEjemplares', ThesisEjemplares)
+.service('ThesisCatalog', ThesisCatalog)
 // books
 .service('Books', Books)
 .service('BookOption', BookOption)

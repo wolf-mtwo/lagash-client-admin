@@ -83,7 +83,7 @@ export class LagashBooksListController {
   show_book_create_dialog(ev) {
     var self = this;
     this.$mdDialog.show({
-      controller: function DialogEditorialCreateController($scope, $mdDialog, item) {
+      controller: function($scope, $mdDialog, item) {
         'ngInject';
 
         $scope.hide = function() {
@@ -112,5 +112,5 @@ export class LagashBooksListController {
     }, function() {
       console.info('You cancelled the dialog.');
     });
-  };
+  }
 }

@@ -4,6 +4,9 @@ import { LagashThesisCreateController } from './create/controller';
 import { LagashThesisUpdateController } from './update/controller';
 import { LagashThesisEjemplarController } from './ejemplar/controller';
 import { LagashThesisListController } from './list/controller';
+import { LagashThesisPrintController } from './print/controller';
+import { LagashThesisCatalogController } from './catalog/controller';
+import { LagashThesisCatalogUpdateController } from './catalog/update/controller';
 
 angular.module('wolf.lagash.thesis', [
   'ui.router',
@@ -16,6 +19,9 @@ angular.module('wolf.lagash.thesis', [
 .controller('LagashThesisUpdateController', LagashThesisUpdateController)
 .controller('LagashThesisEjemplarController', LagashThesisEjemplarController)
 .controller('LagashThesisListController', LagashThesisListController)
+.controller('LagashThesisPrintController', LagashThesisPrintController)
+.controller('LagashThesisCatalogController', LagashThesisCatalogController)
+.controller('LagashThesisCatalogUpdateController', LagashThesisCatalogUpdateController)
 .run(($log) => {
   $log.debug('run lagash thesiss end');
 });

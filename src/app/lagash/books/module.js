@@ -3,10 +3,10 @@ import { LagashBooksController } from './controller';
 import { LagashBooksCreateController } from './create/controller';
 import { LagashBooksUpdateController } from './update/controller';
 import { LagashBooksEjemplarController } from './ejemplar/controller';
+import { LagashBooksListController } from './list/controller';
 import { LagashBooksPrintController } from './print/controller';
 import { LagashBooksCatalogController } from './catalog/controller';
 import { LagashBooksCatalogUpdateController } from './catalog/update/controller';
-import { LagashBooksListController } from './list/controller';
 
 angular.module('wolf.lagash.books', [
   'ui.router',
@@ -18,8 +18,8 @@ angular.module('wolf.lagash.books', [
 .controller('LagashBooksCreateController', LagashBooksCreateController)
 .controller('LagashBooksUpdateController', LagashBooksUpdateController)
 .controller('LagashBooksEjemplarController', LagashBooksEjemplarController)
-.controller('LagashBooksPrintController', LagashBooksPrintController)
 .controller('LagashBooksListController', LagashBooksListController)
+.controller('LagashBooksPrintController', LagashBooksPrintController)
 .controller('LagashBooksCatalogController', LagashBooksCatalogController)
 .controller('LagashBooksCatalogUpdateController', LagashBooksCatalogUpdateController)
 .run(($log) => {

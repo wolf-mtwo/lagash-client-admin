@@ -1,10 +1,10 @@
-export class LagashBooksCatalogUpdateController {
+export class LagashThesisCatalogUpdateController {
 
-  constructor($state, WError, WToast, BooksCatalog, catalog) {
+  constructor($state, WError, WToast, ThesisCatalog, catalog) {
     'ngInject';
     this.$state = $state;
     this.WError = WError;
-    this.BooksCatalog = BooksCatalog;
+    this.ThesisCatalog = ThesisCatalog;
     this.item = catalog;
   }
 
@@ -13,7 +13,7 @@ export class LagashBooksCatalogUpdateController {
   };
 
   delete_item(item) {
-    this.BooksCatalog.remove({
+    this.ThesisCatalog.remove({
       _id: item._id
     }, item).$promise
     .then((response) => {
@@ -25,7 +25,7 @@ export class LagashBooksCatalogUpdateController {
   }
 
   update_item(item) {
-    this.BooksCatalog.update({
+    this.ThesisCatalog.update({
       _id: item._id
     }, item)
     .$promise

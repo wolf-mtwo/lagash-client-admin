@@ -1,16 +1,15 @@
-export class LagashThesisListController {
+export class LagashThesisCatalogController {
 
-  constructor($state, $mdDialog, WError, WToast, Thesis, size, UUID, BasicOption) {
+  constructor($state, $mdDialog, WError, WToast, UUID, size, ThesisCatalog) {
     'ngInject';
     this.$state = $state;
     this.$mdDialog = $mdDialog;
-    this.WToast = WToast;
-    this.Thesis = Thesis;
-    this.BasicOption = BasicOption;
     this.UUID = UUID;
     this.WError = WError;
+    this.WToast = WToast;
+    this.ThesisCatalog = ThesisCatalog;
 
-    this.thesis = [];
+    this.items = [];
     this.total = size.total;
     this.query = {
       limit: 40,
@@ -18,65 +17,57 @@ export class LagashThesisListController {
     };
     var self = this;
     self.on_pagination = function() {
-      Thesis.pagination(self.query, function(items) {
-        self.thesis = items;
+      ThesisCatalog.pagination(self.query, function(items) {
+        self.items = items;
       }).$promise;
     }
     self.on_pagination();
   }
 
-  search_thesis(search) {
+  search_catalogs(search) {
     var self = this;
     this.query.search = search;
-    this.Thesis.search(self.query, function(items) {
+    this.ThesisCatalog.search(self.query, function(items) {
       delete self.query['search'];
-      self.thesis = items;
+      self.items = items;
     }).$promise;
   }
 
-  select_thesis(thesis) {
-    this.$state.go('lagash.thesis.list.preview', {
-      thesis_id: thesis._id
-    });
-  }
-
   change_state(item) {
-    this.Thesis.update({
+    this.ThesisCatalog.update({
       _id: item._id
     }, item)
     .$promise
     .then((response) => {
-      this.WToast.show('La tesis se actualizo correctamente');
+      this.WToast.show('El catalogo se actualizo correctamente');
     })
     .catch((err) => {
       this.WError.request(err);
     });
   }
 
-  create_thesis(title) {
+  select_item(item) {
+    this.$state.go('lagash.thesis.list.catalog_preview', {
+      catalog_id: item._id
+    });
+  }
+
+  create_catalog(title) {
     var data = {
       _id: this.UUID.next(),
       enabled: false,
-      tags: null,
-      length: 0,
-      width: 0,
-      pages: 0,
-      illustrations: null,
-      brings: null,
-      year: this.BasicOption.get_year(),
       title: title || 'SIN NOMBRE'
     };
-    this.Thesis.save(data).$promise
+    this.ThesisCatalog.save(data).$promise
     .then((res) => {
-      this.thesis.unshift(res);
-      this.select_book(res);
+      this.items.unshift(res);
     })
     .catch((err) => {
       this.WError.request(err);
     });
   }
 
-  show_thesis_create_dialog(ev) {
+  show_catalog_create_dialog(ev) {
     var self = this;
     this.$mdDialog.show({
       controller: function($scope, $mdDialog, item) {
@@ -94,7 +85,7 @@ export class LagashThesisListController {
           $mdDialog.hide(answer);
         };
       },
-      templateUrl: 'app/lagash/thesis/list/create.html',
+      templateUrl: 'app/lagash/thesis/catalog/create.html',
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose: true,
@@ -104,9 +95,9 @@ export class LagashThesisListController {
       }
     })
     .then(function(answer) {
-      self.create_thesis(answer);
+      self.create_catalog(answer);
     }, function() {
       console.info('You cancelled the dialog.');
     });
-  }
+  };
 }

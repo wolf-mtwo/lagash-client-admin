@@ -7,9 +7,19 @@
             Tesis
           </h1>
           <span flex></span>
-          <md-button class="md-icon-button"
+          <!-- <md-button class="md-icon-button"
                      aria-label="add"
                      ui-sref="lagash.thesis.list.create">
+            <ng-md-icon icon="add"></ng-md-icon>
+          </md-button> -->
+          <md-button class="md-icon-button"
+                     aria-label="add"
+                     ui-sref="lagash.thesis.list.catalog">
+            <ng-md-icon icon="list"></ng-md-icon>
+          </md-button>
+          <md-button class="md-icon-button"
+                     aria-label="add"
+                     ng-click="vm.show_thesis_create_dialog()">
             <ng-md-icon icon="add"></ng-md-icon>
           </md-button>
           <md-button class="md-icon-button" aria-label="more">
@@ -30,7 +40,7 @@
         </div>
 
         <md-list>
-          <md-list-item ng-repeat="thesis in vm.thesis" ng-click="vm.select(thesis)">
+          <md-list-item ng-repeat="thesis in vm.thesis" ng-click="vm.select_thesis(thesis)">
             <ng-md-icon icon="book"></ng-md-icon>
             <p>{{thesis.title}}</p>
           <md-switch class="md-secondary"

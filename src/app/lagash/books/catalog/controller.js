@@ -3,14 +3,11 @@ export class LagashBooksCatalogController {
   constructor($state, $mdDialog, WError, WToast, UUID, size, BooksCatalog) {
     'ngInject';
     this.$state = $state;
-    // this.Books = Books;
     this.$mdDialog = $mdDialog;
     this.UUID = UUID;
     this.WError = WError;
     this.WToast = WToast;
     this.BooksCatalog = BooksCatalog;
-    // this.item = book;
-    // this.ejemplar = ejemplar;
 
     this.items = [];
     this.total = size.total;
