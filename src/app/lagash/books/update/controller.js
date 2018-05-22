@@ -34,7 +34,7 @@ export class LagashBooksUpdateController {
     book.brings = book.brings ? book.brings.split(',') : [];
     this.item = book;
 
-    // Editorial
+    // autor
     Author.find_authors({
       resource_id: this.book_id
     }).$promise
@@ -231,7 +231,7 @@ export class LagashBooksUpdateController {
     this.AuthorMap.save({
       _id: this.UUID.next(),
       author_id: item._id,
-      type: 'book',
+      type: 'BOOK',
       resource_id: book._id
     }).$promise
     .then((res) => {

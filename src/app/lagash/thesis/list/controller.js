@@ -69,7 +69,7 @@ export class LagashThesisListController {
     this.Thesis.save(data).$promise
     .then((res) => {
       this.thesis.unshift(res);
-      this.select_book(res);
+      this.select_thesis(res);
     })
     .catch((err) => {
       this.WError.request(err);

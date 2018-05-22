@@ -1,6 +1,6 @@
 export class LagashThesisUpdateController {
 
-  constructor($state, WError, $mdDialog, WToast, Thesis, UUID, ThesisEjemplares, thesis, Author, Editorial, AuthorMap, EditorialMap, ejemplares, ThesisOption, ImageService) {
+  constructor($state, WError, $mdDialog, WToast, Thesis, UUID, Ejemplares, thesis, Author, Editorial, AuthorMap, EditorialMap, ejemplares, ThesisOption, ImageService, ThesisCatalog) {
     'ngInject';
     this.thesis_id = $state.params.thesis_id;
     this.ImageService = ImageService;
@@ -10,29 +10,31 @@ export class LagashThesisUpdateController {
     this.$mdDialog = $mdDialog;
     this.Thesis = Thesis;
     this.AuthorMap = AuthorMap;
-    this.Editorial = Editorial;
-    this.EditorialMap = EditorialMap;
+    this.ThesisCatalog = ThesisCatalog;
+    // this.Editorial = Editorial;
+    // this.EditorialMap = EditorialMap;
     this.UUID = UUID;
-    this.ThesisEjemplares = ThesisEjemplares;
+    this.Ejemplares = Ejemplares;
 
-    this.ejemplares = ejemplares;
     this.create_ejemplar_state = false;
-
-    this.authors = [];
-    // this.editorial = null;
-
     // this.types = ThesisOption.types;
     this.covers = ThesisOption.covers;
     this.illustrations = ThesisOption.illustrations;
     this.brings = ThesisOption.brings;
     this.years = ThesisOption.getYears();
 
-    thesis.tags = thesis.tags ? thesis.tags.split(',') : null;
-    thesis.illustrations = thesis.illustrations ? thesis.illustrations.split(',') : null;
-    thesis.brings = thesis.brings ? thesis.brings.split(',') : null;
+    this.authors = [];
+    // this.editorial = null;
+    this.catalog = null;
+
+    this.ejemplares = ejemplares;
+
+    thesis.tags = thesis.tags ? thesis.tags.split(',') : [];
+    thesis.illustrations = thesis.illustrations ? thesis.illustrations.split(',') : [];
+    thesis.brings = thesis.brings ? thesis.brings.split(',') : [];
     this.item = thesis;
 
-    // Editorial
+    // autor
     Author.find_authors({
       resource_id: this.thesis_id
     }).$promise
@@ -43,22 +45,39 @@ export class LagashThesisUpdateController {
       this.WError.request(err);
     });
 
-    if (!this.item.editorial_id) {
-       console.log('no tiene editorial');
+    this.load_catalog();
+    // if (!this.item.editorial_id) {
+    //    console.log('no tiene editorial');
+    //    return;
+    // }
+    // Editorial.get({
+    //   _id: this.item.editorial_id
+    // }).$promise
+    // .then((res) => {
+    //   this.editorial = res;
+    // })
+    // .catch((err) => {
+    //   this.WError.request(err);
+    // });
+
+    // AuthorMap
+    // EditorialMap
+  }
+
+  load_catalog() {
+    if (!this.item.catalog_id) {
+       console.log('catalog_id is undefined');
        return;
     }
-    Editorial.get({
-      _id: this.item.editorial_id
+    this.ThesisCatalog.get({
+      _id: this.item.catalog_id
     }).$promise
     .then((res) => {
-      this.editorial = res;
+      this.catalog = res;
     })
     .catch((err) => {
       this.WError.request(err);
     });
-
-    // AuthorMap
-    // EditorialMap
   }
 
   upload(file) {
@@ -103,16 +122,16 @@ export class LagashThesisUpdateController {
   }
 
   save_ejemplar(item) {
-    item.thesis_id = this.thesis_id;
+    item.data_id = this.thesis_id;
     item.enabled = false;
     item.state = 'STORED';
-    this.ThesisEjemplares.save({
-      thesis_id: this.thesis_id
+    item.type = 'THESIS';
+    this.Ejemplares.save({
+      data_id: this.thesis_id
     }, item).$promise
     .then((response) => {
       this.create_ejemplar_state = false;
       this.WToast.show('El ejemplar se guardo correctamente');
-      // response.status = this.get_state(response.state);
       this.ejemplares.push(response);
     })
     .catch((err) => {
@@ -154,7 +173,7 @@ export class LagashThesisUpdateController {
   }
 
   change_ejemplar_state(ejemplar) {
-    this.ThesisEjemplares.update({
+    this.Ejemplares.update({
       _id: ejemplar._id
     }, ejemplar).$promise
     .then((response) => {
@@ -202,11 +221,16 @@ export class LagashThesisUpdateController {
     this.item.editorial_id = null;
   }
 
+  remove_catalog() {
+    this.catalog = null;
+    this.item.catalog_id = null;
+  }
+
   save_author(thesis, item) {
     this.AuthorMap.save({
       _id: this.UUID.next(),
       author_id: item._id,
-      type: 'thesis',
+      type: 'THESIS',
       resource_id: thesis._id
     }).$promise
     .then((res) => {
@@ -300,6 +324,27 @@ export class LagashThesisUpdateController {
   //     console.info('You cancelled the dialog.');
   //   });
   // };
+
+  show_catalog_search_dialog(ev) {
+    var self = this;
+    this.$mdDialog.show({
+      controller: DialogCatalogSearchController2,
+      templateUrl: 'app/lagash/thesis/create/catalog/search.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose: true,
+      fullscreen: false,
+      locals: {
+         item: null
+      }
+    })
+    .then(function(answer) {
+      self.catalog = answer;
+      self.item.catalog_id = answer._id;
+    }, function() {
+      console.info('You cancelled the dialog.');
+    });
+  }
 }
 
 function DialogAuthorCreateController2($scope, $mdDialog, WError, UUID, Country, Author, item) {
@@ -454,3 +499,53 @@ function DialogAuthorSearchController2($scope, $mdDialog, WError, UUID, Author, 
 //     $mdDialog.cancel();
 //   };
 // }
+
+function DialogCatalogSearchController2($scope, $mdDialog, WError, UUID, ThesisCatalog, item) {
+  'ngInject';
+
+  $scope.zise = {
+    total: 0
+  };
+  $scope.query = {
+    limit: 40,
+    page: 1
+  };
+
+  $scope.on_pagination = function() {
+    ThesisCatalog.pagination($scope.query, function(items) {
+      $scope.items = items;
+    }).$promise;
+  }
+
+  $scope.search_items = function(search) {
+    $scope.query.search = search;
+    ThesisCatalog.search($scope.query, function(items) {
+      $scope.items = items;
+    }).$promise;
+  }
+
+  ThesisCatalog.size().$promise
+  .then((res) => {
+    $scope.zise = res;
+    $scope.on_pagination();
+  })
+  .catch((err) => {
+    WError.request(err);
+  });
+
+  $scope.select_item = function(item) {
+    if (item) {
+      $mdDialog.hide(item);
+    } else {
+      console.log('no existe un editorial seleccionado');
+    }
+  }
+
+  $scope.hide = function() {
+    $mdDialog.hide();
+  }
+
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  }
+}

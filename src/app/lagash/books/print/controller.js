@@ -6,8 +6,6 @@ export class LagashBooksPrintController {
     this.Books = Books;
     this.WError = WError;
     this.WToast = WToast;
-    this.Ejemplares = Ejemplares;
-    this.item = book;
     this.ejemplar = ejemplar;
 
     this.states = [{
@@ -20,19 +18,10 @@ export class LagashBooksPrintController {
       value: 'Prestado',
       key: 'BORROWED'
     }];
-  }
 
-  save_ejemplar(ejemplar) {
-    this.Ejemplares.update({
-      _id: ejemplar._id
-    }, ejemplar)
-    .$promise
-    .then((response) => {
-      this.WToast.show('El ejemplar se actualizo correctamente');
-    })
-    .catch((err) => {
-      this.WError.request(err);
-    });
+    book.tags = book.tags ? book.tags.split(',').join(', ') : 'NO EXISTE';
+    book.illustrations = book.illustrations ? book.illustrations.split(',').join(', ') : 'NO EXISTE';
+    book.brings = book.brings ? book.brings.split(',').join(', ') : 'NO EXISTE';
+    this.item = book;
   }
-
 }

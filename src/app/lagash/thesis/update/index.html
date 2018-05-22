@@ -62,7 +62,7 @@
             </div>
           </md-input-container>
           <md-input-container class="md-block" flex-gt-xs>
-            <label>Index</label>
+            <label>Numero de ejemplar</label>
             <input ng-model="vm.ejemplar_item.index" md-maxlength="10" class="md-secondary">
             <div ng-messages="form.index.$error">
               <div ng-message="required">This is required.</div>
@@ -270,6 +270,29 @@
           </md-content>
         </div>
       </md-tab> -->
+      <md-tab label="Catalogo">
+        <div layout-padding>
+          <md-content>
+            <md-list>
+              <md-list-item ng-if="vm.catalog">
+                <ng-md-icon icon="list"></ng-md-icon>
+                <p>{{vm.catalog.title}}</p>
+                <md-button class="md-icon-button" aria-label="delete" ng-click="vm.remove_catalog(vm.catalog)">
+                  <ng-md-icon icon="delete"></ng-md-icon>
+                </md-button>
+              </md-list-item>
+            </md-list>
+            <div layout="row" layout-align="end">
+              <md-button aria-label="editorial"
+                         class="md-raised md-primary"
+                         ng-click="vm.show_catalog_search_dialog($event)">
+                <ng-md-icon icon="search"></ng-md-icon>
+                Buscar catalogo
+              </md-button>
+            </div>
+          </md-content>
+        </div>
+      </md-tab>
       <md-tab label="Imagen">
         <div layout-padding>
           <md-content class="wargos-text-align wargos-image">

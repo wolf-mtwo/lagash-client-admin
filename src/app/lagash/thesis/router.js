@@ -69,9 +69,9 @@ export function router($stateProvider) {
           _id: $stateParams.thesis_id
         }).$promise;
       },
-      ejemplares: function($stateParams, ThesisEjemplares) {
-        return ThesisEjemplares.find({
-          thesis_id: $stateParams.thesis_id
+      ejemplares: function($stateParams, Ejemplares) {
+        return Ejemplares.find({
+          data_id: $stateParams.thesis_id
         }).$promise;
       }
     }
@@ -88,23 +88,23 @@ export function router($stateProvider) {
           _id: $stateParams.thesis_id
         }).$promise;
       },
-      ejemplar: function($stateParams, ThesisEjemplares) {
-        return ThesisEjemplares.get({
+      ejemplar: function($stateParams, Ejemplares) {
+        return Ejemplares.get({
           _id: $stateParams.ejemplar_id
         }).$promise;
       }
     }
   });
 
-  $stateProvider.state('print_tesis', {
+  $stateProvider.state('print_thesis', {
     url: '/print/thesis/:thesis_id/ejemplares/:ejemplar_id',
     templateUrl: base_url + '/print/index.html',
     controller: 'LagashThesisPrintController',
     controllerAs: 'vm',
     resolve: {
       thesis: function($stateParams, Thesis) {
-        return Books.get({
-          _id: $stateParams.tesis_id
+        return Thesis.get({
+          _id: $stateParams.thesis_id
         }).$promise;
       },
       ejemplar: function($stateParams, Ejemplares) {
