@@ -11,6 +11,12 @@ import { BookOption } from './books/option.service';
 import { BooksEjemplares } from './books/ejemplares.service';
 import { BooksCatalog } from './books/catalog.service';
 
+// magazines
+import { Magazines } from './magazines/magazines.service';
+import { MagazineOption } from './magazines/option.service';
+import { MagazinesEjemplares } from './magazines/ejemplares.service';
+import { MagazinesCatalog } from './magazines/catalog.service';
+
 import { Author } from './author.service';
 import { Editorial } from './editorial.service';
 import { AuthorMap } from './author.map.service';
@@ -31,6 +37,11 @@ angular.module('wolf.lagash.services', [
 .service('BookOption', BookOption)
 .service('BooksEjemplares', BooksEjemplares)
 .service('BooksCatalog', BooksCatalog)
+// magazines
+.service('Magazines', Magazines)
+.service('MagazineOption', MagazineOption)
+.service('MagazinesEjemplares', MagazinesEjemplares)
+.service('MagazinesCatalog', MagazinesCatalog)
 
 .service('Author', Author)
 .service('Editorial', Editorial)

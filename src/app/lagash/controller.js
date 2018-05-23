@@ -18,6 +18,14 @@ export class LagashController {
       title: 'Thesis',
       icon: 'book',
       route: 'lagash.thesis.list.main'
+    }, {
+      title: 'Revistas',
+      icon: 'magazines',
+      route: 'lagash.magazines.list.main'
+    }, {
+      title: 'Periodico',
+      icon: 'newspaper',
+      route: 'lagash.thesis.list.main'
     }];
 
     Auth.subcrive((user) => {
