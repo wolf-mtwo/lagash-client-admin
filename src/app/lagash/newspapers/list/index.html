@@ -1,0 +1,52 @@
+<md-content flex>
+  <div layout="row" layout-fill>
+    <div flex="40" layout="column">
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h1>
+            Revistas
+          </h1>
+          <span flex></span>
+          <md-button class="md-icon-button"
+                     aria-label="add"
+                     ui-sref="lagash.newspapers.list.catalog">
+            <ng-md-icon icon="list"></ng-md-icon>
+          </md-button>
+          <md-button class="md-icon-button"
+                     aria-label="add"
+                     ng-click="vm.show_newspaper_create_dialog()">
+            <ng-md-icon icon="add"></ng-md-icon>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="more">
+            <ng-md-icon icon="more_vert"></ng-md-icon>
+          </md-button>
+        </div>
+      </md-toolbar>
+      <md-content flex>
+        <div>
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>Titulo de la revistas</label>
+            <input ng-model="search" ng-change="vm.search_newspapers(search)">
+          </md-input-container>
+        </div>
+        <md-table-pagination md-limit="vm.query.limit" md-limit-options="[30, 40, 50]" md-page="vm.query.page" md-total="{{vm.total}}" md-on-paginate="vm.on_pagination" md-page-select></md-table-pagination>
+        <div ng-if="vm.newspapers.length == 0" class="wargos-text-align">
+          <b>No existe <i>revistas</i> registrados</b>
+        </div>
+        <md-list>
+          <md-list-item ng-repeat="newspaper in vm.newspapers" ng-click="vm.select_newspaper(newspaper)">
+            <ng-md-icon icon="book"></ng-md-icon>
+            <p>{{newspaper.title}}</p>
+          <md-switch class="md-secondary"
+                     ng-model="newspaper.enabled"
+                     ng-change="vm.change_state(newspaper)"></md-switch>
+          </md-list-item>
+        </md-list>
+      </md-content>
+    </div>
+    <div flex="60" layout="column">
+      <ui-view>
+      </ui-view>
+    </div>
+  </div>
+</md-content>
