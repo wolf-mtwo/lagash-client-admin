@@ -20,8 +20,8 @@ export class LagashMagazinesPrintController {
     }];
 
     magazine.tags = magazine.tags ? magazine.tags.split(',').join(', ') : 'NO EXISTE';
-    magazine.illustrations = magazine.illustrations ? magazine.illustrations.split(',').join(', ') : 'NO EXISTE';
-    magazine.brings = magazine.brings ? magazine.brings.split(',').join(', ') : 'NO EXISTE';
+    // magazine.illustrations = magazine.illustrations ? magazine.illustrations.split(',').join(', ') : 'NO EXISTE';
+    // magazine.brings = magazine.brings ? magazine.brings.split(',').join(', ') : 'NO EXISTE';
     this.item = magazine;
   }
 }

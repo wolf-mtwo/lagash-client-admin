@@ -31,8 +31,8 @@ export class LagashMagazinesUpdateController {
     this.ejemplares = ejemplares;
 
     magazine.tags = magazine.tags ? magazine.tags.split(',') : [];
-    magazine.illustrations = magazine.illustrations ? magazine.illustrations.split(',') : [];
-    magazine.brings = magazine.brings ? magazine.brings.split(',') : [];
+    // magazine.illustrations = magazine.illustrations ? magazine.illustrations.split(',') : [];
+    // magazine.brings = magazine.brings ? magazine.brings.split(',') : [];
     this.item = magazine;
 
     // autor
@@ -109,8 +109,8 @@ export class LagashMagazinesUpdateController {
     var data = {};
     angular.copy(item, data);
     data.tags = data.tags.join(',');
-    data.illustrations = data.illustrations.join(',');
-    data.brings = data.brings.join(',');
+    // data.illustrations = data.illustrations.join(',');
+    // data.brings = data.brings.join(',');
     this.Magazines.update({
       _id: item._id
     }, data)
