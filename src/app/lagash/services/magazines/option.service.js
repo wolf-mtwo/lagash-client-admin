@@ -3,40 +3,40 @@ export class MagazineOption {
   constructor() {
     'ngInject';
     this.months = [{
-      key: 0,
+      key: 1,
       value: 'Enero'
     }, {
-      key: 1,
+      key: 2,
       value: 'Febrero'
     }, {
-      key: 2,
+      key: 3,
       value: 'Marzo'
     }, {
-      key: 3,
+      key: 4,
       value: 'Abril'
     }, {
-      key: 4,
+      key: 5,
       value: 'Mayo'
     }, {
-      key: 5,
+      key: 6,
       value: 'Junio'
     }, {
-      key: 6,
+      key: 7,
       value: 'Julio'
     }, {
-      key: 7,
+      key: 8,
       value: 'Agosto'
     }, {
-      key: 8,
+      key: 9,
       value: 'Septiembre'
     }, {
-      key: 9,
+      key: 10,
       value: 'Octubre'
     }, {
-      key: 10,
+      key: 11,
       value: 'Noviembre'
     }, {
-      key: 11,
+      key: 12,
       value: 'Diciembre'
     }];
 

@@ -149,14 +149,24 @@
                 </div>
               </div>
             </md-input-container> -->
-            <md-input-container class="md-block" flex-gt-xs>
-              <label>Mes</label>
-              <md-select ng-model="vm.item.month">
-                <md-option ng-repeat="month in vm.months" ng-value="month.key">
-                  {{month.value}}
-                </md-option>
-              </md-select>
-            </md-input-container>
+            <div layout="row">
+              <md-input-container class="md-block" flex-gt-xs>
+                <label>Mes</label>
+                <md-select ng-model="vm.item.month">
+                  <md-option ng-repeat="month in vm.months" ng-value="month.key">
+                    {{month.value}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+              <md-input-container class="md-block" flex-gt-xs>
+                <label>Dia</label>
+                <md-select ng-model="vm.item.day">
+                  <md-option ng-repeat="day in vm.days" ng-value="day.key">
+                    {{day.value}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+            </div>
             <div layout="row">
               <!-- <md-input-container class="md-block" flex="50">
                 <label>Largo</label>

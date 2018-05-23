@@ -22,6 +22,7 @@ export class LagashNewspapersUpdateController {
     // this.illustrations = NewspaperOption.illustrations;
     // this.brings = NewspaperOption.brings;
     this.months = NewspaperOption.months;
+    this.days = NewspaperOption.days;
     this.years = NewspaperOption.getYears();
 
     this.authors = [];

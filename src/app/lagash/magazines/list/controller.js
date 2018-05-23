@@ -66,7 +66,7 @@ export class LagashMagazinesListController {
       price: 0,
       // illustrations: null,
       // brings: null,
-      month: 0,
+      month: (new Date()).getUTCMonth() + 1,
       edition: 0,
       edition_date: new Date(),
       year: this.BasicOption.get_year(),

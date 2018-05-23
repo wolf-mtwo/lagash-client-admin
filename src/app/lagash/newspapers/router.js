@@ -16,7 +16,6 @@ export function router($stateProvider) {
     controllerAs: 'vm',
     resolve: {
       size: function(Newspapers) {
-        console.log('01');
         return Newspapers.size().$promise;
       }
     }

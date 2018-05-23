@@ -20,12 +20,12 @@ export class LagashController {
       route: 'lagash.thesis.list.main'
     }, {
       title: 'Revistas',
-      icon: 'magazines',
+      icon: 'book',
       route: 'lagash.magazines.list.main'
     }, {
       title: 'Periodico',
-      icon: 'newspaper',
-      route: 'lagash.thesis.list.main'
+      icon: 'book',
+      route: 'lagash.newspapers.list.main'
     }];
 
     Auth.subcrive((user) => {

@@ -1,7 +1,7 @@
 <md-toolbar>
   <div class="md-toolbar-tools">
     <h1>
-      Catalogos de libros
+      Catalogos de revistas
     </h1>
     <span flex></span>
     <md-button class="md-icon-button"
@@ -17,13 +17,13 @@
 <md-content flex>
   <div>
     <md-input-container class="md-block" flex-gt-xs>
-      <label>Titulo del catalogo</label>
+      <label>Titulo de la revista</label>
       <input ng-model="search" ng-change="vm.search_catalogs(search)">
     </md-input-container>
   </div>
   <md-table-pagination md-limit="vm.query.limit" md-limit-options="[30, 40, 50]" md-page="vm.query.page" md-total="{{vm.total}}" md-on-paginate="vm.on_pagination" md-page-select></md-table-pagination>
   <div ng-if="vm.items.length == 0" class="wargos-text-align">
-    <b>No existe <i>catalogos</i> registrados</b>
+    <b>No existe <i>revistas</i> registrados</b>
   </div>
   <md-list>
     <md-list-item ng-repeat="item in vm.items" ng-click="vm.select_item(item)">
