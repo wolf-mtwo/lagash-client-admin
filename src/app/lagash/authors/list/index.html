@@ -1,0 +1,43 @@
+<md-content flex>
+  <div layout="row" layout-fill>
+    <div flex="40" layout="column">
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h1>
+            Autores
+          </h1>
+          <span flex></span>
+          <md-button class="md-icon-button"
+                     aria-label="add"
+                     ui-sref="lagash.authors.list.create">
+            <ng-md-icon icon="add"></ng-md-icon>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="more">
+            <ng-md-icon icon="more_vert"></ng-md-icon>
+          </md-button>
+        </div>
+      </md-toolbar>
+      <md-content flex>
+        <div>
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>Nombre o apellido del autor</label>
+            <input ng-model="search" ng-change="vm.search_authors(search)">
+          </md-input-container>
+        </div>
+        <md-table-pagination md-limit="vm.query.limit" md-limit-options="[30, 40, 50]" md-page="vm.query.page" md-total="{{vm.total}}" md-on-paginate="vm.on_pagination" md-page-select></md-table-pagination>
+        <div ng-if="vm.authors.length == 0" class="wargos-text-align">
+          <b>No existe <i>autores</i> registrados</b>
+        </div>
+        <md-list>
+          <md-list-item ng-repeat="author in vm.authors" ng-click="vm.select_author(author)">
+            <ng-md-icon icon="author"></ng-md-icon>
+            <p><b>{{author.code}}</b> {{author.first_name}} {{author.last_name}}</p>
+        </md-list>
+      </md-content>
+    </div>
+    <div flex="60" layout="column">
+      <ui-view>
+      </ui-view>
+    </div>
+  </div>
+</md-content>
