@@ -39,7 +39,7 @@ export class LagashController {
     }, {
       title: 'Editorialses',
       icon: 'my_library_books',
-      route: 'lagash.newspapers.list.main'
+      route: 'lagash.editorials.list.main'
     }];
 
     this.configurations = [{

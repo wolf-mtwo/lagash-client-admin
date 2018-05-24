@@ -5,7 +5,8 @@ import LagashBooks from './books/module';
 import LagashThesis from './thesis/module';
 import LagashMagazines from './magazines/module';
 import LagashNewspapers from './newspapers/module';
-import LagashAuthorss from './authors/module';
+import LagashAuthors from './authors/module';
+import LagashEditorials from './editorials/module';
 import LagashServices from './services/module';
 
 import { LagashController } from './controller';
@@ -19,6 +20,7 @@ angular.module('wolf.lagash', [
   'wolf.lagash.magazines',
   'wolf.lagash.newspapers',
   'wolf.lagash.authors',
+  'wolf.lagash.editorials',
   'wolf.lagash.services'
 ])
 .config(router)
