@@ -25,10 +25,25 @@
     <md-content flex>
       <md-list>
         <md-divider></md-divider>
-        <md-subheader class="md-no-sticky">Administracion</md-subheader>
+        <md-subheader class="md-no-sticky">Materiales bibliograficos</md-subheader>
         <md-list-item ng-repeat="option in vm.options" ng-click="vm.selectOption(option)">
            <ng-md-icon icon="{{option.icon}}"></ng-md-icon>
            <p>{{option.title}}</p>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-subheader class="md-no-sticky">Personas o Casa editorial</md-subheader>
+        <md-list-item ng-repeat="reference in vm.references" ng-click="vm.selectOption(reference)">
+           <ng-md-icon icon="{{reference.icon}}"></ng-md-icon>
+           <p>{{reference.title}}</p>
+        </md-list-item>
+        <md-subheader class="md-no-sticky">Administracion</md-subheader>
+        <md-list-item ng-repeat="config in vm.configurations" ng-click="vm.selectOption(config)">
+          <ng-md-icon icon="{{config.icon}}"></ng-md-icon>
+          <p>{{config.title}}</p>
+        </md-list-item>
+        <md-list-item ng-click="vm.logout()">
+          <ng-md-icon icon="logout"></ng-md-icon>
+          <p>Cerrar session</p>
         </md-list-item>
         <md-divider></md-divider>
       </md-list>

@@ -61,6 +61,7 @@ export class LagashThesisListController {
       length: 0,
       width: 0,
       pages: 0,
+      price: 0,
       illustrations: null,
       brings: null,
       year: this.BasicOption.get_year(),

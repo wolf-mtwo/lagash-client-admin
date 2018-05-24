@@ -48,8 +48,14 @@ export class BookOption {
       key: 'otros',
       value: 'Otros'
     }, {
-      key: 'cd',
-      value: 'CD'
+      key: 'indice',
+      value: 'Indice'
+    }, {
+      key: 'bibliografia',
+      value: 'Bibliografía'
+    }, {
+      key: 'biografia',
+      value: 'Biografía'
     }];
   }
 

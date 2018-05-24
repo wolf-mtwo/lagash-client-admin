@@ -7,15 +7,11 @@ export class LagashController {
     this.Auth = Auth;
     this.Sess = Sess;
     this.options = [{
-      title: 'Usuarios',
-      icon: 'person',
-      route: 'lagash.users.list'
-    }, {
       title: 'Libros',
       icon: 'book',
       route: 'lagash.books.list.main'
     }, {
-      title: 'Thesis',
+      title: 'Tesis',
       icon: 'book',
       route: 'lagash.thesis.list.main'
     }, {
@@ -26,6 +22,34 @@ export class LagashController {
       title: 'Periodico',
       icon: 'book',
       route: 'lagash.newspapers.list.main'
+    }, {
+      title: 'Inventario',
+      icon: 'reorder',
+      route: 'lagash.newspapers.list.main'
+    }];
+
+    this.references = [{
+      title: 'Autores',
+      icon: 'directions_walk',
+      route: 'lagash.newspapers.list.main'
+    }, {
+      title: 'Tutores',
+      icon: 'directions_walk',
+      route: 'lagash.newspapers.list.main'
+    }, {
+      title: 'Editoriales',
+      icon: 'my_library_books',
+      route: 'lagash.newspapers.list.main'
+    }];
+
+    this.configurations = [{
+      title: 'Usuarios',
+      icon: 'people',
+      route: 'lagash.users.list'
+    }, {
+      title: 'Perfil',
+      icon: 'person',
+      route: 'lagash.users.list'
     }];
 
     Auth.subcrive((user) => {
