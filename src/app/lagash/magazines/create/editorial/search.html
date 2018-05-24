@@ -15,7 +15,7 @@
         <input ng-model="search" ng-change="search_item(search)" md-maxlength="250">
       </md-input-container>
     </div>
-    <md-table-pagination md-limit="query.limit" md-limit-options="[30, 40, 50]" md-page="query.page" md-total="{{query.total}}" md-on-paginate="on_pagination" md-page-select></md-table-pagination>
+    <md-table-pagination md-limit="query.limit" md-limit-options="[20, 25, 30]" md-page="query.page" md-total="{{query.total}}" md-on-paginate="on_pagination" md-page-select></md-table-pagination>
     <div ng-if="authors.length == 0" class="wargos-text-align">
       <b>No existe <i>autores</i> registrados</b>
     </div>

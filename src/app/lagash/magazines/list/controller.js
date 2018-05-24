@@ -13,7 +13,7 @@ export class LagashMagazinesListController {
     this.magazines = [];
     this.total = size.total;
     this.query = {
-      limit: 40,
+      limit: 25,
       page: 1
     };
     var self = this;

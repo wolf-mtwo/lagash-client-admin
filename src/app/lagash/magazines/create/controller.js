@@ -239,7 +239,7 @@ function DialogAuthorsSearchController($scope, $mdDialog, WError, UUID, Authors,
 
   $scope.query = {
     total: 100,
-    limit: 40,
+    limit: 25,
     page: 1
   };
 
@@ -315,7 +315,7 @@ function DialogEditorialsSearchController($scope, $mdDialog, WError, UUID, Edito
 
   $scope.query = {
     total: 100,
-    limit: 40,
+    limit: 25,
     page: 1
   };
 

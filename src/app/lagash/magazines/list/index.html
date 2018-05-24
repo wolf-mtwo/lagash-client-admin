@@ -29,7 +29,7 @@
             <input ng-model="search" ng-change="vm.search_magazines(search)">
           </md-input-container>
         </div>
-        <md-table-pagination md-limit="vm.query.limit" md-limit-options="[30, 40, 50]" md-page="vm.query.page" md-total="{{vm.total}}" md-on-paginate="vm.on_pagination" md-page-select></md-table-pagination>
+        <md-table-pagination md-limit="vm.query.limit" md-limit-options="[20, 25, 30]" md-page="vm.query.page" md-total="{{vm.total}}" md-on-paginate="vm.on_pagination" md-page-select></md-table-pagination>
         <div ng-if="vm.magazines.length == 0" class="wargos-text-align">
           <b>No existe <i>revistas</i> registrados</b>
         </div>
