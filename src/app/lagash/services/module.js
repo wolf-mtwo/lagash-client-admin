@@ -21,10 +21,10 @@ import { NewspaperOption } from './newspapers/option.service';
 import { NewspapersEjemplares } from './newspapers/ejemplares.service';
 import { NewspapersCatalog } from './newspapers/catalog.service';
 
-import { Author } from './author.service';
-import { Editorial } from './editorial.service';
-import { AuthorMap } from './author.map.service';
-import { EditorialMap } from './editorial.map.service';
+import { Authors } from './authors.service';
+import { Editorials } from './editorials.service';
+import { AuthorsMap } from './authors.map.service';
+import { EditorialsMap } from './editorials.map.service';
 
 import { Ejemplares } from './history/ejemplares.service';
 
@@ -52,11 +52,11 @@ angular.module('wolf.lagash.services', [
 .service('NewspapersEjemplares', NewspapersEjemplares)
 .service('NewspapersCatalog', NewspapersCatalog)
 
-.service('Author', Author)
-.service('Editorial', Editorial)
-.service('AuthorMap', AuthorMap)
+.service('Authors', Authors)
+.service('Editorials', Editorials)
+.service('AuthorsMap', AuthorsMap)
+.service('EditorialsMap', EditorialsMap)
 .service('Ejemplares', Ejemplares)
-.service('EditorialMap', EditorialMap)
 .run(($log) => {
   $log.debug('run lagash end');
 });

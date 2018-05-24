@@ -31,13 +31,13 @@ export class LagashController {
     this.references = [{
       title: 'Autores',
       icon: 'directions_walk',
-      route: 'lagash.newspapers.list.main'
+      route: 'lagash.authors.list.main'
     }, {
       title: 'Tutores',
       icon: 'directions_walk',
       route: 'lagash.newspapers.list.main'
     }, {
-      title: 'Editoriales',
+      title: 'Editorialses',
       icon: 'my_library_books',
       route: 'lagash.newspapers.list.main'
     }];

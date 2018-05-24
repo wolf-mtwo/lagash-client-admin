@@ -1,8 +1,8 @@
-export class Author {
+export class EditorialsMap {
 
   constructor($resource, Global) {
     'ngInject';
-    var url = Global.PATH + '/v1/author';
+    var url = Global.PATH + '/v1/editorial-map';
     return $resource(url, {
     }, {
       get: {
@@ -34,11 +34,6 @@ export class Author {
       size: {
         method: 'GET',
         url: url + '/size'
-      },
-      find_authors: {
-        method: 'GET',
-        isArray: true,
-        url: url + '/find'
       }
     });
   }

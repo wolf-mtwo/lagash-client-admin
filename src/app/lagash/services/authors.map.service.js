@@ -1,4 +1,4 @@
-export class AuthorMap {
+export class AuthorsMap {
 
   constructor($resource, Global) {
     'ngInject';

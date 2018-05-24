@@ -1,8 +1,8 @@
-export class EditorialMap {
+export class Editorials {
 
   constructor($resource, Global) {
     'ngInject';
-    var url = Global.PATH + '/v1/editorial-map';
+    var url = Global.PATH + '/v1/editorial';
     return $resource(url, {
     }, {
       get: {
@@ -34,6 +34,11 @@ export class EditorialMap {
       size: {
         method: 'GET',
         url: url + '/size'
+      },
+      find_editorials: {
+        method: 'GET',
+        isArray: true,
+        url: url + '/find'
       }
     });
   }

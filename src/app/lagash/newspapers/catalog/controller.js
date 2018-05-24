@@ -70,7 +70,7 @@ export class LagashNewspapersCatalogController {
   show_catalog_create_dialog(ev) {
     var self = this;
     this.$mdDialog.show({
-      controller: function DialogEditorialCreateController($scope, $mdDialog, item) {
+      controller: function DialogEditorialsCreateController($scope, $mdDialog, item) {
         'ngInject';
 
         $scope.hide = function() {

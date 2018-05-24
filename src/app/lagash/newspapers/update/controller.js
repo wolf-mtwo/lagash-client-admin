@@ -1,6 +1,6 @@
 export class LagashNewspapersUpdateController {
 
-  constructor($state, WError, $mdDialog, WToast, Newspapers, UUID, Ejemplares, newspaper, Author, Editorial, AuthorMap, EditorialMap, ejemplares, NewspaperOption, ImageService, NewspapersCatalog) {
+  constructor($state, WError, $mdDialog, WToast, Newspapers, UUID, Ejemplares, newspaper, Authors, Editorials, AuthorsMap, EditorialsMap, ejemplares, NewspaperOption, ImageService, NewspapersCatalog) {
     'ngInject';
     this.newspaper_id = $state.params.newspaper_id;
     this.ImageService = ImageService;
@@ -9,10 +9,10 @@ export class LagashNewspapersUpdateController {
     this.WToast = WToast;
     this.$mdDialog = $mdDialog;
     this.Newspapers = Newspapers;
-    this.AuthorMap = AuthorMap;
+    this.AuthorsMap = AuthorsMap;
     this.NewspapersCatalog = NewspapersCatalog;
-    this.Editorial = Editorial;
-    this.EditorialMap = EditorialMap;
+    this.Editorials = Editorials;
+    this.EditorialsMap = EditorialsMap;
     this.UUID = UUID;
     this.Ejemplares = Ejemplares;
 
@@ -37,7 +37,7 @@ export class LagashNewspapersUpdateController {
     this.item = newspaper;
 
     // autor
-    Author.find_authors({
+    Authors.find_authors({
       resource_id: this.newspaper_id
     }).$promise
     .then((res) => {
@@ -56,7 +56,7 @@ export class LagashNewspapersUpdateController {
        console.log('editorial_id is undefined');
        return;
     }
-    this.Editorial.get({
+    this.Editorials.get({
       _id: this.item.editorial_id
     }).$promise
     .then((res) => {
@@ -205,7 +205,7 @@ export class LagashNewspapersUpdateController {
     if (!item) {
         throw new Error('item is undefined');
     }
-    this.AuthorMap.remove({
+    this.AuthorsMap.remove({
       _id: item.map._id
     }).$promise
     .then((res) => {
@@ -230,7 +230,7 @@ export class LagashNewspapersUpdateController {
   }
 
   save_author(newspaper, item) {
-    this.AuthorMap.save({
+    this.AuthorsMap.save({
       _id: this.UUID.next(),
       author_id: item._id,
       type: 'BOOK',
@@ -249,7 +249,7 @@ export class LagashNewspapersUpdateController {
   show_author_create_dialog(ev) {
     var self = this;
     this.$mdDialog.show({
-      controller: DialogAuthorCreateController2,
+      controller: DialogAuthorsCreateController2,
       templateUrl: 'app/lagash/newspapers/create/author/create.html',
       parent: angular.element(document.body),
       targetEvent: ev,
@@ -269,7 +269,7 @@ export class LagashNewspapersUpdateController {
   show_author_search_dialog(ev) {
     var self = this;
     this.$mdDialog.show({
-      controller: DialogAuthorSearchController2,
+      controller: DialogAuthorsSearchController2,
       templateUrl: 'app/lagash/newspapers/create/author/search.html',
       parent: angular.element(document.body),
       targetEvent: ev,
@@ -289,7 +289,7 @@ export class LagashNewspapersUpdateController {
   show_editorial_create_dialog(ev) {
     var self = this;
     this.$mdDialog.show({
-      controller: DialogEditorialCreateController2,
+      controller: DialogEditorialsCreateController2,
       templateUrl: 'app/lagash/newspapers/create/editorial/create.html',
       parent: angular.element(document.body),
       targetEvent: ev,
@@ -310,7 +310,7 @@ export class LagashNewspapersUpdateController {
   show_editorial_search_dialog(ev) {
     var self = this;
     this.$mdDialog.show({
-      controller: DialogEditorialSearchController2,
+      controller: DialogEditorialsSearchController2,
       templateUrl: 'app/lagash/newspapers/create/editorial/search.html',
       parent: angular.element(document.body),
       targetEvent: ev,
@@ -350,7 +350,7 @@ export class LagashNewspapersUpdateController {
   }
 }
 
-function DialogAuthorCreateController2($scope, $mdDialog, WError, UUID, Country, Author, item) {
+function DialogAuthorsCreateController2($scope, $mdDialog, WError, UUID, Country, Authors, item) {
   'ngInject';
 
   $scope.item = {
@@ -368,7 +368,7 @@ function DialogAuthorCreateController2($scope, $mdDialog, WError, UUID, Country,
   };
 
   $scope.answer = function(answer) {
-    Author.save(answer).$promise
+    Authors.save(answer).$promise
     .then((res) => {
       $mdDialog.hide(res);
     })
@@ -378,7 +378,7 @@ function DialogAuthorCreateController2($scope, $mdDialog, WError, UUID, Country,
   };
 }
 
-function DialogAuthorSearchController2($scope, $mdDialog, WError, UUID, Author, item) {
+function DialogAuthorsSearchController2($scope, $mdDialog, WError, UUID, Authors, item) {
   'ngInject';
 
   $scope.query = {
@@ -388,19 +388,19 @@ function DialogAuthorSearchController2($scope, $mdDialog, WError, UUID, Author, 
   };
 
   $scope.on_pagination = function() {
-    Author.pagination($scope.query, function(items) {
+    Authors.pagination($scope.query, function(items) {
       $scope.authors = items;
     }).$promise;
   }
 
   $scope.search_author = function(search) {
     $scope.query.search = search;
-    Author.search($scope.query, function(items) {
+    Authors.search($scope.query, function(items) {
       $scope.authors = items;
     }).$promise;
   };
 
-  Author.size().$promise
+  Authors.size().$promise
   .then((res) => {
     $scope.query.total = res.total;
     $scope.on_pagination();
@@ -426,7 +426,7 @@ function DialogAuthorSearchController2($scope, $mdDialog, WError, UUID, Author, 
   };
 }
 
-function DialogEditorialCreateController2($scope, $mdDialog, WError, UUID, Country, Editorial, item) {
+function DialogEditorialsCreateController2($scope, $mdDialog, WError, UUID, Country, Editorials, item) {
   'ngInject';
 
   $scope.item = {
@@ -444,7 +444,7 @@ function DialogEditorialCreateController2($scope, $mdDialog, WError, UUID, Count
   };
 
   $scope.answer = function(answer) {
-    Editorial.save(answer).$promise
+    Editorials.save(answer).$promise
     .then((res) => {
       $mdDialog.hide(res);
     })
@@ -454,7 +454,7 @@ function DialogEditorialCreateController2($scope, $mdDialog, WError, UUID, Count
   };
 }
 
-function DialogEditorialSearchController2($scope, $mdDialog, WError, UUID, Editorial, item) {
+function DialogEditorialsSearchController2($scope, $mdDialog, WError, UUID, Editorials, item) {
   'ngInject';
 
   $scope.query = {
@@ -464,19 +464,19 @@ function DialogEditorialSearchController2($scope, $mdDialog, WError, UUID, Edito
   };
 
   $scope.on_pagination = function() {
-    Editorial.pagination($scope.query, function(items) {
+    Editorials.pagination($scope.query, function(items) {
       $scope.editorials = items;
     }).$promise;
   }
 
   $scope.search_item = function(search) {
     $scope.query.search = search;
-    Editorial.search($scope.query, function(items) {
+    Editorials.search($scope.query, function(items) {
       $scope.editorials = items;
     }).$promise;
   };
 
-  Editorial.size().$promise
+  Editorials.size().$promise
   .then((res) => {
     $scope.query.total = res.total;
     $scope.on_pagination();

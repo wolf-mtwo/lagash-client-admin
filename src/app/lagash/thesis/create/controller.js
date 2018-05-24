@@ -1,13 +1,13 @@
 export class LagashThesisCreateController {
 
-  constructor($timeout, $mdDialog, $q, $state, WError, Thesis, UUID, AuthorMap, EditorialMap, ThesisOption, ImageService) {
+  constructor($timeout, $mdDialog, $q, $state, WError, Thesis, UUID, AuthorsMap, EditorialsMap, ThesisOption, ImageService) {
     'ngInject';
     this.$state = $state;
     this.ImageService = ImageService;
     this.$mdDialog = $mdDialog;
     this.Thesis = Thesis;
-    this.AuthorMap = AuthorMap;
-    // this.EditorialMap = EditorialMap;
+    this.AuthorsMap = AuthorsMap;
+    // this.EditorialsMap = EditorialsMap;
     this.UUID = UUID;
     this.WError = WError;
     this.$q = $q;
@@ -69,7 +69,7 @@ export class LagashThesisCreateController {
 
   save_authors(thesis) {
     this.authors.forEach((item) => {
-      this.AuthorMap.save({
+      this.AuthorsMap.save({
         _id: this.UUID.next(),
         author_id: item._id,
         type: 'thesis',
@@ -99,7 +99,7 @@ export class LagashThesisCreateController {
   show_author_create_dialog(ev) {
     var self = this;
     this.$mdDialog.show({
-      controller: DialogAuthorCreateController,
+      controller: DialogAuthorsCreateController,
       templateUrl: 'app/lagash/thesis/create/author/create.html',
       parent: angular.element(document.body),
       targetEvent: ev,
@@ -119,7 +119,7 @@ export class LagashThesisCreateController {
   show_author_search_dialog(ev) {
     var self = this;
     this.$mdDialog.show({
-      controller: DialogAuthorSearchController,
+      controller: DialogAuthorsSearchController,
       templateUrl: 'app/lagash/thesis/create/author/search.html',
       parent: angular.element(document.body),
       targetEvent: ev,
@@ -139,7 +139,7 @@ export class LagashThesisCreateController {
   // show_editorial_create_dialog(ev) {
   //   var self = this;
   //   this.$mdDialog.show({
-  //     controller: DialogEditorialCreateController,
+  //     controller: DialogEditorialsCreateController,
   //     templateUrl: 'app/lagash/thesis/create/editorial/create.html',
   //     parent: angular.element(document.body),
   //     targetEvent: ev,
@@ -160,7 +160,7 @@ export class LagashThesisCreateController {
   // show_editorial_search_dialog(ev) {
   //   var self = this;
   //   this.$mdDialog.show({
-  //     controller: DialogEditorialSearchController,
+  //     controller: DialogEditorialsSearchController,
   //     templateUrl: 'app/lagash/thesis/create/editorial/search.html',
   //     parent: angular.element(document.body),
   //     targetEvent: ev,
@@ -193,7 +193,7 @@ export class LagashThesisCreateController {
   }
 }
 
-function DialogAuthorCreateController($scope, $mdDialog, WError, UUID, Country, Author, item) {
+function DialogAuthorsCreateController($scope, $mdDialog, WError, UUID, Country, Authors, item) {
   'ngInject';
 
   $scope.item = {
@@ -212,7 +212,7 @@ function DialogAuthorCreateController($scope, $mdDialog, WError, UUID, Country, 
   };
 
   $scope.answer = function(answer) {
-    Author.save(answer).$promise
+    Authors.save(answer).$promise
     .then((res) => {
       $mdDialog.hide(res);
     })
@@ -222,7 +222,7 @@ function DialogAuthorCreateController($scope, $mdDialog, WError, UUID, Country, 
   };
 }
 
-function DialogAuthorSearchController($scope, $mdDialog, WError, UUID, Author, item) {
+function DialogAuthorsSearchController($scope, $mdDialog, WError, UUID, Authors, item) {
   'ngInject';
 
   $scope.query = {
@@ -232,19 +232,19 @@ function DialogAuthorSearchController($scope, $mdDialog, WError, UUID, Author, i
   };
 
   $scope.on_pagination = function() {
-    Author.pagination($scope.query, function(items) {
+    Authors.pagination($scope.query, function(items) {
       $scope.authors = items;
     }).$promise;
   }
 
   $scope.search_author = function(search) {
     $scope.query.search = search;
-    Author.search($scope.query, function(items) {
+    Authors.search($scope.query, function(items) {
       $scope.authors = items;
     }).$promise;
   };
 
-  Author.size().$promise
+  Authors.size().$promise
   .then((res) => {
     $scope.query.total = res.total;
     $scope.on_pagination();
@@ -270,7 +270,7 @@ function DialogAuthorSearchController($scope, $mdDialog, WError, UUID, Author, i
   };
 }
 //
-// function DialogEditorialCreateController($scope, $mdDialog, WError, UUID, Country, Editorial, item) {
+// function DialogEditorialsCreateController($scope, $mdDialog, WError, UUID, Country, Editorials, item) {
 //   'ngInject';
 //
 //   $scope.item = {
@@ -288,7 +288,7 @@ function DialogAuthorSearchController($scope, $mdDialog, WError, UUID, Author, i
 //   };
 //
 //   $scope.answer = function(answer) {
-//     Editorial.save(answer).$promise
+//     Editorials.save(answer).$promise
 //     .then((res) => {
 //       $mdDialog.hide(res);
 //     })
@@ -298,7 +298,7 @@ function DialogAuthorSearchController($scope, $mdDialog, WError, UUID, Author, i
 //   };
 // }
 //
-// function DialogEditorialSearchController($scope, $mdDialog, WError, UUID, Editorial, item) {
+// function DialogEditorialsSearchController($scope, $mdDialog, WError, UUID, Editorials, item) {
 //   'ngInject';
 //
 //   $scope.query = {
@@ -308,19 +308,19 @@ function DialogAuthorSearchController($scope, $mdDialog, WError, UUID, Author, i
 //   };
 //
 //   $scope.on_pagination = function() {
-//     Editorial.pagination($scope.query, function(items) {
+//     Editorials.pagination($scope.query, function(items) {
 //       $scope.editorials = items;
 //     }).$promise;
 //   }
 //
 //   $scope.search_author = function(search) {
 //     $scope.query.search = search;
-//     Editorial.search($scope.query, function(items) {
+//     Editorials.search($scope.query, function(items) {
 //       $scope.editorials = items;
 //     }).$promise;
 //   };
 //
-//   Editorial.size().$promise
+//   Editorials.size().$promise
 //   .then((res) => {
 //     $scope.query.total = res.total;
 //     $scope.on_pagination();
