@@ -21,6 +21,7 @@ import { NewspaperOption } from './newspapers/option.service';
 import { NewspapersEjemplares } from './newspapers/ejemplares.service';
 import { NewspapersCatalog } from './newspapers/catalog.service';
 
+import { Tutors } from './tutors.service';
 import { Authors } from './authors.service';
 import { Editorials } from './editorials.service';
 import { AuthorsMap } from './authors.map.service';
@@ -52,6 +53,7 @@ angular.module('wolf.lagash.services', [
 .service('NewspapersEjemplares', NewspapersEjemplares)
 .service('NewspapersCatalog', NewspapersCatalog)
 
+.service('Tutors', Tutors)
 .service('Authors', Authors)
 .service('Editorials', Editorials)
 .service('AuthorsMap', AuthorsMap)

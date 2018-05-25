@@ -34,8 +34,8 @@ export class LagashController {
       route: 'lagash.authors.list.main'
     }, {
       title: 'Tutores',
-      icon: 'directions_walk',
-      route: 'lagash.newspapers.list.main'
+      icon: 'gavel',
+      route: 'lagash.tutors.list.main'
     }, {
       title: 'Editorialses',
       icon: 'my_library_books',
