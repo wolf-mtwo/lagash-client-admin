@@ -44,6 +44,18 @@ export function router($stateProvider) {
     }
   });
 
+  $stateProvider.state('lagash.thesis.list.faculties', {
+    url: '/faculties',
+    templateUrl: base_url + '/faculties/index.html',
+    controller: 'LagashThesisFacultiesController',
+    controllerAs: 'vm',
+    resolve: {
+      size: function(Faculties) {
+        return Faculties.size().$promise;
+      }
+    }
+  });
+
   $stateProvider.state('lagash.thesis.list.catalog_preview', {
     url: '/catalog/:catalog_id',
     templateUrl: base_url + '/catalog/update/index.html',
@@ -53,6 +65,20 @@ export function router($stateProvider) {
       catalog: function($stateParams, ThesisCatalog) {
         return ThesisCatalog.get({
           _id: $stateParams.catalog_id
+        }).$promise;
+      },
+    }
+  });
+
+  $stateProvider.state('lagash.thesis.list.faculty_preview', {
+    url: '/faculties/:faculty_id',
+    templateUrl: base_url + '/faculties/update/index.html',
+    controller: 'LagashThesisFacultiesUpdateController',
+    controllerAs: 'vm',
+    resolve: {
+      faculty: function($stateParams, Faculties) {
+        return Faculties.get({
+          _id: $stateParams.faculty_id
         }).$promise;
       },
     }
@@ -114,4 +140,6 @@ export function router($stateProvider) {
       }
     }
   });
+
+
 }
