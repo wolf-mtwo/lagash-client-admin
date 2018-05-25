@@ -34,6 +34,11 @@ export class Carrers {
       size: {
         method: 'GET',
         url: url + '/size'
+      },
+      find: {
+        method: 'GET',
+        isArray: true,
+        url: url + '/find'
       }
     });
   }
