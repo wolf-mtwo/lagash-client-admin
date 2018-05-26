@@ -48,6 +48,9 @@ export class ThesisOption {
       key: 'otros',
       value: 'Otros'
     }, {
+      key: 'cd',
+      value: 'CD'
+    }, {
       key: 'indice',
       value: 'Indice'
     }, {
