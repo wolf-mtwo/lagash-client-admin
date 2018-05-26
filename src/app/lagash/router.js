@@ -6,7 +6,12 @@ export function router($stateProvider) {
     url: '/lagash',
     templateUrl: base_url + '/index.html',
     controller: 'LagashController',
-    controllerAs:'vm'
+    controllerAs:'vm',
+    resolve: {
+       simpleObj: function(Global) {
+          Global.start();
+       }
+    }
   });
 
   $stateProvider.state('lagash.home', {

@@ -56,7 +56,6 @@ export class LagashInventoriesListController {
       }
       this.select.start = res.inventory;
       this.select.end = res.inventory - 200 > 0 ? res.inventory - 200 : 0 ;
-      // this.search();
     })
     .catch((err) => {
       this.WError.request(err);

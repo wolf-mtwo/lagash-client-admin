@@ -9,6 +9,7 @@ import LagashAuthors from './authors/module';
 import LagashTutors from './tutors/module';
 import LagashEditorials from './editorials/module';
 import LagashInventories from './inventories/module';
+import LagashProfile from './profile/module';
 import LagashServices from './services/module';
 
 import { LagashController } from './controller';
@@ -25,6 +26,7 @@ angular.module('wolf.lagash', [
   'wolf.lagash.editorials',
   'wolf.lagash.tutors',
   'wolf.lagash.inventories',
+  'wolf.lagash.profile',
   'wolf.lagash.services'
 ])
 .config(router)

@@ -50,7 +50,7 @@ export class LagashController {
     }, {
       title: 'Perfil',
       icon: 'person',
-      route: 'lagash.users.list'
+      route: 'lagash.profile'
     }];
 
     Auth.subcrive((user) => {
