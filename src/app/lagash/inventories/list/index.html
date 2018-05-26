@@ -1,0 +1,59 @@
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <h1>
+      Inventario
+    </h1>
+    <span flex></span>
+  </div>
+</md-toolbar>
+<md-content flex>
+  <div layout="row">
+    <span flex></span>
+    <input class="wargos-inventory" type="number" ng-model="vm.select.start">
+    <input class="wargos-inventory" type="number" ng-model="vm.select.end">
+    <md-button type="submit" class="md-raised" ng-click="vm.search()">Buscar</md-button>
+  </div>
+  <div>
+    <md-input-container class="md-block" flex-gt-xs>
+      <label>Codigo o inventario</label>
+      <input ng-model="vm.query.search" ng-change="vm.search_ejemplares()">
+    </md-input-container>
+  </div>
+  <md-table-pagination md-limit="vm.query.limit" md-limit-options="[40, 50, 60]" md-page="vm.query.page" md-total="{{vm.total}}" md-on-paginate="vm.on_pagination" md-page-select></md-table-pagination>
+  <div ng-if="vm.items.length == 0" class="wargos-text-align">
+    <b>No existe <i>ejemplares</i> registrados</b>
+  </div>
+  <md-list>
+    <md-list-item ng-repeat="item in vm.items" ng-click="vm.select_item(item)">
+      <ng-md-icon icon="book"></ng-md-icon>
+      <p>
+        <b class="wargos-list-inventory">{{item.inventory}}</b>
+        <b class="wargos-list-code">{{item.code}}</b>
+        <b class="wargos-list-year">{{item.data.year}}</b>
+        {{item.data.title}}
+      </p>
+      <div class="md-secondary">
+        {{item.data.type}}
+      </div>
+  </md-list>
+</md-content>
+<style media="screen">
+.wargos-inventory {
+    margin: 6px;
+    padding: 6px;
+    height: 17px;
+    font-size: 22px;
+}
+.wargos-list-inventory {
+  width: 70px;
+  display: inline-block;
+}
+.wargos-list-code {
+  width: 120px;
+  display: inline-block;
+}
+.wargos-list-year {
+  width: 40px;
+  display: inline-block;
+}
+</style>
