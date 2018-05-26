@@ -20,6 +20,34 @@ export class Ejemplares {
       save: {
         method: 'POST',
         url: Global.PATH + '/v2/resource/:data_id/ejemplares'
+      },
+      pagination: {
+        method: 'GET',
+        isArray: true,
+        url: url + '/page/:page/limit/:limit'
+      },
+      search: {
+        method: 'GET',
+        isArray: true,
+        url: url + '/page/:page/limit/:limit/search'
+      },
+      size: {
+        method: 'GET',
+        url: url + '/size'
+      },
+      search: {
+        method: 'GET',
+        isArray: true,
+        url: url + '/page/:page/limit/:limit/search'
+      },
+      next: {
+        method: 'GET',
+        url: url + '/next'
+      },
+      select: {
+        method: 'GET',
+        isArray: true,
+        url: url + '/select'
       }
     });
   }

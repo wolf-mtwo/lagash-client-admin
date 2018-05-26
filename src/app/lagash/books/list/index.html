@@ -31,7 +31,7 @@
         <div>
           <md-input-container class="md-block" flex-gt-xs>
             <label>Titulo del libro</label>
-            <input ng-model="search" ng-change="vm.search_books(search)">
+            <input ng-model="vm.query.search" ng-change="vm.search_books()">
           </md-input-container>
         </div>
         <md-table-pagination md-limit="vm.query.limit" md-limit-options="[20, 25, 30]" md-page="vm.query.page" md-total="{{vm.total}}" md-on-paginate="vm.on_pagination" md-page-select></md-table-pagination>

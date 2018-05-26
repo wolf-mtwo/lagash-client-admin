@@ -13,25 +13,21 @@ export class LagashBooksListController {
     this.books = [];
     this.total = size.total;
     this.query = {
+      search: '',
       limit: 25,
       page: 1
     };
     var self = this;
     self.on_pagination = function() {
-      Books.pagination(self.query, function(items) {
+      Books.search(self.query, function(items) {
         self.books = items;
       }).$promise;
     }
     self.on_pagination();
   }
 
-  search_books(search) {
-    var self = this;
-    this.query.search = search;
-    this.Books.search(self.query, function(items) {
-      delete self.query['search'];
-      self.books = items;
-    }).$promise;
+  search_books() {
+    this.on_pagination();
   }
 
   select_book(item) {

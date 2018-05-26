@@ -127,7 +127,7 @@ export class LagashMagazinesUpdateController {
     item.data_id = this.magazine_id;
     item.enabled = false;
     item.state = 'STORED';
-    item.type = 'BOOK';
+    item.type = 'MAGAZINE';
     this.Ejemplares.save({
       data_id: item.data_id
     }, item).$promise
@@ -143,10 +143,19 @@ export class LagashMagazinesUpdateController {
 
   create_ejemplar() {
     this.create_ejemplar_state = true;
-    this.ejemplar_item = {
-      _id: this.UUID.next(),
-      index: this.getIndex()
-    }
+    this.Ejemplares.next().$promise
+    .then((res) => {
+      this.ejemplar_item = {
+        _id: this.UUID.next(),
+        index: this.getIndex()
+      };
+      if (res) {
+        this.ejemplar_item.inventory = res.inventory + 1;
+      }
+    })
+    .catch((err) => {
+      this.WError.request(err);
+    });
   }
 
   select_ejemplar(ejemplar) {

@@ -13,25 +13,21 @@ export class LagashThesisListController {
     this.thesis = [];
     this.total = size.total;
     this.query = {
+      search: '',
       limit: 25,
       page: 1
     };
     var self = this;
     self.on_pagination = function() {
-      Thesis.pagination(self.query, function(items) {
+      Thesis.search(self.query, function(items) {
         self.thesis = items;
       }).$promise;
     }
     self.on_pagination();
   }
 
-  search_thesis(search) {
-    var self = this;
-    this.query.search = search;
-    this.Thesis.search(self.query, function(items) {
-      delete self.query['search'];
-      self.thesis = items;
-    }).$promise;
+  search_thesis() {
+    this.on_pagination();
   }
 
   select_thesis(thesis) {

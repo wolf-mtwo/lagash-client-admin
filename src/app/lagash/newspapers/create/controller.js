@@ -42,7 +42,7 @@ export class LagashNewspapersCreateController {
     this.searchText = null;
     this.selectedItem = null;
   }
-  
+
   upload(file) {
     const self = this;
     this.ImageService.upload(file, function(res) {

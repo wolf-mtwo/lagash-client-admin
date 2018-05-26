@@ -13,25 +13,21 @@ export class LagashMagazinesListController {
     this.magazines = [];
     this.total = size.total;
     this.query = {
+      search: '',
       limit: 25,
       page: 1
     };
     var self = this;
     self.on_pagination = function() {
-      Magazines.pagination(self.query, function(items) {
+      Magazines.search(self.query, function(items) {
         self.magazines = items;
       }).$promise;
     }
     self.on_pagination();
   }
 
-  search_magazines(search) {
-    var self = this;
-    this.query.search = search;
-    this.Magazines.search(self.query, function(items) {
-      delete self.query['search'];
-      self.magazines = items;
-    }).$promise;
+  search_magazines() {
+    this.on_pagination();
   }
 
   select_magazine(item) {

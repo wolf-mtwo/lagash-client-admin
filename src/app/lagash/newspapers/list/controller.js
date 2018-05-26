@@ -13,25 +13,21 @@ export class LagashNewspapersListController {
     this.newspapers = [];
     this.total = size.total;
     this.query = {
+      search: '',
       limit: 25,
       page: 1
     };
     var self = this;
     self.on_pagination = function() {
-      Newspapers.pagination(self.query, function(items) {
+      Newspapers.search(self.query, function(items) {
         self.newspapers = items;
       }).$promise;
     }
     self.on_pagination();
   }
 
-  search_newspapers(search) {
-    var self = this;
-    this.query.search = search;
-    this.Newspapers.search(self.query, function(items) {
-      delete self.query['search'];
-      self.newspapers = items;
-    }).$promise;
+  search_newspapers() {
+    this.on_pagination();
   }
 
   select_newspaper(item) {

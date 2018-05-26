@@ -142,10 +142,19 @@ export class LagashBooksUpdateController {
 
   create_ejemplar() {
     this.create_ejemplar_state = true;
-    this.ejemplar_item = {
-      _id: this.UUID.next(),
-      index: this.getIndex()
-    }
+    this.Ejemplares.next().$promise
+    .then((res) => {
+      this.ejemplar_item = {
+        _id: this.UUID.next(),
+        index: this.getIndex()
+      };
+      if (res) {
+        this.ejemplar_item.inventory = res.inventory + 1;
+      }
+    })
+    .catch((err) => {
+      this.WError.request(err);
+    });
   }
 
   select_ejemplar(ejemplar) {

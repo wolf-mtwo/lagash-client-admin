@@ -6,6 +6,7 @@ export class LagashController {
     this.$mdSidenav = $mdSidenav;
     this.Auth = Auth;
     this.Sess = Sess;
+
     this.options = [{
       title: 'Libros',
       icon: 'book',
@@ -25,7 +26,7 @@ export class LagashController {
     }, {
       title: 'Inventario',
       icon: 'reorder',
-      route: 'lagash.newspapers.list.main'
+      route: 'lagash.inventories.list'
     }];
 
     this.references = [{
