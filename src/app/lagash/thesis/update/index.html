@@ -109,13 +109,6 @@
                 <div ng-message="required">This is required.</div>
               </div>
             </md-input-container>
-            <!-- <md-input-container class="md-block" flex-gt-xs>
-              <label>ISBN</label>
-              <input required ng-model="vm.item.isbn" md-maxlength="20">
-              <div ng-messages="form.isbn.$error">
-                <div ng-message="required">This is required.</div>
-              </div>
-            </md-input-container> -->
             <md-input-container class="md-block" flex-gt-xs>
               <label>Descriptores</label>
               <md-chips ng-model="vm.item.tags" readonly="false" md-removable="true"></md-chips>
@@ -126,14 +119,6 @@
       <md-tab label="detalle">
         <div layout-padding>
           <md-content>
-            <!-- <md-input-container class="md-block" flex-gt-xs>
-              <label>Tipo</label>
-              <md-select ng-model="vm.item.type">
-                <md-option ng-repeat="type in vm.types" ng-value="type.key">
-                  {{type.value}}
-                </md-option>
-              </md-select>
-            </md-input-container> -->
             <div layout="row">
               <md-input-container class="md-block" flex-gt-xs>
                 <label>Facultad</label>
@@ -282,42 +267,6 @@
           </md-content>
         </div>
       </md-tab>
-      <!-- <md-tab label="Editorials">
-        <div layout-padding>
-          <md-content>
-            <md-list>
-              <md-list-item ng-if="vm.editorial">
-                <ng-md-icon icon="person"></ng-md-icon>
-                <p>{{vm.editorial.name}}</p>
-                <md-button class="md-icon-button" aria-label="delete" ng-click="vm.remove_editorial(vm.editorial)">
-                  <ng-md-icon icon="delete"></ng-md-icon>
-                </md-button>
-              </md-list-item>
-              <md-list-item ng-repeat="editorial in vm.editorials">
-                <ng-md-icon icon="person"></ng-md-icon>
-                <p>{{editorial.name}}</p>
-                <md-button class="md-icon-button" aria-label="delete" ng-click="vm.remove_editorial(editorial, $index)">
-                  <ng-md-icon icon="delete"></ng-md-icon>
-                </md-button>
-              </md-list-item>
-            </md-list>
-            <div layout="row" layout-align="end">
-              <md-button aria-label="editorial"
-                         class="md-raised md-primary"
-                         ng-click="vm.show_editorial_search_dialog($event)">
-                <ng-md-icon icon="search"></ng-md-icon>
-                Buscar editorial
-              </md-button>
-              <md-button aria-label="editorial"
-                         class="md-raised"
-                         ng-click="vm.show_editorial_create_dialog($event)">
-                <ng-md-icon icon="thesis"></ng-md-icon>
-                Crear editorial
-              </md-button>
-            </div>
-          </md-content>
-        </div>
-      </md-tab> -->
       <md-tab label="Catalogo">
         <div layout-padding>
           <md-content>
