@@ -13,25 +13,17 @@ export class LagashTutorsListController {
     this.tutors = [];
     this.total = size.total;
     this.query = {
+      search: '',
       limit: 25,
       page: 1
     };
     var self = this;
     self.on_pagination = function() {
-      Tutors.pagination(self.query, function(items) {
+      Tutors.search(self.query, function(items) {
         self.tutors = items;
       }).$promise;
     }
     self.on_pagination();
-  }
-
-  search_tutors(search) {
-    var self = this;
-    this.query.search = search;
-    this.Tutors.search(self.query, function(items) {
-      delete self.query['search'];
-      self.tutors = items;
-    }).$promise;
   }
 
   select_tutor(item) {

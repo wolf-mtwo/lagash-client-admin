@@ -2,7 +2,7 @@ export class Editorials {
 
   constructor($resource, Global) {
     'ngInject';
-    var url = Global.PATH + '/v1/editorial';
+    var url = Global.PATH + '/v1/editorials';
     return $resource(url, {
     }, {
       get: {

@@ -13,25 +13,21 @@ export class LagashAuthorsListController {
     this.authors = [];
     this.total = size.total;
     this.query = {
+      search: '',
       limit: 25,
       page: 1
     };
     var self = this;
     self.on_pagination = function() {
-      Authors.pagination(self.query, function(items) {
+      Authors.search(self.query, function(items) {
         self.authors = items;
       }).$promise;
     }
     self.on_pagination();
   }
 
-  search_authors(search) {
-    var self = this;
-    this.query.search = search;
-    this.Authors.search(self.query, function(items) {
-      delete self.query['search'];
-      self.authors = items;
-    }).$promise;
+  search_authors() {
+    this.on_pagination();
   }
 
   select_author(item) {

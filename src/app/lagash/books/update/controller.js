@@ -1,6 +1,23 @@
 export class LagashBooksUpdateController {
 
-  constructor($state, WError, $mdDialog, WToast, Books, UUID, Ejemplares, book, Authors, Editorials, AuthorsMap, EditorialsMap, ejemplares, BookOption, ImageService, BooksCatalog) {
+  constructor(
+    $state,
+    WError,
+    $mdDialog,
+    WToast,
+    Books,
+    UUID,
+    Ejemplares,
+    book,
+    Authors,
+    Editorials,
+    AuthorsMap,
+    ejemplares,
+    BookOption,
+    ImageService,
+    AutorDialogs,
+    BooksCatalog
+  ) {
     'ngInject';
     this.book_id = $state.params.book_id;
     this.ImageService = ImageService;
@@ -12,7 +29,7 @@ export class LagashBooksUpdateController {
     this.AuthorsMap = AuthorsMap;
     this.BooksCatalog = BooksCatalog;
     this.Editorials = Editorials;
-    this.EditorialsMap = EditorialsMap;
+    this.AutorDialogs = AutorDialogs;
     this.UUID = UUID;
     this.Ejemplares = Ejemplares;
 
@@ -254,42 +271,14 @@ export class LagashBooksUpdateController {
 
   // operations
   show_author_create_dialog(ev) {
-    var self = this;
-    this.$mdDialog.show({
-      controller: DialogAuthorsCreateController2,
-      templateUrl: 'app/lagash/books/create/author/create.html',
-      parent: angular.element(document.body),
-      targetEvent: ev,
-      clickOutsideToClose: true,
-      fullscreen: false,
-      locals: {
-         item: null
-      }
-    })
-    .then(function(answer) {
-      self.save_author(self.item, answer);
-    }, function() {
-      console.info('You cancelled the dialog.');
+    this.AutorDialogs.show(ev, (item) => {
+      this.save_author(this.item, item);
     });
   };
 
   show_author_search_dialog(ev) {
-    var self = this;
-    this.$mdDialog.show({
-      controller: DialogAuthorsSearchController2,
-      templateUrl: 'app/lagash/books/create/author/search.html',
-      parent: angular.element(document.body),
-      targetEvent: ev,
-      clickOutsideToClose: true,
-      fullscreen: false,
-      locals: {
-         item: null
-      }
-    })
-    .then(function(answer) {
-      self.save_author(self.item, answer);
-    }, function() {
-      console.info('You cancelled the dialog.');
+    this.AutorDialogs.search(ev, (item) => {
+      this.save_author(this.item, item);
     });
   };
 
@@ -355,82 +344,6 @@ export class LagashBooksUpdateController {
       console.info('You cancelled the dialog.');
     });
   }
-}
-
-function DialogAuthorsCreateController2($scope, $mdDialog, WError, UUID, Country, Authors, item) {
-  'ngInject';
-
-  $scope.item = {
-    _id: UUID.next()
-  };
-
-  $scope.countries = Country.get();
-
-  $scope.hide = function() {
-    $mdDialog.hide();
-  };
-
-  $scope.cancel = function() {
-    $mdDialog.cancel();
-  };
-
-  $scope.answer = function(answer) {
-    Authors.save(answer).$promise
-    .then((res) => {
-      $mdDialog.hide(res);
-    })
-    .catch((err) => {
-      WError.request(err);
-    });
-  };
-}
-
-function DialogAuthorsSearchController2($scope, $mdDialog, WError, UUID, Authors, item) {
-  'ngInject';
-
-  $scope.query = {
-    total: 100,
-    limit: 25,
-    page: 1
-  };
-
-  $scope.on_pagination = function() {
-    Authors.pagination($scope.query, function(items) {
-      $scope.authors = items;
-    }).$promise;
-  }
-
-  $scope.search_author = function(search) {
-    $scope.query.search = search;
-    Authors.search($scope.query, function(items) {
-      $scope.authors = items;
-    }).$promise;
-  };
-
-  Authors.size().$promise
-  .then((res) => {
-    $scope.query.total = res.total;
-    $scope.on_pagination();
-  })
-  .catch((err) => {
-    WError.request(err);
-  });
-
-  $scope.select_author = function(item) {
-    if (item) {
-      $mdDialog.hide(item);
-    } else {
-      console.log('no existe un autor seleccionado');
-    }
-  };
-
-  $scope.hide = function() {
-    $mdDialog.hide();
-  };
-
-  $scope.cancel = function() {
-    $mdDialog.cancel();
-  };
 }
 
 function DialogEditorialsCreateController2($scope, $mdDialog, WError, UUID, Country, Editorials, item) {

@@ -2,7 +2,7 @@ export class Authors {
 
   constructor($resource, Global) {
     'ngInject';
-    var url = Global.PATH + '/v1/author';
+    var url = Global.PATH + '/v1/authors';
     return $resource(url, {
     }, {
       get: {

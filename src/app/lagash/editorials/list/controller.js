@@ -13,25 +13,17 @@ export class LagashEditorialsListController {
     this.editorials = [];
     this.total = size.total;
     this.query = {
+      search: '',
       limit: 25,
       page: 1
     };
     var self = this;
     self.on_pagination = function() {
-      Editorials.pagination(self.query, function(items) {
+      Editorials.search(self.query, function(items) {
         self.editorials = items;
       }).$promise;
     }
     self.on_pagination();
-  }
-
-  search_editorials(search) {
-    var self = this;
-    this.query.search = search;
-    this.Editorials.search(self.query, function(items) {
-      delete self.query['search'];
-      self.editorials = items;
-    }).$promise;
   }
 
   select_editorial(item) {
