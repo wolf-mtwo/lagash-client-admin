@@ -1,0 +1,38 @@
+<md-dialog aria-label="Message" style="width: 500px">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Buscar tutor</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" aria-label="Close dialog" ng-click="cancel()">
+        <ng-md-icon icon="close"></ng-md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+    <div layout-padding>
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>Nombre o apellido</label>
+        <input ng-model="search" ng-change="search_tutor(search)" md-maxlength="250">
+      </md-input-container>
+    </div>
+    <md-table-pagination md-limit="query.limit" md-limit-options="[20, 25, 30]" md-page="query.page" md-total="{{query.total}}" md-on-paginate="on_pagination" md-page-select></md-table-pagination>
+    <div ng-if="tutors.length == 0" class="wargos-text-align">
+      <b>No existe <i>tutores</i> registrados</b>
+    </div>
+    <md-list>
+      <md-list-item ng-repeat="tutor in tutors" ng-click="select_tutor(tutor)">
+        <ng-md-icon icon="person"></ng-md-icon>
+        <p>{{tutor.degree}} {{tutor.last_name}} {{tutor.first_name}}</p>
+      </md-list-item>
+    </md-list>
+  </md-dialog-content>
+  <md-dialog-actions layout="row">
+    <span flex></span>
+    <md-button ng-click="cancel()">
+      cancelar
+    </md-button>
+    <md-button class="md-raised md-primary" ng-click="select_tutor()">
+      Guardar
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>

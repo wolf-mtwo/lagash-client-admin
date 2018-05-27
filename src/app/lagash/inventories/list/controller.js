@@ -50,7 +50,7 @@ export class LagashInventoriesListController {
     };
     this.Ejemplares.next().$promise
     .then((res) => {
-      if (!res) {
+      if (!res.inventory) {
         this.WToast.show('Aun no existe ejemplares registrados');
         return;
       }

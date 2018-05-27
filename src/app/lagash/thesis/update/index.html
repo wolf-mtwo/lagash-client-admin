@@ -208,13 +208,40 @@
           </md-content>
         </div>
       </md-tab>
-      <md-tab label="autores">
+      <md-tab label="tutor / autores">
         <div layout-padding>
           <md-content>
             <md-list>
+              <md-subheader class="md-no-sticky">Tutor</md-subheader>
+              <md-list-item ng-if="vm.tutor">
+                <ng-md-icon icon="person"></ng-md-icon>
+                <p>{{vm.tutor.degree}} {{vm.tutor.last_name}} {{vm.tutor.first_name}}</p>
+                <md-button class="md-icon-button" aria-label="delete" ng-click="vm.remove_tutor(vm.tutor)">
+                  <ng-md-icon icon="delete"></ng-md-icon>
+                </md-button>
+              </md-list-item>
+            </md-list>
+            <div layout="row" layout-align="end">
+              <md-button aria-label="thesis"
+                         class="md-raised md-primary"
+                         ng-click="vm.show_tutor_search_dialog($event)">
+                <ng-md-icon icon="search"></ng-md-icon>
+                Buscar tutor
+              </md-button>
+              <md-button aria-label="thesis"
+                         class="md-raised"
+                         ng-click="vm.show_tutor_create_dialog($event)">
+                <ng-md-icon icon="book"></ng-md-icon>
+                Crear tutor
+              </md-button>
+            </div>
+          </md-content>
+          <md-content>
+            <md-list>
+              <md-subheader class="md-no-sticky">Autores</md-subheader>
               <md-list-item ng-repeat="author in vm.authors">
                 <ng-md-icon icon="person"></ng-md-icon>
-                <p>{{author.last_name}} {{author.first_name}}</p>
+                <p><b class="wargos-list-tesis-code">{{author.code}}</b> {{author.last_name}} {{author.first_name}}</p>
                 <md-button class="md-icon-button" aria-label="delete" ng-click="vm.remove_author(author, $index)">
                   <ng-md-icon icon="delete"></ng-md-icon>
                 </md-button>

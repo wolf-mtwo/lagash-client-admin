@@ -34,14 +34,14 @@
       <md-subheader class="md-no-sticky">Password</md-subheader>
       <md-input-container class="md-block" flex-gt-xs>
         <label>Password</label>
-        <input ng-model="vm.pass.new" md-maxlength="100">
+        <input ng-model="vm.pass.new" type="password" md-maxlength="100">
         <div ng-messages="form.new.$error">
           <div ng-message="required">This is required.</div>
         </div>
       </md-input-container>
       <md-input-container class="md-block" flex-gt-xs>
         <label>Repetir password</label>
-        <input ng-model="vm.pass.validator" md-maxlength="100">
+        <input ng-model="vm.pass.validator" type="password" md-maxlength="100">
         <div ng-messages="form.validator.$error">
           <div ng-message="required">This is required.</div>
         </div>

@@ -1,6 +1,6 @@
 export class LagashThesisUpdateController {
 
-  constructor($state, WError, $mdDialog, WToast, Thesis, UUID, Ejemplares, thesis, Authors, Editorials, AuthorsMap, EditorialsMap, ejemplares, ThesisOption, ImageService, ThesisCatalog) {
+  constructor($state, WError, $mdDialog, WToast, Thesis, UUID, Ejemplares, thesis, Tutors, Authors, Editorials, AuthorsMap, EditorialsMap, ejemplares, ThesisOption, ImageService, ThesisCatalog) {
     'ngInject';
     this.thesis_id = $state.params.thesis_id;
     this.ImageService = ImageService;
@@ -11,6 +11,7 @@ export class LagashThesisUpdateController {
     this.Thesis = Thesis;
     this.AuthorsMap = AuthorsMap;
     this.ThesisCatalog = ThesisCatalog;
+    this.Tutors = Tutors;
     // this.Editorials = Editorials;
     // this.EditorialsMap = EditorialsMap;
     this.UUID = UUID;
@@ -46,6 +47,7 @@ export class LagashThesisUpdateController {
     });
 
     this.load_catalog();
+    this.load_autor();
     // if (!this.item.editorial_id) {
     //    console.log('no tiene editorial');
     //    return;
@@ -74,6 +76,22 @@ export class LagashThesisUpdateController {
     }).$promise
     .then((res) => {
       this.catalog = res;
+    })
+    .catch((err) => {
+      this.WError.request(err);
+    });
+  }
+
+  load_autor() {
+    if (!this.item.tutor_id) {
+       console.log('tutors is undefined');
+       return;
+    }
+    this.Tutors.get({
+      _id: this.item.tutor_id
+    }).$promise
+    .then((res) => {
+      this.tutor = res;
     })
     .catch((err) => {
       this.WError.request(err);
@@ -252,6 +270,48 @@ export class LagashThesisUpdateController {
   }
 
   // operations
+  show_tutor_create_dialog(ev) {
+    var self = this;
+    this.$mdDialog.show({
+      controller: DialogTutorsCreateController,
+      templateUrl: 'app/lagash/thesis/create/tutor/create.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose: true,
+      fullscreen: false,
+      locals: {
+         item: null
+      }
+    })
+    .then(function(answer) {
+      self.tutor = answer;
+      self.item.tutor_id = answer._id;
+    }, function() {
+      console.info('You cancelled the dialog.');
+    });
+  };
+
+  show_tutor_search_dialog(ev) {
+    var self = this;
+    this.$mdDialog.show({
+      controller: DialogTutorsSearchController,
+      templateUrl: 'app/lagash/thesis/create/tutor/search.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose: true,
+      fullscreen: false,
+      locals: {
+         item: null
+      }
+    })
+    .then(function(answer) {
+      self.tutor = answer;
+      self.item.tutor_id = answer._id;
+    }, function() {
+      console.info('You cancelled the dialog.');
+    });
+  };
+
   show_author_create_dialog(ev) {
     var self = this;
     this.$mdDialog.show({
@@ -354,6 +414,83 @@ export class LagashThesisUpdateController {
       console.info('You cancelled the dialog.');
     });
   }
+}
+
+function DialogTutorsCreateController($scope, $mdDialog, WError, UUID, Country, Tutors, item) {
+  'ngInject';
+
+  $scope.item = {
+    _id: UUID.next(),
+    country: 'bolivia'
+  };
+
+  $scope.countries = Country.get();
+
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+
+  $scope.answer = function(answer) {
+    Tutors.save(answer).$promise
+    .then((res) => {
+      $mdDialog.hide(res);
+    })
+    .catch((err) => {
+      WError.request(err);
+    });
+  };
+}
+
+function DialogTutorsSearchController($scope, $mdDialog, WError, UUID, Tutors, item) {
+  'ngInject';
+
+  $scope.query = {
+    total: 100,
+    limit: 25,
+    page: 1
+  };
+
+  $scope.on_pagination = function() {
+    Tutors.pagination($scope.query, function(items) {
+      $scope.tutors = items;
+    }).$promise;
+  }
+
+  $scope.search_tutor = function(search) {
+    $scope.query.search = search;
+    Tutors.search($scope.query, function(items) {
+      $scope.tutors = items;
+    }).$promise;
+  };
+
+  Tutors.size().$promise
+  .then((res) => {
+    $scope.query.total = res.total;
+    $scope.on_pagination();
+  })
+  .catch((err) => {
+    WError.request(err);
+  });
+
+  $scope.select_tutor = function(item) {
+    if (item) {
+      $mdDialog.hide(item);
+    } else {
+      console.log('no existe un autor seleccionado');
+    }
+  };
+
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
 }
 
 function DialogAuthorsCreateController2($scope, $mdDialog, WError, UUID, Country, Authors, item) {

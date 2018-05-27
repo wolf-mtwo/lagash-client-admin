@@ -27,7 +27,7 @@ export class LagashProfileController {
   update(item) {
     if (this.pass) {
         if (this.pass.new === this.pass.validator) {
-          item.pass = this.pass.new;
+          item.password = this.pass.new;
         } else {
           this.WToast.show('El password no coincide');
           return;

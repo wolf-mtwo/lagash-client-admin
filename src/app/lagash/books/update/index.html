@@ -195,7 +195,7 @@
               </div>
             </md-input-container>
             <md-input-container class="md-block" flex-gt-xs>
-              <legend>Trae (DC, etc)</legend>
+              <legend>Incluye</legend>
               <div layout="row" layout-wrap flex>
                 <div flex="50" ng-repeat="bring in vm.brings">
                   <md-checkbox ng-checked="vm.exists(bring, vm.item.brings)" ng-click="vm.toggle(bring, vm.item.brings)">
@@ -218,7 +218,7 @@
             <md-list>
               <md-list-item ng-repeat="author in vm.authors">
                 <ng-md-icon icon="person"></ng-md-icon>
-                <p>{{author.last_name}} {{author.first_name}}</p>
+                <p><b class="wargos-list-tesis-code">{{author.code}}</b> {{author.last_name}} {{author.first_name}}</p>
                 <md-button class="md-icon-button" aria-label="delete" ng-click="vm.remove_author(author, $index)">
                   <ng-md-icon icon="delete"></ng-md-icon>
                 </md-button>
