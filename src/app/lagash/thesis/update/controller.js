@@ -18,6 +18,8 @@ export class LagashThesisUpdateController {
     ThesisOption,
     ImageService,
     AutorDialogs,
+    Faculties,
+    Carrers,
     ThesisCatalog
   ) {
     'ngInject';
@@ -31,6 +33,8 @@ export class LagashThesisUpdateController {
     this.AuthorsMap = AuthorsMap;
     this.ThesisCatalog = ThesisCatalog;
     this.Tutors = Tutors;
+    this.Faculties = Faculties;
+    this.Carrers = Carrers;
     // this.Editorials = Editorials;
     // this.EditorialsMap = EditorialsMap;
     this.AutorDialogs = AutorDialogs;
@@ -61,6 +65,21 @@ export class LagashThesisUpdateController {
     }).$promise
     .then((res) => {
       this.authors = res;
+    })
+    .catch((err) => {
+      this.WError.request(err);
+    });
+
+    Faculties.query().$promise
+    .then((res) => {
+      this.faculties = res;
+    })
+    .catch((err) => {
+      this.WError.request(err);
+    });
+    Carrers.query().$promise
+    .then((res) => {
+      this.carrers = res;
     })
     .catch((err) => {
       this.WError.request(err);

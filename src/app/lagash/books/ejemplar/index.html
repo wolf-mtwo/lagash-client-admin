@@ -21,84 +21,86 @@
     </md-menu>
   </div>
 </md-toolbar>
-<md-content layout-padding class="ejemplar-detail">
-  <div>
-    <h1 class="md-title">Titulo</h1>
-    <p><h1>{{vm.item.title}}</h1></p>
-    <div layout="row">
-      <md-input-container class="md-block" flex-gt-xs>
-        <label>Libro</label>
-        <input disabled ng-model="vm.item._id">
-      </md-input-container>
-      <md-input-container class="md-block" flex-gt-xs>
-        <label>Ejemplar</label>
-        <input disabled ng-model="vm.ejemplar._id">
-      </md-input-container>
+<md-content>
+  <md-content layout-padding class="ejemplar-detail">
+    <div>
+      <h1 class="md-title">Titulo</h1>
+      <p><h1>{{vm.item.title}}</h1></p>
+      <div layout="row">
+        <md-input-container class="md-block" flex-gt-xs>
+          <label>Libro</label>
+          <input disabled ng-model="vm.item._id">
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-xs>
+          <label>Ejemplar</label>
+          <input disabled ng-model="vm.ejemplar._id">
+        </md-input-container>
+      </div>
     </div>
-  </div>
-</md-content>
-<md-toolbar>
-  <div class="md-toolbar-tools">
-    <h1>
-      Ejemplar
-    </h1>
-    <span flex></span>
-    <md-button class="md-raised"
-               ng-click="vm.save_ejemplar(vm.ejemplar)">Guardar</md-button>
-  </div>
-</md-toolbar>
-<md-content layout-padding>
-  <md-input-container class="md-block" flex-gt-xs>
-    <label>Index</label>
-    <input ng-model="vm.ejemplar.index" md-maxlength="10" class="md-secondary">
-    <div ng-messages="form.index.$error">
-      <div ng-message="required">This is required.</div>
+  </md-content>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h1>
+        Ejemplar
+      </h1>
+      <span flex></span>
+      <md-button class="md-raised"
+                 ng-click="vm.save_ejemplar(vm.ejemplar)">Guardar</md-button>
     </div>
-  </md-input-container>
-  <md-input-container class="md-block" flex-gt-xs>
-    <label>Inventario</label>
-    <input ng-model="vm.ejemplar.inventory" md-maxlength="10" class="md-secondary">
-    <div ng-messages="form.inventory.$error">
-      <div ng-message="required">This is required.</div>
-    </div>
-  </md-input-container>
-  <md-input-container class="md-block" flex-gt-xs>
-    <label>Codigo</label>
-    <input ng-model="vm.ejemplar.code" md-maxlength="10" class="md-secondary">
-    <div ng-messages="form.price.$error">
-      <div ng-message="required">This is required.</div>
-    </div>
-  </md-input-container>
-  <md-select ng-model="vm.ejemplar.state"
-             placeholder="States"
-             class="md-no-underline">
-    <md-option value="{{state.key}}" ng-repeat="state in vm.states">{{state.value}}</md-option>
-  </md-select>
+  </md-toolbar>
+  <md-content layout-padding>
+    <md-input-container class="md-block" flex-gt-xs>
+      <label>Index</label>
+      <input ng-model="vm.ejemplar.index" md-maxlength="10" class="md-secondary">
+      <div ng-messages="form.index.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block" flex-gt-xs>
+      <label>Inventario</label>
+      <input ng-model="vm.ejemplar.inventory" md-maxlength="10" class="md-secondary">
+      <div ng-messages="form.inventory.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block" flex-gt-xs>
+      <label>Codigo</label>
+      <input ng-model="vm.ejemplar.code" md-maxlength="10" class="md-secondary">
+      <div ng-messages="form.price.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+    </md-input-container>
+    <md-select ng-model="vm.ejemplar.state"
+               placeholder="States"
+               class="md-no-underline">
+      <md-option value="{{state.key}}" ng-repeat="state in vm.states">{{state.value}}</md-option>
+    </md-select>
 
-</md-content>
-<md-toolbar>
-  <div class="md-toolbar-tools">
-    <h1>
-      Administrar
-    </h1>
-    <span flex></span>
-  </div>
-</md-toolbar>
-<md-content layout-padding>
-  <div layout="row">
-    <md-button class="md-raised"
-               ng-click="vm.print_ejemplar()"
-               flex>
-      Imprimir
-    </md-button>
-  </div>
-  <div layout="row">
-    <md-button class="md-raised"
-               ng-click="vm.save_ejemplar(vm.ejemplar)"
-               flex>
-      Generar ficha topográfica
-    </md-button>
-  </div>
+  </md-content>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h1>
+        Administrar
+      </h1>
+      <span flex></span>
+    </div>
+  </md-toolbar>
+  <md-content layout-padding>
+    <div layout="row">
+      <md-button class="md-raised"
+                 ng-click="vm.print_ejemplar()"
+                 flex>
+        Imprimir
+      </md-button>
+    </div>
+    <div layout="row">
+      <md-button class="md-raised"
+                 ng-click="vm.save_ejemplar(vm.ejemplar)"
+                 flex>
+        Generar ficha topográfica
+      </md-button>
+    </div>
+  </md-content>
 </md-content>
 
 <style media="screen">

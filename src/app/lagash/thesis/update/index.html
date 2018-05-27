@@ -134,6 +134,24 @@
                 </md-option>
               </md-select>
             </md-input-container> -->
+            <div layout="row">
+              <md-input-container class="md-block" flex-gt-xs>
+                <label>Tipo de tapa</label>
+                <md-select ng-model="vm.faculty">
+                  <md-option ng-repeat="faculty in vm.faculties" ng-value="faculty">
+                    {{faculty.name}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+              <md-input-container class="md-block" flex-gt-xs>
+                <label>Tipo de tapa</label>
+                <md-select ng-model="vm.item.carrer_id">
+                  <md-option ng-if="!vm.faculty || vm.faculty._id === carrer.faculty_id" ng-repeat="carrer in vm.carrers" ng-value="carrer._id">
+                    {{carrer.name}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+            </div>
             <md-input-container class="md-block" flex-gt-xs>
               <label>Tipo de tapa</label>
               <md-select ng-model="vm.item.cover">
