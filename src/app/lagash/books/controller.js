@@ -1,8 +1,6 @@
 export class LagashBooksController {
 
-  constructor($state, WError) {
+  constructor() {
     'ngInject';
-    this.$state = $state;
-    this.WError = WError;
   }
 }

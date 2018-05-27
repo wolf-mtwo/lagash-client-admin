@@ -94,7 +94,6 @@ export class MagazineOption {
   getYears() {
     var date = new Date();
     var counter = date.getFullYear();
-    // this.item.year = counter;
     counter -= 5;
     var result = [];
     for (var i = 0; i < 10; i++) {

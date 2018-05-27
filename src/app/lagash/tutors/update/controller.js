@@ -18,7 +18,6 @@ export class LagashTutorsUpdateController {
     this.ImageService = ImageService;
 
     this.countries = Country.get();
-
     this.item = tutor;
   }
 

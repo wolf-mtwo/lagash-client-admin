@@ -20,8 +20,6 @@ export class LagashNewspapersPrintController {
     }];
 
     newspaper.tags = newspaper.tags ? newspaper.tags.split(',').join(', ') : 'NO EXISTE';
-    // newspaper.illustrations = newspaper.illustrations ? newspaper.illustrations.split(',').join(', ') : 'NO EXISTE';
-    // newspaper.brings = newspaper.brings ? newspaper.brings.split(',').join(', ') : 'NO EXISTE';
     this.item = newspaper;
   }
 }

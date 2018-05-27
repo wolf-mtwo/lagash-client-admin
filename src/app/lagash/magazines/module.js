@@ -1,6 +1,5 @@
 import { router } from './router';
 import { LagashMagazinesController } from './controller';
-import { LagashMagazinesCreateController } from './create/controller';
 import { LagashMagazinesUpdateController } from './update/controller';
 import { LagashMagazinesEjemplarController } from './ejemplar/controller';
 import { LagashMagazinesListController } from './list/controller';
@@ -15,7 +14,6 @@ angular.module('wolf.lagash.magazines', [
 ])
 .config(router)
 .controller('LagashMagazinesController', LagashMagazinesController)
-.controller('LagashMagazinesCreateController', LagashMagazinesCreateController)
 .controller('LagashMagazinesUpdateController', LagashMagazinesUpdateController)
 .controller('LagashMagazinesEjemplarController', LagashMagazinesEjemplarController)
 .controller('LagashMagazinesListController', LagashMagazinesListController)

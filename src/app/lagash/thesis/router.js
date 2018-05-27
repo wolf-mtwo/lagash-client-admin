@@ -140,6 +140,4 @@ export function router($stateProvider) {
       }
     }
   });
-
-
 }

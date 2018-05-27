@@ -20,6 +20,7 @@ export function router($stateProvider) {
       }
     }
   });
+
   $stateProvider.state('lagash.tutors.list.main', {
     url: '/main',
     templateUrl: base_url + '/../template/index.html'

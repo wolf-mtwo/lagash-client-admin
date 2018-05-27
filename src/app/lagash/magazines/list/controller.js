@@ -53,21 +53,13 @@ export class LagashMagazinesListController {
     var data = {
       _id: this.UUID.next(),
       enabled: false,
-      // tags: null,
-      // type: null,
-      // cover: null,
-      // length: 0,
-      // width: 0,
       pages: 0,
       price: 0,
-      // illustrations: null,
-      // brings: null,
       month: (new Date()).getUTCMonth() + 1,
       edition: 0,
       edition_date: new Date(),
       year: this.BasicOption.get_year(),
       title: title || 'SIN NOMBRE'
-      // isbn: null
     };
     this.Magazines.save(data).$promise
     .then((res) => {

@@ -2,7 +2,7 @@
   <md-toolbar>
     <div class="md-toolbar-tools">
       <h1>
-        Actualizar revistas
+        Actualizar periodico
       </h1>
       <span flex></span>
       <md-button type="submit" class="md-raised">Actualizar</md-button>
@@ -109,13 +109,6 @@
                 <div ng-message="required">This is required.</div>
               </div>
             </md-input-container>
-            <!-- <md-input-container class="md-block" flex-gt-xs>
-              <label>ISBN</label>
-              <input ng-model="vm.item.isbn" md-maxlength="20">
-              <div ng-messages="form.isbn.$error">
-                <div ng-message="required">This is required.</div>
-              </div>
-            </md-input-container> -->
             <md-input-container class="md-block" flex-gt-xs>
               <label>Descriptores</label>
               <md-chips ng-model="vm.item.tags" readonly="false" md-removable="true"></md-chips>
@@ -126,32 +119,6 @@
       <md-tab label="detalle">
         <div layout-padding>
           <md-content>
-            <!-- <md-input-container class="md-block" flex-gt-xs>
-              <label>Tipo</label>
-              <md-select ng-model="vm.item.type">
-                <md-option ng-repeat="type in vm.types" ng-value="type.key">
-                  {{type.value}}
-                </md-option>
-              </md-select>
-            </md-input-container> -->
-            <!-- <md-input-container class="md-block" flex-gt-xs>
-              <label>Tipo de tapa</label>
-              <md-select ng-model="vm.item.cover">
-                <md-option ng-repeat="cover in vm.covers" ng-value="cover.key">
-                  {{cover.value}}
-                </md-option>
-              </md-select>
-            </md-input-container> -->
-            <!-- <md-input-container class="md-block" flex-gt-xs>
-              <legend class="demo-legend">Ilustraciones</legend>
-              <div layout="row" layout-wrap flex>
-                <div flex="50" ng-repeat="illustration in vm.illustrations">
-                  <md-checkbox ng-checked="vm.exists(illustration, vm.item.illustrations)" ng-click="vm.toggle(illustration, vm.item.illustrations)">
-                    {{ illustration.value }}
-                  </md-checkbox>
-                </div>
-              </div>
-            </md-input-container> -->
             <div layout="row">
               <md-input-container class="md-block" flex-gt-xs>
                 <label>Mes</label>
@@ -171,20 +138,6 @@
               </md-input-container>
             </div>
             <div layout="row">
-              <!-- <md-input-container class="md-block" flex="50">
-                <label>Largo</label>
-                <input ng-model="vm.item.length" type="number">
-                <div ng-messages="form.length.$error">
-                  <div ng-message="required">This is required.</div>
-                </div>
-              </md-input-container>
-              <md-input-container class="md-block" flex="50">
-                <label>Ancho</label>
-                <input ng-model="vm.item.width" type="number">
-                <div ng-messages="form.width.$error">
-                  <div ng-message="required">This is required.</div>
-                </div>
-              </md-input-container> -->
               <md-input-container class="md-block" flex="50">
                 <label>Pages</label>
                 <input ng-model="vm.item.pages" type="number">
@@ -208,21 +161,6 @@
                 <div ng-message="required">This is required.</div>
               </div>
             </md-input-container>
-            <!-- <md-input-container class="md-block" flex-gt-xs>
-              <legend>Trae (DC, etc)</legend>
-              <div layout="row" layout-wrap flex>
-                <div flex="50" ng-repeat="bring in vm.brings">
-                  <md-checkbox ng-checked="vm.exists(bring, vm.item.brings)" ng-click="vm.toggle(bring, vm.item.brings)">
-                    {{ bring.value }}
-                  </md-checkbox>
-                </div>
-              </div>
-            </md-input-container>
-            <md-input-container class="md-block" flex-gt-xs>
-              <label>Indice</label>
-              <textarea ng-model="vm.item.index" md-maxlength="1000" rows="10">
-              </textarea>
-            </md-input-container> -->
             <md-input-container class="md-block" flex-gt-xs>
               <label>Edicion</label>
               <input ng-model="vm.item.edition" type="number">
@@ -233,64 +171,6 @@
           </md-content>
         </div>
       </md-tab>
-      <!-- <md-tab label="autores">
-        <div layout-padding>
-          <md-content>
-            <md-list>
-              <md-list-item ng-repeat="author in vm.authors">
-                <ng-md-icon icon="person"></ng-md-icon>
-                <p>{{author.last_name}} {{author.first_name}}</p>
-                <md-button class="md-icon-button" aria-label="delete" ng-click="vm.remove_author(author, $index)">
-                  <ng-md-icon icon="delete"></ng-md-icon>
-                </md-button>
-              </md-list-item>
-            </md-list>
-            <div layout="row" layout-align="end">
-              <md-button aria-label="newspaper"
-                         class="md-raised md-primary"
-                         ng-click="vm.show_author_search_dialog($event)">
-                <ng-md-icon icon="search"></ng-md-icon>
-                Buscar autor
-              </md-button>
-              <md-button aria-label="newspaper"
-                         class="md-raised"
-                         ng-click="vm.show_author_create_dialog($event)">
-                <ng-md-icon icon="newspaper"></ng-md-icon>
-                Crear autor
-              </md-button>
-            </div>
-          </md-content>
-        </div>
-      </md-tab> -->
-      <!-- <md-tab label="Editorials">
-        <div layout-padding>
-          <md-content>
-            <md-list>
-              <md-list-item ng-if="vm.editorial">
-                <ng-md-icon icon="person"></ng-md-icon>
-                <p>{{vm.editorial.name}}</p>
-                <md-button class="md-icon-button" aria-label="delete" ng-click="vm.remove_editorial(vm.editorial)">
-                  <ng-md-icon icon="delete"></ng-md-icon>
-                </md-button>
-              </md-list-item>
-            </md-list>
-            <div layout="row" layout-align="end">
-              <md-button aria-label="editorial"
-                         class="md-raised md-primary"
-                         ng-click="vm.show_editorial_search_dialog($event)">
-                <ng-md-icon icon="search"></ng-md-icon>
-                Buscar editorial
-              </md-button>
-              <md-button aria-label="editorial"
-                         class="md-raised"
-                         ng-click="vm.show_editorial_create_dialog($event)">
-                <ng-md-icon icon="newspaper"></ng-md-icon>
-                Crear editorial
-              </md-button>
-            </div>
-          </md-content>
-        </div>
-      </md-tab> -->
       <md-tab label="Catalogo">
         <div layout-padding>
           <md-content>

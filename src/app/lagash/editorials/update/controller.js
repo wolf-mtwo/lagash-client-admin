@@ -18,7 +18,6 @@ export class LagashEditorialsUpdateController {
     this.ImageService = ImageService;
 
     this.countries = Country.get();
-
     this.item = editorial;
   }
 

@@ -1,5 +1,3 @@
-// Carrers
-// Faculties
 export class LagashThesisFacultiesController {
 
   constructor($state, $mdDialog, WError, WToast, UUID, size, Faculties) {
