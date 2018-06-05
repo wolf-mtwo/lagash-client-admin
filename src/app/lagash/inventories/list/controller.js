@@ -5,21 +5,26 @@ export class LagashInventoriesListController {
     $mdDialog,
     WError,
     WToast,
-    Ejemplares,
+    BooksEjemplares,
     size,
     UUID,
     BasicOption,
     Books,
     Thesis,
     Magazines,
-    Newspapers
+    Newspapers,
+    config,
+    model,
+    model_ejemplar
   ) {
     'ngInject';
     this.$state = $state;
     this.$mdDialog = $mdDialog;
     this.WToast = WToast;
-    this.Ejemplares = Ejemplares;
     this.BasicOption = BasicOption;
+    this.config = config;
+    this.model = model;
+    this.model_ejemplar = model_ejemplar;
     this.UUID = UUID;
     this.WError = WError;
     this.Books = Books;
@@ -48,7 +53,7 @@ export class LagashInventoriesListController {
       limit: 50,
       page: 1
     };
-    this.Ejemplares.next().$promise
+    this.model_ejemplar.next().$promise
     .then((res) => {
       if (!res.inventory) {
         this.WToast.show('Aun no existe ejemplares registrados');
@@ -63,7 +68,7 @@ export class LagashInventoriesListController {
 
     var self = this;
     self.on_pagination = function() {
-      self.Ejemplares.search(self.query, function(items) {
+      self.model_ejemplar.search(self.query, function(items) {
         self.items = items;
         self.populate(items);
       }).$promise;
@@ -72,7 +77,7 @@ export class LagashInventoriesListController {
   }
 
   search() {
-    this.Ejemplares.select(this.select).$promise
+    this.model_ejemplar.select(this.select).$promise
     .then((res) => {
       this.items = res;
       this.populate(res);
@@ -87,32 +92,9 @@ export class LagashInventoriesListController {
   }
 
   select_item(item) {
-    var url = null;
-    switch (item.type) {
-      case 'BOOK':
-        url = this.$state.href('lagash.books.list.preview', {
-          book_id: item.data_id,
-        });
-        break;
-      case 'THESIS':
-        url = this.$state.href('lagash.thesis.list.preview', {
-          thesis_id: item.data_id,
-        });
-        break;
-      case 'MAGAZINE':
-        url = this.$state.href('lagash.magazines.list.preview', {
-          magazine_id: item.data_id,
-        });
-        break;
-      case 'NEWSPAPER':
-        url = this.$state.href('lagash.newspapers.list.preview', {
-          newspaper_id: item.data_id,
-        });
-        break;
-      default:
-        throw new Error('type in undefined');
-    }
-
+    var data = {};
+    data[this.config.param] = item.data_id;
+    var url = this.$state.href(this.config.route, data);
     window.open(url, '_blank');
   }
 
@@ -123,11 +105,10 @@ export class LagashInventoriesListController {
   }
 
   find_data(item) {
-    this[item.type].get({
+    this.model.get({
       _id: item.data_id
     }).$promise
     .then((res) => {
-      res.type = this.i18n[item.type]
       item.data = res;
     })
     .catch((err) => {

@@ -10,6 +10,8 @@ import { LagashThesisCatalogUpdateController } from './catalog/update/controller
 import { LagashThesisFacultiesController } from './faculties/controller';
 import { LagashThesisFacultiesUpdateController } from './faculties/update/controller';
 
+import { LagashThesisPrintChipController } from './print/chip/controller';
+
 angular.module('wolf.lagash.thesis', [
   'ui.router',
   'wolf.lagash.services',
@@ -26,6 +28,8 @@ angular.module('wolf.lagash.thesis', [
 .controller('LagashThesisCatalogUpdateController', LagashThesisCatalogUpdateController)
 .controller('LagashThesisFacultiesController', LagashThesisFacultiesController)
 .controller('LagashThesisFacultiesUpdateController', LagashThesisFacultiesUpdateController)
+
+.controller('LagashThesisPrintChipController', LagashThesisPrintChipController)
 .run(($log) => {
   $log.debug('run lagash thesiss end');
 });
