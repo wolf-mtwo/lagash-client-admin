@@ -52,6 +52,7 @@ export class LagashBooksListController {
   create_book(title) {
     var data = {
       _id: this.UUID.next(),
+      code: this.BasicOption.get_code(),
       enabled: false,
       tags: null,
       type: null,

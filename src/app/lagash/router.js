@@ -1,6 +1,6 @@
 export function router($stateProvider) {
   'ngInject';
-  var base_url = 'app/lagash';
+  var base_url = './app/lagash';
 
   $stateProvider.state('lagash', {
     url: '/lagash',

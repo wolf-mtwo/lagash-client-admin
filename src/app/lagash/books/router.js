@@ -70,8 +70,8 @@ export function router($stateProvider) {
           _id: $stateParams.book_id
         }).$promise;
       },
-      ejemplares: function($stateParams, Ejemplares) {
-        return Ejemplares.find({
+      ejemplares: function($stateParams, BooksEjemplares) {
+        return BooksEjemplares.find({
           data_id: $stateParams.book_id
         }).$promise;
       }
@@ -89,8 +89,8 @@ export function router($stateProvider) {
           _id: $stateParams.book_id
         }).$promise;
       },
-      ejemplar: function($stateParams, Ejemplares) {
-        return Ejemplares.get({
+      ejemplar: function($stateParams, BooksEjemplares) {
+        return BooksEjemplares.get({
           _id: $stateParams.ejemplar_id
         }).$promise;
       }
@@ -108,8 +108,27 @@ export function router($stateProvider) {
           _id: $stateParams.book_id
         }).$promise;
       },
-      ejemplar: function($stateParams, Ejemplares) {
-        return Ejemplares.get({
+      ejemplar: function($stateParams, BooksEjemplares) {
+        return BooksEjemplares.get({
+          _id: $stateParams.ejemplar_id
+        }).$promise;
+      }
+    }
+  });
+
+  $stateProvider.state('print_item_chip', {
+    url: '/print/chip/book/:item_id/ejemplares/:ejemplar_id',
+    templateUrl: base_url + '/print/chip/index.html',
+    controller: 'LagashBooksPrintChipController',
+    controllerAs: 'vm',
+    resolve: {
+      item: function($stateParams, Books) {
+        return Books.get({
+          _id: $stateParams.item_id
+        }).$promise;
+      },
+      ejemplar: function($stateParams, BooksEjemplares) {
+        return BooksEjemplares.get({
           _id: $stateParams.ejemplar_id
         }).$promise;
       }

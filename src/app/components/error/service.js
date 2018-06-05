@@ -12,7 +12,7 @@ export class WError {
     this.$mdToast.show(
       this.$mdToast.simple(msg)
       .content(msg)
-      .position('bottom left')
+      .position('top right')
       .hideDelay(3000)
     );
   }

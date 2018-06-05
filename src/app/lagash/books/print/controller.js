@@ -1,6 +1,6 @@
 export class LagashBooksPrintController {
 
-  constructor($state, WError, WToast, Books, UUID, Ejemplares, book, ejemplar) {
+  constructor($state, WError, WToast, Books, UUID, BooksEjemplares, book, ejemplar) {
     'ngInject';
     this.$state = $state;
     this.Books = Books;

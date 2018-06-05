@@ -7,13 +7,13 @@ export class LagashBooksUpdateController {
     WToast,
     Books,
     UUID,
-    Ejemplares,
+    BooksEjemplares,
     book,
     Authors,
     Editorials,
     AuthorsMap,
     ejemplares,
-    BookOption,
+    BasicOption,
     ImageService,
     AutorDialogs,
     BooksCatalog
@@ -31,14 +31,14 @@ export class LagashBooksUpdateController {
     this.Editorials = Editorials;
     this.AutorDialogs = AutorDialogs;
     this.UUID = UUID;
-    this.Ejemplares = Ejemplares;
+    this.BooksEjemplares = BooksEjemplares;
 
     this.create_ejemplar_state = false;
-    this.types = BookOption.types;
-    this.covers = BookOption.covers;
-    this.illustrations = BookOption.illustrations;
-    this.brings = BookOption.brings;
-    this.years = BookOption.getYears();
+    this.types = BasicOption.types;
+    this.covers = BasicOption.covers;
+    this.illustrations = BasicOption.illustrations;
+    this.brings = BasicOption.brings;
+    this.years = BasicOption.getYears();
 
     this.authors = [];
     this.editorial = null;
@@ -139,12 +139,26 @@ export class LagashBooksUpdateController {
     });
   }
 
+  update_code(item) {
+    var data = {};
+    angular.copy(item, data);
+    data.tags = data.tags.join(',');
+    data.illustrations = data.illustrations.join(',');
+    data.brings = data.brings.join(',');
+    this.Books.update({
+      _id: item._id
+    }, data)
+    .$promise
+    .then((response) => {
+      this.WToast.show('El nuevo codigo se guardo correctamente');
+    })
+    .catch((err) => {
+      this.WError.request(err);
+    });
+  }
+
   save_ejemplar(item) {
-    item.data_id = this.book_id;
-    item.enabled = false;
-    item.state = 'STORED';
-    item.type = 'BOOK';
-    this.Ejemplares.save({
+    this.BooksEjemplares.save({
       data_id: item.data_id
     }, item).$promise
     .then((response) => {
@@ -159,11 +173,15 @@ export class LagashBooksUpdateController {
 
   create_ejemplar() {
     this.create_ejemplar_state = true;
-    this.Ejemplares.next().$promise
+    this.BooksEjemplares.next().$promise
     .then((res) => {
       this.ejemplar_item = {
         _id: this.UUID.next(),
-        index: this.getIndex()
+        order: this.getOrder(),
+        code: this.item.code,
+        data_id: this.book_id,
+        enabled: false,
+        state: 'STORED'
       };
       if (res) {
         this.ejemplar_item.inventory = res.inventory + 1;
@@ -181,11 +199,11 @@ export class LagashBooksUpdateController {
     });
   }
 
-  getIndex() {
-    let existElement = (index) => {
+  getOrder() {
+    let existElement = (order) => {
       let result = false;
       this.ejemplares.map((item) => {
-        if (item.index === index) {
+        if (item.order === order) {
           result = true;
         }
       })
@@ -200,7 +218,7 @@ export class LagashBooksUpdateController {
   }
 
   change_ejemplar_state(ejemplar) {
-    this.Ejemplares.update({
+    this.BooksEjemplares.update({
       _id: ejemplar._id
     }, ejemplar).$promise
     .then((response) => {
