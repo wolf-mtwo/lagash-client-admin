@@ -52,6 +52,7 @@ export class LagashThesisListController {
   create_thesis(title) {
     var data = {
       _id: this.UUID.next(),
+      code: this.BasicOption.get_code(),
       enabled: false,
       tags: null,
       length: 0,

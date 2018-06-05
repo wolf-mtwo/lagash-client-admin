@@ -1,6 +1,23 @@
 export class LagashNewspapersUpdateController {
 
-  constructor($state, WError, $mdDialog, WToast, Newspapers, UUID, Ejemplares, newspaper, Authors, Editorials, AuthorsMap, EditorialsMap, ejemplares, NewspaperOption, ImageService, NewspapersCatalog) {
+  constructor(
+    $state,
+    WError,
+    $mdDialog,
+    WToast,
+    Newspapers,
+    UUID,
+    NewspapersEjemplares,
+    newspaper,
+    Authors,
+    Editorials,
+    AuthorsMap,
+    EditorialsMap,
+    ejemplares,
+    BasicOption,
+    ImageService,
+    NewspapersCatalog
+  ) {
     'ngInject';
     this.newspaper_id = $state.params.newspaper_id;
     this.ImageService = ImageService;
@@ -14,12 +31,12 @@ export class LagashNewspapersUpdateController {
     this.Editorials = Editorials;
     this.EditorialsMap = EditorialsMap;
     this.UUID = UUID;
-    this.Ejemplares = Ejemplares;
+    this.NewspapersEjemplares = NewspapersEjemplares;
 
     this.create_ejemplar_state = false;
-    this.months = NewspaperOption.months;
-    this.days = NewspaperOption.days;
-    this.years = NewspaperOption.getYears();
+    this.months = BasicOption.months;
+    this.days = BasicOption.days;
+    this.years = BasicOption.getYears();
 
     this.authors = [];
     this.editorial = null;
@@ -116,12 +133,24 @@ export class LagashNewspapersUpdateController {
     });
   }
 
+  update_code(item) {
+    var data = {};
+    angular.copy(item, data);
+    data.tags = data.tags.join(',');
+    this.Newspapers.update({
+      _id: item._id
+    }, data)
+    .$promise
+    .then((response) => {
+      this.WToast.show('El nuevo codigo se guardo correctamente');
+    })
+    .catch((err) => {
+      this.WError.request(err);
+    });
+  }
+
   save_ejemplar(item) {
-    item.data_id = this.newspaper_id;
-    item.enabled = false;
-    item.state = 'STORED';
-    item.type = 'NEWSPAPER';
-    this.Ejemplares.save({
+    this.NewspapersEjemplares.save({
       data_id: item.data_id
     }, item).$promise
     .then((response) => {
@@ -136,11 +165,15 @@ export class LagashNewspapersUpdateController {
 
   create_ejemplar() {
     this.create_ejemplar_state = true;
-    this.Ejemplares.next().$promise
+    this.NewspapersEjemplares.next().$promise
     .then((res) => {
       this.ejemplar_item = {
         _id: this.UUID.next(),
-        index: this.getIndex()
+        order: this.getOrder(),
+        code: this.item.code,
+        data_id: this.newspaper_id,
+        enabled: false,
+        state: 'STORED'
       };
       if (res) {
         this.ejemplar_item.inventory = res.inventory + 1;
@@ -158,11 +191,11 @@ export class LagashNewspapersUpdateController {
     });
   }
 
-  getIndex() {
-    let existElement = (index) => {
+  getOrder() {
+    let existElement = (order) => {
       let result = false;
       this.ejemplares.map((item) => {
-        if (item.index === index) {
+        if (item.order === order) {
           result = true;
         }
       })
@@ -177,7 +210,7 @@ export class LagashNewspapersUpdateController {
   }
 
   change_ejemplar_state(ejemplar) {
-    this.Ejemplares.update({
+    this.NewspapersEjemplares.update({
       _id: ejemplar._id
     }, ejemplar).$promise
     .then((response) => {

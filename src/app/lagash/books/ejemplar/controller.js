@@ -71,7 +71,7 @@ export class LagashBooksEjemplarController {
   }
 
   print_chip() {
-    var url = this.$state.href('print_item_chip', {
+    var url = this.$state.href('print_book_chip', {
       item_id: this.item._id,
       ejemplar_id: this.ejemplar._id
     });

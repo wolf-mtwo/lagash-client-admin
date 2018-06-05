@@ -27,7 +27,7 @@
     <md-tabs md-dynamic-height md-border-bottom>
       <md-tab label="ejemplares">
         <div layout-padding>
-          <h1 >
+          <h1>
             {{vm.item.title}}
           </h1>
           <div layout="row">
@@ -100,7 +100,7 @@
                           ng-click="vm.select_ejemplar(ejemplar)">
               <div class="md-list-item-text">
                 <h3>{{ejemplar.code}} {{vm.authors[0].code}} {{ejemplar.suffix}} Ej.{{ejemplar.order}}</h3>
-                <p><b>Inventario:</b> {{ejemplar.inventory}} <b>Ejemplar:</b> {{ejemplar.order}}</p>
+                <p><b>Ejemplar:</b> {{ejemplar.order}}<b>Inventario:</b> {{ejemplar.inventory}}</p>
               </div>
               <md-switch class="md-secondary"
                          ng-model="ejemplar.enabled"

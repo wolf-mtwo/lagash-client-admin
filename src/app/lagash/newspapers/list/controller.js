@@ -52,6 +52,7 @@ export class LagashNewspapersListController {
   create_newspaper(title) {
     var data = {
       _id: this.UUID.next(),
+      code: this.BasicOption.get_code(),
       enabled: false,
       // tags: null,
       // type: null,

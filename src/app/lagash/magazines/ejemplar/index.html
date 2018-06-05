@@ -26,16 +26,6 @@
     <div>
       <h1 class="md-title">Titulo</h1>
       <p><h1>{{vm.item.title}}</h1></p>
-      <div layout="row">
-        <md-input-container class="md-block" flex-gt-xs>
-          <label>Libro</label>
-          <input disabled ng-model="vm.item._id">
-        </md-input-container>
-        <md-input-container class="md-block" flex-gt-xs>
-          <label>Ejemplar</label>
-          <input disabled ng-model="vm.ejemplar._id">
-        </md-input-container>
-      </div>
     </div>
   </md-content>
   <md-toolbar>
@@ -49,27 +39,41 @@
     </div>
   </md-toolbar>
   <md-content layout-padding>
-    <md-input-container class="md-block" flex-gt-xs>
-      <label>Index</label>
-      <input ng-model="vm.ejemplar.index" md-maxlength="10" class="md-secondary">
-      <div ng-messages="form.index.$error">
-        <div ng-message="required">This is required.</div>
-      </div>
-    </md-input-container>
-    <md-input-container class="md-block" flex-gt-xs>
-      <label>Inventario</label>
-      <input ng-model="vm.ejemplar.inventory" md-maxlength="10" class="md-secondary">
-      <div ng-messages="form.inventory.$error">
-        <div ng-message="required">This is required.</div>
-      </div>
-    </md-input-container>
-    <md-input-container class="md-block" flex-gt-xs>
-      <label>Codigo</label>
-      <input ng-model="vm.ejemplar.code" md-maxlength="10" class="md-secondary">
-      <div ng-messages="form.price.$error">
-        <div ng-message="required">This is required.</div>
-      </div>
-    </md-input-container>
+    <div>
+      <h1 style="text-align: center;">
+        {{vm.item.code}} {{vm.authors[0].code}} {{vm.ejemplar.suffix}} Ej.{{vm.ejemplar.order}}
+      </h1>
+    </div>
+    <div layout="row">
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>Inventario</label>
+        <input required ng-model="vm.ejemplar.inventory" type="number">
+        <div ng-messages="form.inventory.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>Codigo</label>
+        <input required ng-model="vm.ejemplar.code" md-maxlength="50">
+        <div ng-messages="form.code.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>Sufijo</label>
+        <input required ng-model="vm.ejemplar.suffix" md-maxlength="10">
+        <div ng-messages="form.suffix.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>Ejemplar</label>
+        <input ng-model="vm.ejemplar.order" md-maxlength="10" class="md-secondary">
+        <div ng-messages="form.index.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+    </div>
     <md-select ng-model="vm.ejemplar.state"
                placeholder="States"
                class="md-no-underline">
@@ -88,16 +92,16 @@
   <md-content layout-padding>
     <div layout="row">
       <md-button class="md-raised"
-                 ng-click="vm.print_ejemplar()"
+                 ng-click="vm.print_chip()"
                  flex>
-        Imprimir
+        Generar ficha topográfica
       </md-button>
     </div>
     <div layout="row">
       <md-button class="md-raised"
-                 ng-click="vm.save_ejemplar(vm.ejemplar)"
+                 ng-click="vm.print_ejemplar()"
                  flex>
-        Generar ficha topográfica
+        Imprimir informacion
       </md-button>
     </div>
   </md-content>

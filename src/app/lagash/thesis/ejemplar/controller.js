@@ -1,12 +1,12 @@
 export class LagashThesisEjemplarController {
 
-  constructor($state, WError, WToast, Thesis, UUID, Ejemplares, thesis, ejemplar) {
+  constructor($state, WError, WToast, Thesis, UUID, ThesisEjemplares, thesis, ejemplar, Authors) {
     'ngInject';
     this.$state = $state;
     this.Thesis = Thesis;
     this.WError = WError;
     this.WToast = WToast;
-    this.Ejemplares = Ejemplares;
+    this.ThesisEjemplares = ThesisEjemplares;
     this.item = thesis;
     this.ejemplar = ejemplar;
 
@@ -20,6 +20,17 @@ export class LagashThesisEjemplarController {
       value: 'Prestado',
       key: 'BORROWED'
     }];
+
+    // autor
+    Authors.find_authors({
+      resource_id: this.item._id
+    }).$promise
+    .then((res) => {
+      this.authors = res;
+    })
+    .catch((err) => {
+      this.WError.request(err);
+    });
   }
 
   openMenu($mdOpenMenu, ev) {
@@ -27,7 +38,7 @@ export class LagashThesisEjemplarController {
   }
 
   save_ejemplar(ejemplar) {
-    this.Ejemplares.update({
+    this.ThesisEjemplares.update({
       _id: ejemplar._id
     }, ejemplar)
     .$promise
@@ -40,7 +51,7 @@ export class LagashThesisEjemplarController {
   }
 
   delete_ejemplar(item) {
-    this.Ejemplares.remove({
+    this.ThesisEjemplares.remove({
       _id: item._id
     }, item).$promise
     .then((response) => {
@@ -54,6 +65,14 @@ export class LagashThesisEjemplarController {
   print_ejemplar() {
     var url = this.$state.href('print_thesis', {
       thesis_id: this.item._id,
+      ejemplar_id: this.ejemplar._id
+    });
+    window.open(url, '_blank');
+  }
+
+  print_chip() {
+    var url = this.$state.href('print_thesis_chip', {
+      item_id: this.item._id,
       ejemplar_id: this.ejemplar._id
     });
     window.open(url, '_blank');

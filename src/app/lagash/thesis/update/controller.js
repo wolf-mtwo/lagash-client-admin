@@ -7,7 +7,7 @@ export class LagashThesisUpdateController {
     WToast,
     Thesis,
     UUID,
-    Ejemplares,
+    ThesisEjemplares,
     thesis,
     Tutors,
     Authors,
@@ -15,7 +15,7 @@ export class LagashThesisUpdateController {
     AuthorsMap,
     EditorialsMap,
     ejemplares,
-    ThesisOption,
+    BasicOption,
     ImageService,
     AutorDialogs,
     Faculties,
@@ -35,21 +35,17 @@ export class LagashThesisUpdateController {
     this.Tutors = Tutors;
     this.Faculties = Faculties;
     this.Carrers = Carrers;
-    // this.Editorials = Editorials;
-    // this.EditorialsMap = EditorialsMap;
     this.AutorDialogs = AutorDialogs;
     this.UUID = UUID;
-    this.Ejemplares = Ejemplares;
+    this.ThesisEjemplares = ThesisEjemplares;
 
     this.create_ejemplar_state = false;
-    // this.types = ThesisOption.types;
-    this.covers = ThesisOption.covers;
-    this.illustrations = ThesisOption.illustrations;
-    this.brings = ThesisOption.brings;
-    this.years = ThesisOption.getYears();
+    this.covers = BasicOption.covers;
+    this.illustrations = BasicOption.illustrations;
+    this.brings = BasicOption.brings;
+    this.years = BasicOption.getYears();
 
     this.authors = [];
-    // this.editorial = null;
     this.catalog = null;
 
     this.ejemplares = ejemplares;
@@ -87,22 +83,6 @@ export class LagashThesisUpdateController {
 
     this.load_catalog();
     this.load_autor();
-    // if (!this.item.editorial_id) {
-    //    console.log('no tiene editorial');
-    //    return;
-    // }
-    // Editorials.get({
-    //   _id: this.item.editorial_id
-    // }).$promise
-    // .then((res) => {
-    //   this.editorial = res;
-    // })
-    // .catch((err) => {
-    //   this.WError.request(err);
-    // });
-
-    // AuthorsMap
-    // EditorialsMap
   }
 
   load_catalog() {
@@ -178,12 +158,26 @@ export class LagashThesisUpdateController {
     });
   }
 
+  update_code(item) {
+    var data = {};
+    angular.copy(item, data);
+    data.tags = data.tags.join(',');
+    data.illustrations = data.illustrations.join(',');
+    data.brings = data.brings.join(',');
+    this.Thesis.update({
+      _id: item._id
+    }, data)
+    .$promise
+    .then((response) => {
+      this.WToast.show('El nuevo codigo se guardo correctamente');
+    })
+    .catch((err) => {
+      this.WError.request(err);
+    });
+  }
+
   save_ejemplar(item) {
-    item.data_id = this.thesis_id;
-    item.enabled = false;
-    item.state = 'STORED';
-    item.type = 'THESIS';
-    this.Ejemplares.save({
+    this.ThesisEjemplares.save({
       data_id: this.thesis_id
     }, item).$promise
     .then((response) => {
@@ -198,11 +192,15 @@ export class LagashThesisUpdateController {
 
   create_ejemplar() {
     this.create_ejemplar_state = true;
-    this.Ejemplares.next().$promise
+    this.ThesisEjemplares.next().$promise
     .then((res) => {
       this.ejemplar_item = {
         _id: this.UUID.next(),
-        index: this.getIndex()
+        order: this.getOrder(),
+        code: this.item.code,
+        data_id: this.thesis_id,
+        enabled: false,
+        state: 'STORED'
       };
       if (res) {
         this.ejemplar_item.inventory = res.inventory + 1;
@@ -220,11 +218,11 @@ export class LagashThesisUpdateController {
     });
   }
 
-  getIndex() {
-    let existElement = (index) => {
+  getOrder() {
+    let existElement = (order) => {
       let result = false;
       this.ejemplares.map((item) => {
-        if (item.index === index) {
+        if (item.order === order) {
           result = true;
         }
       })
@@ -239,7 +237,7 @@ export class LagashThesisUpdateController {
   }
 
   change_ejemplar_state(ejemplar) {
-    this.Ejemplares.update({
+    this.ThesisEjemplares.update({
       _id: ejemplar._id
     }, ejemplar).$promise
     .then((response) => {

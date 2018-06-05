@@ -1,6 +1,23 @@
 export class LagashMagazinesUpdateController {
 
-  constructor($state, WError, $mdDialog, WToast, Magazines, UUID, Ejemplares, magazine, Authors, Editorials, AuthorsMap, EditorialsMap, ejemplares, MagazineOption, ImageService, MagazinesCatalog) {
+  constructor(
+    $state,
+    WError,
+    $mdDialog,
+    WToast,
+    Magazines,
+    UUID,
+    MagazinesEjemplares,
+    magazine,
+    Authors,
+    Editorials,
+    AuthorsMap,
+    EditorialsMap,
+    ejemplares,
+    BasicOption,
+    ImageService,
+    MagazinesCatalog
+  ) {
     'ngInject';
     this.magazine_id = $state.params.magazine_id;
     this.ImageService = ImageService;
@@ -14,11 +31,11 @@ export class LagashMagazinesUpdateController {
     this.Editorials = Editorials;
     this.EditorialsMap = EditorialsMap;
     this.UUID = UUID;
-    this.Ejemplares = Ejemplares;
+    this.MagazinesEjemplares = MagazinesEjemplares;
 
     this.create_ejemplar_state = false;
-    this.months = MagazineOption.months;
-    this.years = MagazineOption.getYears();
+    this.months = BasicOption.months;
+    this.years = BasicOption.getYears();
 
     this.authors = [];
     this.editorial = null;
@@ -114,12 +131,24 @@ export class LagashMagazinesUpdateController {
     });
   }
 
+  update_code(item) {
+    var data = {};
+    angular.copy(item, data);
+    data.tags = data.tags.join(',');
+    this.Magazines.update({
+      _id: item._id
+    }, data)
+    .$promise
+    .then((response) => {
+      this.WToast.show('El nuevo codigo se guardo correctamente');
+    })
+    .catch((err) => {
+      this.WError.request(err);
+    });
+  }
+
   save_ejemplar(item) {
-    item.data_id = this.magazine_id;
-    item.enabled = false;
-    item.state = 'STORED';
-    item.type = 'MAGAZINE';
-    this.Ejemplares.save({
+    this.MagazinesEjemplares.save({
       data_id: item.data_id
     }, item).$promise
     .then((response) => {
@@ -134,11 +163,15 @@ export class LagashMagazinesUpdateController {
 
   create_ejemplar() {
     this.create_ejemplar_state = true;
-    this.Ejemplares.next().$promise
+    this.MagazinesEjemplares.next().$promise
     .then((res) => {
       this.ejemplar_item = {
         _id: this.UUID.next(),
-        index: this.getIndex()
+        order: this.getOrder(),
+        code: this.item.code,
+        data_id: this.magazine_id,
+        enabled: false,
+        state: 'STORED'
       };
       if (res) {
         this.ejemplar_item.inventory = res.inventory + 1;
@@ -156,11 +189,11 @@ export class LagashMagazinesUpdateController {
     });
   }
 
-  getIndex() {
-    let existElement = (index) => {
+  getOrder() {
+    let existElement = (order) => {
       let result = false;
       this.ejemplares.map((item) => {
-        if (item.index === index) {
+        if (item.order === order) {
           result = true;
         }
       })
@@ -175,7 +208,7 @@ export class LagashMagazinesUpdateController {
   }
 
   change_ejemplar_state(ejemplar) {
-    this.Ejemplares.update({
+    this.MagazinesEjemplares.update({
       _id: ejemplar._id
     }, ejemplar).$promise
     .then((response) => {

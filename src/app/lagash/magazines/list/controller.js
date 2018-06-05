@@ -52,6 +52,7 @@ export class LagashMagazinesListController {
   create_magazine(title) {
     var data = {
       _id: this.UUID.next(),
+      code: this.BasicOption.get_code(),
       enabled: false,
       pages: 0,
       price: 0,

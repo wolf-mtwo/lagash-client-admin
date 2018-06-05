@@ -1,6 +1,6 @@
 export class LagashNewspapersPrintController {
 
-  constructor($state, WError, WToast, Newspapers, UUID, Ejemplares, newspaper, ejemplar) {
+  constructor($state, WError, WToast, Newspapers, UUID, NewspapersEjemplares, newspaper, ejemplar) {
     'ngInject';
     this.$state = $state;
     this.Newspapers = Newspapers;

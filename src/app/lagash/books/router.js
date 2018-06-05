@@ -116,7 +116,7 @@ export function router($stateProvider) {
     }
   });
 
-  $stateProvider.state('print_item_chip', {
+  $stateProvider.state('print_book_chip', {
     url: '/print/chip/book/:item_id/ejemplares/:ejemplar_id',
     templateUrl: base_url + '/print/chip/index.html',
     controller: 'LagashBooksPrintChipController',

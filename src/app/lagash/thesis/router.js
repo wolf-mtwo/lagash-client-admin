@@ -95,8 +95,8 @@ export function router($stateProvider) {
           _id: $stateParams.thesis_id
         }).$promise;
       },
-      ejemplares: function($stateParams, Ejemplares) {
-        return Ejemplares.find({
+      ejemplares: function($stateParams, ThesisEjemplares) {
+        return ThesisEjemplares.find({
           data_id: $stateParams.thesis_id
         }).$promise;
       }
@@ -114,8 +114,8 @@ export function router($stateProvider) {
           _id: $stateParams.thesis_id
         }).$promise;
       },
-      ejemplar: function($stateParams, Ejemplares) {
-        return Ejemplares.get({
+      ejemplar: function($stateParams, ThesisEjemplares) {
+        return ThesisEjemplares.get({
           _id: $stateParams.ejemplar_id
         }).$promise;
       }
@@ -133,8 +133,27 @@ export function router($stateProvider) {
           _id: $stateParams.thesis_id
         }).$promise;
       },
-      ejemplar: function($stateParams, Ejemplares) {
-        return Ejemplares.get({
+      ejemplar: function($stateParams, ThesisEjemplares) {
+        return ThesisEjemplares.get({
+          _id: $stateParams.ejemplar_id
+        }).$promise;
+      }
+    }
+  });
+
+  $stateProvider.state('print_thesis_chip', {
+    url: '/print/chip/thesis/:item_id/ejemplares/:ejemplar_id',
+    templateUrl: base_url + '/print/chip/index.html',
+    controller: 'LagashThesisPrintChipController',
+    controllerAs: 'vm',
+    resolve: {
+      item: function($stateParams, Thesis) {
+        return Thesis.get({
+          _id: $stateParams.item_id
+        }).$promise;
+      },
+      ejemplar: function($stateParams, ThesisEjemplares) {
+        return ThesisEjemplares.get({
           _id: $stateParams.ejemplar_id
         }).$promise;
       }

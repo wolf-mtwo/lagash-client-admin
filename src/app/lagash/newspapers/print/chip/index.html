@@ -1,0 +1,139 @@
+<div style="font-family:monospace;font-size:16px;">
+  <div style="position:relative;width:665px;height:390px;padding:10px;">
+    <div style="position:absolute;width:665px;height:390px;background-color:white;border:1px solid black;">
+    </div>
+    <div style="position:absolute;width:667px;height:392px;background-color:white;border-radius: 15px;">
+      <div class="lagash-print-contanier">
+        <div style="position:relative;">
+          <div style="position:absolute;top:155px;left:25px;">
+            <b>Inv.</b> <br> {{vm.ejemplar.inventory}}
+          </div>
+          <div style="position:absolute;top:30px;left:100px;padding:0 20px 0 0;">
+            <div style="display:flex;text-indent:30px;">
+              <div style="flex:1;width:25%;">{{vm.item.code}}</div>
+              <div style="flex:1;width:25%;">{{vm.authors[0].code}}</div>
+              <div style="flex:1;width:25%;">M.1</div>
+              <div style="flex:1;width:25%;">Ej.{{vm.ejemplar.order}}</div>
+            </div>
+            <div>
+              {{vm.authors[0].last_name | uppercase}}, {{vm.authors[0].first_name}}
+            </div>
+            <div style="text-align:justify;text-indent:30px;">
+              {{vm.item.title}} / {{vm.authors[0].first_name}} {{vm.authors[0].last_name}} .-- {{vm.editorial.city || 'NO EXISTE'}} : {{vm.editorial.name || 'NO EXISTE'}}, {{vm.item.year}}.
+            </div>
+            <div style="text-indent:30px;">
+              {{vm.item.pages}} p. : {{vm.item.illustrations}}; {{vm.item.high}} cm;
+            </div>
+            <br>
+            <div style="text-indent:30px;">
+              Incluye {{vm.item.brings}}.
+            </div>
+            <div style="text-indent:30px;">
+              {{vm.item.isbn || 'NO EXISTE'}}, $us {{vm.item.price}}, {{vm.item.cover}}.
+            </div>
+            <br>
+            <div style="text-indent:30px;">
+              {{vm.item.tags}}.
+            </div>
+          </div>
+          <div style="position:absolute;top:317px;left:330px;">
+            &#9711;
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <div style="position:relative;width:425px;height:280px;padding:10px;">
+    <div style="position:absolute;width:425px;height:280px;background-color:white;border:1px solid black;">
+    </div>
+    <div style="position:absolute;width:427px;height:282px;background-color:white;border-radius: 15px;">
+      <table>
+        <tr>
+          <td style="text-align: center; width: 120px;">
+            <img ng-src="assets/images/marca-uab.png" width="68px" height="auto" style="padding:35px 0 0 30px;">
+          </td>
+          <td style="text-align:center;width:300px;font-family:fantasy;">
+            <h1 style="margin: 25px 0 0 0;">BIBLIOTECA</h1>
+            <h3 style="margin: 0 0 20px 0;">Sighart Klauss</h3>
+          </td>
+        </tr>
+      </table>
+      <div style="padding: 0 30px;font-family:monospace;font-size:18px;">
+        <div style="display:flex;padding: 5px;">
+          <b>Codigo:</b> <div style="flex:1;display:inline;border-bottom:2px dotted black;padding:0  0 0 20px;">{{vm.item.code}}</div>
+        </div>
+        <div style="display:flex;padding: 5px;">
+          <b>Autor:</b> <div style="flex:1;display:inline;border-bottom:2px dotted black;padding:0  0 0 20px;">{{vm.authors[0].last_name | uppercase}}, {{vm.authors[0].first_name}}</div>
+        </div>
+        <div style="display:flex;padding: 5px;">
+          <b>Inventario:</b> <div style="flex:1;display:inline;border-bottom:2px dotted black;padding:0  0 0 20px;">{{vm.ejemplar.inventory}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <div class="lagash-print-contanier" style="font-family:monospace;font-size:17px;">
+    <div style="position:relative;">
+      <div style="position:absolute;top:185px;left:351px;width:150px;text-align:end;">
+        {{vm.ejemplar.inventory}}
+      </div>
+      <div style="position:absolute;top:240px;left:75px;">
+        <table>
+          <tr>
+            <td style="vertical-align:top;width:90px;">{{vm.item.code}}</td>
+            <td style="width:320px;text-align:justify;padding: 0 20px 0 0;">{{vm.item.title}}</td>
+          </tr>
+          <tr>
+            <td style="vertical-align:top;width:90px;">{{vm.authors[0].code}}</td>
+            <td>{{vm.authors[0].last_name | uppercase}}, {{vm.authors[0].first_name}}</td>
+          </tr>
+          <tr>
+            <td style="vertical-align:top;width:90px;">{{vm.ejemplar.suffix}}</td>
+          </tr>
+        </table>
+      </div>
+      <div style="width:1020px;height:670px;">
+        <img ng-src="assets/images/chip.png">
+      </div>
+    </div>
+  </div>
+</div>
+
+<style media="screen">
+/*
+.lagash-print-contanier {
+  font-family: monospace;
+  font-size: 15px;
+}
+.lagash-print-contanier .pocket {
+  position: relative;
+}
+.lagash-print-contanier .pocket .main {
+  position: absolute;
+}
+.lagash-print-contanier .pocket .main.inventory {
+  top: 185px;
+  left: 351px;
+  width: 150px;
+  text-align: end;
+}
+.lagash-print-contanier .pocket .main.description {
+  top: 240px;
+  left: 75px;
+}
+.lagash-print-contanier .pocket .main.description .code {
+  vertical-align: top;
+  width: 90px;
+}
+.lagash-print-contanier .pocket .main.description .title {
+  width: 330px;
+  text-align: justify;
+}
+.lagash-print-contanier .pocket .background {
+  width: 1020px;
+  height: 670px;
+}*/
+</style>

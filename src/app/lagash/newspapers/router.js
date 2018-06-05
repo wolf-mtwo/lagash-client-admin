@@ -70,8 +70,8 @@ export function router($stateProvider) {
           _id: $stateParams.newspaper_id
         }).$promise;
       },
-      ejemplares: function($stateParams, Ejemplares) {
-        return Ejemplares.find({
+      ejemplares: function($stateParams, NewspapersEjemplares) {
+        return NewspapersEjemplares.find({
           data_id: $stateParams.newspaper_id
         }).$promise;
       }
@@ -89,8 +89,8 @@ export function router($stateProvider) {
           _id: $stateParams.newspaper_id
         }).$promise;
       },
-      ejemplar: function($stateParams, Ejemplares) {
-        return Ejemplares.get({
+      ejemplar: function($stateParams, NewspapersEjemplares) {
+        return NewspapersEjemplares.get({
           _id: $stateParams.ejemplar_id
         }).$promise;
       }
@@ -108,8 +108,27 @@ export function router($stateProvider) {
           _id: $stateParams.newspaper_id
         }).$promise;
       },
-      ejemplar: function($stateParams, Ejemplares) {
-        return Ejemplares.get({
+      ejemplar: function($stateParams, NewspapersEjemplares) {
+        return NewspapersEjemplares.get({
+          _id: $stateParams.ejemplar_id
+        }).$promise;
+      }
+    }
+  });
+
+  $stateProvider.state('print_newspaper_chip', {
+    url: '/print/chip/newspapers/:item_id/ejemplares/:ejemplar_id',
+    templateUrl: base_url + '/print/chip/index.html',
+    controller: 'LagashNewspapersPrintChipController',
+    controllerAs: 'vm',
+    resolve: {
+      item: function($stateParams, Newspapers) {
+        return Newspapers.get({
+          _id: $stateParams.item_id
+        }).$promise;
+      },
+      ejemplar: function($stateParams, NewspapersEjemplares) {
+        return NewspapersEjemplares.get({
           _id: $stateParams.ejemplar_id
         }).$promise;
       }
