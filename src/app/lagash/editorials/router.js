@@ -42,11 +42,6 @@ export function router($stateProvider) {
         return Editorials.get({
           _id: $stateParams.editorial_id
         }).$promise;
-      },
-      ejemplares: function($stateParams, Ejemplares) {
-        return Ejemplares.find({
-          data_id: $stateParams.editorial_id
-        }).$promise;
       }
     }
   });

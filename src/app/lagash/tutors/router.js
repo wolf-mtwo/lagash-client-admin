@@ -43,11 +43,6 @@ export function router($stateProvider) {
         return Tutors.get({
           _id: $stateParams.tutor_id
         }).$promise;
-      },
-      ejemplares: function($stateParams, Ejemplares) {
-        return Ejemplares.find({
-          data_id: $stateParams.tutor_id
-        }).$promise;
       }
     }
   });

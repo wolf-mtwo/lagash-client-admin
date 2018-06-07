@@ -42,11 +42,6 @@ export function router($stateProvider) {
         return Authors.get({
           _id: $stateParams.author_id
         }).$promise;
-      },
-      ejemplares: function($stateParams, Ejemplares) {
-        return Ejemplares.find({
-          data_id: $stateParams.author_id
-        }).$promise;
       }
     }
   });
