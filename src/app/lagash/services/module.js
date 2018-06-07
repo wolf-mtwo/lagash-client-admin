@@ -31,6 +31,7 @@ import { AuthorsMap } from './authors.map.service';
 import { EditorialsMap } from './editorials.map.service';
 
 import { Ejemplares } from './history/ejemplares.service';
+import { Booking } from './history/booking.service';
 
 angular.module('wolf.lagash.services', [
   'wolf.lagash.helpers'
@@ -65,6 +66,7 @@ angular.module('wolf.lagash.services', [
 .service('AuthorsMap', AuthorsMap)
 .service('EditorialsMap', EditorialsMap)
 .service('Ejemplares', Ejemplares)
+.service('Booking', Booking)
 .run(($log) => {
   $log.debug('run lagash end');
 });

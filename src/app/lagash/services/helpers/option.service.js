@@ -4,6 +4,39 @@ export class BasicOption {
     'ngInject';
     this.UUID = UUID;
     this.EMPTY = 'NO EXISTE';
+
+    this.states = [{
+      value: 'GUARDADO',
+      key: 'STORED'
+    }, {
+      value: 'RESERVADO',
+      key: 'BOOKED'
+    }, {
+      value: 'PRESTADO',
+      key: 'BORROWED'
+    }, {
+      value: 'DEVUELTO',
+      key: 'RESTORED'
+    }];
+    //
+    // this.states = [];
+    // this.states['STORED'] = {
+    //   value: 'GUARDADO',
+    //   key: 'STORED'
+    // };
+    // this.states['BOOKED'] = {
+    //   value: 'RESERVADO',
+    //   key: 'BOOKED'
+    // };
+    // this.states['BORROWED'] = {
+    //   value: 'PRESTADO',
+    //   key: 'BORROWED'
+    // };
+    // this.states['RESTORED'] = {
+    //   value: 'DEVUELTO',
+    //   key: 'RESTORED'
+    // };
+
     this.types = [{
       key: 'volumen',
       value: 'Volumen'

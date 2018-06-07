@@ -27,6 +27,10 @@ export class LagashController {
       title: 'Inventario',
       icon: 'reorder',
       route: 'lagash.inventories.books'
+    }, {
+      title: 'Prestamos',
+      icon: 'reorder',
+      route: 'lagash.booking.loans'
     }];
 
     this.references = [{

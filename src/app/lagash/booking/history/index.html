@@ -1,0 +1,37 @@
+<md-content flex>
+  <!-- <div layout="row">
+    <span flex></span>
+    <input class="wargos-inventory" type="number" ng-model="vm.select.start">
+    <input class="wargos-inventory" type="number" ng-model="vm.select.end">
+    <md-button type="submit" class="md-raised" ng-click="vm.search()">Buscar</md-button>
+  </div> -->
+  <div>
+    <md-input-container class="md-block" flex-gt-xs>
+      <label>Codigo o inventario</label>
+      <input ng-model="vm.query.search" ng-change="vm.search_ejemplares()">
+    </md-input-container>
+  </div>
+  <md-table-pagination md-limit="vm.query.limit" md-limit-options="[40, 50, 60]" md-page="vm.query.page" md-total="{{vm.total}}" md-on-paginate="vm.on_pagination" md-page-select></md-table-pagination>
+  <div ng-if="vm.items.length == 0" class="wargos-text-align">
+    <b>No existe <i>ejemplares</i> registrados</b>
+  </div>
+  <md-list>
+    <md-list-item ng-repeat="item in vm.items" ng-click="vm.select_item(item)">
+      <ng-md-icon icon="book">dd</ng-md-icon>
+      <p>
+
+        <b class="lagash-report-100">{{vm.i18n[item.type]}}</b>
+        <b class="lagash-report-200">{{item.code}}</b>
+        <b class="lagash-report-300">{{item.name}}</b>
+        <span><i>{{item.data.title}}</i></span>
+      </p>
+      <div class="md-secondary">
+        <small><b>{{item.created | date: 'mm:HH dd-MM-yyyy'}}</b></small>
+        <b>{{vm.i18n[item.state]}}</b>
+      </div>
+    </md-list-item>
+  </md-list>
+</md-content>
+<style media="screen">
+
+</style>

@@ -1,6 +1,6 @@
 export class LagashBooksEjemplarController {
 
-  constructor($state, WError, WToast, Books, UUID, BooksEjemplares, book, ejemplar, Authors) {
+  constructor($state, WError, WToast, Books, UUID, BooksEjemplares, book, ejemplar, Authors, BasicOption) {
     'ngInject';
     this.$state = $state;
     this.Books = Books;
@@ -10,16 +10,9 @@ export class LagashBooksEjemplarController {
     this.item = book;
     this.ejemplar = ejemplar;
 
-    this.states = [{
-      value: 'Guardado',
-      key: 'STORED'
-    }, {
-      value: 'Reservado',
-      key: 'BOOKED'
-    }, {
-      value: 'Prestado',
-      key: 'BORROWED'
-    }];
+    this.states = BasicOption.states;
+
+    console.log(this.states);
 
     // autor
     Authors.find_authors({
