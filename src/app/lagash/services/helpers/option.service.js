@@ -18,24 +18,11 @@ export class BasicOption {
       value: 'DEVUELTO',
       key: 'RESTORED'
     }];
-    //
-    // this.states = [];
-    // this.states['STORED'] = {
-    //   value: 'GUARDADO',
-    //   key: 'STORED'
-    // };
-    // this.states['BOOKED'] = {
-    //   value: 'RESERVADO',
-    //   key: 'BOOKED'
-    // };
-    // this.states['BORROWED'] = {
-    //   value: 'PRESTADO',
-    //   key: 'BORROWED'
-    // };
-    // this.states['RESTORED'] = {
-    //   value: 'DEVUELTO',
-    //   key: 'RESTORED'
-    // };
+    this.states_special = [];
+    this.states_special['STORED'] = this.states[0];
+    this.states_special['BOOKED'] = this.states[1];
+    this.states_special['BORROWED'] = this.states[2];
+    this.states_special['RESTORED'] = this.states[3];
 
     this.types = [{
       key: 'volumen',

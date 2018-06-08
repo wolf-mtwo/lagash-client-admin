@@ -42,10 +42,6 @@ export class LagashBookingLoansController {
 
     this.booking = [];
     this.states = this.BasicOption.states;
-    this.select = {
-      start: 0,
-      end: 0
-    }
     this.total = size.total;
     this.query = {
       search: '',
@@ -111,11 +107,12 @@ export class LagashBookingLoansController {
     });
   }
 
-  delete_loan(item) {
+  delete_loan(item, index) {
     this.model.remove({
       _id: item._id
     }, item).$promise
     .then((response) => {
+      this.items.splice(index, 1);
       this.WToast.show('Se elimino la reservación');
     })
     .catch((err) => {

@@ -12,15 +12,6 @@ export class Booking {
       update: {
         method: 'PUT'
       },
-      // find: {
-      //   method: 'GET',
-      //   url: Global.PATH + '/v2/resource/:data_id/ejemplares',
-      //   isArray: true
-      // },
-      // save: {
-      //   method: 'POST',
-      //   url: Global.PATH + '/v2/resource/:data_id/ejemplares'
-      // },
       pagination: {
         method: 'GET',
         isArray: true,
