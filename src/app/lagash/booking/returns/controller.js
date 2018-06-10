@@ -100,6 +100,7 @@ export class LagashBookingReturnsController {
       _id: item.data_id
     }).$promise
     .then((res) => {
+      item.status = this.BasicOption.get_state(item.created);
       item.data = res;
     })
     .catch((err) => {

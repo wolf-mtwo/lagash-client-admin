@@ -273,4 +273,24 @@ export class BasicOption {
     });
     return result;
   }
+
+  get_state(date) {
+    var date_state = new Date(date);
+    var day_state = date_state.getDate();
+    var month_state = date_state.getMonth();
+    var year_state = date_state.getFullYear();
+    var date = new Date();
+    var day_warn = date.getDate() - 1;
+    var day_danger = date.getDate() - 2;
+    var month = date.getMonth();
+    var year = date.getFullYear();
+    if (day_state === day_warn && month_state === month && year_state === year) {
+      return '#f9f97a9c';
+    }
+    if (day_state <= day_danger && month_state <= month && year_state <= year) {
+      return '#ff6d6dba';
+    }
+    // .lagash-report-warning
+    // .lagash-report-danger
+  }
 }

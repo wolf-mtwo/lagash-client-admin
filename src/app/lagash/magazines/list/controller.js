@@ -1,7 +1,8 @@
 export class LagashMagazinesListController {
 
-  constructor($state, $mdDialog, WError, WToast, Magazines, size, UUID, BasicOption) {
+  constructor($state, $stateParams, $mdDialog, WError, WToast, Magazines, size, UUID, BasicOption) {
     'ngInject';
+    this.subscription_id = $stateParams.subscription_id;
     this.$state = $state;
     this.$mdDialog = $mdDialog;
     this.WToast = WToast;
@@ -13,13 +14,14 @@ export class LagashMagazinesListController {
     this.magazines = [];
     this.total = size.total;
     this.query = {
+      subscription_id: this.subscription_id,
       search: '',
       limit: 25,
       page: 1
     };
     var self = this;
     self.on_pagination = function() {
-      Magazines.search(self.query, function(items) {
+      Magazines.subscriptions(self.query, function(items) {
         self.magazines = items;
       }).$promise;
     }
@@ -56,6 +58,7 @@ export class LagashMagazinesListController {
       enabled: false,
       pages: 0,
       price: 0,
+      catalog_id: this.subscription_id,
       month: (new Date()).getUTCMonth() + 1,
       edition: 0,
       edition_date: new Date(),

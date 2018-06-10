@@ -10,8 +10,8 @@
     <b>No existe <i>devoluciones</i> pendientes</b>
   </div>
   <md-list>
-    <md-list-item ng-repeat="item in vm.items" >
-      <ng-md-icon icon="book">dd</ng-md-icon>
+    <md-list-item ng-repeat="item in vm.items" style="background-color: {{item.status}}">
+      <ng-md-icon icon="book"></ng-md-icon>
       <p>
         <b class="lagash-report-100">{{vm.i18n[item.type]}}</b>
         <b class="lagash-report-200">{{item.code}}</b>

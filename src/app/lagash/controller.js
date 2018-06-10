@@ -18,11 +18,11 @@ export class LagashController {
     }, {
       title: 'Revistas',
       icon: 'book',
-      route: 'lagash.magazines.list.main'
+      route: 'lagash.magazines.subscriptions.main'
     }, {
       title: 'Periodico',
       icon: 'book',
-      route: 'lagash.newspapers.list.main'
+      route: 'lagash.newspapers.subscriptions.main'
     }, {
       title: 'Inventario',
       icon: 'reorder',

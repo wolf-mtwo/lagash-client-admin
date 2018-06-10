@@ -9,8 +9,25 @@ export function router($stateProvider) {
     controllerAs: 'vm'
   });
 
+  $stateProvider.state('lagash.newspapers.subscriptions', {
+    url: '/subscriptions',
+    templateUrl: base_url + '/subscription/index.html',
+    controller: 'LagashNewspapersSubscriptionController',
+    controllerAs: 'vm',
+    resolve: {
+      size: function(NewspapersCatalog) {
+        return NewspapersCatalog.size().$promise;
+      }
+    }
+  });
+
+  $stateProvider.state('lagash.newspapers.subscriptions.main', {
+    url: '/main',
+    templateUrl: base_url + '/../template/index.html'
+  });
+
   $stateProvider.state('lagash.newspapers.list', {
-    url: '/list',
+    url: '/subscriptions/:subscription_id',
     templateUrl: base_url + '/list/index.html',
     controller: 'LagashNewspapersListController',
     controllerAs: 'vm',
@@ -31,32 +48,6 @@ export function router($stateProvider) {
     templateUrl: base_url + '/create/index.html',
     controller: 'LagashNewspapersCreateController',
     controllerAs: 'vm'
-  });
-
-  $stateProvider.state('lagash.newspapers.list.catalog', {
-    url: '/catalog',
-    templateUrl: base_url + '/catalog/index.html',
-    controller: 'LagashNewspapersCatalogController',
-    controllerAs: 'vm',
-    resolve: {
-      size: function(NewspapersCatalog) {
-        return NewspapersCatalog.size().$promise;
-      }
-    }
-  });
-
-  $stateProvider.state('lagash.newspapers.list.catalog_preview', {
-    url: '/catalog/:catalog_id',
-    templateUrl: base_url + '/catalog/update/index.html',
-    controller: 'LagashNewspapersCatalogUpdateController',
-    controllerAs: 'vm',
-    resolve: {
-      catalog: function($stateParams, NewspapersCatalog) {
-        return NewspapersCatalog.get({
-          _id: $stateParams.catalog_id
-        }).$promise;
-      },
-    }
   });
 
   $stateProvider.state('lagash.newspapers.list.preview', {

@@ -31,6 +31,11 @@ export class Magazines {
         isArray: true,
         url: url + '/page/:page/limit/:limit/search'
       },
+      subscriptions: {
+        method: 'GET',
+        isArray: true,
+        url: url + '/catalog/:subscription_id/page/:page/limit/:limit'
+      },
       size: {
         method: 'GET',
         url: url + '/size'

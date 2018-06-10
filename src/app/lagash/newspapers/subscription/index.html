@@ -4,13 +4,13 @@
       <md-toolbar>
         <div class="md-toolbar-tools">
           <h1>
-            Revistas
+            Suscripción
           </h1>
           <span flex></span>
           <md-button class="md-icon-button"
                      aria-label="add"
-                     ng-click="vm.show_magazine_create_dialog()">
-            <ng-md-icon icon="add"></ng-md-icon>
+                     ng-click="vm.show_catalog_create_dialog()">
+            <ng-md-icon icon="list"></ng-md-icon>
           </md-button>
           <md-button class="md-icon-button" aria-label="more">
             <ng-md-icon icon="more_vert"></ng-md-icon>
@@ -20,21 +20,21 @@
       <md-content flex>
         <div>
           <md-input-container class="md-block" flex-gt-xs>
-            <label>Titulo de la revistas</label>
-            <input ng-model="vm.query.search" ng-change="vm.search_magazines()">
+            <label>Titulo de la suscripción</label>
+            <input ng-model="vm.query.search" ng-change="vm.search_subscriptions()">
           </md-input-container>
         </div>
         <md-table-pagination md-limit="vm.query.limit" md-limit-options="[20, 25, 30]" md-page="vm.query.page" md-total="{{vm.total}}" md-on-paginate="vm.on_pagination" md-page-select></md-table-pagination>
-        <div ng-if="vm.magazines.length == 0" class="wargos-text-align">
-          <b>No existe <i>revistas</i> registrados</b>
+        <div ng-if="vm.subscriptions.length == 0" class="wargos-text-align">
+          <b>No existe <i>Suscripciones</i> registrados</b>
         </div>
         <md-list>
-          <md-list-item ng-repeat="magazine in vm.magazines" ng-click="vm.select_magazine(magazine)">
+          <md-list-item ng-repeat="subscription in vm.subscriptions" ng-click="vm.select_subscription(subscription)">
             <ng-md-icon icon="book"></ng-md-icon>
-            <p>{{magazine.title}}</p>
+            <p>{{subscription.title}}</p>
           <md-switch class="md-secondary"
-                     ng-model="magazine.enabled"
-                     ng-change="vm.change_state(magazine)"></md-switch>
+                     ng-model="subscription.enabled"
+                     ng-change="vm.change_state(subscription)"></md-switch>
           </md-list-item>
         </md-list>
       </md-content>

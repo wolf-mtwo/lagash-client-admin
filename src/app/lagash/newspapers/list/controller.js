@@ -1,7 +1,9 @@
 export class LagashNewspapersListController {
 
-  constructor($state, $mdDialog, WError, WToast, Newspapers, size, UUID, BasicOption) {
+  constructor($state, $stateParams, $mdDialog, WError, WToast, Newspapers, size, UUID, BasicOption) {
     'ngInject';
+    this.subscription_id = $stateParams.subscription_id;
+    console.log(this.subscription_id);
     this.$state = $state;
     this.$mdDialog = $mdDialog;
     this.WToast = WToast;
@@ -13,13 +15,14 @@ export class LagashNewspapersListController {
     this.newspapers = [];
     this.total = size.total;
     this.query = {
+      subscription_id: this.subscription_id,
       search: '',
       limit: 25,
       page: 1
     };
     var self = this;
     self.on_pagination = function() {
-      Newspapers.search(self.query, function(items) {
+      Newspapers.subscriptions(self.query, function(items) {
         self.newspapers = items;
       }).$promise;
     }
@@ -54,6 +57,7 @@ export class LagashNewspapersListController {
       _id: this.UUID.next(),
       code: this.BasicOption.get_code(),
       enabled: false,
+      catalog_id: this.subscription_id,
       // tags: null,
       // type: null,
       // cover: null,

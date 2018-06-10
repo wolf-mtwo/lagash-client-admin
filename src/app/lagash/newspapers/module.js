@@ -4,8 +4,7 @@ import { LagashNewspapersUpdateController } from './update/controller';
 import { LagashNewspapersEjemplarController } from './ejemplar/controller';
 import { LagashNewspapersListController } from './list/controller';
 import { LagashNewspapersPrintController } from './print/controller';
-import { LagashNewspapersCatalogController } from './catalog/controller';
-import { LagashNewspapersCatalogUpdateController } from './catalog/update/controller';
+import { LagashNewspapersSubscriptionController } from './subscription/controller';
 
 import { LagashNewspapersPrintChipController } from './print/chip/controller';
 
@@ -20,8 +19,7 @@ angular.module('wolf.lagash.newspapers', [
 .controller('LagashNewspapersEjemplarController', LagashNewspapersEjemplarController)
 .controller('LagashNewspapersListController', LagashNewspapersListController)
 .controller('LagashNewspapersPrintController', LagashNewspapersPrintController)
-.controller('LagashNewspapersCatalogController', LagashNewspapersCatalogController)
-.controller('LagashNewspapersCatalogUpdateController', LagashNewspapersCatalogUpdateController)
+.controller('LagashNewspapersSubscriptionController', LagashNewspapersSubscriptionController)
 
 .controller('LagashNewspapersPrintChipController', LagashNewspapersPrintChipController)
 .run(($log) => {

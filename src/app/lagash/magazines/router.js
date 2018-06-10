@@ -9,16 +9,33 @@ export function router($stateProvider) {
     controllerAs: 'vm'
   });
 
+  $stateProvider.state('lagash.magazines.subscriptions', {
+    url: '/subscriptions',
+    templateUrl: base_url + '/subscription/index.html',
+    controller: 'LagashMagazinesSubscriptionController',
+    controllerAs: 'vm',
+    resolve: {
+      size: function(MagazinesCatalog) {
+        return MagazinesCatalog.size().$promise;
+      }
+    }
+  });
+
+  $stateProvider.state('lagash.magazines.subscriptions.main', {
+    url: '/main',
+    templateUrl: base_url + '/../template/index.html'
+  });
+
   $stateProvider.state('lagash.magazines.list', {
-    url: '/list',
+    url: '/subscriptions/:subscription_id',
     templateUrl: base_url + '/list/index.html',
     controller: 'LagashMagazinesListController',
     controllerAs: 'vm',
-    resolve: {
-      size: function(Magazines) {
-        return Magazines.size().$promise;
+      resolve: {
+        size: function(Magazines) {
+          return Magazines.size().$promise;
+        }
       }
-    }
   });
 
   $stateProvider.state('lagash.magazines.list.main', {
@@ -31,32 +48,6 @@ export function router($stateProvider) {
     templateUrl: base_url + '/create/index.html',
     controller: 'LagashMagazinesCreateController',
     controllerAs: 'vm'
-  });
-
-  $stateProvider.state('lagash.magazines.list.catalog', {
-    url: '/catalog',
-    templateUrl: base_url + '/catalog/index.html',
-    controller: 'LagashMagazinesCatalogController',
-    controllerAs: 'vm',
-    resolve: {
-      size: function(MagazinesCatalog) {
-        return MagazinesCatalog.size().$promise;
-      }
-    }
-  });
-
-  $stateProvider.state('lagash.magazines.list.catalog_preview', {
-    url: '/catalog/:catalog_id',
-    templateUrl: base_url + '/catalog/update/index.html',
-    controller: 'LagashMagazinesCatalogUpdateController',
-    controllerAs: 'vm',
-    resolve: {
-      catalog: function($stateParams, MagazinesCatalog) {
-        return MagazinesCatalog.get({
-          _id: $stateParams.catalog_id
-        }).$promise;
-      },
-    }
   });
 
   $stateProvider.state('lagash.magazines.list.preview', {
