@@ -103,7 +103,7 @@ export class LagashNewspapersListController {
           $mdDialog.hide(answer);
         };
       },
-      templateUrl: 'app/lagash/newspapers/list/create.html',
+      template: require('./create.html'),
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose: true,

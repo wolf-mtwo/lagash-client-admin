@@ -1,17 +1,16 @@
 export function router($stateProvider) {
   'ngInject';
-  var base_url = 'app/lagash/newspapers';
 
   $stateProvider.state('lagash.newspapers', {
     url: '/newspapers',
-    templateUrl: base_url + '/index.html',
+    template: require('./index.html'),
     controller: 'LagashNewspapersController',
     controllerAs: 'vm'
   });
 
   $stateProvider.state('lagash.newspapers.subscriptions', {
     url: '/subscriptions',
-    templateUrl: base_url + '/subscription/index.html',
+    template: require('./subscription/index.html'),
     controller: 'LagashNewspapersSubscriptionController',
     controllerAs: 'vm',
     resolve: {
@@ -23,12 +22,12 @@ export function router($stateProvider) {
 
   $stateProvider.state('lagash.newspapers.subscriptions.main', {
     url: '/main',
-    templateUrl: base_url + '/../template/index.html'
+    template: require('./../template/index.html')
   });
 
   $stateProvider.state('lagash.newspapers.list', {
     url: '/subscriptions/:subscription_id',
-    templateUrl: base_url + '/list/index.html',
+    template: require('./list/index.html'),
     controller: 'LagashNewspapersListController',
     controllerAs: 'vm',
     resolve: {
@@ -40,19 +39,19 @@ export function router($stateProvider) {
 
   $stateProvider.state('lagash.newspapers.list.main', {
     url: '/main',
-    templateUrl: base_url + '/../template/index.html'
+    template: require('./../template/index.html')
   });
 
-  $stateProvider.state('lagash.newspapers.list.create', {
-    url: '/create',
-    templateUrl: base_url + '/create/index.html',
-    controller: 'LagashNewspapersCreateController',
-    controllerAs: 'vm'
-  });
+  // $stateProvider.state('lagash.newspapers.list.create', {
+  //   url: '/create',
+  //   template: require('./create/index.html'),
+  //   controller: 'LagashNewspapersCreateController',
+  //   controllerAs: 'vm'
+  // });
 
   $stateProvider.state('lagash.newspapers.list.preview', {
     url: '/:newspaper_id',
-    templateUrl: base_url + '/update/index.html',
+    template: require('./update/index.html'),
     controller: 'LagashNewspapersUpdateController',
     controllerAs: 'vm',
     resolve: {
@@ -71,7 +70,7 @@ export function router($stateProvider) {
 
   $stateProvider.state('lagash.newspapers.list.ejemplar', {
     url: '/:newspaper_id/ejemplares/:ejemplar_id',
-    templateUrl: base_url + '/ejemplar/index.html',
+    template: require('./ejemplar/index.html'),
     controller: 'LagashNewspapersEjemplarController',
     controllerAs: 'vm',
     resolve: {
@@ -90,7 +89,7 @@ export function router($stateProvider) {
 
   $stateProvider.state('print_newspaper', {
     url: '/print/newspaper/:newspaper_id/ejemplares/:ejemplar_id',
-    templateUrl: base_url + '/print/index.html',
+    template: require('./print/index.html'),
     controller: 'LagashNewspapersPrintController',
     controllerAs: 'vm',
     resolve: {
@@ -109,7 +108,7 @@ export function router($stateProvider) {
 
   $stateProvider.state('print_newspaper_chip', {
     url: '/print/chip/newspapers/:item_id/ejemplares/:ejemplar_id',
-    templateUrl: base_url + '/print/chip/index.html',
+    template: require('./print/chip/index.html'),
     controller: 'LagashNewspapersPrintChipController',
     controllerAs: 'vm',
     resolve: {

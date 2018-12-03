@@ -77,7 +77,7 @@ export class LagashThesisCatalogController {
           $mdDialog.hide(answer);
         };
       },
-      templateUrl: 'app/lagash/thesis/catalog/create.html',
+      template: require('./create.html'),
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose: true,

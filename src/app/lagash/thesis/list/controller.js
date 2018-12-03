@@ -92,7 +92,7 @@ export class LagashThesisListController {
           $mdDialog.hide(answer);
         };
       },
-      templateUrl: 'app/lagash/thesis/list/create.html',
+      template: require('./create.html'),
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose: true,

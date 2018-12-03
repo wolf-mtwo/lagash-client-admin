@@ -82,7 +82,7 @@ export class LagashNewspapersSubscriptionController {
           $mdDialog.hide(answer);
         };
       },
-      templateUrl: 'app/lagash/newspapers/subscription/create.html',
+      template: require('./create.html'),
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose: true,

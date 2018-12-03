@@ -304,7 +304,7 @@ export class LagashBooksUpdateController {
     var self = this;
     this.$mdDialog.show({
       controller: DialogEditorialsCreateController2,
-      templateUrl: 'app/lagash/books/create/editorial/create.html',
+      template: require('../create/editorial/create.html'),
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose: true,
@@ -325,7 +325,7 @@ export class LagashBooksUpdateController {
     var self = this;
     this.$mdDialog.show({
       controller: DialogEditorialsSearchController2,
-      templateUrl: 'app/lagash/books/create/editorial/search.html',
+      template: require('../create/editorial/search.html'),
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose: true,
@@ -346,7 +346,7 @@ export class LagashBooksUpdateController {
     var self = this;
     this.$mdDialog.show({
       controller: DialogCatalogSearchController2,
-      templateUrl: 'app/lagash/books/create/catalog/search.html',
+      template: require('../create/catalog/search.html'),
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose: true,

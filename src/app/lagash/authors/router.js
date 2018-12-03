@@ -1,17 +1,16 @@
 export function router($stateProvider) {
   'ngInject';
-  var base_url = 'app/lagash/authors';
 
   $stateProvider.state('lagash.authors', {
     url: '/authors',
-    templateUrl: base_url + '/index.html',
+    template: require('./index.html'),
     controller: 'LagashAuthorsController',
     controllerAs: 'vm'
   });
 
   $stateProvider.state('lagash.authors.list', {
     url: '/list',
-    templateUrl: base_url + '/list/index.html',
+    template: require('./list/index.html'),
     controller: 'LagashAuthorsListController',
     controllerAs: 'vm',
     resolve: {
@@ -20,21 +19,22 @@ export function router($stateProvider) {
       }
     }
   });
+
   $stateProvider.state('lagash.authors.list.main', {
     url: '/main',
-    templateUrl: base_url + '/../template/index.html'
+    template: require('../template/index.html')
   });
 
   $stateProvider.state('lagash.authors.list.create', {
     url: '/create',
-    templateUrl: base_url + '/create/index.html',
+    template: require('./create/index.html'),
     controller: 'LagashAuthorsCreateController',
     controllerAs: 'vm'
   });
 
   $stateProvider.state('lagash.authors.list.preview', {
     url: '/:author_id',
-    templateUrl: base_url + '/update/index.html',
+    template: require('./update/index.html'),
     controller: 'LagashAuthorsUpdateController',
     controllerAs: 'vm',
     resolve: {

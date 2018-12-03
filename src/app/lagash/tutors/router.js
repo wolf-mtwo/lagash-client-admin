@@ -1,17 +1,16 @@
 export function router($stateProvider) {
   'ngInject';
-  var base_url = 'app/lagash/tutors';
 
   $stateProvider.state('lagash.tutors', {
     url: '/tutors',
-    templateUrl: base_url + '/index.html',
+    template: require('./index.html'),
     controller: 'LagashTutorsController',
     controllerAs: 'vm'
   });
 
   $stateProvider.state('lagash.tutors.list', {
     url: '/list',
-    templateUrl: base_url + '/list/index.html',
+    template: require('./list/index.html'),
     controller: 'LagashTutorsListController',
     controllerAs: 'vm',
     resolve: {
@@ -23,19 +22,19 @@ export function router($stateProvider) {
 
   $stateProvider.state('lagash.tutors.list.main', {
     url: '/main',
-    templateUrl: base_url + '/../template/index.html'
+    template: require('../template/index.html')
   });
 
   $stateProvider.state('lagash.tutors.list.create', {
     url: '/create',
-    templateUrl: base_url + '/create/index.html',
+    template: require('./create/index.html'),
     controller: 'LagashTutorsCreateController',
     controllerAs: 'vm'
   });
 
   $stateProvider.state('lagash.tutors.list.preview', {
     url: '/:tutor_id',
-    templateUrl: base_url + '/update/index.html',
+    template: require('./update/index.html'),
     controller: 'LagashTutorsUpdateController',
     controllerAs: 'vm',
     resolve: {

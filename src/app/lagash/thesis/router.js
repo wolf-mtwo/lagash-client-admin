@@ -1,17 +1,16 @@
 export function router($stateProvider) {
   'ngInject';
-  var base_url = 'app/lagash/thesis';
 
   $stateProvider.state('lagash.thesis', {
     url: '/thesis',
-    templateUrl: base_url + '/index.html',
+    template: require('./index.html'),
     controller: 'LagashThesisController',
     controllerAs: 'vm'
   });
 
   $stateProvider.state('lagash.thesis.list', {
     url: '/list',
-    templateUrl: base_url + '/list/index.html',
+    template: require('./list/index.html'),
     controller: 'LagashThesisListController',
     controllerAs: 'vm',
     resolve: {
@@ -22,19 +21,19 @@ export function router($stateProvider) {
   });
   $stateProvider.state('lagash.thesis.list.main', {
     url: '/main',
-    templateUrl: base_url + '/../template/index.html'
+    template: require('../template/index.html')
   });
 
-  $stateProvider.state('lagash.thesis.list.create', {
-    url: '/create',
-    templateUrl: base_url + '/create/index.html',
-    controller: 'LagashThesisCreateController',
-    controllerAs: 'vm'
-  });
+  // $stateProvider.state('lagash.thesis.list.create', {
+  //   url: '/create',
+  //   template: require('./create/index.html'),
+  //   controller: 'LagashThesisCreateController',
+  //   controllerAs: 'vm'
+  // });
 
   $stateProvider.state('lagash.thesis.list.catalog', {
     url: '/catalog',
-    templateUrl: base_url + '/catalog/index.html',
+    template: require('./catalog/index.html'),
     controller: 'LagashThesisCatalogController',
     controllerAs: 'vm',
     resolve: {
@@ -46,7 +45,7 @@ export function router($stateProvider) {
 
   $stateProvider.state('lagash.thesis.list.faculties', {
     url: '/faculties',
-    templateUrl: base_url + '/faculties/index.html',
+    template: require('./faculties/index.html'),
     controller: 'LagashThesisFacultiesController',
     controllerAs: 'vm',
     resolve: {
@@ -58,7 +57,7 @@ export function router($stateProvider) {
 
   $stateProvider.state('lagash.thesis.list.catalog_preview', {
     url: '/catalog/:catalog_id',
-    templateUrl: base_url + '/catalog/update/index.html',
+    template: require('./catalog/update/index.html'),
     controller: 'LagashThesisCatalogUpdateController',
     controllerAs: 'vm',
     resolve: {
@@ -72,7 +71,7 @@ export function router($stateProvider) {
 
   $stateProvider.state('lagash.thesis.list.faculty_preview', {
     url: '/faculties/:faculty_id',
-    templateUrl: base_url + '/faculties/update/index.html',
+    template: require('./faculties/update/index.html'),
     controller: 'LagashThesisFacultiesUpdateController',
     controllerAs: 'vm',
     resolve: {
@@ -86,7 +85,7 @@ export function router($stateProvider) {
 
   $stateProvider.state('lagash.thesis.list.preview', {
     url: '/:thesis_id',
-    templateUrl: base_url + '/update/index.html',
+    template: require('./update/index.html'),
     controller: 'LagashThesisUpdateController',
     controllerAs: 'vm',
     resolve: {
@@ -105,7 +104,7 @@ export function router($stateProvider) {
 
   $stateProvider.state('lagash.thesis.list.ejemplar', {
     url: '/:thesis_id/ejemplares/:ejemplar_id',
-    templateUrl: base_url + '/ejemplar/index.html',
+    template: require('./ejemplar/index.html'),
     controller: 'LagashThesisEjemplarController',
     controllerAs: 'vm',
     resolve: {
@@ -124,7 +123,7 @@ export function router($stateProvider) {
 
   $stateProvider.state('print_thesis', {
     url: '/print/thesis/:thesis_id/ejemplares/:ejemplar_id',
-    templateUrl: base_url + '/print/index.html',
+    template: require('./print/index.html'),
     controller: 'LagashThesisPrintController',
     controllerAs: 'vm',
     resolve: {
@@ -143,7 +142,7 @@ export function router($stateProvider) {
 
   $stateProvider.state('print_thesis_chip', {
     url: '/print/chip/thesis/:item_id/ejemplares/:ejemplar_id',
-    templateUrl: base_url + '/print/chip/index.html',
+    template: require('./print/chip/index.html'),
     controller: 'LagashThesisPrintChipController',
     controllerAs: 'vm',
     resolve: {

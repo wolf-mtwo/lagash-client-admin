@@ -95,7 +95,7 @@ export class LagashBooksListController {
           $mdDialog.hide(answer);
         };
       },
-      templateUrl: 'app/lagash/books/list/create.html',
+      template: require('./create.html'),
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose: true,

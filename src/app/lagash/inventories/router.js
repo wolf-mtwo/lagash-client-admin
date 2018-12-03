@@ -1,17 +1,16 @@
 export function router($stateProvider) {
   'ngInject';
-  var base_url = 'app/lagash/inventories';
 
   $stateProvider.state('lagash.inventories', {
     url: '/inventories',
-    templateUrl: base_url + '/index.html',
+    template: require('./index.html'),
     controller: 'LagashInventoriesController',
     controllerAs: 'vm'
   });
 
   $stateProvider.state('lagash.inventories.books', {
     url: '/books',
-    templateUrl: base_url + '/list/index.html',
+    template: require('./list/index.html'),
     controller: 'LagashInventoriesListController',
     controllerAs: 'vm',
     resolve: {
@@ -31,7 +30,7 @@ export function router($stateProvider) {
   });
   $stateProvider.state('lagash.inventories.thesis', {
     url: '/thesis',
-    templateUrl: base_url + '/list/index.html',
+    template: require('./list/index.html'),
     controller: 'LagashInventoriesListController',
     controllerAs: 'vm',
     resolve: {
@@ -51,7 +50,7 @@ export function router($stateProvider) {
   });
   $stateProvider.state('lagash.inventories.magazines', {
     url: '/magazines',
-    templateUrl: base_url + '/list/index.html',
+    template: require('./list/index.html'),
     controller: 'LagashInventoriesListController',
     controllerAs: 'vm',
     resolve: {
@@ -71,7 +70,7 @@ export function router($stateProvider) {
   });
   $stateProvider.state('lagash.inventories.newspapers', {
     url: '/newspapers',
-    templateUrl: base_url + '/list/index.html',
+    template: require('./list/index.html'),
     controller: 'LagashInventoriesListController',
     controllerAs: 'vm',
     resolve: {

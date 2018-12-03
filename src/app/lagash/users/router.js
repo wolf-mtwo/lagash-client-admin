@@ -4,7 +4,7 @@ export function router($stateProvider) {
 
   $stateProvider.state('lagash.users', {
     url: '/users',
-    templateUrl: base_url + '/index.html',
+    template: require('./index.html'),
     controller: 'LagashUsersController',
     controllerAs:'vm'
   });
@@ -13,7 +13,7 @@ export function router($stateProvider) {
     url: '/list',
     views: {
       'toolbar@lagash.users': {
-        templateUrl: base_url + '/list/index.html',
+        template: require('./list/index.html'),
         controller: 'LagashUsersListController',
         controllerAs:'vm',
         resolve: {
@@ -23,7 +23,7 @@ export function router($stateProvider) {
         }
       },
       'container@lagash.users': {
-        templateUrl: base_url + '/../template/index.html'
+        template: require('../template/index.html')
       }
     }
   });
@@ -32,7 +32,7 @@ export function router($stateProvider) {
     url: '/create',
     views: {
       'toolbar@lagash.users': {
-        templateUrl: base_url + '/list/index.html',
+        template: require('./list/index.html'),
         controller: 'LagashUsersListController',
         controllerAs:'vm',
         resolve: {
@@ -42,7 +42,7 @@ export function router($stateProvider) {
         }
       },
       'container@lagash.users': {
-        templateUrl: base_url + '/create/index.html',
+        template: require('./create/index.html'),
         controller: 'LagashUsersCreateController',
         controllerAs:'vm'
       }
@@ -53,7 +53,7 @@ export function router($stateProvider) {
     url: '/:user_id',
     views: {
       'toolbar@lagash.users': {
-        templateUrl: base_url + '/list/index.html',
+        template: require('./list/index.html'),
         controller: 'LagashUsersListController',
         controllerAs:'vm',
         resolve: {
@@ -63,7 +63,7 @@ export function router($stateProvider) {
         }
       },
       'container@lagash.users': {
-        templateUrl: base_url + '/update/index.html',
+        template: require('./update/index.html'),
         controller: 'LagashUsersUpdateController',
         controllerAs:'vm',
         resolve: {

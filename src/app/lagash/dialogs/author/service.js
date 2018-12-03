@@ -30,7 +30,7 @@ export class AutorDialogs {
           });
         };
       },
-      templateUrl: 'app/lagash/dialogs/author/create.html',
+      template: require('./create.html'),
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose: true,
@@ -88,7 +88,7 @@ export class AutorDialogs {
           $mdDialog.cancel();
         };
       },
-      templateUrl: 'app/lagash/dialogs/author/search.html',
+      template: require('./search.html'),
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose: true,

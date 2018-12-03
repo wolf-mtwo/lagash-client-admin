@@ -77,7 +77,7 @@ export class LagashNewspapersCatalogController {
           $mdDialog.hide(answer);
         };
       },
-      templateUrl: 'app/lagash/newspapers/catalog/create.html',
+      template: require('./create.html'),
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose: true,

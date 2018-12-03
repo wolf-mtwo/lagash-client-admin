@@ -1,17 +1,16 @@
 export function router($stateProvider) {
   'ngInject';
-  var base_url = 'app/lagash/books';
 
   $stateProvider.state('lagash.books', {
     url: '/books',
-    templateUrl: base_url + '/index.html',
+    template: require('./index.html'),
     controller: 'LagashBooksController',
     controllerAs: 'vm'
   });
 
   $stateProvider.state('lagash.books.list', {
     url: '/list',
-    templateUrl: base_url + '/list/index.html',
+    template: require('./list/index.html'),
     controller: 'LagashBooksListController',
     controllerAs: 'vm',
     resolve: {
@@ -23,19 +22,19 @@ export function router($stateProvider) {
 
   $stateProvider.state('lagash.books.list.main', {
     url: '/main',
-    templateUrl: base_url + '/../template/index.html'
+    template: require('../template/index.html')
   });
 
-  $stateProvider.state('lagash.books.list.create', {
-    url: '/create',
-    templateUrl: base_url + '/create/index.html',
-    controller: 'LagashBooksCreateController',
-    controllerAs: 'vm'
-  });
+  // $stateProvider.state('lagash.books.list.create', {
+  //   url: '/create',
+  //   template: require('./create/index.html'),
+  //   controller: 'LagashBooksCreateController',
+  //   controllerAs: 'vm'
+  // });
 
   $stateProvider.state('lagash.books.list.catalog', {
     url: '/catalog',
-    templateUrl: base_url + '/catalog/index.html',
+    template: require('./catalog/index.html'),
     controller: 'LagashBooksCatalogController',
     controllerAs: 'vm',
     resolve: {
@@ -47,7 +46,7 @@ export function router($stateProvider) {
 
   $stateProvider.state('lagash.books.list.catalog_preview', {
     url: '/catalog/:catalog_id',
-    templateUrl: base_url + '/catalog/update/index.html',
+    template: require('./catalog/update/index.html'),
     controller: 'LagashBooksCatalogUpdateController',
     controllerAs: 'vm',
     resolve: {
@@ -61,7 +60,7 @@ export function router($stateProvider) {
 
   $stateProvider.state('lagash.books.list.preview', {
     url: '/:book_id',
-    templateUrl: base_url + '/update/index.html',
+    template: require('./update/index.html'),
     controller: 'LagashBooksUpdateController',
     controllerAs: 'vm',
     resolve: {
@@ -80,7 +79,7 @@ export function router($stateProvider) {
 
   $stateProvider.state('lagash.books.list.ejemplar', {
     url: '/:book_id/ejemplares/:ejemplar_id',
-    templateUrl: base_url + '/ejemplar/index.html',
+    template: require('./ejemplar/index.html'),
     controller: 'LagashBooksEjemplarController',
     controllerAs: 'vm',
     resolve: {
@@ -99,7 +98,7 @@ export function router($stateProvider) {
 
   $stateProvider.state('print_book', {
     url: '/print/book/:book_id/ejemplares/:ejemplar_id',
-    templateUrl: base_url + '/print/index.html',
+    template: require('./print/index.html'),
     controller: 'LagashBooksPrintController',
     controllerAs: 'vm',
     resolve: {
@@ -118,7 +117,7 @@ export function router($stateProvider) {
 
   $stateProvider.state('print_book_chip', {
     url: '/print/chip/book/:item_id/ejemplares/:ejemplar_id',
-    templateUrl: base_url + '/print/chip/index.html',
+    template: require('./print/chip/index.html'),
     controller: 'LagashBooksPrintChipController',
     controllerAs: 'vm',
     resolve: {

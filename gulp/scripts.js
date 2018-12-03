@@ -12,10 +12,14 @@ var $ = require('gulp-load-plugins')();
 
 function webpackWrapper(watch, test, callback) {
   var webpackOptions = {
+    target: 'node',
     watch: watch,
     module: {
       preLoaders: [{ test: /\.js$/, exclude: /node_modules/, loader: 'eslint-loader'}],
-      loaders: [{ test: /\.js$/, exclude: /node_modules/, loaders: ['ng-annotate', 'babel-loader?presets[]=es2015']}]
+      loaders: [
+        { test: /\.js$/, exclude: /node_modules/, loaders: ['ng-annotate', 'babel-loader?presets[]=es2015']},
+        { test: /\.html$/, loader: "html"}
+      ]
     },
     output: { filename: 'index.module.js' }
   };

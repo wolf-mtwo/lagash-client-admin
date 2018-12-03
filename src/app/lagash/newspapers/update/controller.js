@@ -283,7 +283,7 @@ export class LagashNewspapersUpdateController {
     var self = this;
     this.$mdDialog.show({
       controller: DialogCatalogSearchController2,
-      templateUrl: 'app/lagash/newspapers/create/catalog/search.html',
+      template: require('../create/catalog/search.html'),
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose: true,

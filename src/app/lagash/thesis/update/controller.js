@@ -311,7 +311,7 @@ export class LagashThesisUpdateController {
     var self = this;
     this.$mdDialog.show({
       controller: DialogTutorsCreateController,
-      templateUrl: 'app/lagash/thesis/create/tutor/create.html',
+      template: require('../create/tutor/create.html'),
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose: true,
@@ -332,7 +332,7 @@ export class LagashThesisUpdateController {
     var self = this;
     this.$mdDialog.show({
       controller: DialogTutorsSearchController,
-      templateUrl: 'app/lagash/thesis/create/tutor/search.html',
+      template: require('../create/tutor/search.html'),
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose: true,
@@ -365,7 +365,7 @@ export class LagashThesisUpdateController {
     var self = this;
     this.$mdDialog.show({
       controller: DialogCatalogSearchController2,
-      templateUrl: 'app/lagash/thesis/create/catalog/search.html',
+      template: require('../create/catalog/search.html'),
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose: true,

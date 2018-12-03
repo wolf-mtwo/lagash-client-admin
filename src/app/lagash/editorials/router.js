@@ -1,17 +1,16 @@
 export function router($stateProvider) {
   'ngInject';
-  var base_url = 'app/lagash/editorials';
 
   $stateProvider.state('lagash.editorials', {
     url: '/editorials',
-    templateUrl: base_url + '/index.html',
+    template: require('./index.html'),
     controller: 'LagashEditorialsController',
     controllerAs: 'vm'
   });
 
   $stateProvider.state('lagash.editorials.list', {
     url: '/list',
-    templateUrl: base_url + '/list/index.html',
+    template: require('./list/index.html'),
     controller: 'LagashEditorialsListController',
     controllerAs: 'vm',
     resolve: {
@@ -20,21 +19,22 @@ export function router($stateProvider) {
       }
     }
   });
+
   $stateProvider.state('lagash.editorials.list.main', {
     url: '/main',
-    templateUrl: base_url + '/../template/index.html'
+    template: require('../template/index.html')
   });
 
   $stateProvider.state('lagash.editorials.list.create', {
     url: '/create',
-    templateUrl: base_url + '/create/index.html',
+    template: require('./create/index.html'),
     controller: 'LagashEditorialsCreateController',
     controllerAs: 'vm'
   });
 
   $stateProvider.state('lagash.editorials.list.preview', {
     url: '/:editorial_id',
-    templateUrl: base_url + '/update/index.html',
+    template: require('./update/index.html'),
     controller: 'LagashEditorialsUpdateController',
     controllerAs: 'vm',
     resolve: {
