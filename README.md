@@ -13,7 +13,7 @@ npm install
 gulp serve
 ```
 
-## running development side
+## generation of a new build
 
 ```
 rm -R dist
