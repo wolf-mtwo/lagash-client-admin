@@ -12,3 +12,11 @@ npm install
 ```
 gulp serve
 ```
+
+## running development side
+
+```
+rm -R dist
+gulp build
+tar cvzf dist.tar.gz dist
+```
