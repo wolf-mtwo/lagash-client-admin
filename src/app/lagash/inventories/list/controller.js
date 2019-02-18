@@ -106,7 +106,7 @@ export class LagashInventoriesListController {
 
   find_data(item) {
     this.model.get({
-      _id: item.data_id
+      _id: item.material_id
     }).$promise
     .then((res) => {
       item.data = res;
