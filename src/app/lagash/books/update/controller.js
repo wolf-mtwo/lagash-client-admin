@@ -45,15 +45,14 @@ export class LagashBooksUpdateController {
     this.catalog = null;
 
     this.ejemplares = ejemplares;
-
-    book.tags = book.tags ? book.tags.split(',') : [];
+    book.tags = book.tags ? BasicOption.get_tags(book.tags) : [];
     book.illustrations = book.illustrations ? book.illustrations.split(',') : [];
     book.brings = book.brings ? book.brings.split(',') : [];
     this.item = book;
 
     // autor
     Authors.find_authors({
-      resource_id: this.book_id
+      material_id: this.book_id
     }).$promise
     .then((res) => {
       this.authors = res;
@@ -124,7 +123,7 @@ export class LagashBooksUpdateController {
   update(item) {
     var data = {};
     angular.copy(item, data);
-    data.tags = data.tags.join(',');
+    data.tags = data.tags.join('');
     data.illustrations = data.illustrations.join(',');
     data.brings = data.brings.join(',');
     this.Books.update({
@@ -142,7 +141,7 @@ export class LagashBooksUpdateController {
   update_code(item) {
     var data = {};
     angular.copy(item, data);
-    data.tags = data.tags.join(',');
+    data.tags = data.tags.join('');
     data.illustrations = data.illustrations.join(',');
     data.brings = data.brings.join(',');
     this.Books.update({
@@ -159,7 +158,7 @@ export class LagashBooksUpdateController {
 
   save_ejemplar(item) {
     this.BooksEjemplares.save({
-      data_id: item.data_id
+      data_id: item.material_id
     }, item).$promise
     .then((response) => {
       this.create_ejemplar_state = false;
@@ -178,8 +177,7 @@ export class LagashBooksUpdateController {
       this.ejemplar_item = {
         _id: this.UUID.next(),
         order: this.getOrder(),
-        code: this.item.code,
-        data_id: this.book_id,
+        material_id: this.book_id,
         enabled: false,
         state: 'STORED'
       };
@@ -276,7 +274,7 @@ export class LagashBooksUpdateController {
       _id: this.UUID.next(),
       author_id: item._id,
       type: 'BOOK',
-      resource_id: book._id
+      material_id: book._id
     }).$promise
     .then((res) => {
       item.map = res;

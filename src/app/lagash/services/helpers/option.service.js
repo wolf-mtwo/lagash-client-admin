@@ -36,16 +36,16 @@ export class BasicOption {
     }];
 
     this.covers = [{
-      key: 'rustico',
-      value: 'Rustico'
+      key: 'rustic',
+      value: 'Rústico'
     }, {
       key: 'empastado',
       value: 'Empastado'
     }, {
-      key: 'anillado',
+      key: 'ringed',
       value: 'Anillado'
     }, {
-      key: 'otros',
+      key: 'others',
       value: 'Otros'
     }];
 
@@ -218,15 +218,13 @@ export class BasicOption {
 
   getYears() {
     var date = new Date();
-    var counter = date.getFullYear();
-    counter -= 20;
+    var year = date.getFullYear();
     var result = [];
-    for (var i = 0; i < 21; i++) {
+    for (var i = 1950; i <= year; i++) {
       result.push({
-        key: counter,
-        value: counter
+        key: i,
+        value: i
       });
-      counter++;
     }
     return result;
   }
@@ -236,12 +234,19 @@ export class BasicOption {
     return date.getFullYear();
   }
 
-  get_code() {
+  get_code_material() {
     return [
-      'ZZZ',
+      'WWW',
       this.UUID.next().substring(0, 3),
       this.UUID.next().substring(0, 3)
     ].join('.');
+  }
+
+  get_code_author() {
+    return [
+      'W',
+      this.UUID.next().substring(0, 4)
+    ].join('');
   }
 
   find_illustration(item) {
@@ -272,6 +277,16 @@ export class BasicOption {
         }
     });
     return result;
+  }
+
+  get_tags(tags) {
+      var regex = /\[.*?\]/g;
+      var match;
+      var items = [];
+      while ((match = regex.exec(tags)) !== null) {
+          items.push(match[0]);
+      }
+      return items;
   }
 
   get_state(date) {

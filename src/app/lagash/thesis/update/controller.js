@@ -50,14 +50,14 @@ export class LagashThesisUpdateController {
 
     this.ejemplares = ejemplares;
 
-    thesis.tags = thesis.tags ? thesis.tags.split(',') : [];
+    thesis.tags = thesis.tags ? BasicOption.get_tags(thesis.tags) : [];
     thesis.illustrations = thesis.illustrations ? thesis.illustrations.split(',') : [];
     thesis.brings = thesis.brings ? thesis.brings.split(',') : [];
     this.item = thesis;
 
     // autor
     Authors.find_authors({
-      resource_id: this.thesis_id
+      material_id: this.thesis_id
     }).$promise
     .then((res) => {
       this.authors = res;
@@ -143,7 +143,7 @@ export class LagashThesisUpdateController {
   update(item) {
     var data = {};
     angular.copy(item, data);
-    data.tags = data.tags.join(',');
+    data.tags = data.tags.join('');
     data.illustrations = data.illustrations.join(',');
     data.brings = data.brings.join(',');
     this.Thesis.update({
@@ -161,7 +161,7 @@ export class LagashThesisUpdateController {
   update_code(item) {
     var data = {};
     angular.copy(item, data);
-    data.tags = data.tags.join(',');
+    data.tags = data.tags.join('');
     data.illustrations = data.illustrations.join(',');
     data.brings = data.brings.join(',');
     this.Thesis.update({
@@ -178,7 +178,7 @@ export class LagashThesisUpdateController {
 
   save_ejemplar(item) {
     this.ThesisEjemplares.save({
-      data_id: this.thesis_id
+      data_id: item.material_id
     }, item).$promise
     .then((response) => {
       this.create_ejemplar_state = false;
@@ -198,7 +198,7 @@ export class LagashThesisUpdateController {
         _id: this.UUID.next(),
         order: this.getOrder(),
         code: this.item.code,
-        data_id: this.thesis_id,
+        material_id: this.thesis_id,
         enabled: false,
         state: 'STORED'
       };
@@ -295,7 +295,7 @@ export class LagashThesisUpdateController {
       _id: this.UUID.next(),
       author_id: item._id,
       type: 'THESIS',
-      resource_id: thesis._id
+      material_id: thesis._id
     }).$promise
     .then((res) => {
       item.map = res;

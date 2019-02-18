@@ -12,11 +12,9 @@ export class LagashBooksEjemplarController {
 
     this.states = BasicOption.states;
 
-    console.log(this.states);
-
     // autor
     Authors.find_authors({
-      resource_id: this.item._id
+      material_id: this.item._id
     }).$promise
     .then((res) => {
       this.authors = res;

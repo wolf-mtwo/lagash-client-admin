@@ -16,7 +16,7 @@ export class LagashBooksPrintChipController {
 
     // autor
     Authors.find_authors({
-      resource_id: this.item._id
+      material_id: this.item._id
     }).$promise
     .then((res) => {
       this.authors = res;
@@ -60,12 +60,12 @@ export class LagashBooksPrintChipController {
     return items.join(', ');
   }
 
-  format_tags(items) {
-    if (!items) {
+  format_tags(text) {
+    if (!text) {
       return this.BasicOption.EMPTY;
     }
     var count = 0;
-    return items.split(',').map((o) => {
+    return this.BasicOption.get_tags(text).map((o) => {
       count++;
       return  count + '.' + o.toUpperCase()
     }).join('.- ');

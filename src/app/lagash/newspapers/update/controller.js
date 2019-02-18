@@ -44,12 +44,12 @@ export class LagashNewspapersUpdateController {
 
     this.ejemplares = ejemplares;
 
-    newspaper.tags = newspaper.tags ? newspaper.tags.split(',') : [];
+    newspaper.tags = newspaper.tags ? BasicOption.get_tags(newspaper.tags) : [];
     this.item = newspaper;
 
     // autor
     Authors.find_authors({
-      resource_id: this.newspaper_id
+      material_id: this.newspaper_id
     }).$promise
     .then((res) => {
       this.authors = res;
@@ -120,7 +120,7 @@ export class LagashNewspapersUpdateController {
   update(item) {
     var data = {};
     angular.copy(item, data);
-    data.tags = data.tags.join(',');
+    data.tags = data.tags.join('');
     this.Newspapers.update({
       _id: item._id
     }, data)
@@ -136,7 +136,7 @@ export class LagashNewspapersUpdateController {
   update_code(item) {
     var data = {};
     angular.copy(item, data);
-    data.tags = data.tags.join(',');
+    data.tags = data.tags.join('');
     this.Newspapers.update({
       _id: item._id
     }, data)
@@ -151,7 +151,7 @@ export class LagashNewspapersUpdateController {
 
   save_ejemplar(item) {
     this.NewspapersEjemplares.save({
-      data_id: item.data_id
+      data_id: item.material_id
     }, item).$promise
     .then((response) => {
       this.create_ejemplar_state = false;
@@ -171,7 +171,7 @@ export class LagashNewspapersUpdateController {
         _id: this.UUID.next(),
         order: this.getOrder(),
         code: this.item.code,
-        data_id: this.newspaper_id,
+        material_id: this.newspaper_id,
         enabled: false,
         state: 'STORED'
       };
@@ -267,8 +267,8 @@ export class LagashNewspapersUpdateController {
     this.AuthorsMap.save({
       _id: this.UUID.next(),
       author_id: item._id,
-      type: 'BOOK',
-      resource_id: newspaper._id
+      type: 'NEWSPAPER',
+      material_id: newspaper._id
     }).$promise
     .then((res) => {
       item.map = res;

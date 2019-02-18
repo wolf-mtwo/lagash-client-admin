@@ -3,7 +3,6 @@ export class LagashNewspapersListController {
   constructor($state, $stateParams, $mdDialog, WError, WToast, Newspapers, size, UUID, BasicOption) {
     'ngInject';
     this.subscription_id = $stateParams.subscription_id;
-    console.log(this.subscription_id);
     this.$state = $state;
     this.$mdDialog = $mdDialog;
     this.WToast = WToast;
@@ -55,7 +54,8 @@ export class LagashNewspapersListController {
   create_newspaper(title) {
     var data = {
       _id: this.UUID.next(),
-      code: this.BasicOption.get_code(),
+      code_material: this.BasicOption.get_code_material(),
+      code_author: this.BasicOption.get_code_author(),
       enabled: false,
       catalog_id: this.subscription_id,
       // tags: null,

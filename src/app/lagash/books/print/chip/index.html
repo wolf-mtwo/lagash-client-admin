@@ -10,8 +10,8 @@
           </div>
           <div style="position:absolute;top:30px;left:100px;padding:0 20px 0 0;">
             <div style="display:flex;text-indent:30px;">
-              <div style="flex:1;width:25%;">{{vm.item.code}}</div>
-              <div style="flex:1;width:25%;">{{vm.authors[0].code}}</div>
+              <div style="flex:1;width:25%;">{{vm.item.code_material}}</div>
+              <div style="flex:1;width:25%;">{{vm.item.code_author}}</div>
               <div style="flex:1;width:25%;">M.1</div>
               <div style="flex:1;width:25%;">Ej.{{vm.ejemplar.order}}</div>
             </div>
@@ -62,13 +62,14 @@
       </table>
       <div style="padding: 0 30px;font-family:monospace;font-size:18px;">
         <div style="display:flex;padding: 5px;">
-          <b>Codigo:</b> <div style="flex:1;display:inline;border-bottom:2px dotted black;padding:0  0 0 20px;">{{vm.item.code}}</div>
+          <b>Codigo:</b> <div style="flex:1;display:inline;border-bottom:2px dotted black;padding:0 0 0 20px;">{{vm.item.code_material}} </div>
         </div>
         <div style="display:flex;padding: 5px;">
-          <b>Autor:</b> <div style="flex:1;display:inline;border-bottom:2px dotted black;padding:0  0 0 20px;">{{vm.authors[0].last_name | uppercase}}, {{vm.authors[0].first_name}}</div>
+          <!-- <b>Autor:</b> <div style="flex:1;display:inline;border-bottom:2px dotted black;padding:0  0 0 20px;">{{vm.authors[0].last_name | uppercase}}, {{vm.authors[0].first_name}}</div> -->
+          <b>Autor:</b> <div style="flex:1;display:inline;border-bottom:2px dotted black;padding:0 0 0 20px;">{{vm.item.code_author}}</div>
         </div>
         <div style="display:flex;padding: 5px;">
-          <b>Inventario:</b> <div style="flex:1;display:inline;border-bottom:2px dotted black;padding:0  0 0 20px;">{{vm.ejemplar.inventory}}</div>
+          <b>Inventario:</b> <div style="flex:1;display:inline;border-bottom:2px dotted black;padding:0 0 0 20px;">{{vm.ejemplar.inventory}}</div>
         </div>
       </div>
     </div>
@@ -83,11 +84,11 @@
       <div style="position:absolute;top:240px;left:75px;">
         <table>
           <tr>
-            <td style="vertical-align:top;width:90px;">{{vm.item.code}}</td>
+            <td style="vertical-align:top;width:90px;">{{vm.item.code_material}}</td>
             <td style="width:320px;text-align:justify;padding: 0 20px 0 0;">{{vm.item.title}}</td>
           </tr>
           <tr>
-            <td style="vertical-align:top;width:90px;">{{vm.authors[0].code}}</td>
+            <td style="vertical-align:top;width:90px;">{{vm.item.code_author}}</td>
             <td>{{vm.authors[0].last_name | uppercase}}, {{vm.authors[0].first_name}}</td>
           </tr>
           <tr>
