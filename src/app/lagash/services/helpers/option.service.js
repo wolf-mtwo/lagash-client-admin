@@ -35,6 +35,23 @@ export class BasicOption {
       value: 'Otros'
     }];
 
+    this.categories = [{
+      key: 'tecnico',
+      value: 'Tecnico'
+    }, {
+      key: 'tecnico-superior',
+      value: 'Técnico Superior'
+    }, {
+      key: 'profesionalizacion',
+      value: 'Profesionalización'
+    }, {
+      key: 'licenciatura',
+      value: 'Licenciatura'
+    }, {
+      key: 'post-grado',
+      value: 'Post Grado'
+    }];
+
     this.covers = [{
       key: 'rustic',
       value: 'Rústico'
@@ -50,17 +67,41 @@ export class BasicOption {
     }];
 
     this.illustrations = [{
-      key: 'cuadros',
+      key: 'square',
       value: 'Cuadros'
     }, {
-      key: 'fotos',
+      key: 'chart',
+      value: 'Graficos'
+    }, {
+      key: 'photo',
       value: 'Fotos'
     }, {
-      key: 'tablas',
+      key: 'table',
       value: 'Tablas'
     }, {
-      key: 'figuras',
+      key: 'map',
+      value: 'Mapas'
+    }, {
+      key: 'shape',
       value: 'Figuras'
+    }, {
+      key: 'drawing',
+      value: 'Dibujos'
+    }, {
+      key: 'collection',
+      value: 'Coleciones'
+    }, {
+      key: 'tags',
+      value: 'Fichas'
+    }, {
+      key: 'sheet',
+      value: 'Láminas'
+    }, {
+      key: 'diagram',
+      value: 'Diagramas'
+    }, {
+      key: 'organizationchat',
+      value: 'Organigramas'
     }, {
       key: 'otros',
       value: 'Otros'
@@ -70,14 +111,32 @@ export class BasicOption {
       key: 'cd',
       value: 'CD'
     }, {
-      key: 'indice',
-      value: 'Indice'
+      key: 'index',
+      value: 'Índice'
     }, {
-      key: 'bibliografia',
+      key: 'content',
+      value: 'Contenido'
+    }, {
+      key: 'bibliography',
       value: 'Bibliografía'
     }, {
-      key: 'biografia',
+      key: 'biography',
       value: 'Biografía'
+    }, {
+      key: 'sumary',
+      value: 'Sumario'
+    }, {
+      key: 'glossary',
+      value: 'Glosario'
+    }, {
+      key: 'vocabulary',
+      value: 'Vocabulario'
+    }, {
+      key: 'annex',
+      value: 'Anexos'
+    }, {
+      key: 'lexical',
+      value: 'Léxico'
     }, {
       key: 'otros',
       value: 'Otros'

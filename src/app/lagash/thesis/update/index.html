@@ -133,16 +133,16 @@
             <div layout="row">
               <md-input-container class="md-block" flex-gt-xs>
                 <label>Facultad</label>
-                <md-select ng-model="vm.faculty">
-                  <md-option ng-repeat="faculty in vm.faculties" ng-value="faculty">
+                <md-select ng-model="vm.item.faculty_id">
+                  <md-option ng-repeat="faculty in vm.faculties" ng-value="faculty._id">
                     {{faculty.name}}
                   </md-option>
                 </md-select>
               </md-input-container>
               <md-input-container class="md-block" flex-gt-xs>
                 <label>Carrera</label>
-                <md-select ng-model="vm.item.carrer_id">
-                  <md-option ng-if="!vm.faculty || vm.faculty._id === carrer.faculty_id" ng-repeat="carrer in vm.carrers" ng-value="carrer._id">
+                <md-select ng-model="vm.item.carrera_id">
+                  <md-option ng-if="vm.item.faculty_id === carrer.faculty_id" ng-repeat="carrer in vm.carrers" ng-value="carrer._id">
                     {{carrer.name}}
                   </md-option>
                 </md-select>
@@ -156,7 +156,7 @@
                 </md-option>
               </md-select>
             </md-input-container>
-            <md-input-container class="md-block" flex-gt-xs>
+            <!-- <md-input-container class="md-block" flex-gt-xs>
               <legend class="demo-legend">Ilustraciones</legend>
               <div layout="row" layout-wrap flex>
                 <div flex="50" ng-repeat="illustration in vm.illustrations">
@@ -165,9 +165,9 @@
                   </md-checkbox>
                 </div>
               </div>
-            </md-input-container>
+            </md-input-container> -->
             <div layout="row">
-              <md-input-container class="md-block" flex="50">
+              <!-- <md-input-container class="md-block" flex="50">
                 <label>Alto (cm)</label>
                 <input ng-model="vm.item.high" type="number">
                 <div ng-messages="form.high.$error">
@@ -180,7 +180,7 @@
                 <div ng-messages="form.width.$error">
                   <div ng-message="required">This is required.</div>
                 </div>
-              </md-input-container>
+              </md-input-container> -->
               <md-input-container class="md-block" flex="50">
                 <label>Pages</label>
                 <input ng-model="vm.item.pages" type="number">
@@ -204,7 +204,7 @@
                 <div ng-message="required">This is required.</div>
               </div>
             </md-input-container>
-            <md-input-container class="md-block" flex-gt-xs>
+            <!-- <md-input-container class="md-block" flex-gt-xs>
               <legend>Incluye</legend>
               <div layout="row" layout-wrap flex>
                 <div flex="50" ng-repeat="bring in vm.brings">
@@ -213,7 +213,7 @@
                   </md-checkbox>
                 </div>
               </div>
-            </md-input-container>
+            </md-input-container> -->
             <md-input-container class="md-block" flex-gt-xs>
               <label>Indice</label>
               <textarea ng-model="vm.item.index" md-maxlength="1500" rows="10">
@@ -273,6 +273,35 @@
                          ng-click="vm.show_author_create_dialog($event)">
                 <ng-md-icon icon="book"></ng-md-icon>
                 Crear autor
+              </md-button>
+            </div>
+          </md-content>
+        </div>
+      </md-tab>
+      <md-tab label="Editorials">
+        <div layout-padding>
+          <md-content>
+            <md-list>
+              <md-list-item ng-if="vm.editorial">
+                <ng-md-icon icon="person"></ng-md-icon>
+                <p>{{vm.editorial.name}}</p>
+                <md-button class="md-icon-button" aria-label="delete" ng-click="vm.remove_editorial(vm.editorial)">
+                  <ng-md-icon icon="delete"></ng-md-icon>
+                </md-button>
+              </md-list-item>
+            </md-list>
+            <div layout="row" layout-align="end">
+              <md-button aria-label="editorial"
+                         class="md-raised md-primary"
+                         ng-click="vm.show_editorial_search_dialog($event)">
+                <ng-md-icon icon="search"></ng-md-icon>
+                Buscar editorial
+              </md-button>
+              <md-button aria-label="editorial"
+                         class="md-raised"
+                         ng-click="vm.show_editorial_create_dialog($event)">
+                <ng-md-icon icon="book"></ng-md-icon>
+                Crear editorial
               </md-button>
             </div>
           </md-content>
