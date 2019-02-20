@@ -68,7 +68,7 @@ export class LagashBookingLoansController {
     var data = {
       ejemplar_id: item.ejemplar_id
     };
-    data[config.param] = item.data_id;
+    data[config.param] = item.material_id;
     var url = this.$state.href(config.route, data);
     window.open(url, '_blank');
   }
@@ -77,7 +77,7 @@ export class LagashBookingLoansController {
     this.model.loan(null, {
       _id: item._id,
       type: item.type,
-      data_id: item.data_id,
+      material_id: item.material_id,
       ejemplar_id: item.ejemplar_id,
       state: state
     }).$promise
@@ -97,7 +97,7 @@ export class LagashBookingLoansController {
 
   find_data(item) {
     this[item.type].get({
-      _id: item.data_id
+      _id: item.material_id
     }).$promise
     .then((res) => {
       item.status = this.BasicOption.get_state(item.created);

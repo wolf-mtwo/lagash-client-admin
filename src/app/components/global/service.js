@@ -4,8 +4,8 @@ export class Global {
     'ngInject';
     this.Store = Store;
     // SERVICE PATH
-    // this.PATH = 'http://bibliotecaserver.uab.edu.bo';
-    this.PATH = 'http://localhost:5570';
+    this.PATH = 'http://bibliotecaserver.uab.edu.bo';
+    // this.PATH = 'http://localhost:5570';
     this.user = null;
     this.socket = false;
   }

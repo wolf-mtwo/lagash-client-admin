@@ -172,6 +172,35 @@
           </md-content>
         </div>
       </md-tab>
+      <md-tab label="Editorials">
+        <div layout-padding>
+          <md-content>
+            <md-list>
+              <md-list-item ng-if="vm.editorial">
+                <ng-md-icon icon="person"></ng-md-icon>
+                <p>{{vm.editorial.name}}</p>
+                <md-button class="md-icon-button" aria-label="delete" ng-click="vm.remove_editorial(vm.editorial)">
+                  <ng-md-icon icon="delete"></ng-md-icon>
+                </md-button>
+              </md-list-item>
+            </md-list>
+            <div layout="row" layout-align="end">
+              <md-button aria-label="editorial"
+                         class="md-raised md-primary"
+                         ng-click="vm.show_editorial_search_dialog($event)">
+                <ng-md-icon icon="search"></ng-md-icon>
+                Buscar editorial
+              </md-button>
+              <md-button aria-label="editorial"
+                         class="md-raised"
+                         ng-click="vm.show_editorial_create_dialog($event)">
+                <ng-md-icon icon="book"></ng-md-icon>
+                Crear editorial
+              </md-button>
+            </div>
+          </md-content>
+        </div>
+      </md-tab>
       <md-tab label="Catalogo">
         <div layout-padding>
           <md-content>

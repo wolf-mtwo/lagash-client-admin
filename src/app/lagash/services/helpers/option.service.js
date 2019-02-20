@@ -349,22 +349,17 @@ export class BasicOption {
   }
 
   get_state(date) {
+    var dayTimeStamp = 86400000;
     var date_state = new Date(date);
-    var day_state = date_state.getDate();
-    var month_state = date_state.getMonth();
-    var year_state = date_state.getFullYear();
+    var day_state = date_state.getTime();
     var date = new Date();
-    var day_warn = date.getDate() - 1;
-    var day_danger = date.getDate() - 2;
-    var month = date.getMonth();
-    var year = date.getFullYear();
-    if (day_state === day_warn && month_state === month && year_state === year) {
+    var day_warn = date.getTime() - (dayTimeStamp * 2);
+    var day_danger = date.getTime() - (dayTimeStamp * 3);
+    if (day_state > day_danger && day_state < day_warn) {
       return '#f9f97a9c';
     }
-    if (day_state <= day_danger && month_state <= month && year_state <= year) {
+    if (day_state < day_danger) {
       return '#ff6d6dba';
     }
-    // .lagash-report-warning
-    // .lagash-report-danger
   }
 }

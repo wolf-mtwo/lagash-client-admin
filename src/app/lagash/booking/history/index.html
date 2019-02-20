@@ -16,10 +16,10 @@
         <b class="lagash-report-100">{{vm.i18n[item.type]}}</b>
         <b class="lagash-report-200">{{item.code}}</b>
         <b class="lagash-report-300">{{item.name}}</b>
-        <span><i>{{item.data.title}}</i></span>
+        <span>{{item.data.title | limitTo: 80}}{{item.data.title.length > 80 ? '...' : ''}}</span>
       </p>
       <div class="md-secondary">
-        <small><b>{{item.created | date: 'mm:HH dd-MM-yyyy'}}</b></small>
+        <small><b>{{item.created | date: 'HH:mm dd-MM-yyyy'}}</b></small>
         <b>{{vm.states[item.state].value}}</b>
         <md-menu md-position-mode="target-right target">
           <md-button aria-label="Open demo menu"

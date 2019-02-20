@@ -1,3 +1,8 @@
+import {
+  DialogEditorialsCreateController2,
+  DialogEditorialsSearchController2
+} from '../../dialogs/editorial/controller';
+
 export class LagashMagazinesUpdateController {
 
   constructor(
@@ -293,6 +298,48 @@ export class LagashMagazinesUpdateController {
     .then(function(answer) {
       self.catalog = answer;
       self.item.catalog_id = answer._id;
+    }, function() {
+      console.info('You cancelled the dialog.');
+    });
+  }
+
+  show_editorial_create_dialog(ev) {
+    var self = this;
+    this.$mdDialog.show({
+      controller: DialogEditorialsCreateController2,
+      template: require('../../dialogs/editorial/create.html'),
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose: true,
+      fullscreen: false,
+      locals: {
+         item: null
+      }
+    })
+    .then(function(answer) {
+      self.editorial = answer;
+      self.item.editorial_id = answer._id;
+    }, function() {
+      console.info('You cancelled the dialog.');
+    });
+  };
+
+  show_editorial_search_dialog(ev) {
+    var self = this;
+    this.$mdDialog.show({
+      controller: DialogEditorialsSearchController2,
+      template: require('../../dialogs/editorial/search.html'),
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose: true,
+      fullscreen: false,
+      locals: {
+         item: null
+      }
+    })
+    .then(function(answer) {
+      self.editorial = answer;
+      self.item.editorial_id = answer._id;
     }, function() {
       console.info('You cancelled the dialog.');
     });

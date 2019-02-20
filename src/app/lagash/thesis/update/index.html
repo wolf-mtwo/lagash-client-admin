@@ -147,6 +147,14 @@
                   </md-option>
                 </md-select>
               </md-input-container>
+              <md-input-container class="md-block" flex-gt-xs>
+                <label>Categoria</label>
+                <md-select ng-model="vm.item.category">
+                  <md-option ng-repeat="category in vm.categories" ng-value="category.key">
+                    {{category.value}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
             </div>
             <md-input-container class="md-block" flex-gt-xs>
               <label>Tipo de tapa</label>
