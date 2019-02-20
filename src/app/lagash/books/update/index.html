@@ -141,14 +141,45 @@
       <md-tab label="detalle">
         <div layout-padding>
           <md-content>
-            <md-input-container class="md-block" flex-gt-xs>
+            <div layout="row">
+              <!-- <md-input-container class="md-block" flex>
+                <label>Tipo</label>
+                <md-select ng-model="vm.item.type">
+                  <md-option ng-repeat="type in vm.types" ng-value="type.key">
+                    {{type.value}}
+                  </md-option>
+                </md-select>
+              </md-input-container> -->
+              <md-input-container class="md-block" flex>
+                <label>Tomo</label>
+                <input ng-model="vm.item.tomo" type="number">
+                <div ng-messages="form.tomo.$error">
+                  <div ng-message="required">This is required.</div>
+                </div>
+              </md-input-container>
+              <md-input-container class="md-block" flex>
+                <label>Volumen</label>
+                <input ng-model="vm.item.volumen" type="number">
+                <div ng-messages="form.volumen.$error">
+                  <div ng-message="required">This is required.</div>
+                </div>
+              </md-input-container>
+              <md-input-container class="md-block" flex>
+                <label>Edicion</label>
+                <input ng-model="vm.item.edition" type="number">
+                <div ng-messages="form.edition.$error">
+                  <div ng-message="required">This is required.</div>
+                </div>
+              </md-input-container>
+            </div>
+            <!-- <md-input-container class="md-block" flex-gt-xs>
               <label>Tipo</label>
               <md-select ng-model="vm.item.type">
                 <md-option ng-repeat="type in vm.types" ng-value="type.key">
                   {{type.value}}
                 </md-option>
               </md-select>
-            </md-input-container>
+            </md-input-container> -->
             <md-input-container class="md-block" flex-gt-xs>
               <label>Tipo de tapa</label>
               <md-select ng-model="vm.item.cover">

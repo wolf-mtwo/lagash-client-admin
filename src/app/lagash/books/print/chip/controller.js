@@ -11,6 +11,7 @@ export class LagashBooksPrintChipController {
     item.tags = this.format_tags(item.tags);
     item.illustrations = this.find_illustrations(item.illustrations);
     item.brings = this.find_brings(item.brings);
+    item.code_value = this.find_code_value(item);
     item.cover = this.BasicOption.find_covers(item.cover) || this.BasicOption.EMPTY;
     this.item = item;
 
@@ -69,5 +70,15 @@ export class LagashBooksPrintChipController {
       count++;
       return  count + '.' + o.toUpperCase()
     }).join('.- ');
+  }
+
+  find_code_value(item) {
+    if (item.tomo > 0) {
+      return 'T.' + item.tomo;
+    }
+    if (item.volumen > 0) {
+      return 'V.' + item.volumen;
+    }
+    return '';
   }
 }

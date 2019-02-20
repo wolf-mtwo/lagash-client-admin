@@ -17,7 +17,7 @@ export class LagashNewspapersCatalogUpdateController {
       _id: item._id
     }, item).$promise
     .then((response) => {
-      this.$state.go('lagash.newspapers.list.catalog');
+      this.$state.go('lagash.newspapers.catalog');
     })
     .catch((err) => {
       this.WError.request(err);
@@ -30,7 +30,7 @@ export class LagashNewspapersCatalogUpdateController {
     }, item)
     .$promise
     .then((response) => {
-      this.$state.go('lagash.newspapers.list.catalog');
+      this.$state.go('lagash.newspapers.catalog');
     })
     .catch((err) => {
       this.WError.request(err);

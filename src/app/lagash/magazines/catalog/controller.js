@@ -39,7 +39,8 @@ export class LagashMagazinesCatalogController {
   }
 
   select_item(item) {
-    this.$state.go('lagash.magazines.list.catalog_preview', {
+    console.log(item);
+    this.$state.go('lagash.magazines.catalog_preview', {
       catalog_id: item._id
     });
   }

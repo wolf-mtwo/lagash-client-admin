@@ -6,6 +6,8 @@ export class LagashMagazinesCatalogUpdateController {
     this.WError = WError;
     this.MagazinesCatalog = MagazinesCatalog;
     this.item = catalog;
+    console.log('test');
+    console.log(catalog);
   }
 
   openMenu($mdOpenMenu, ev) {
@@ -17,7 +19,7 @@ export class LagashMagazinesCatalogUpdateController {
       _id: item._id
     }, item).$promise
     .then((response) => {
-      this.$state.go('lagash.magazines.list.catalog');
+      this.$state.go('lagash.magazines.catalog');
     })
     .catch((err) => {
       this.WError.request(err);
@@ -30,7 +32,7 @@ export class LagashMagazinesCatalogUpdateController {
     }, item)
     .$promise
     .then((response) => {
-      this.$state.go('lagash.magazines.list.catalog');
+      this.$state.go('lagash.magazines.catalog');
     })
     .catch((err) => {
       this.WError.request(err);

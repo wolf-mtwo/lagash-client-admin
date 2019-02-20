@@ -39,7 +39,7 @@ export class LagashNewspapersCatalogController {
   }
 
   select_item(item) {
-    this.$state.go('lagash.newspapers.list.catalog_preview', {
+    this.$state.go('lagash.newspapers.catalog_preview', {
       catalog_id: item._id
     });
   }

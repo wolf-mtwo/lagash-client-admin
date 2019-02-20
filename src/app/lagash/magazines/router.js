@@ -49,6 +49,32 @@ export function router($stateProvider) {
   //   controllerAs: 'vm'
   // });
 
+  $stateProvider.state('lagash.magazines.catalog', {
+    url: '/catalog',
+    template: require('./catalog/index.html'),
+    controller: 'LagashMagazinesCatalogController',
+    controllerAs: 'vm',
+    resolve: {
+      size: function(MagazinesCatalog) {
+        return MagazinesCatalog.size().$promise;
+      }
+    }
+  });
+
+  $stateProvider.state('lagash.magazines.catalog_preview', {
+    url: '/catalog/:catalog_id',
+    template: require('./catalog/update/index.html'),
+    controller: 'LagashMagazinesCatalogUpdateController',
+    controllerAs: 'vm',
+    resolve: {
+      catalog: function($stateParams, MagazinesCatalog) {
+        return MagazinesCatalog.get({
+          _id: $stateParams.catalog_id
+        }).$promise;
+      },
+    }
+  });
+
   $stateProvider.state('lagash.magazines.list.preview', {
     url: '/:magazine_id',
     template: require('./update/index.html'),

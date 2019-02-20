@@ -93,7 +93,7 @@ export class LagashInventoriesListController {
 
   select_item(item) {
     var data = {};
-    data[this.config.param] = item.data_id;
+    data[this.config.param] = item.material_id;
     var url = this.$state.href(this.config.route, data);
     window.open(url, '_blank');
   }
