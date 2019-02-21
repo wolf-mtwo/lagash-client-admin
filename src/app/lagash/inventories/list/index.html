@@ -21,11 +21,11 @@
       <p>
         <b class="wargos-list-inventory">{{item.inventory}}</b>
         <b class="wargos-list-code">{{item.data.code_material}} {{item.data.code_author}} Ej.{{item.order}}</b>
-        <b class="wargos-list-year">{{item.data.year}}</b>
-        {{item.data.title}}
+        <span>{{item.data.title | limitTo: 150}}{{item.data.title.length > 150 ? '...' : ''}}</span>
       </p>
       <div class="md-secondary">
         {{item.created | date: 'dd-MM-yyyy'}}
+        <b class="wargos-list-year">{{item.data.year}}</b>
       </div>
   </md-list>
 </md-content>
@@ -38,7 +38,7 @@
 }
 .wargos-list-inventory {
   width: 40px;
-  font-size: 11px;
+  font-size: 13px;
   display: inline-block;
 }
 .wargos-list-code {

@@ -50,6 +50,12 @@ export class BasicOption {
     }, {
       key: 'post-grado',
       value: 'Post Grado'
+    }, {
+      key: 'maestria',
+      value: 'Maestria'
+    }, {
+      key: 'doctorado',
+      value: 'Doctorado'
     }];
 
     this.covers = [{

@@ -16,7 +16,7 @@
         <b class="lagash-report-100">{{vm.i18n[item.type]}}</b>
         <b class="lagash-report-200">{{item.code}}</b>
         <b class="lagash-report-300">{{item.name}}</b>
-        <span>{{item.data.title | limitTo: 80}}{{item.data.title.length > 80 ? '...' : ''}}</span>
+        <span>{{item.data.title | limitTo: 100}}{{item.data.title.length > 100 ? '...' : ''}}</span>
       </p>
       <div class="md-secondary">
         <small><b>{{item.created | date: 'HH:mm dd-MM-yyyy'}}</b></small>
