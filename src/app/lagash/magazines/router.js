@@ -150,4 +150,23 @@ export function router($stateProvider) {
       }
     }
   });
+  // dev raul
+  $stateProvider.state('print_magazine_file', {
+    url: '/print/chip/magazine/:item_id/ejemplaresFiles/:ejemplar_id',
+    template: require('./print/files/index.html'),
+    controller: 'LagashMagazinesPrintChipController',
+    controllerAs: 'vm',
+    resolve: {
+      item: function($stateParams, Magazines) {
+        return Magazines.get({
+          _id: $stateParams.item_id
+        }).$promise;
+      },
+      ejemplar: function($stateParams, MagazinesEjemplares) {
+        return MagazinesEjemplares.get({
+          _id: $stateParams.ejemplar_id
+        }).$promise;
+      }
+    }
+  });
 }

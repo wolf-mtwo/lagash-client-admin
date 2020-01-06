@@ -108,18 +108,18 @@ export class LagashBookingReturnsController {
     });
   }
 
-  delete_loan(item, index) {
-    this.model.remove({
-      _id: item._id
-    }, item).$promise
-    .then((response) => {
-      this.items.splice(index, 1);
-      this.WToast.show('Se elimino la reservación');
-    })
-    .catch((err) => {
-      this.WError.request(err);
-    });
-  }
+  // delete_loan(item, index) {
+  //   this.model.remove({
+  //     _id: item._id
+  //   }, item).$promise
+  //   .then((response) => {
+  //     this.items.splice(index, 1);
+  //     this.WToast.show('Se elimino la reservación');
+  //   })
+  //   .catch((err) => {
+  //     this.WError.request(err);
+  //   });
+  // }
 
   openMenu($mdOpenMenu, ev) {
     $mdOpenMenu(ev);

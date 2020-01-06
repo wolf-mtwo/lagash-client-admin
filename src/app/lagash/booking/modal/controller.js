@@ -81,12 +81,12 @@ export class LagashBookingLoansController {
       ejemplar_id: item.ejemplar_id,
       state: state
     }).$promise
-    .then((res) => {
-      item.state = res.state;
-    })
-    .catch((err) => {
-      this.WError.request(err);
-    });
+      .then((res) => {
+        item.state = res.state;
+      })
+      .catch((err) => {
+        this.WError.request(err);
+      });
   }
 
   populate(items) {
@@ -99,13 +99,13 @@ export class LagashBookingLoansController {
     this[item.type].get({
       _id: item.material_id
     }).$promise
-    .then((res) => {
-      item.status = this.BasicOption.get_state(item.created);
-      item.data = res;
-    })
-    .catch((err) => {
-      this.WError.request(err);
-    });
+      .then((res) => {
+        item.status = this.BasicOption.get_state(item.created);
+        item.data = res;
+      })
+      .catch((err) => {
+        this.WError.request(err);
+      });
   }
 
   // delete_loan(item, index) {

@@ -150,4 +150,24 @@ export function router($stateProvider) {
       }
     }
   });
+
+  // dev raul
+  $stateProvider.state('print_newspaper_file', {
+    url: '/print/chip/newspapers/:item_id/ejemplaresFiles/:ejemplar_id',
+    template: require('./print/files/index.html'),
+    controller: 'LagashNewspapersPrintChipController',
+    controllerAs: 'vm',
+    resolve: {
+      item: function($stateParams, Newspapers) {
+        return Newspapers.get({
+          _id: $stateParams.item_id
+        }).$promise;
+      },
+      ejemplar: function($stateParams, NewspapersEjemplares) {
+        return NewspapersEjemplares.get({
+          _id: $stateParams.ejemplar_id
+        }).$promise;
+      }
+    }
+  });
 }

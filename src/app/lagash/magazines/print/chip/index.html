@@ -1,3 +1,7 @@
+<div  style="text-align: center; left: 500px;">
+  <!--  3 filas-->
+  <button onclick="print()" type="submit">Imprimir Topografia</button>
+</div>
 <div style="font-family:monospace;font-size:16px;">
   <div style="position:relative;width:665px;height:390px;padding:10px;">
     <div style="position:absolute;width:665px;height:390px;background-color:white;border:1px solid black;">
@@ -70,6 +74,33 @@
         <div style="display:flex;padding: 5px;">
           <b>Inventario:</b> <div style="flex:1;display:inline;border-bottom:2px dotted black;padding:0 0 0 20px;">{{vm.ejemplar.inventory}}</div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--      raul dev-->
+<div>
+  <div class="lagash-print-contanier" style="font-family:monospace;font-size:17px;">
+    <div style="position:relative;">
+      <div style="position:absolute;top:75px;left:260px;width:150px;text-align:end;">
+        {{vm.ejemplar.inventory}}
+      </div>
+      <div style="position:absolute;top:7px;left:72px;">
+        <table>
+          <tr>
+            <td style="vertical-align:top;width:90px;">{{vm.item.code_material}}</td>
+            <td style="max-width:260px; max-height: 10px; text-align:justify;padding: 0 20px 0 0;"  >{{vm.item.title.substr(0,24)}}...</td>
+          <tr>
+            <td style="vertical-align:top;width:90px;">{{vm.item.code_author}}</td>
+            <td>{{vm.authors[0].last_name | uppercase}}, {{vm.authors[0].first_name}}</td>
+          </tr>
+          <!--          <tr>-->
+          <!--            <td style="vertical-align:top;width:90px;">{{vm.ejemplar.suffix}}</td>-->
+          <!--          </tr>-->
+        </table>
+      </div>
+      <div>
+        &#160;&#160;&#160;&#160;&#160;&#160;<img style="width: 400px; height: 600px;" ng-src="assets/images/ficha.png">
       </div>
     </div>
   </div>

@@ -1,3 +1,7 @@
+<div  style="text-align: center; left: 500px;">
+  <!--  3 filas-->
+  <button onclick="print()" type="submit">Imprimir Topografia</button>
+</div>
 <div style="font-family:monospace;font-size:16px;">
   <div style="position:relative;width:665px;height:390px;padding:10px;">
     <div style="position:absolute;width:665px;height:390px;background-color:white;border:1px solid black;">
@@ -65,7 +69,7 @@
           <b>Codigo:</b> <div style="flex:1;display:inline;border-bottom:2px dotted black;padding:0 0 0 20px;">{{vm.item.code_material}}</div>
         </div>
         <div style="display:flex;padding: 5px;">
-          <b>Autor:</b> <div style="flex:1;display:inline;border-bottom:2px dotted black;padding:0 0 0 20px;">{{vm.item.code_author}}</div>
+          <b>Autor:</b> <div style="flex:1;display:inline;border-bottom:2px dotted black;padding:0 0 0 20px;">{{vm.item.code_author}} Ej.{{vm.ejemplar.order}}</div>
         </div>
         <div style="display:flex;padding: 5px;">
           <b>Inventario:</b> <div style="flex:1;display:inline;border-bottom:2px dotted black;padding:0 0 0 20px;">{{vm.ejemplar.inventory}}</div>

@@ -68,4 +68,12 @@ export class LagashNewspapersEjemplarController {
     });
     window.open(url, '_blank');
   }
+  // dev raul
+  print_file() {
+    var url = this.$state.href('print_newspaper_file', {
+      item_id: this.item._id,
+      ejemplar_id: this.ejemplar._id
+    });
+    window.open(url, '_blank');
+  }
 }

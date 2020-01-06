@@ -1,0 +1,53 @@
+<!--      raul dev-->
+<div  style="text-align: center; left: 500px;">
+  <button onclick="print()" type="submit">Imprimir Ficha</button>
+</div>
+<br>
+<div>
+  <div class="lagash-print-contanier" style="font-family:monospace;font-size:17px;">
+    <div style="position:relative;">
+      <div style="position:absolute;top:70px;left:260px;max-width:150px;text-align:end;">
+        {{vm.ejemplar.inventory}}
+      </div>
+      <div style="position:absolute;top:30px;left:10px;max-width:100px;">
+        {{vm.item.code_author}} Ej.{{vm.ejemplar.order}}
+      </div>
+
+      <div style="position:absolute;top:7px;left:10px;max-width:50px;">
+        {{vm.item.code_material}}
+      </div>
+
+      <div style="position:absolute;top:7px;left:120px; max-width:220px; ">
+        {{vm.item.title.substr(0,33)}}...
+      </div>
+
+      <div style="position:absolute;top:50px;left:120px;max-width:150px;">
+        {{vm.authors[0].last_name.substr(0,5) | uppercase}},{{vm.authors[0].first_name.substr(0,5)}}...
+      </div>
+<!--      other-->
+      <div style="position:absolute;top:70px;left:600px;max-width:150px;text-align:end;">
+        {{vm.ejemplar.inventory}}
+      </div>
+      <div style="position:absolute;top:30px;left:350px;max-width:100px;">
+        {{vm.item.code_author}} Ej.{{vm.ejemplar.order}}
+      </div>
+
+      <div style="position:absolute;top:7px;left:350px;max-width:50px;">
+        {{vm.item.code_material}}
+      </div>
+
+      <div style="position:absolute;top:7px;left:460px; max-width:220px; ">
+        {{vm.item.title.substr(0,33)}}...
+      </div>
+
+      <div style="position:absolute;top:50px;left:460px;max-width:150px;">
+        {{vm.authors[0].last_name.substr(0,5) | uppercase}},{{vm.authors[0].first_name.substr(0,5)}}...
+      </div>
+
+      <div>
+        <img style="width: 330px; height: 510px;" ng-src="assets/images/ficha.png">
+        <img style="width: 330px; height: 510px;" ng-src="assets/images/ficha.png">
+      </div>
+    </div>
+  </div>
+</div>

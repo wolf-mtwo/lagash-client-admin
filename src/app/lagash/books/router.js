@@ -133,4 +133,24 @@ export function router($stateProvider) {
       }
     }
   });
+
+// dev raul
+  $stateProvider.state('print_book_file', {
+    url: '/print/chip/book/:item_id/ejemplaresFiles/:ejemplar_id',
+    template: require('./print/files/index.html'),
+    controller: 'LagashBooksPrintChipController',
+    controllerAs: 'vm',
+    resolve: {
+      item: function($stateParams, Books) {
+        return Books.get({
+          _id: $stateParams.item_id
+        }).$promise;
+      },
+      ejemplar: function($stateParams, BooksEjemplares) {
+        return BooksEjemplares.get({
+          _id: $stateParams.ejemplar_id
+        }).$promise;
+      }
+    }
+  });
 }

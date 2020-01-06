@@ -158,4 +158,24 @@ export function router($stateProvider) {
       }
     }
   });
+
+// // dev raul
+  $stateProvider.state('print_thesis_file', {
+    url: '/print/chip/thesis/:item_id/ejemplaresFile/:ejemplar_id',
+    template: require('./print/files/index.html'),
+    controller: 'LagashThesisPrintChipController',
+    controllerAs: 'vm',
+    resolve: {
+      item: function($stateParams, Thesis) {
+        return Thesis.get({
+          _id: $stateParams.item_id
+        }).$promise;
+      },
+      ejemplar: function($stateParams, ThesisEjemplares) {
+        return ThesisEjemplares.get({
+          _id: $stateParams.ejemplar_id
+        }).$promise;
+      }
+    }
+  });
 }

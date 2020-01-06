@@ -21,12 +21,12 @@ export class LagashBooksPrintChipController {
     Authors.find_authors({
       material_id: this.item._id
     }).$promise
-    .then((res) => {
-      this.authors = res;
-    })
-    .catch((err) => {
-      this.WError.request(err);
-    });
+      .then((res) => {
+        this.authors = res;
+      })
+      .catch((err) => {
+        this.WError.request(err);
+      });
     if (!this.item.editorial_id) {
       this.WToast.show('El ejemplar no tiene editorial');
       return;
@@ -34,12 +34,12 @@ export class LagashBooksPrintChipController {
     Editorials.get({
       _id: this.item.editorial_id
     }).$promise
-    .then((res) => {
-      this.editorial = res;
-    })
-    .catch((err) => {
-      this.WError.request(err);
-    });
+      .then((res) => {
+        this.editorial = res;
+      })
+      .catch((err) => {
+        this.WError.request(err);
+      });
   }
 
   find_illustrations(items) {
