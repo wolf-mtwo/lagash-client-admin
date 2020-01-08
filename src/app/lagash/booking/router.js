@@ -49,6 +49,23 @@ export function router($stateProvider) {
       },
       model: function(Booking) {
         return Booking;
+
+      }
+    }
+  });
+  // dev raul
+  $stateProvider.state('lagash.booking.reserve', {
+    url: '/reserve',
+    template: require('./reserve/index.html'),
+    // controller: 'LagashBooksListController'
+    controller: 'LagashBookingReserveController',
+    controllerAs: 'vm',
+    resolve: {
+      size: function (Booking) {
+        return Booking.size().$promise;
+      },
+      model: function (Booking) {
+        return Booking;
       }
     }
   });

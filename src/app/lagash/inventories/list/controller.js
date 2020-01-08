@@ -40,7 +40,7 @@ export class LagashInventoriesListController {
       THESIS: 'TESIS',
       MAGAZINE: 'REVISTAR',
       NEWSPAPER: 'PERIODICO'
-    }
+    };
 
     this.inventories = [];
     this.select = {
@@ -74,7 +74,7 @@ export class LagashInventoriesListController {
       }).$promise;
     };
     self.on_pagination();
-  }
+  };
 
   search() {
     this.model_ejemplar.select(this.select).$promise
