@@ -19,7 +19,7 @@ export class ImageService {
     })
     .then(function (resp) {
       var data = resp.data;
-      data.url = self.Global.PATH + '/files/' + data.name;
+      data.url = self.Global.PATH + '/files/originales/' + data.name;
       callback(data);
     }, function (resp) {
         self.WToast.show(resp.status);
@@ -34,6 +34,6 @@ export class ImageService {
     if (!name) {
       throw new Error('name is undefined');
     }
-    return this.Global.PATH + '/files/' + name;
+    return this.Global.PATH + '/files/originales/' + name;
   }
 }
