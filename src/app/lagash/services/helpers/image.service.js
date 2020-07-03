@@ -17,13 +17,13 @@ export class ImageService {
         url: self.STORE_PATH,
         data: { avatar: file }
     })
-    .then(function (resp) {
+    .then(function(resp) {
       var data = resp.data;
-      data.url = self.Global.PATH + '/files/originales/' + data.name;
+      data.url = self.Global.PATH + '/files/hd/' + data.name;
       callback(data);
-    }, function (resp) {
+    }, function(resp) {
         self.WToast.show(resp.status);
-    }, function (evt) {
+    }, function(evt) {
         var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
         var msg = 'progress: ' + progressPercentage + '% ';
         self.WToast.show(msg);
@@ -34,6 +34,6 @@ export class ImageService {
     if (!name) {
       throw new Error('name is undefined');
     }
-    return this.Global.PATH + '/files/originales/' + name;
+    return this.Global.PATH + '/files/hd/' + name;
   }
 }
