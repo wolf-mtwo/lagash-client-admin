@@ -91,5 +91,5 @@ export class LagashNewspapersCatalogController {
     }, function() {
       console.info('You cancelled the dialog.');
     });
-  };
+  }
 }

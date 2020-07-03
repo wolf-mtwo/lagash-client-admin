@@ -2,7 +2,7 @@ export class LagashThesisPrintChipController {
 
   constructor($state, WError, WToast, item, ejemplar, Authors, BasicOption, Editorials) {
     'ngInject';
-    console.log('ttttttttt');
+
     this.$state = $state;
     this.WError = WError;
     this.WToast = WToast;
@@ -15,7 +15,6 @@ export class LagashThesisPrintChipController {
     item.cover = this.BasicOption.find_covers(item.cover) || this.BasicOption.EMPTY;
     this.item = item;
 
-    // autor
     Authors.find_authors({
       material_id: this.item._id
     }).$promise

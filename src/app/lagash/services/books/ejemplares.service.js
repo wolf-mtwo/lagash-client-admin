@@ -7,7 +7,7 @@ export class BooksEjemplares {
     }, {
       save: {
         method: 'POST',
-        url: url,
+        url: url
       },
       update: {
         method: 'PUT'
@@ -17,10 +17,6 @@ export class BooksEjemplares {
         url: Global.PATH + '/v2/books/:data_id/ejemplares',
         isArray: true
       },
-      // save: {
-      //   method: 'POST',
-      //   url: Global.PATH + '/v2/books/:data_id/ejemplares'
-      // },
       pagination: {
         method: 'GET',
         isArray: true,
@@ -35,11 +31,6 @@ export class BooksEjemplares {
         method: 'GET',
         url: url + '/size'
       },
-      // search: {
-      //   method: 'GET',
-      //   isArray: true,
-      //   url: url + '/page/:page/limit/:limit/search'
-      // },
       next: {
         method: 'GET',
         url: url + '/next'

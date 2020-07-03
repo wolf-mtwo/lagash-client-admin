@@ -29,7 +29,7 @@ export class LagashTutorsUpdateController {
     this.Tutors.remove({
       _id: item._id
     }, item).$promise
-    .then((response) => {
+    .then(() => {
       this.$state.go('lagash.tutors.list.main', {}, {reload: true});
     })
     .catch((err) => {
@@ -42,7 +42,7 @@ export class LagashTutorsUpdateController {
       _id: item._id
     }, item)
     .$promise
-    .then((response) => {
+    .then(() => {
       this.$state.go('lagash.tutors.list.main', {}, {reload: true});
     })
     .catch((err) => {

@@ -10,13 +10,13 @@ export class LagashNewspapersCatalogUpdateController {
 
   openMenu($mdOpenMenu, ev) {
     $mdOpenMenu(ev);
-  };
+  }
 
   delete_item(item) {
     this.NewspapersCatalog.remove({
       _id: item._id
     }, item).$promise
-    .then((response) => {
+    .then(() => {
       this.$state.go('lagash.newspapers.catalog');
     })
     .catch((err) => {
@@ -29,7 +29,7 @@ export class LagashNewspapersCatalogUpdateController {
       _id: item._id
     }, item)
     .$promise
-    .then((response) => {
+    .then(() => {
       this.$state.go('lagash.newspapers.catalog');
     })
     .catch((err) => {

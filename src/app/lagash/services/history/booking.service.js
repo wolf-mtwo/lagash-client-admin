@@ -7,7 +7,7 @@ export class Booking {
     }, {
       save: {
         method: 'POST',
-        url: url,
+        url: url
       },
       update: {
         method: 'PUT'

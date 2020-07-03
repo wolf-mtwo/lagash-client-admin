@@ -62,7 +62,6 @@ export class LagashThesisUpdateController {
     thesis.brings = thesis.brings ? thesis.brings.split(',') : [];
     this.item = thesis;
 
-    // autor
     Authors.find_authors({
       material_id: this.thesis_id
     }).$promise
@@ -80,6 +79,7 @@ export class LagashThesisUpdateController {
     .catch((err) => {
       this.WError.request(err);
     });
+
     Carrers.query().$promise
     .then((res) => {
       this.carrers = res;
@@ -95,8 +95,8 @@ export class LagashThesisUpdateController {
 
   load_editorial() {
     if (!this.item.editorial_id) {
-       console.log('editorial_id is undefined');
-       return;
+      console.log('editorial_id is undefined');
+      return;
     }
     this.Editorials.get({
       _id: this.item.editorial_id
@@ -150,14 +150,14 @@ export class LagashThesisUpdateController {
 
   openMenu($mdOpenMenu, ev) {
     $mdOpenMenu(ev);
-  };
+  }
 
   delete(item) {
     this.Thesis.remove({
       _id: item._id
     }, item).$promise
-    .then((response) => {
-      this.$state.go('lagash.thesis.list.main', {}, {reload: true});
+    .then(() => {
+      this.$state.go('lagash.thesis.list.main', {}, { reload: true });
     })
     .catch((err) => {
       this.WError.request(err);
@@ -174,8 +174,8 @@ export class LagashThesisUpdateController {
       _id: item._id
     }, data)
     .$promise
-    .then((response) => {
-      this.$state.go('lagash.thesis.list.main', {}, {reload: true});
+    .then(() => {
+      this.$state.go('lagash.thesis.list.main', {}, { reload: true });
     })
     .catch((err) => {
       this.WError.request(err);
@@ -192,7 +192,7 @@ export class LagashThesisUpdateController {
       _id: item._id
     }, data)
     .$promise
-    .then((response) => {
+    .then(() => {
       this.WToast.show('El nuevo codigo se guardo correctamente');
     })
     .catch((err) => {
@@ -264,7 +264,7 @@ export class LagashThesisUpdateController {
     this.ThesisEjemplares.update({
       _id: ejemplar._id
     }, ejemplar).$promise
-    .then((response) => {
+    .then(() => {
       this.WToast.show('El ejemplar se actualizo correctamente');
     })
     .catch((err) => {
@@ -293,7 +293,7 @@ export class LagashThesisUpdateController {
     this.AuthorsMap.remove({
       _id: item.map._id
     }).$promise
-    .then((res) => {
+    .then(() => {
       this.authors.splice(index, 1);
     })
     .catch((err) => {
@@ -350,7 +350,7 @@ export class LagashThesisUpdateController {
     }, function() {
       console.info('You cancelled the dialog.');
     });
-  };
+  }
 
   show_tutor_search_dialog(ev) {
     var self = this;
@@ -371,19 +371,19 @@ export class LagashThesisUpdateController {
     }, function() {
       console.info('You cancelled the dialog.');
     });
-  };
+  }
 
   show_author_create_dialog(ev) {
     this.AutorDialogs.show(ev, (item) => {
       this.save_author(this.item, item);
     });
-  };
+  }
 
   show_author_search_dialog(ev) {
     this.AutorDialogs.search(ev, (item) => {
       this.save_author(this.item, item);
     });
-  };
+  }
 
   show_catalog_search_dialog(ev) {
     var self = this;
@@ -425,7 +425,7 @@ export class LagashThesisUpdateController {
     }, function() {
       console.info('You cancelled the dialog.');
     });
-  };
+  }
 
   show_editorial_search_dialog(ev) {
     var self = this;

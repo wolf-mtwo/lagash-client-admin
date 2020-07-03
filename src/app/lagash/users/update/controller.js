@@ -16,7 +16,7 @@ export class LagashUsersUpdateController {
     this.Users.remove({
       _id: item._id
     }, item).$promise
-    .then((response) => {
+    .then(() => {
       this.$state.go('lagash.users.list');
     })
     .catch((err) => {
@@ -30,7 +30,7 @@ export class LagashUsersUpdateController {
       _id: item._id
     }, item)
     .$promise
-    .then((response) => {
+    .then(() => {
       this.$state.go('lagash.users.list');
     })
     .catch((err) => {

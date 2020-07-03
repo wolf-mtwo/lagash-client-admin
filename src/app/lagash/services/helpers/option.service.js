@@ -358,7 +358,7 @@ export class BasicOption {
     var dayTimeStamp = 86400000;
     var date_state = new Date(date);
     var day_state = date_state.getTime();
-    var date = new Date();
+    //TODO var date = new Date();
     var day_warn = date.getTime() - (dayTimeStamp * 2);
     var day_danger = date.getTime() - (dayTimeStamp * 3);
     if (day_state > day_danger && day_state < day_warn) {

@@ -11,6 +11,7 @@
   },
   "globals": {
     "angular": true,
+    "require": true,
     "module": true,
     "inject": true
   }

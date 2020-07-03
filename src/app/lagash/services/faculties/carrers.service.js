@@ -19,7 +19,7 @@ export class Carrers {
       },
       save: {
         method: 'POST',
-        url: url,
+        url: url
       },
       pagination: {
         method: 'GET',

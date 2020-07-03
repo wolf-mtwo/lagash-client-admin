@@ -41,7 +41,7 @@ export class LagashThesisListController {
       _id: item._id
     }, item)
     .$promise
-    .then((response) => {
+    .then(() => {
       this.WToast.show('La tesis se actualizo correctamente');
     })
     .catch((err) => {

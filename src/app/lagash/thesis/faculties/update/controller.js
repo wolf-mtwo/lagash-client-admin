@@ -42,7 +42,7 @@ export class LagashThesisFacultiesUpdateController {
     this.Carrers.remove({
       _id: item._id
     }).$promise
-    .then((res) => {
+    .then(() => {
       this.carrers.splice(index, 1);
     })
     .catch((err) => {
@@ -52,13 +52,13 @@ export class LagashThesisFacultiesUpdateController {
 
   openMenu($mdOpenMenu, ev) {
     $mdOpenMenu(ev);
-  };
+  }
 
   delete_item(item) {
     this.Faculties.remove({
       _id: item._id
     }, item).$promise
-    .then((response) => {
+    .then(() => {
       this.$state.go('lagash.thesis.list.faculties');
     })
     .catch((err) => {
@@ -71,7 +71,7 @@ export class LagashThesisFacultiesUpdateController {
       _id: item._id
     }, item)
     .$promise
-    .then((response) => {
+    .then(() => {
       this.$state.go('lagash.thesis.list.faculties');
     })
     .catch((err) => {

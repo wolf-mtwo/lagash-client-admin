@@ -28,8 +28,8 @@ export class LagashTutorsCreateController {
 
   register(item) {
     this.Tutors.save(item).$promise
-    .then((res) => {
-      this.$state.go('lagash.tutors.list.main', {}, {reload: true});
+    .then(() => {
+      this.$state.go('lagash.tutors.list.main', {}, { reload: true });
     })
     .catch((err) => {
       this.WError.request(err);

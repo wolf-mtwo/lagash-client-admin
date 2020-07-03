@@ -7,7 +7,7 @@ export class ThesisEjemplares {
     }, {
       save: {
         method: 'POST',
-        url: url,
+        url: url
       },
       update: {
         method: 'PUT'

@@ -17,7 +17,7 @@ export class LagashUsersCreateController {
   register(item) {
     this.Users.save(item)
     .$promise
-    .then((response) => {
+    .then(() => {
       this.$state.go('lagash.users.list');
     })
     .catch((err) => {

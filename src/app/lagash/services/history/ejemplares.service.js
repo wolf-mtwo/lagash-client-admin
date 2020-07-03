@@ -7,7 +7,7 @@ export class Ejemplares {
     }, {
       save: {
         method: 'POST',
-        url: url,
+        url: url
       },
       update: {
         method: 'PUT'

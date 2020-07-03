@@ -10,13 +10,13 @@ export class LagashThesisCatalogUpdateController {
 
   openMenu($mdOpenMenu, ev) {
     $mdOpenMenu(ev);
-  };
+  }
 
   delete_item(item) {
     this.ThesisCatalog.remove({
       _id: item._id
     }, item).$promise
-    .then((response) => {
+    .then(() => {
       this.$state.go('lagash.thesis.list.catalog');
     })
     .catch((err) => {
@@ -29,7 +29,7 @@ export class LagashThesisCatalogUpdateController {
       _id: item._id
     }, item)
     .$promise
-    .then((response) => {
+    .then(() => {
       this.$state.go('lagash.thesis.list.catalog');
     })
     .catch((err) => {

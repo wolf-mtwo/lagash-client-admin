@@ -33,7 +33,7 @@ export class LagashThesisEjemplarController {
       _id: ejemplar._id
     }, ejemplar)
     .$promise
-    .then((response) => {
+    .then(() => {
       this.WToast.show('El ejemplar se actualizo correctamente');
     })
     .catch((err) => {
@@ -45,7 +45,7 @@ export class LagashThesisEjemplarController {
     this.ThesisEjemplares.remove({
       _id: item._id
     }, item).$promise
-    .then((response) => {
+    .then(() => {
       this.$state.go('lagash.thesis.list.main');
     })
     .catch((err) => {
@@ -68,7 +68,7 @@ export class LagashThesisEjemplarController {
     });
     window.open(url, '_blank');
   }
-  // dev raul
+
   print_file() {
     var url = this.$state.href('print_thesis_file', {
       item_id: this.item._id,
