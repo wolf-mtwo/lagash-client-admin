@@ -2,7 +2,7 @@ export class Thesis {
 
   constructor($resource, Global) {
     'ngInject';
-    var url = Global.PATH + '/v1/thesis';
+    var url = Global.PATH + '/v1/theses';
     return $resource(url, {
     }, {
       get: {
