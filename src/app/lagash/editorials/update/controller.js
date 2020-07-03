@@ -29,7 +29,7 @@ export class LagashEditorialsUpdateController {
     this.Editorials.remove({
       _id: item._id
     }, item).$promise
-    .then((response) => {
+    .then(() => {
       this.$state.go('lagash.editorials.list.main', {}, {reload: true});
     })
     .catch((err) => {
@@ -42,7 +42,7 @@ export class LagashEditorialsUpdateController {
       _id: item._id
     }, item)
     .$promise
-    .then((response) => {
+    .then(() => {
       this.$state.go('lagash.editorials.list.main', {}, {reload: true});
     })
     .catch((err) => {

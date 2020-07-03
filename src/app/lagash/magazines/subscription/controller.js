@@ -56,7 +56,7 @@ export class LagashMagazinesSubscriptionController {
       _id: item._id
     }, item)
     .$promise
-    .then((response) => {
+    .then(() => {
       this.WToast.show('El catalogo se actualizo correctamente');
     })
     .catch((err) => {

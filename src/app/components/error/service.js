@@ -17,30 +17,30 @@ export class WError {
     );
   }
 
-  request(response) {
+  request(res) {
     var msg;
-    if (response.status === -1) {
+    if (res.status === -1) {
       msg = 'ERROR: ' + 'CONECCION RECHAZADA';
       this.displayError(msg);
       return;
     }
-    if (response.status === 408) {
-      msg = 'ERROR: ' + response.data;
+    if (res.status === 408) {
+      msg = 'ERROR: ' + res.data;
       this.displayError(msg);
       return;
     }
-    if (response.data) {
-      msg = 'ERROR: ' + response.data.message;
+    if (res.data) {
+      msg = 'ERROR: ' + res.data.message;
       this.displayError(msg);
       return;
     } else {
-      console.error('NOT HANDLED ERROR:', response);
+      console.error('NOT HANDLED ERROR:', res);
       return;
     }
   }
 
-  display(error) {
-    var msg = "ERROR: " + error;
+  display(err) {
+    var msg = "ERROR: " + err;
     this.displayError(msg);
   }
 }

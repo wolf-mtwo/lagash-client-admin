@@ -112,7 +112,7 @@ export class LagashMagazinesUpdateController {
     this.Magazines.remove({
       _id: item._id
     }, item).$promise
-    .then((response) => {
+    .then(() => {
       this.$state.go('lagash.magazines.list.main', {}, {reload: true});
     })
     .catch((err) => {
@@ -128,7 +128,7 @@ export class LagashMagazinesUpdateController {
       _id: item._id
     }, data)
     .$promise
-    .then((response) => {
+    .then(() => {
       this.$state.go('lagash.magazines.list.main', {}, {reload: true});
     })
     .catch((err) => {
@@ -144,7 +144,7 @@ export class LagashMagazinesUpdateController {
       _id: item._id
     }, data)
     .$promise
-    .then((response) => {
+    .then(() => {
       this.WToast.show('El nuevo codigo se guardo correctamente');
     })
     .catch((err) => {
@@ -156,10 +156,10 @@ export class LagashMagazinesUpdateController {
     this.MagazinesEjemplares.save({
       data_id: item.material_id
     }, item).$promise
-    .then((response) => {
+    .then((res) => {
       this.create_ejemplar_state = false;
       this.WToast.show('El ejemplar se guardo correctamente');
-      this.ejemplares.push(response);
+      this.ejemplares.push(res);
     })
     .catch((err) => {
       this.WError.request(err);
@@ -216,7 +216,7 @@ export class LagashMagazinesUpdateController {
     this.MagazinesEjemplares.update({
       _id: ejemplar._id
     }, ejemplar).$promise
-    .then((response) => {
+    .then(() => {
       this.WToast.show('El ejemplar se actualizo correctamente');
     })
     .catch((err) => {

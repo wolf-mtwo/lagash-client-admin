@@ -1,21 +1,14 @@
 export class LagashBookingReserveController {
 
   constructor(
-              $state,
-              $mdDialog,
-              WError,
-              WToast,
-              Books,
-              size,
-              UUID,
-              BasicOption,
-              BooksEjemplares
-              // Thesis,
-              // Magazines,
-              // Newspapers,
-              // config,
-              // model,
-
+    $state,
+    $mdDialog,
+    WError,
+    WToast,
+    Books,
+    size,
+    UUID,
+    BasicOption
   ) {
     'ngInject';
     this.$state = $state;
@@ -27,8 +20,6 @@ export class LagashBookingReserveController {
     this.WError = WError;
     this.books = [];
     this.total = size.total;
-
-
 
     this.query = {
       search: '',
@@ -42,28 +33,11 @@ export class LagashBookingReserveController {
       }).$promise;
     };
     self.on_pagination();
-
-    // this.queryCode = {
-    //   search: '',
-    //   limit: 25,
-    //   page: 1
-    // };
-    // var code = this;
-    // code.on_pagination = function () {
-    //   Books.search(code.queryCode, function () {
-    //     code.books = items;
-    //   }).$promise;
-    // };
-    // code.on_pagination();
-
-  };
+  }
 
   search_books() {
     this.on_pagination();
   }
-  // search_ejemplares(){
-  //   this.on_pagination();
-  // }
 
   select_book(item) {
     this.$state.go('lagash.books.list.preview', {
@@ -75,13 +49,13 @@ export class LagashBookingReserveController {
     this.Books.update({
       _id: item._id
     }, item)
-      .$promise
-      .then((response) => {
-        this.WToast.show('El libro se actualizo correctamente');
-      })
-      .catch((err) => {
-        this.WError.request(err);
-      });
+    .$promise
+    .then(() => {
+      this.WToast.show('El libro se actualizo correctamente');
+    })
+    .catch((err) => {
+      this.WError.request(err);
+    });
   }
 
   create_book(title) {
@@ -104,16 +78,17 @@ export class LagashBookingReserveController {
       isbn: null
     };
     this.Books.save(data).$promise
-      .then((res) => {
-        this.books.unshift(res);
-        this.select_book(res);
-      })
-      .catch((err) => {
-        this.WError.request(err);
-      });
+    .then((res) => {
+      this.books.unshift(res);
+      this.select_book(res);
+    })
+    .catch((err) => {
+      this.WError.request(err);
+    });
   }
 
   show_book_create_dialog(ev) {
+    // TODO new guys
     var self = this;
     this.$mdDialog.show({
       controller: function($scope, $mdDialog, item) {
@@ -140,10 +115,10 @@ export class LagashBookingReserveController {
         item: null
       }
     })
-      .then(function(answer) {
-        self.create_book(answer);
-      }, function() {
-        console.info('You cancelled the dialog.');
-      });
+    .then(function(answer) {
+      self.create_book(answer);
+    }, function() {
+      console.info('You cancelled the dialog.');
+    });
   }
 }

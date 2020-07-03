@@ -75,5 +75,5 @@ export class LagashController {
     }
     this.$mdSidenav('left').close();
     this.$state.go(option.route);
-  };
+  }
 }

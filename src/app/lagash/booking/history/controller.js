@@ -111,7 +111,7 @@ export class LagashBookingHistoryController {
       this.model.remove({
         _id: item._id
       }, item).$promise
-      .then((response) => {
+      .then(() => {
         this.items.splice(index, 1);
         this.WToast.show('Se elimino la reservación');
       })

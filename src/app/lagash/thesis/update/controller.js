@@ -204,10 +204,10 @@ export class LagashThesisUpdateController {
     this.ThesisEjemplares.save({
       data_id: item.material_id
     }, item).$promise
-    .then((response) => {
+    .then((res) => {
       this.create_ejemplar_state = false;
       this.WToast.show('El ejemplar se guardo correctamente');
-      this.ejemplares.push(response);
+      this.ejemplares.push(res);
     })
     .catch((err) => {
       this.WError.request(err);

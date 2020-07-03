@@ -30,7 +30,7 @@ export class LagashBooksCatalogController {
       _id: item._id
     }, item)
     .$promise
-    .then((response) => {
+    .then(() => {
       this.WToast.show('El catalogo se actualizo correctamente');
     })
     .catch((err) => {
@@ -91,5 +91,5 @@ export class LagashBooksCatalogController {
     }, function() {
       console.info('You cancelled the dialog.');
     });
-  };
+  }
 }

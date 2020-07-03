@@ -30,7 +30,7 @@ export class LagashAuthorsUpdateController {
     this.Authors.remove({
       _id: item._id
     }, item).$promise
-    .then((response) => {
+    .then(() => {
       this.$state.go('lagash.authors.list.main', {}, {reload: true});
     })
     .catch((err) => {
@@ -43,7 +43,7 @@ export class LagashAuthorsUpdateController {
       _id: item._id
     }, item)
     .$promise
-    .then((response) => {
+    .then(() => {
       this.$state.go('lagash.authors.list.main', {}, {reload: true});
     })
     .catch((err) => {

@@ -33,7 +33,7 @@ export class LagashMagazinesEjemplarController {
       _id: ejemplar._id
     }, ejemplar)
     .$promise
-    .then((response) => {
+    .then(() => {
       this.WToast.show('El ejemplar se actualizo correctamente');
     })
     .catch((err) => {
@@ -45,7 +45,7 @@ export class LagashMagazinesEjemplarController {
     this.MagazinesEjemplares.remove({
       _id: item._id
     }, item).$promise
-    .then((response) => {
+    .then(() => {
       this.$state.go('lagash.magazines.list.main');
     })
     .catch((err) => {

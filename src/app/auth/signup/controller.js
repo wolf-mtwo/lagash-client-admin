@@ -19,7 +19,7 @@ export class SignupController {
   register(item) {
     this.Users.save(item)
     .$promise
-    .then((response) => {
+    .then(() => {
       var credentials = {
         email: item.email,
         password: item.password

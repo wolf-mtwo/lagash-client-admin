@@ -114,8 +114,8 @@ export class LagashNewspapersUpdateController {
     this.Newspapers.remove({
       _id: item._id
     }, item).$promise
-    .then((response) => {
-      this.$state.go('lagash.newspapers.list.main', {}, {reload: true});
+    .then(() => {
+      this.$state.go('lagash.newspapers.list.main', {}, { reload: true });
     })
     .catch((err) => {
       this.WError.request(err);
@@ -130,8 +130,8 @@ export class LagashNewspapersUpdateController {
       _id: item._id
     }, data)
     .$promise
-    .then((response) => {
-      this.$state.go('lagash.newspapers.list.main', {}, {reload: true});
+    .then(() => {
+      this.$state.go('lagash.newspapers.list.main', {}, { reload: true });
     })
     .catch((err) => {
       this.WError.request(err);
@@ -146,7 +146,7 @@ export class LagashNewspapersUpdateController {
       _id: item._id
     }, data)
     .$promise
-    .then((response) => {
+    .then(() => {
       this.WToast.show('El nuevo codigo se guardo correctamente');
     })
     .catch((err) => {
@@ -158,10 +158,10 @@ export class LagashNewspapersUpdateController {
     this.NewspapersEjemplares.save({
       data_id: item.material_id
     }, item).$promise
-    .then((response) => {
+    .then((res) => {
       this.create_ejemplar_state = false;
       this.WToast.show('El ejemplar se guardo correctamente');
-      this.ejemplares.push(response);
+      this.ejemplares.push(res);
     })
     .catch((err) => {
       this.WError.request(err);
@@ -218,7 +218,7 @@ export class LagashNewspapersUpdateController {
     this.NewspapersEjemplares.update({
       _id: ejemplar._id
     }, ejemplar).$promise
-    .then((response) => {
+    .then(() => {
       this.WToast.show('El ejemplar se actualizo correctamente');
     })
     .catch((err) => {
@@ -247,7 +247,7 @@ export class LagashNewspapersUpdateController {
     this.AuthorsMap.remove({
       _id: item.map._id
     }).$promise
-    .then((res) => {
+    .then(() => {
       this.authors.splice(index, 1);
     })
     .catch((err) => {

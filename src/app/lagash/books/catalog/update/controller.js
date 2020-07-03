@@ -16,7 +16,7 @@ export class LagashBooksCatalogUpdateController {
     this.BooksCatalog.remove({
       _id: item._id
     }, item).$promise
-    .then((response) => {
+    .then(() => {
       this.$state.go('lagash.books.list.catalog');
     })
     .catch((err) => {
@@ -29,7 +29,7 @@ export class LagashBooksCatalogUpdateController {
       _id: item._id
     }, item)
     .$promise
-    .then((response) => {
+    .then(() => {
       this.$state.go('lagash.books.list.catalog');
     })
     .catch((err) => {

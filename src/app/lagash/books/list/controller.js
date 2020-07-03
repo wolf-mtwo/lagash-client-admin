@@ -41,7 +41,7 @@ export class LagashBooksListController {
       _id: item._id
     }, item)
     .$promise
-    .then((response) => {
+    .then(() => {
       this.WToast.show('El libro se actualizo correctamente');
     })
     .catch((err) => {
