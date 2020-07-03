@@ -1,8 +1,9 @@
 export class WError {
 
-  constructor($mdToast) {
+  constructor($mdToast, $log) {
     'ngInject';
     this.$mdToast = $mdToast;
+    this.$log = $log;
   }
 
   displayError(msg) {
@@ -34,7 +35,7 @@ export class WError {
       this.displayError(msg);
       return;
     } else {
-      console.error('NOT HANDLED ERROR:', res);
+      this.$log.error('NOT HANDLED ERROR:', res);
       return;
     }
   }

@@ -1,8 +1,9 @@
 export class LoginController {
 
-  constructor($state, WError, Session, Sess) {
+  constructor($state, $log, WError, Session, Sess) {
     'ngInject';
     this.$state = $state;
+    this.$log = $log;
     this.WError = WError;
     this.Session = Session;
     this.Sess = Sess;
@@ -12,7 +13,7 @@ export class LoginController {
     this.Session.login(item).$promise
     .then((user) => {
       this.Sess.login(user, () => {
-        console.info('starts session');
+        this.$log.info('starts session');
         this.$state.go('lagash.home');
       });
     })

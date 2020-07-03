@@ -14,8 +14,6 @@ export class LagashBooksPrintChipController {
     item.code_value = this.find_code_value(item);
     item.cover = this.BasicOption.find_covers(item.cover) || this.BasicOption.EMPTY;
     this.item = item;
-    console.log(this.item.title);
-
 
     // autor
     Authors.find_authors({
@@ -83,18 +81,4 @@ export class LagashBooksPrintChipController {
     }
     return '';
   }
-
-  // print_test(itemRaul) {
-  //   var titleRaul = itemRaul.title;
-  //   console.log(titleRaul);
-  //   // console.log(item.title);
-  //   // var arrayItem = Array.from(item.title);
-  //   // if (arrayItem.length <= 20){
-  //   //   console.log("si da");
-  //   //   return arrayItem.values(item.title);
-  //   // }else {
-  //   //   console.log("no da");
-  //   // }
-  //   // console.log(arrayItem);
-  // }
 }

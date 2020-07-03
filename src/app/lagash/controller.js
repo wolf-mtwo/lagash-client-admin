@@ -1,9 +1,10 @@
 export class LagashController {
 
-  constructor($state, $mdSidenav, Auth, Sess) {
+  constructor($state, $mdSidenav, $log, Auth, Sess) {
     'ngInject';
     this.$state = $state;
     this.$mdSidenav = $mdSidenav;
+    this.$log = $log;
     this.Auth = Auth;
     this.Sess = Sess;
 
@@ -64,8 +65,8 @@ export class LagashController {
 
   logout() {
     this.Sess.logout(() => {
-        console.info('closed session');
-        this.$state.go('home');
+      this.$log.info('closed session');
+      this.$state.go('home');
     });
   }
 

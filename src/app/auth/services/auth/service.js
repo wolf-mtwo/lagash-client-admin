@@ -1,7 +1,8 @@
 export class Auth {
 
-  constructor(Store) {
+  constructor($log, Store) {
     'ngInject';
+    this.$log = $log;
     this.Store = Store;
     this.subcriptors = [];
   }
@@ -19,6 +20,6 @@ export class Auth {
   }
 
   init() {
-    console.log('init!!');
+    this.$log.log('init!!');
   }
 }

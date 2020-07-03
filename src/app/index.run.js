@@ -1,4 +1,4 @@
-export function runBlock ($log) {
+export function runBlock($log) {
   'ngInject';
   $log.debug('run wolf end');
 }

@@ -6,8 +6,6 @@ export class LagashMagazinesCatalogUpdateController {
     this.WError = WError;
     this.MagazinesCatalog = MagazinesCatalog;
     this.item = catalog;
-    console.log('test');
-    console.log(catalog);
   }
 
   openMenu($mdOpenMenu, ev) {

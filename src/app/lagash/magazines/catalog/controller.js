@@ -1,9 +1,10 @@
 export class LagashMagazinesCatalogController {
 
-  constructor($state, $mdDialog, WError, WToast, UUID, size, MagazinesCatalog) {
+  constructor($state, $mdDialog, $log, WError, WToast, UUID, size, MagazinesCatalog) {
     'ngInject';
     this.$state = $state;
     this.$mdDialog = $mdDialog;
+    this.$log = $log;
     this.UUID = UUID;
     this.WError = WError;
     this.WToast = WToast;
@@ -39,7 +40,6 @@ export class LagashMagazinesCatalogController {
   }
 
   select_item(item) {
-    console.log(item);
     this.$state.go('lagash.magazines.catalog_preview', {
       catalog_id: item._id
     });
@@ -90,7 +90,7 @@ export class LagashMagazinesCatalogController {
     .then(function(answer) {
       self.create_catalog(answer);
     }, function() {
-      console.info('You cancelled the dialog.');
+      this.$log.info('You cancelled the dialog.');
     });
   };
 }

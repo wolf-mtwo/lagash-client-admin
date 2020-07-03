@@ -1,9 +1,10 @@
 export class LagashThesisCatalogController {
 
-  constructor($state, $mdDialog, WError, WToast, UUID, size, ThesisCatalog) {
+  constructor($state, $mdDialog, $log, WError, WToast, UUID, size, ThesisCatalog) {
     'ngInject';
     this.$state = $state;
     this.$mdDialog = $mdDialog;
+    this.$log = $log;
     this.UUID = UUID;
     this.WError = WError;
     this.WToast = WToast;
@@ -89,7 +90,7 @@ export class LagashThesisCatalogController {
     .then(function(answer) {
       self.create_catalog(answer);
     }, function() {
-      console.info('You cancelled the dialog.');
+      this.$log.info('You cancelled the dialog.');
     });
   }
 }

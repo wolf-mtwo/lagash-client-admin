@@ -1,9 +1,10 @@
 export class LagashNewspapersSubscriptionController {
 
-  constructor($state, $mdDialog, WError, WToast, NewspapersCatalog, size, UUID, BasicOption) {
+  constructor($state, $mdDialog, $log, WError, WToast, NewspapersCatalog, size, UUID, BasicOption) {
     'ngInject';
     this.$state = $state;
     this.$mdDialog = $mdDialog;
+    this.$log = $log;
     this.WToast = WToast;
     this.NewspapersCatalog = NewspapersCatalog;
     this.BasicOption = BasicOption;
@@ -94,7 +95,7 @@ export class LagashNewspapersSubscriptionController {
     .then(function(answer) {
       self.create_catalog(answer);
     }, function() {
-      console.info('You cancelled the dialog.');
+      this.$log.info('You cancelled the dialog.');
     });
   };
 }

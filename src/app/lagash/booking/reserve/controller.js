@@ -3,6 +3,7 @@ export class LagashBookingReserveController {
   constructor(
     $state,
     $mdDialog,
+    $log,
     WError,
     WToast,
     Books,
@@ -13,6 +14,7 @@ export class LagashBookingReserveController {
     'ngInject';
     this.$state = $state;
     this.$mdDialog = $mdDialog;
+    this.$log = $log;
     this.WToast = WToast;
     this.Books = Books;
     this.BasicOption = BasicOption;
@@ -118,7 +120,7 @@ export class LagashBookingReserveController {
     .then(function(answer) {
       self.create_book(answer);
     }, function() {
-      console.info('You cancelled the dialog.');
+      this.$log.info('You cancelled the dialog.');
     });
   }
 }

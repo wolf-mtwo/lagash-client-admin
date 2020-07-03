@@ -1,7 +1,8 @@
 export class Global {
 
-  constructor(Store) {
+  constructor($log, Store) {
     'ngInject';
+    this.$log = $log;
     this.Store = Store;
     // SERVICE PATH
     this.PATH = 'http://bibliotecaserver.uab.edu.bo';
@@ -11,8 +12,8 @@ export class Global {
   }
 
   start() {
-    console.info('Starts the application!!');
+    this.$log.info('Starts the application!!');
     this.user = this.Store.load('user');
-    console.log(this);
+    this.$log.log(this);
   }
 }
