@@ -25,11 +25,13 @@ export function config(
   $httpProvider.interceptors.push('authInterceptorService');
 
   // Loading token
-  var token = localStorage.getItem('token');
+  var token =localStorage.getItem('token');
   if (token) {
     try {
-      var session = JSON.parse(token).session_id;
-      $httpProvider.defaults.headers.common['x-access-token'] = session;
+      token = 'Bearer '+token;
+      //$httpProvider.defaults.headers.common['x-access-token'] = session;
+      $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+      $httpProvider.defaults.headers.common['Authorization'] = token;
     } catch(e) {
       console.error('Session is no longer alive');
     }
