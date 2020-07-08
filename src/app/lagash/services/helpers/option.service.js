@@ -345,13 +345,7 @@ export class BasicOption {
   }
 
   get_tags(tags) {
-      var regex = /\[.*?\]/g;
-      var match;
-      var items = [];
-      while ((match = regex.exec(tags)) !== null) {
-          items.push(match[0]);
-      }
-      return items;
+    return tags.split(',');
   }
 
   get_state(date) {

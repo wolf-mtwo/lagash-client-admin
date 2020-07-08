@@ -125,7 +125,7 @@ export class LagashNewspapersUpdateController {
   update(item) {
     var data = {};
     angular.copy(item, data);
-    data.tags = data.tags.join('');
+    data.tags = data.tags.join(',');
     this.Newspapers.update({
       _id: item._id
     }, data)
