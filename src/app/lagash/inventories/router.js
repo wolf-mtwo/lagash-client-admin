@@ -14,17 +14,17 @@ export function router($stateProvider) {
     controller: 'LagashInventoriesListController',
     controllerAs: 'vm',
     resolve: {
-      size: function(BooksEjemplares) {
+      size: (BooksEjemplares) => {
         return BooksEjemplares.size().$promise;
       },
-      model: function(Books) {
+      model: (Books) => {
         return Books;
       },
-      model_ejemplar: function(BooksEjemplares) {
+      model_ejemplar: (BooksEjemplares) => {
         return BooksEjemplares;
       },
-      config: function() {
-        return {route: 'lagash.books.list.preview', param: 'book_id'};
+      config: () => {
+        return { route: 'lagash.books.list.preview', param: 'book_id' };
       }
     }
   });
@@ -34,17 +34,17 @@ export function router($stateProvider) {
     controller: 'LagashInventoriesListController',
     controllerAs: 'vm',
     resolve: {
-      size: function(ThesisEjemplares) {
+      size: (ThesisEjemplares) => {
         return ThesisEjemplares.size().$promise;
       },
-      model: function(Thesis) {
+      model: (Thesis) => {
         return Thesis;
       },
-      model_ejemplar: function(ThesisEjemplares) {
+      model_ejemplar: (ThesisEjemplares) => {
         return ThesisEjemplares;
       },
-      config: function() {
-        return {route: 'lagash.thesis.list.preview', param: 'thesis_id'};
+      config: () => {
+        return { route: 'lagash.thesis.list.preview', param: 'thesis_id' };
       }
     }
   });
@@ -54,17 +54,17 @@ export function router($stateProvider) {
     controller: 'LagashInventoriesListController',
     controllerAs: 'vm',
     resolve: {
-      size: function(MagazinesEjemplares) {
+      size: (MagazinesEjemplares) => {
         return MagazinesEjemplares.size().$promise;
       },
-      model: function(Magazines) {
+      model: (Magazines) => {
         return Magazines;
       },
-      model_ejemplar: function(MagazinesEjemplares) {
+      model_ejemplar: (MagazinesEjemplares) => {
         return MagazinesEjemplares;
       },
-      config: function() {
-        return {route: 'lagash.magazines.list.preview', param: 'magazine_id'};
+      config: () => {
+        return { route: 'lagash.magazines.list.preview', param: 'magazine_id' };
       }
     }
   });
@@ -74,23 +74,18 @@ export function router($stateProvider) {
     controller: 'LagashInventoriesListController',
     controllerAs: 'vm',
     resolve: {
-      size: function(NewspapersEjemplares) {
+      size: (NewspapersEjemplares) => {
         return NewspapersEjemplares.size().$promise;
       },
-      model: function(Newspapers) {
+      model: (Newspapers) => {
         return Newspapers;
       },
-      model_ejemplar: function(NewspapersEjemplares) {
+      model_ejemplar: (NewspapersEjemplares) => {
         return NewspapersEjemplares;
       },
-      config: function() {
-        return {route: 'lagash.newspapers.list.preview', param: 'newspaper_id'};
+      config: () => {
+        return { route: 'lagash.newspapers.list.preview', param: 'newspaper_id' };
       }
     }
   });
 }
-
-// {route: 'lagash.books.list.preview', param: 'book_id'}
-// {route: 'lagash.thesis.list.preview', param: 'thesis_id'}
-// {route: 'lagash.magazines.list.preview', param: 'magazine_id'}
-// {route: 'lagash.newspapers.list.preview', param: 'newspaper_id'}

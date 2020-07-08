@@ -3,9 +3,9 @@ export class LagashInventoriesListController {
   constructor(
     $state,
     $mdDialog,
+    $window,
     WError,
     WToast,
-    BooksEjemplares,
     size,
     UUID,
     BasicOption,
@@ -20,6 +20,7 @@ export class LagashInventoriesListController {
     'ngInject';
     this.$state = $state;
     this.$mdDialog = $mdDialog;
+    this.$window = $window;
     this.WToast = WToast;
     this.BasicOption = BasicOption;
     this.config = config;
@@ -67,14 +68,14 @@ export class LagashInventoriesListController {
     });
 
     var self = this;
-    self.on_pagination = function() {
-      self.model_ejemplar.search(self.query, function(items) {
+    self.on_pagination = () => {
+      self.model_ejemplar.search(self.query, (items) => {
         self.items = items;
         self.populate(items);
       }).$promise;
     };
     self.on_pagination();
-  };
+  }
 
   search() {
     this.model_ejemplar.select(this.select).$promise
@@ -95,7 +96,7 @@ export class LagashInventoriesListController {
     var data = {};
     data[this.config.param] = item.material_id;
     var url = this.$state.href(this.config.route, data);
-    window.open(url, '_blank');
+    this.$window.open(url, '_blank');
   }
 
   populate(items) {
