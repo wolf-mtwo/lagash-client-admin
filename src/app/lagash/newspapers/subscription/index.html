@@ -1,6 +1,6 @@
 <md-content flex>
   <div layout="row" layout-fill>
-    <div flex="40" layout="column">
+    <div flex="35" layout="column">
       <md-toolbar>
         <div class="md-toolbar-tools">
           <h1>
@@ -10,12 +10,12 @@
           <md-button class="md-icon-button"
                      aria-label="add"
                      ng-click="vm.show_catalog_create_dialog()">
-            <ng-md-icon icon="list"></ng-md-icon>
+            <ng-md-icon icon="add"></ng-md-icon>
           </md-button>
           <md-button class="md-icon-button"
                      aria-label="catalog"
                      ui-sref="lagash.newspapers.catalog">
-            <ng-md-icon icon="settings"></ng-md-icon>
+            <ng-md-icon icon="list"></ng-md-icon>
           </md-button>
           <md-button class="md-icon-button" aria-label="more">
             <ng-md-icon icon="more_vert"></ng-md-icon>
@@ -44,7 +44,7 @@
         </md-list>
       </md-content>
     </div>
-    <div flex="60" layout="column">
+    <div flex="65" layout="column">
       <ui-view layout="column" layout-fill>
       </ui-view>
     </div>
