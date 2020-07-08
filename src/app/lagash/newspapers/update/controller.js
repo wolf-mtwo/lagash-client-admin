@@ -101,7 +101,7 @@ export class LagashNewspapersUpdateController {
 
   upload(file) {
     const self = this;
-    this.ImageService.upload(file, function(res) {
+    this.ImageService.upload(file, (res) => {
       self.item.image = res.name;
     });
   }

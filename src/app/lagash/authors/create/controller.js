@@ -16,7 +16,6 @@ export class LagashAuthorsCreateController {
     this.ImageService = ImageService;
 
     this.countries = Country.get();
-    
     this.item = {
       _id: UUID.next(),
       first_name: '',
@@ -25,10 +24,17 @@ export class LagashAuthorsCreateController {
     };
   }
 
+  upload(file) {
+    const self = this;
+    this.ImageService.upload(file, (res) => {
+      self.item.image = res.name;
+    });
+  }
+
   register(item) {
     this.Authors.save(item).$promise
-    .then((res) => {
-      this.$state.go('lagash.authors.list.main', {}, {reload: true});
+    .then(() => {
+      this.$state.go('lagash.authors.list.main', {}, { reload: true });
     })
     .catch((err) => {
       this.WError.request(err);

@@ -43,5 +43,11 @@
         </md-select>
       </md-input-container>
     </div>
+    <md-content class="wargos-text-align wargos-image">
+      <div>
+        <img class="md-card-image" ng-if="vm.item.image" ng-src="{{vm.ImageService.getPath(vm.item.image)}}"/>
+      </div>
+      <button type="button" ngf-select="vm.upload($file)">Cargar una foto</button>
+    </md-content>
   </md-content>
 </form>

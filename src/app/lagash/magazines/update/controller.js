@@ -99,7 +99,7 @@ export class LagashMagazinesUpdateController {
 
   upload(file) {
     const self = this;
-    this.ImageService.upload(file, function(res) {
+    this.ImageService.upload(file, (res) => {
       self.item.image = res.name;
     });
   }
@@ -113,7 +113,7 @@ export class LagashMagazinesUpdateController {
       _id: item._id
     }, item).$promise
     .then(() => {
-      this.$state.go('lagash.magazines.list.main', {}, {reload: true});
+      this.$state.go('lagash.magazines.list.main', {}, { reload: true });
     })
     .catch((err) => {
       this.WError.request(err);
@@ -129,7 +129,7 @@ export class LagashMagazinesUpdateController {
     }, data)
     .$promise
     .then(() => {
-      this.$state.go('lagash.magazines.list.main', {}, {reload: true});
+      this.$state.go('lagash.magazines.list.main', {}, { reload: true });
     })
     .catch((err) => {
       this.WError.request(err);

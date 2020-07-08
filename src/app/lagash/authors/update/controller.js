@@ -18,7 +18,6 @@ export class LagashAuthorsUpdateController {
     this.ImageService = ImageService;
 
     this.countries = Country.get();
-
     this.item = author;
   }
 
@@ -26,12 +25,19 @@ export class LagashAuthorsUpdateController {
     $mdOpenMenu(ev);
   }
 
+  upload(file) {
+    const self = this;
+    this.ImageService.upload(file, (res) => {
+      self.item.image = res.name;
+    });
+  }
+
   delete(item) {
     this.Authors.remove({
       _id: item._id
     }, item).$promise
     .then(() => {
-      this.$state.go('lagash.authors.list.main', {}, {reload: true});
+      this.$state.go('lagash.authors.list.main', {}, { reload: true });
     })
     .catch((err) => {
       this.WError.request(err);
@@ -44,7 +50,7 @@ export class LagashAuthorsUpdateController {
     }, item)
     .$promise
     .then(() => {
-      this.$state.go('lagash.authors.list.main', {}, {reload: true});
+      this.$state.go('lagash.authors.list.main', {}, { reload: true });
     })
     .catch((err) => {
       this.WError.request(err);

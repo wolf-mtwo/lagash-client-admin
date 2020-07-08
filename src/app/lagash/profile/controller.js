@@ -37,7 +37,7 @@ export class LagashProfileController {
       _id: item._id
     }, item).$promise
     .then(() => {
-      this.$state.go('lagash.profile', {}, {reload: true});
+      this.$state.go('lagash.profile', {}, { reload: true });
     })
     .catch((err) => {
       this.WError.request(err);

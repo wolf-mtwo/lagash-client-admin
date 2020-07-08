@@ -16,7 +16,6 @@ export class LagashTutorsCreateController {
     this.ImageService = ImageService;
 
     this.countries = Country.get();
-
     this.item = {
       _id: UUID.next(),
       first_name: '',
@@ -24,6 +23,13 @@ export class LagashTutorsCreateController {
       degree: 'Lic.',
       country: 'bolivia'
     };
+  }
+
+  upload(file) {
+    const self = this;
+    this.ImageService.upload(file, (res) => {
+      self.item.image = res.name;
+    });
   }
 
   register(item) {

@@ -24,10 +24,17 @@ export class LagashEditorialsCreateController {
     };
   }
 
+  upload(file) {
+    const self = this;
+    this.ImageService.upload(file, (res) => {
+      self.item.image = res.name;
+    });
+  }
+
   register(item) {
     this.Editorials.save(item).$promise
-    .then((res) => {
-      this.$state.go('lagash.editorials.list.main', {}, {reload: true});
+    .then(() => {
+      this.$state.go('lagash.editorials.list.main', {}, { reload: true });
     })
     .catch((err) => {
       this.WError.request(err);
