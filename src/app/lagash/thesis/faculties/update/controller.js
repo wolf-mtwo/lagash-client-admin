@@ -1,6 +1,6 @@
 export class LagashThesisFacultiesUpdateController {
 
-  constructor($state, WError, UUID, WToast, Faculties, Carrers, faculty) {
+  constructor($state, WError, UUID, Faculties, Carrers, ImageService, faculty) {
     'ngInject';
     this.$state = $state;
     this.WError = WError;
@@ -8,6 +8,7 @@ export class LagashThesisFacultiesUpdateController {
     this.Faculties = Faculties;
     this.Carrers = Carrers;
     this.item = faculty;
+    this.ImageService = ImageService;
 
     this.Carrers.find({
       faculty_id: this.item._id
@@ -17,6 +18,13 @@ export class LagashThesisFacultiesUpdateController {
     })
     .catch((err) => {
       this.WError.request(err);
+    });
+  }
+
+  upload(file) {
+    const self = this;
+    this.ImageService.upload(file, (res) => {
+      self.item.image = res.name;
     });
   }
 

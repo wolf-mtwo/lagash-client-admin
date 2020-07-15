@@ -23,6 +23,7 @@
       </md-menu>
     </div>
   </md-toolbar>
+  
   <md-content layout-padding>
     <md-input-container class="md-block" flex-gt-xs>
       <label>Nombre de la facultad</label>
@@ -31,8 +32,14 @@
         <div ng-message="required">This is required.</div>
       </div>
     </md-input-container>
+    <md-content class="wargos-text-align wargos-image">
+      <div>
+        <img class="md-card-image" ng-if="vm.item.image" ng-src="{{vm.ImageService.getPath(vm.item.image)}}"/>
+      </div>
+      <button type="button" ngf-select="vm.upload($file)">Cargar una foto</button>
+    </md-content>
     <md-list>
-      <md-subheader class="md-no-sticky">Administracion</md-subheader>
+      <md-subheader class="md-no-sticky">Administración</md-subheader>
       <md-list-item ng-repeat="carrer in vm.carrers">
         <ng-md-icon icon="business"></ng-md-icon>
         <p>{{carrer.name}}</p>
