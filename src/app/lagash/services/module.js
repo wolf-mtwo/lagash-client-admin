@@ -27,6 +27,7 @@ import { Faculties } from './faculties/faculties.service';
 import { Tutors } from './tutors.service';
 import { Authors } from './authors.service';
 import { Editorials } from './editorials.service';
+import { Readers } from './readers.service';
 import { AuthorsMap } from './authors.map.service';
 import { EditorialsMap } from './editorials.map.service';
 
@@ -63,6 +64,7 @@ angular.module('wolf.lagash.services', [
 .service('Tutors', Tutors)
 .service('Authors', Authors)
 .service('Editorials', Editorials)
+.service('Readers', Readers)
 .service('AuthorsMap', AuthorsMap)
 .service('EditorialsMap', EditorialsMap)
 .service('Ejemplares', Ejemplares)

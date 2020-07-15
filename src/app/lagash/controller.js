@@ -46,6 +46,10 @@ export class LagashController {
       title: 'Editoriales',
       icon: 'my_library_books',
       route: 'lagash.editorials.list.main'
+    }, {
+      title: 'Lectores',
+      icon: 'directions_walk',
+      route: 'lagash.readers.list.main'
     }];
 
     this.configurations = [{

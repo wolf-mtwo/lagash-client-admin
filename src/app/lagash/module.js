@@ -13,6 +13,7 @@ import BookingServices from './booking/module';
 import LagashProfile from './profile/module';
 import LagashServices from './services/module';
 import LagashDialogs from './dialogs/module';
+import LagashReaders from './readers/module';
 
 import { LagashController } from './controller';
 import { LagashHomeController } from './home/controller';
@@ -28,6 +29,7 @@ angular.module('wolf.lagash', [
   'wolf.lagash.editorials',
   'wolf.lagash.tutors',
   'wolf.lagash.inventories',
+  'wolf.lagash.readers',
   'wolf.lagash.profile',
   'wolf.lagash.services',
   'wolf.lagash.dialogs',
