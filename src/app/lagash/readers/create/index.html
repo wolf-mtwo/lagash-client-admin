@@ -27,20 +27,40 @@
           <div ng-message="required">This is required.</div>
         </div>
       </md-input-container>
+    </div>
+    <div layout="row">
       <md-input-container class="md-block" flex-gt-xs>
-        <label>Grado academico</label>
-        <input required ng-model="vm.item.degree" md-maxlength="100">
-        <div ng-messages="form.degree.$error">
-          <div ng-message="required">This is required.</div>
-        </div>
-      </md-input-container>
-      <md-input-container class="md-block" flex-gt-xs>
-        <label>Nacionalidad</label>
-        <md-select ng-model="vm.item.country">
-          <md-option ng-repeat="country in vm.countries" ng-value="country.key">
-            {{country.value}}
+        <label>Facultad</label>
+        <md-select ng-model="vm.item.faculty_id">
+          <md-option ng-repeat="faculty in vm.faculties" ng-value="faculty._id">
+            {{faculty.name}}
           </md-option>
         </md-select>
+      </md-input-container>
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>Carrera</label>
+        <md-select ng-model="vm.item.career_id">
+          <md-option ng-if="vm.item.faculty_id === carrer.faculty_id" ng-repeat="carrer in vm.carrers" ng-value="carrer._id">
+            {{carrer.name}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+    </div>
+    <div layout="row">
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>Credencial</label>
+        <md-select ng-model="vm.item.card_type">
+          <md-option ng-repeat="card in vm.cards" ng-value="card.key">
+            {{card.value}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>Numero de indentificador</label>
+        <input required ng-model="vm.item.card_id" md-maxlength="100">
+        <div ng-messages="form.card_id.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
       </md-input-container>
     </div>
     <md-content class="wargos-text-align wargos-image">

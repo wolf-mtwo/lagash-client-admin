@@ -5,7 +5,9 @@ export class LagashReadersUpdateController {
     WError,
     Readers,
     UUID,
-    Country,
+    CardType,
+    Faculties,
+    Carrers,
     ImageService,
     reader
   ) {
@@ -17,8 +19,24 @@ export class LagashReadersUpdateController {
     this.UUID = UUID;
     this.ImageService = ImageService;
 
-    this.countries = Country.get();
+    this.cards = CardType.get();
     this.item = reader;
+
+    Faculties.query().$promise
+    .then((res) => {
+      this.faculties = res;
+    })
+    .catch((err) => {
+      this.WError.request(err);
+    });
+
+    Carrers.query().$promise
+    .then((res) => {
+      this.carrers = res;
+    })
+    .catch((err) => {
+      this.WError.request(err);
+    });
   }
 
   openMenu($mdOpenMenu, ev) {

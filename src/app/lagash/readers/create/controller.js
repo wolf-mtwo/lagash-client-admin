@@ -5,7 +5,9 @@ export class LagashReadersCreateController {
     WError,
     Readers,
     UUID,
-    Country,
+    CardType,
+    Faculties,
+    Carrers,
     ImageService
   ) {
     'ngInject';
@@ -15,14 +17,29 @@ export class LagashReadersCreateController {
     this.UUID = UUID;
     this.ImageService = ImageService;
 
-    this.countries = Country.get();
+    this.cards = CardType.get();
     this.item = {
       _id: UUID.next(),
       first_name: '',
       last_name: '',
-      degree: 'Lic.',
-      country: 'bolivia'
+      auth_type: 'LOCAL'
     };
+
+    Faculties.query().$promise
+    .then((res) => {
+      this.faculties = res;
+    })
+    .catch((err) => {
+      this.WError.request(err);
+    });
+
+    Carrers.query().$promise
+    .then((res) => {
+      this.carrers = res;
+    })
+    .catch((err) => {
+      this.WError.request(err);
+    });
   }
 
   upload(file) {
