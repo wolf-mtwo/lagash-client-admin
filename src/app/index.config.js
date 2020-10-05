@@ -22,18 +22,19 @@ export function config(
   toastrConfig.progressBar = true;
 
   // Session
-  $httpProvider.interceptors.push('authInterceptorService');
+  $httpProvider.interceptors.push('AuthInterceptorService');
+  $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
   // Loading token
-  var token =localStorage.getItem('token');
-  if (token) {
-    try {
-      token = 'Bearer '+token;
-      //$httpProvider.defaults.headers.common['x-access-token'] = session;
-      $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-      $httpProvider.defaults.headers.common['Authorization'] = token;
-    } catch(e) {
-      console.error('Session is no longer alive');
-    }
-  }
+  // var token = localStorage.getItem('token');
+  // if (token) {
+  //   try {
+  //     token = 'Bearer '+ token;
+  //     // $httpProvider.defaults.headers.common['x-access-token'] = session;
+  //     $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+  //     $httpProvider.defaults.headers.common['Authorization'] = token;
+  //   } catch(e) {
+  //     console.error('Session is no longer alive');
+  //   }
+  // }
 }

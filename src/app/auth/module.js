@@ -16,7 +16,7 @@ angular.module('wolf.auth', [
 .service('Auth', Auth)
 .service('Session', Session)
 .service('Users', Users)
-.service('authInterceptorService', AuthInterceptorService)
+.service('AuthInterceptorService', AuthInterceptorService)
 .controller('LoginController', LoginController)
 .controller('SignupController', SignupController)
 .controller('ForgotController', ForgotController)

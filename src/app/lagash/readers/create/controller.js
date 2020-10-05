@@ -22,6 +22,7 @@ export class LagashReadersCreateController {
       _id: UUID.next(),
       first_name: '',
       last_name: '',
+      semester: '2007-A',
       auth_type: 'LOCAL'
     };
 
