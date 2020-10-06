@@ -44,18 +44,42 @@ body {
   display: inline-block;
 }
 .lagash-report-200 {
-  width: 175px;
+  width: 200px;
+  font-size: 13px;
+  display: inline-block;
+}
+.lagash-report-250 {
+  width: 250px;
   font-size: 13px;
   display: inline-block;
 }
 .lagash-report-300 {
-  width: 200px;
+  width: 300px;
   font-size: 13px;
   display: inline-block;
 }
 .lagash-report-400 {
   width: 400px;
   display: inline-block;
+}
+.lagash-report-type {
+  width: 85px;
+  font-size: 12px;
+  display: inline-block;
+}
+.lagash-report-code {
+  width: 200px;
+  font-size: 12px;
+  display: inline-block;
+}
+.lagash-report-reader {
+  width: 200px;
+  font-size: 10px;
+  display: inline-block;
+  text-align: center;
+}
+.lagash-report-date {
+  font-size: 9px;
 }
 .lagash-report-warning {
   background-color: yellow;

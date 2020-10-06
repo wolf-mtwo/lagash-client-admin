@@ -12,6 +12,10 @@ export class Booking {
       update: {
         method: 'PUT'
       },
+      remove: {
+        url: url + '/:_id',
+        method: 'DELETE'
+      },
       pagination: {
         method: 'GET',
         isArray: true,

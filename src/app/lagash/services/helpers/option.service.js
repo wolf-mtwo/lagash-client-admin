@@ -349,16 +349,15 @@ export class BasicOption {
   }
 
   get_state(date) {
-    var dayTimeStamp = 86400000;
+    var dayTimeStamp = 86400 * 1000;
     var date_state = new Date(date);
-    var day_state = date_state.getTime();
-    //TODO var date = new Date();
-    var day_warn = date.getTime() - (dayTimeStamp * 2);
-    var day_danger = date.getTime() - (dayTimeStamp * 3);
-    if (day_state > day_danger && day_state < day_warn) {
+    var today = new Date().getTime();
+    var day_warn = today - (dayTimeStamp * 2);
+    var day_danger = today - (dayTimeStamp * 3);
+    if (date_state > day_danger && date_state < day_warn) {
       return '#f9f97a9c';
     }
-    if (day_state < day_danger) {
+    if (date_state < day_danger) {
       return '#ff6d6dba';
     }
   }

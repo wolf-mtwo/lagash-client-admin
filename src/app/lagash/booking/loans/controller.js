@@ -12,6 +12,7 @@ export class LagashBookingLoansController {
     Thesis,
     Magazines,
     Newspapers,
+    Readers,
     size,
     model
   ) {
@@ -27,6 +28,7 @@ export class LagashBookingLoansController {
     this.THESIS = Thesis;
     this.MAGAZINE = Magazines;
     this.NEWSPAPER = Newspapers;
+    this.Readers = Readers;
     this.i18n = {
       BOOK: 'LIBRO',
       THESIS: 'TESIS',
@@ -92,7 +94,20 @@ export class LagashBookingLoansController {
   populate(items) {
     items.forEach((item) => {
       this.find_data(item);
+      this.find_reader(item);
     })
+  }
+
+  find_reader(item) {
+    this.Readers.get({
+      _id: item.reader_id
+    }).$promise
+    .then((res) => {
+      item.reader = res;
+    })
+    .catch((err) => {
+      this.WError.request(err);
+    });
   }
 
   find_data(item) {
@@ -102,6 +117,19 @@ export class LagashBookingLoansController {
     .then((res) => {
       item.status = this.BasicOption.get_state(item.created);
       item.data = res;
+    })
+    .catch((err) => {
+      this.WError.request(err);
+    });
+  }
+
+  delete_loan(item, index) {
+    this.model.remove({
+      _id: item._id
+    }, item).$promise
+    .then(() => {
+      this.items.splice(index, 1);
+      this.WToast.show('Se elimino la reservación');
     })
     .catch((err) => {
       this.WError.request(err);
