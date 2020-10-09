@@ -62,6 +62,14 @@
           <div ng-message="required">This is required.</div>
         </div>
       </md-input-container>
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>Semestre</label>
+        <md-select ng-model="vm.item.semester">
+          <md-option ng-repeat="semester in vm.semesters" ng-value="semester">
+            {{semester}}
+          </md-option>
+        </md-select>
+      </md-input-container>
     </div>
     <md-content class="wargos-text-align wargos-image">
       <div>

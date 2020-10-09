@@ -13,13 +13,18 @@
     <md-list-item ng-repeat="item in vm.items">
       <ng-md-icon icon="book"></ng-md-icon>
       <p>
-        <b class="lagash-report-type">{{vm.i18n[item.type]}}</b>
+        <b class="lagash-report-type">{{vm.i18n[item.material_type]}}</b>
         <b class="lagash-report-code">{{item.code}}</b>
         <b class="lagash-report-reader">{{item.reader.first_name}} {{item.reader.last_name}}</b>
         <span>{{item.data.title | limitTo: 80}}{{item.data.title.length > 80 ? '...' : ''}}</span>
       </p>
       <div class="md-secondary">
         <small><b class="lagash-report-date">{{item.created | date: 'HH:mm dd-MM-yyyy'}}</b></small>
+        <small>
+          <md-checkbox ng-model="item.is_home" disabled>
+            EXTERNA
+          </md-checkbox>
+        </small>
         <b>{{vm.states[item.state].value}}</b>
         <md-menu md-position-mode="target-right target">
           <md-button aria-label="Open demo menu"

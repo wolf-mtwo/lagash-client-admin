@@ -66,7 +66,7 @@ export class LagashBookingHistoryController {
     }
 
     select_item(item) {
-      var config = this.config[item.type];
+      var config = this.config[item.material_type];
       var data = {
         ejemplar_id: item.ejemplar_id
       };
@@ -78,9 +78,10 @@ export class LagashBookingHistoryController {
     loan(item, state) {
       this.model.loan(null, {
         _id: item._id,
-        type: item.type,
+        material_type: item.material_type,
         material_id: item.material_id,
         ejemplar_id: item.ejemplar_id,
+        is_home: item.is_home,
         state: state
       }).$promise
       .then((res) => {
@@ -95,7 +96,7 @@ export class LagashBookingHistoryController {
       items.forEach((item) => {
         this.find_data(item);
         this.find_reader(item);
-      })
+      });
     }
 
     find_reader(item) {
@@ -111,7 +112,7 @@ export class LagashBookingHistoryController {
     }
 
     find_data(item) {
-      this[item.type].get({
+      this[item.material_type].get({
         _id: item.material_id
       }).$promise
       .then((res) => {

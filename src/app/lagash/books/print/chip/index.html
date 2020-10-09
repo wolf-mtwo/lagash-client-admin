@@ -1,5 +1,4 @@
 <div  style="text-align: center; left: 500px;">
-<!--  3 filas-->
   <button onclick="print()" type="submit">Imprimir Topografia</button>
 </div>
 <div style="font-family:monospace;font-size:16px;">
@@ -79,67 +78,28 @@
     </div>
   </div>
 </div>
-
-<!--<div>-->
-  <div class="lagash-print-contanier" style="font-family:monospace;font-size:17px;">
-    <div style="position:relative;">
-      <div style="position:absolute;top:185px;left:351px;width:150px;text-align:end;">
-        {{vm.ejemplar.inventory}}
-      </div>
-      <div style="position:absolute;top:240px;left:75px;">
-        <table>
-          <tr>
-            <td style="vertical-align:top;width:90px;">{{vm.item.code_material}}</td>
-            <td style="width:320px;text-align:justify;padding: 0 20px 0 0;">{{vm.item.title}}</td>
-          </tr>
-          <tr>
-            <td style="vertical-align:top;width:90px;">{{vm.item.code_author}}</td>
-            <td>{{vm.authors[0].last_name | uppercase}}, {{vm.authors[0].first_name}}</td>
-          </tr>
-          <tr>
-            <td style="vertical-align:top;width:90px;">{{vm.ejemplar.suffix}}</td>
-          </tr>
-        </table>
-      </div>
-      <div style="width:1020px;height:670px;">
-        <img ng-src="assets/images/chip.png">
-      </div>
+<div class="lagash-print-contanier" style="font-family:monospace;font-size:17px;">
+  <div style="position:relative;">
+    <div style="position:absolute;top:185px;left:351px;width:150px;text-align:end;">
+      {{vm.ejemplar.inventory}}
+    </div>
+    <div style="position:absolute;top:240px;left:75px;">
+      <table>
+        <tr>
+          <td style="vertical-align:top;width:90px;">{{vm.item.code_material}}</td>
+          <td style="width:320px;text-align:justify;padding: 0 20px 0 0;">{{vm.item.title}}</td>
+        </tr>
+        <tr>
+          <td style="vertical-align:top;width:90px;">{{vm.item.code_author}}</td>
+          <td>{{vm.authors[0].last_name | uppercase}}, {{vm.authors[0].first_name}}</td>
+        </tr>
+        <tr>
+          <td style="vertical-align:top;width:90px;">{{vm.ejemplar.suffix}}</td>
+        </tr>
+      </table>
+    </div>
+    <div style="width:1020px;height:670px;">
+      <img ng-src="assets/images/chip.png">
     </div>
   </div>
-<!--</div>-->
-
-<style media="screen">
-/*
-.lagash-print-contanier {
-  font-family: monospace;
-  font-size: 15px;
-}
-.lagash-print-contanier .pocket {
-  position: relative;
-}
-.lagash-print-contanier .pocket .main {
-  position: absolute;
-}
-.lagash-print-contanier .pocket .main.inventory {
-  top: 185px;
-  left: 351px;
-  width: 150px;
-  text-align: end;
-}
-.lagash-print-contanier .pocket .main.description {
-  top: 240px;
-  left: 75px;
-}
-.lagash-print-contanier .pocket .main.description .code {
-  vertical-align: top;
-  width: 90px;
-}
-.lagash-print-contanier .pocket .main.description .title {
-  width: 330px;
-  text-align: justify;
-}
-.lagash-print-contanier .pocket .background {
-  width: 1020px;
-  height: 670px;
-}*/
-</style>
+</div>

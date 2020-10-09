@@ -18,6 +18,7 @@ export class LagashReadersCreateController {
     this.ImageService = ImageService;
 
     this.cards = CardType.get();
+    this.semesters = this.calc_ingress(this.get_years());
     this.item = {
       _id: UUID.next(),
       first_name: '',
@@ -58,5 +59,23 @@ export class LagashReadersCreateController {
     .catch((err) => {
       this.WError.request(err);
     });
+  }
+
+  get_years() {
+    let result = [];
+    let year = new Date().getFullYear();
+    for (let index = 0; index < 20; index++) {
+      result.push(year--);
+    }
+    return result;
+  }
+
+  calc_ingress(years) {
+    let result = ['OTROS'];
+    years.forEach((year) => {
+      result.push(`${year}-A`);
+      result.push(`${year}-B`);
+    });
+    return result;
   }
 }
