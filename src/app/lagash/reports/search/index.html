@@ -1,0 +1,21 @@
+<md-content flex>
+  <div>
+    <md-input-container class="md-block" flex-gt-xs>
+      <label>Nombre del lector</label>
+      <input ng-model="vm.search" ng-change="vm.search_ejemplares()">
+    </md-input-container>
+  </div>
+  <!-- <md-table-pagination md-limit="vm.query.limit" md-limit-options="[40, 50, 60]" md-page="vm.query.page" md-total="{{vm.total}}" md-on-paginate="vm.on_pagination" md-page-select></md-table-pagination> -->
+  <div ng-if="vm.items.length == 0" class="wargos-text-align">
+    <b>El historial <i>esta vacio</i></b>
+  </div>
+  <md-list>
+    <md-list-item ng-repeat="item in vm.items" ng-click="vm.go_to_date($event, item)" class="md-2-line">
+      <div class="md-list-item-text">
+        <h3>{{item.start | date: 'dd-MM-yyyy'}}</h3>
+        <p>{{vm.get_summary(item)}}</p>
+      </div>
+      <md-button class="md-secondary" ng-click="vm.go_to_date($event, item)">Mas información</md-button>
+    </md-list-item>
+  </md-list>
+</md-content>

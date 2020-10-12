@@ -14,6 +14,7 @@ import LagashProfile from './profile/module';
 import LagashServices from './services/module';
 import LagashDialogs from './dialogs/module';
 import LagashReaders from './readers/module';
+import LagashReports from './reports/module';
 
 import { LagashController } from './controller';
 import { LagashHomeController } from './home/controller';
@@ -33,7 +34,8 @@ angular.module('wolf.lagash', [
   'wolf.lagash.profile',
   'wolf.lagash.services',
   'wolf.lagash.dialogs',
-  'wolf.lagash.booking'
+  'wolf.lagash.booking',
+  'wolf.lagash.reports'
 ])
 .config(router)
 .controller('LagashController', LagashController)

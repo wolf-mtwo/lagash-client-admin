@@ -62,6 +62,20 @@ export class LagashController {
       route: 'lagash.profile'
     }];
 
+    this.reports = [{
+      title: 'Diarios',
+      icon: 'show_chart',
+      route: 'lagash.reports.search'
+    },{
+      title: 'Facultades',
+      icon: 'show_chart',
+      route: 'lagash.users.list'
+    }, {
+      title: 'Busquedas',
+      icon: 'show_chart',
+      route: 'lagash.reports.search'
+    }];
+
     Auth.subcrive((user) => {
       this.user = user;
     });
