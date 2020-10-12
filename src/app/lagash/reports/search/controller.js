@@ -1,71 +1,44 @@
-export class LagashReportsShearchController {
+export class LagashReportsSearchController {
 
   constructor(
     $state,
     $mdDialog,
     WError,
     WToast,
-    // BooksEjemplares,
-    // UUID,
-    // BasicOption,
-    // Books,
-    // Thesis,
-    // Magazines,
-    // Newspapers,
-    // Readers,
+    Books,
+    Thesis,
+    Magazines,
+    Newspapers,
     SearchReport,
-    ReportUtils
+    ReportUtils,
+    Readers
   ) {
     'ngInject';
     this.$state = $state;
     this.$mdDialog = $mdDialog;
+    this.WError = WError;
     this.WToast = WToast;
+    this.BOOK = Books;
+    this.THESIS = Thesis;
+    this.MAGAZINE = Magazines;
+    this.NEWSPAPER = Newspapers;
     this.SearchReport = SearchReport;
+    this.Readers = Readers;
+
     this.search = '';
-    // this.BasicOption = BasicOption;
-    // this.model = model;
-    // this.UUID = UUID;
-    // this.WError = WError;
-    // this.BOOK = Books;
-    // this.THESIS = Thesis;
-    // this.MAGAZINE = Magazines;
-    // this.NEWSPAPER = Newspapers;
-    // this.Readers = Readers;
-    
-    // this.i18n = {
-    //   BOOK: 'LIBRO',
-    //   THESIS: 'TESIS',
-    //   MAGAZINE: 'REVISTAR',
-    //   NEWSPAPER: 'PERIODICO'
-    // }
-    // this.config = {
-    //   BOOK: {route: 'lagash.books.list.ejemplar', param: 'book_id'},
-    //   THESIS: {route: 'lagash.thesis.list.ejemplar', param: 'thesis_id'},
-    //   MAGAZINE: {route: 'lagash.magazines.list.ejemplar', param: 'magazine_id'},
-    //   NEWSPAPER: {route: 'lagash.newspapers.list.ejemplar', param: 'newspaper_id'}
-    // };
+    this.item = null;
+    this.item_menu = 'search';
+    this.items = ReportUtils.get_dates_range(15);
+    this.i18n = {
+      BOOK: 'LIBRO',
+      THESIS: 'TESIS',
+      MAGAZINE: 'REVISTAR',
+      NEWSPAPER: 'PERIODICO'
+    };
+    this.load_report();
+  }
 
-    // this.reports = [];
-    // this.states = this.BasicOption.states_special;
-    // this.total = size.total;
-    // this.query = {
-    //   search: '',
-    //   limit: 50,
-    //   page: 1
-    // };
-
-    // var self = this;
-    // self.on_pagination = function() {
-    //   self.model.search(self.query, function(items) {
-    //     self.items = items;
-    //     self.populate(items);
-    //   }).$promise;
-    // };
-    // self.on_pagination();
-
-    // this.SearchReport.total
-    
-    this.items = ReportUtils.get_dates_range(30);
+  load_report() {
     this.items.forEach((item) => {
       this.SearchReport.total({
         start_date: item.start,
@@ -75,6 +48,8 @@ export class LagashReportsShearchController {
       .then((res) => {
         item.state = true;
         item.total = res.length;
+        item.search = res.filter(o => o.search !== '');
+        item.navigation = res.filter(o => o.search === '');
       })
       .catch((err) => {
         this.WError.request(err);
@@ -84,50 +59,44 @@ export class LagashReportsShearchController {
 
   get_summary(item) {
     if (item.state) {
-      return 'Total: ' + item.total;
+      return [
+        'Real: ' + item.search.length,
+        'Navigation: ' + item.navigation.length,
+        'Total: ' + item.total,
+      ].join(' ');
     }
     return 'Actualizando...';
   }
 
-  search_ejemplares() {
-    this.on_pagination();
-  }
-
-  select_item(item) {
-    var config = this.config[item.material_type];
-    var data = {
-      ejemplar_id: item.ejemplar_id
-    };
-    data[config.param] = item.material_id;
-    var url = this.$state.href(config.route, data);
-    window.open(url, '_blank');
-  }
-
-  loan(item, state) {
-    this.model.loan(null, {
-      _id: item._id,
-      material_type: item.material_type,
-      material_id: item.material_id,
-      ejemplar_id: item.ejemplar_id,
-      is_home: item.is_home,
-      state: state
-    }).$promise
-    .then((res) => {
-      item.state = res.state;
-    })
-    .catch((err) => {
-      this.WError.request(err);
+  go_to_item(item) {
+    this.item_menu = 'search';
+    this.item = item;
+    item.search.forEach((item) => {
+      this.find_material(item);
+      this.find_reader(item);
     });
-  }
-
-  populate(items) {
-    items.forEach((item) => {
-      this.find_data(item);
+    item.navigation.forEach((item) => {
+      this.find_material(item);
       this.find_reader(item);
     });
   }
 
+  clear_item() {
+    this.item = null;
+  }
+
+  change_item_menu(type) {
+    this.item_menu = type;
+  }
+
+  get_list() {
+    return this.item[this.item_menu];
+  }
+
   find_reader(item) {
+    if (!item.reader_id) {
+      return;
+    }
     this.Readers.get({
       _id: item.reader_id
     }).$promise
@@ -139,19 +108,18 @@ export class LagashReportsShearchController {
     });
   }
 
-  find_data(item) {
+  find_material(item) {
+    if (!item.material_id) {
+      return;
+    }
     this[item.material_type].get({
       _id: item.material_id
     }).$promise
     .then((res) => {
-      item.data = res;
+      item.material = res;
     })
     .catch((err) => {
       this.WError.request(err);
     });
-  }
-
-  openMenu($mdOpenMenu, ev) {
-    $mdOpenMenu(ev);
   }
 }

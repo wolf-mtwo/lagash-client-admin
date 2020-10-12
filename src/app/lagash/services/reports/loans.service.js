@@ -5,10 +5,10 @@ export class LoansReport {
     var url = Global.PATH + '/v5/loans';
     return $resource(url + '/:_id', {
     }, {
-      search: {
+      daily: {
         method: 'GET',
         isArray: true,
-        url: url + '/page/:page/limit/:limit/search'
+        url: url + '/daily'
       }
     });
   }

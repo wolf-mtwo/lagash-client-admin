@@ -1,21 +1,35 @@
 <md-content flex>
   <div>
     <md-input-container class="md-block" flex-gt-xs>
-      <label>Nombre del lector</label>
-      <input ng-model="vm.search" ng-change="vm.search_ejemplares()">
+      <label>Busqueda</label>
+      <input ng-model="vm.search" ng-change="vm.load_report()">
     </md-input-container>
   </div>
-  <!-- <md-table-pagination md-limit="vm.query.limit" md-limit-options="[40, 50, 60]" md-page="vm.query.page" md-total="{{vm.total}}" md-on-paginate="vm.on_pagination" md-page-select></md-table-pagination> -->
   <div ng-if="vm.items.length == 0" class="wargos-text-align">
     <b>El historial <i>esta vacio</i></b>
   </div>
-  <md-list>
-    <md-list-item ng-repeat="item in vm.items" ng-click="vm.go_to_date($event, item)" class="md-2-line">
+  <md-list ng-if="!vm.item">
+    <md-list-item ng-repeat="item in vm.items" ng-click="vm.go_to_item(item)" class="md-2-line">
       <div class="md-list-item-text">
         <h3>{{item.start | date: 'dd-MM-yyyy'}}</h3>
         <p>{{vm.get_summary(item)}}</p>
       </div>
-      <md-button class="md-secondary" ng-click="vm.go_to_date($event, item)">Mas información</md-button>
+      <md-button class="md-secondary" ng-click="vm.go_to_item(item)">Mas información</md-button>
     </md-list-item>
   </md-list>
+  <div ng-if="vm.item">
+    <md-button class="md-raised" ng-click="vm.clear_item()">Volver</md-button>
+    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+      <md-button ng-click="vm.change_item_menu('search')">Busqueda Real ({{vm.item.search.length}})</md-button>
+      <md-button ng-click="vm.change_item_menu('navigation')">Busqueda de navegación ({{vm.item.navigation.length}})</md-button>
+  </section>
+  <md-list-item class="md-3-line" ng-repeat="search_item in vm.get_list()">
+    <div class="md-list-item-text" layout="column">
+      <h3><b>{{ search_item.search || 'BUSQUEDA SIN FILTRO' }}</b> {{search_item.options | lowercase }}</h3>
+      <h4>{{ search_item.reader ? search_item.reader.first_name + search_item.reader.last_name : 'LECTOR SIN AUTENTICACION' }}</h4>
+      <p>{{ search_item.material ? search_item.material.title : 'SIN MATERIAL BIBLIOGRAFICO'}}</p>
+      <h5 class="md-secondary">{{vm.i18n[search_item.material_type]}}</h5>
+    </div>
+  </md-list-item>
+  </div>
 </md-content>

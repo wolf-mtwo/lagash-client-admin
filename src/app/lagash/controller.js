@@ -65,11 +65,11 @@ export class LagashController {
     this.reports = [{
       title: 'Diarios',
       icon: 'show_chart',
-      route: 'lagash.reports.search'
+      route: 'lagash.reports.loans'
     },{
       title: 'Facultades',
       icon: 'show_chart',
-      route: 'lagash.users.list'
+      route: 'lagash.reports.search'
     }, {
       title: 'Busquedas',
       icon: 'show_chart',

@@ -1,6 +1,6 @@
 import { router } from './router';
 import { LagashReportsController } from './controller';
-import { LagashReportsShearchController } from './search/controller';
+import { LagashReportsSearchController } from './search/controller';
 import { LagashReportsLoansController } from './loans/controller';
 import { LagashReportsReturnsController } from './returns/controller';
 import { ReportUtils } from './services/utils.service';
@@ -12,7 +12,7 @@ angular.module('wolf.lagash.reports', [
 ])
 .config(router)
 .controller('LagashReportsController', LagashReportsController)
-.controller('LagashReportsShearchController', LagashReportsShearchController)
+.controller('LagashReportsSearchController', LagashReportsSearchController)
 .controller('LagashReportsLoansController', LagashReportsLoansController)
 .controller('LagashReportsReturnsController', LagashReportsReturnsController)
 .service('ReportUtils', ReportUtils)

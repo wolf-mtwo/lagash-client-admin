@@ -11,7 +11,7 @@ export function router($stateProvider) {
   $stateProvider.state('lagash.reports.search', {
     url: '/search',
     template: require('./search/index.html'),
-    controller: 'LagashReportsShearchController',
+    controller: 'LagashReportsSearchController',
     controllerAs: 'vm'
   });
 
@@ -19,15 +19,7 @@ export function router($stateProvider) {
     url: '/loans',
     template: require('./loans/index.html'),
     controller: 'LagashReportsLoansController',
-    controllerAs: 'vm',
-    resolve: {
-      size: function(Reports) {
-        return Reports.size().$promise;
-      },
-      model: function(Reports) {
-        return Reports;
-      }
-    }
+    controllerAs: 'vm'
   });
 
   $stateProvider.state('lagash.reports.returns', {

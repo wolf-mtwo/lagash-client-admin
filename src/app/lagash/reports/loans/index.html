@@ -1,60 +1,36 @@
 <md-content flex>
   <div>
     <md-input-container class="md-block" flex-gt-xs>
-      <label>Nombre del lector</label>
-      <input ng-model="vm.query.search" ng-change="vm.search_ejemplares()">
+      <label>Busqueda</label>
+      <input ng-model="vm.search" ng-change="vm.load_report()">
     </md-input-container>
   </div>
-  <md-table-pagination md-limit="vm.query.limit" md-limit-options="[40, 50, 60]" md-page="vm.query.page" md-total="{{vm.total}}" md-on-paginate="vm.on_pagination" md-page-select></md-table-pagination>
   <div ng-if="vm.items.length == 0" class="wargos-text-align">
-    <b>No existe <i>reservaciones</i> pendientes</b>
+    <b>El historial <i>esta vacio</i></b>
   </div>
-  <md-list>
-    <md-list-item ng-repeat="item in vm.items" style="background-color: {{item.status}}">
-      <ng-md-icon icon="book"></ng-md-icon>
-      <p>
-        <b class="lagash-report-type">{{vm.i18n[item.material_type]}}</b>
-        <b class="lagash-report-code">{{item.code}}</b>
-        <b class="lagash-report-reader">{{item.reader.first_name}} {{item.reader.last_name}}</b>
-        <span>{{item.data.title | limitTo: 80}}{{item.data.title.length > 80 ? '...' : ''}}</span>
-      </p>
-      <div class="md-secondary">
-        <small>
-          <b class="lagash-report-date">{{item.created | date: 'HH:mm dd-MM-yyyy'}}</b>
-        </small>
-        <small>
-          <md-checkbox ng-model="item.is_home" required>
-            EXTERNA
-          </md-checkbox>
-        </small>
-        <md-button class="md-raised md-primary" ng-click="vm.loan(item, 'BORROWED')" type="submit" ng-if="item.state == 'BOOKED'">
-          Prestar
-        </md-button>
-        <md-button class="md-raised" ng-click="vm.loan(item, 'BOOKED')" type="submit" ng-if="item.state == 'BORROWED'">
-          Restablecer
-        </md-button>
-        <md-menu md-position-mode="target-right target">
-          <md-button aria-label="Open demo menu"
-                     class="md-icon-button"
-                     ng-click="vm.openMenu($mdOpenMenu, $event)">
-            <ng-md-icon icon="more_vert"></ng-md-icon>
-          </md-button>
-          <md-menu-content width="2">
-            <md-menu-item ng-click="vm.select_item(item)">
-              <md-button>
-                <ng-md-icon icon="book"></ng-md-icon>
-                Ir al recurso bibliografico
-              </md-button>
-            </md-menu-item>
-              <md-menu-item ng-click="vm.delete_loan(item, $index)">
-              <md-button>
-              <ng-md-icon icon="delete"></ng-md-icon>
-                Eliminar
-              </md-button>
-            </md-menu-item>
-          </md-menu-content>
-        </md-menu>
+  <md-list ng-if="!vm.item">
+    <md-list-item ng-repeat="item in vm.items" ng-click="vm.go_to_item(item)" class="md-2-line">
+      <div class="md-list-item-text">
+        <h3>{{item.start | date: 'dd-MM-yyyy'}}</h3>
+        <p>{{vm.get_summary(item)}}</p>
       </div>
+      <md-button class="md-secondary" ng-click="vm.go_to_item(item)">Mas información</md-button>
     </md-list-item>
   </md-list>
+  <div ng-if="vm.item">
+    <md-button class="md-raised" ng-click="vm.clear_item()">Volver</md-button>
+    <md-list-item class="md-3-line" ng-repeat="search_item in vm.item.loans">
+      <div class="md-list-item-text" layout="column">
+        <h3><b>{{ search_item.material ? search_item.material.title : 'SIN MATERIAL BIBLIOGRAFICO'}}</b></h3>
+        <h4>
+          {{ search_item.ejemplar ? vm.parse_ejemplar_information(search_item.ejemplar) : 'EJEMPLAR SiN INFORMACION'}}
+        </h4>
+        <p>{{ search_item.reader ? search_item.reader.first_name + search_item.reader.last_name : 'LECTOR SIN AUTENTICACION' }}</p>
+        <h5 class="md-secondary">
+          {{vm.i18n[search_item.material_type]}}
+          {{vm.parse_loan_time(search_item)}}
+        </h5>
+      </div>
+    </md-list-item>
+  </div>
 </md-content>

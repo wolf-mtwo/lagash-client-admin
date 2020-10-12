@@ -5,101 +5,104 @@ export class LagashReportsLoansController {
     $mdDialog,
     WError,
     WToast,
-    BooksEjemplares,
-    UUID,
-    BasicOption,
+    moment,
     Books,
     Thesis,
     Magazines,
     Newspapers,
-    Readers,
-    size,
-    model
+    BooksEjemplares,
+    ThesisEjemplares,
+    MagazinesEjemplares,
+    NewspapersEjemplares,
+    LoansReport,
+    ReportUtils,
+    Readers
   ) {
     'ngInject';
     this.$state = $state;
     this.$mdDialog = $mdDialog;
-    this.WToast = WToast;
-    this.BasicOption = BasicOption;
-    this.model = model;
-    this.UUID = UUID;
     this.WError = WError;
-    this.BOOK = Books;
-    this.THESIS = Thesis;
-    this.MAGAZINE = Magazines;
-    this.NEWSPAPER = Newspapers;
+    this.moment = moment;
+    this.WToast = WToast;
+    this.BOOK = {
+      model: Books,
+      ejemplar: BooksEjemplares
+    };
+    this.THESIS = {
+      model: Thesis,
+      ejemplar: ThesisEjemplares
+    };
+    this.MAGAZINE = {
+      model: Magazines,
+      ejemplar: MagazinesEjemplares
+    };
+    this.NEWSPAPER = {
+      model: Newspapers,
+      ejemplar: NewspapersEjemplares
+    };
+
+    this.LoansReport = LoansReport;
     this.Readers = Readers;
+
+    this.search = '';
+    this.item = null;
+    this.items = ReportUtils.get_dates_range(15);
     this.i18n = {
       BOOK: 'LIBRO',
       THESIS: 'TESIS',
       MAGAZINE: 'REVISTAR',
       NEWSPAPER: 'PERIODICO'
-    }
-    this.config = {
-      BOOK: {route: 'lagash.books.list.ejemplar', param: 'book_id'},
-      THESIS: {route: 'lagash.thesis.list.ejemplar', param: 'thesis_id'},
-      MAGAZINE: {route: 'lagash.magazines.list.ejemplar', param: 'magazine_id'},
-      NEWSPAPER: {route: 'lagash.newspapers.list.ejemplar', param: 'newspaper_id'}
     };
-
-    this.reports = [];
-    this.states = this.BasicOption.states;
-    this.total = size.total;
-    this.query = {
-      search: '',
-      limit: 50,
-      page: 1
-    };
-
-    var self = this;
-    self.on_pagination = function() {
-      self.model.booked_list(self.query, function(items) {
-        self.items = items;
-        self.populate(items);
-      }).$promise;
-    };
-    self.on_pagination();
+    this.load_report();
   }
 
-  search_ejemplares() {
-    this.on_pagination();
-  }
-
-  select_item(item) {
-    var config = this.config[item.material_type];
-    var data = {
-      ejemplar_id: item.ejemplar_id
-    };
-    data[config.param] = item.material_id;
-    var url = this.$state.href(config.route, data);
-    window.open(url, '_blank');
-  }
-
-  loan(item, state) {
-    this.model.loan(null, {
-      _id: item._id,
-      material_type: item.material_type,
-      material_id: item.material_id,
-      ejemplar_id: item.ejemplar_id,
-      is_home: item.is_home,
-      state: state
-    }).$promise
-    .then((res) => {
-      item.state = res.state;
-    })
-    .catch((err) => {
-      this.WError.request(err);
+  load_report() {
+    this.items.forEach((item) => {
+      this.LoansReport.daily({
+        start_date: item.start,
+        end_date: item.end,
+        search: this.search
+      }).$promise
+      .then((res) => {
+        item.state = true;
+        item.loans = res;
+      })
+      .catch((err) => {
+        this.WError.request(err);
+      });
     });
   }
 
-  populate(items) {
-    items.forEach((item) => {
-      this.find_data(item);
+  get_summary(item) {
+    if (item.state) {
+      return [
+        'Total: ' + item.loans.length,
+      ].join(' ');
+    }
+    return 'Actualizando...';
+  }
+
+  go_to_item(item) {
+    this.item = item;
+    item.loans.forEach((item) => {
+      this.find_material(item);
       this.find_reader(item);
-    })
+      this.find_ejemplar(item);
+    });
+  }
+
+  clear_item() {
+    this.item = null;
+  }
+
+  change_item_menu(type) {
+    this.item_menu = type;
   }
 
   find_reader(item) {
+    if (!item.reader_id) {
+      return;
+    }
     this.Readers.get({
       _id: item.reader_id
     }).$promise
@@ -111,33 +114,44 @@ export class LagashReportsLoansController {
     });
   }
 
-  find_data(item) {
-    this[item.material_type].get({
+  find_material(item) {
+    if (!item.material_id) {
+      return;
+    }
+    this[item.material_type].model.get({
       _id: item.material_id
     }).$promise
     .then((res) => {
-      item.status = this.BasicOption.get_state(item.created);
-      item.data = res;
+      item.material = res;
     })
     .catch((err) => {
       this.WError.request(err);
     });
   }
 
-  delete_loan(item, index) {
-    this.model.remove({
-      _id: item._id
-    }, item).$promise
-    .then(() => {
-      this.items.splice(index, 1);
-      this.WToast.show('Se elimino la reservación');
+  find_ejemplar(item) {
+    if (!item.ejemplar_id) {
+      return;
+    }
+    this[item.material_type].ejemplar.get({
+      _id: item.ejemplar_id
+    }).$promise
+    .then((res) => {
+      item.ejemplar = res;
     })
     .catch((err) => {
       this.WError.request(err);
     });
   }
 
-  openMenu($mdOpenMenu, ev) {
-    $mdOpenMenu(ev);
+  parse_ejemplar_information(ejemplar) {
+    return [
+      'Inventario: ' + ejemplar.inventory,
+      'Ejemplar: ' + ejemplar.order
+    ].join(' ');
+  }
+
+  parse_loan_time(item) {
+    return this.moment(this.moment(item.start_date)).from(moment(item.end_date));
   }
 }

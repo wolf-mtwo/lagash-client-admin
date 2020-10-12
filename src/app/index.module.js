@@ -9,7 +9,6 @@ import Components from './components/module';
 import Lagash from './lagash/module';
 
 angular.module('wolf', [
-  'ja.qr',
   'ngAnimate',
   'ngCookies',
   'ngTouch',
