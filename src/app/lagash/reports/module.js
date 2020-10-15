@@ -2,7 +2,7 @@ import { router } from './router';
 import { LagashReportsController } from './controller';
 import { LagashReportsSearchController } from './search/controller';
 import { LagashReportsLoansController } from './loans/controller';
-import { LagashReportsReturnsController } from './returns/controller';
+import { LagashReportsFacultiesController } from './faculties/controller';
 import { ReportUtils } from './services/utils.service';
 
 angular.module('wolf.lagash.reports', [
@@ -14,7 +14,7 @@ angular.module('wolf.lagash.reports', [
 .controller('LagashReportsController', LagashReportsController)
 .controller('LagashReportsSearchController', LagashReportsSearchController)
 .controller('LagashReportsLoansController', LagashReportsLoansController)
-.controller('LagashReportsReturnsController', LagashReportsReturnsController)
+.controller('LagashReportsFacultiesController', LagashReportsFacultiesController)
 .service('ReportUtils', ReportUtils)
 .run(($log) => {
   $log.debug('run lagash reports end');

@@ -69,7 +69,7 @@ export class LagashController {
     },{
       title: 'Facultades',
       icon: 'show_chart',
-      route: 'lagash.reports.search'
+      route: 'lagash.reports.faculties'
     }, {
       title: 'Busquedas',
       icon: 'show_chart',

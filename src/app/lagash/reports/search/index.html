@@ -11,7 +11,7 @@
   <md-list ng-if="!vm.item">
     <md-list-item ng-repeat="item in vm.items" ng-click="vm.go_to_item(item)" class="md-2-line">
       <div class="md-list-item-text">
-        <h3>{{item.start | date: 'dd-MM-yyyy'}}</h3>
+        <h3>{{item.label}}</h3>
         <p>{{vm.get_summary(item)}}</p>
       </div>
       <md-button class="md-secondary" ng-click="vm.go_to_item(item)">Mas información</md-button>

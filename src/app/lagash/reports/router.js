@@ -22,19 +22,10 @@ export function router($stateProvider) {
     controllerAs: 'vm'
   });
 
-  $stateProvider.state('lagash.reports.returns', {
-    url: '/returns',
-    template: require('./returns/index.html'),
-    controller: 'LagashReportsReturnsController',
-    controllerAs: 'vm',
-    resolve: {
-      size: function(Reports) {
-        return Reports.size().$promise;
-      },
-      model: function(Reports) {
-        return Reports;
-
-      }
-    }
+  $stateProvider.state('lagash.reports.faculties', {
+    url: '/faculties',
+    template: require('./faculties/index.html'),
+    controller: 'LagashReportsFacultiesController',
+    controllerAs: 'vm'
   });
 }

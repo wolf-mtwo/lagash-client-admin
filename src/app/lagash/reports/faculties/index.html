@@ -1,10 +1,4 @@
 <md-content flex>
-  <div>
-    <md-input-container class="md-block" flex-gt-xs>
-      <label>Busqueda</label>
-      <input ng-model="vm.search" ng-change="vm.load_report()">
-    </md-input-container>
-  </div>
   <div ng-if="vm.items.length == 0" class="wargos-text-align">
     <b>El historial <i>esta vacio</i></b>
   </div>
@@ -12,14 +6,27 @@
     <md-list-item ng-repeat="item in vm.items" ng-click="vm.go_to_item(item)" class="md-2-line">
       <div class="md-list-item-text">
         <h3>{{item.label}}</h3>
-        <p>{{vm.get_summary(item)}}</p>
       </div>
       <md-button class="md-secondary" ng-click="vm.go_to_item(item)">Mas información</md-button>
     </md-list-item>
   </md-list>
   <div ng-if="vm.item">
-    <md-button class="md-raised" ng-click="vm.clear_item()">Volver</md-button>
-    <md-list-item class="md-3-line" ng-repeat="search_item in vm.item.loans">
+    <div layout="row">
+      <md-button class="md-raised" ng-click="vm.clear_item()">Volver</md-button>
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>Facultad</label>
+        <md-select ng-model="vm.faculty_id">
+          <md-option ng-repeat="faculty in vm.faculties" ng-value="faculty._id">
+            {{faculty.name}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+      <md-button class="md-raised" ng-click="vm.search_faculties_load()">Buscar</md-button>
+    </div>
+    <div layout="row" layout-align="center center">
+      TOTAL: {{vm.loans.length}}
+    </div>
+    <md-list-item class="md-3-line" ng-repeat="search_item in vm.loans">
       <div class="md-list-item-text" layout="column">
         <h3><b>{{ search_item.material ? search_item.material.title : 'SIN MATERIAL BIBLIOGRAFICO'}}</b></h3>
         <h4>

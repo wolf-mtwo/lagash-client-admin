@@ -9,6 +9,11 @@ export class LoansReport {
         method: 'GET',
         isArray: true,
         url: url + '/daily'
+      },
+      faculties: {
+        method: 'GET',
+        isArray: true,
+        url: url + '/faculties'
       }
     });
   }

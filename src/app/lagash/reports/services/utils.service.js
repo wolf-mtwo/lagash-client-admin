@@ -4,6 +4,15 @@ export class ReportUtils {
     'ngInject';
   }
 
+  get_months_range(times) {
+    var start = this.get_start_time_date();
+    var dates = [];
+    for (let index = 0; index < times; index++) {
+      dates.push(moment(start).subtract(index, 'months'));
+    }
+    return this.convert_date_to_months(dates);
+  }
+
   get_dates_range(times) {
     var start = this.get_start_time_date();
     var dates = [];
@@ -29,8 +38,20 @@ export class ReportUtils {
     return timestamps.map((timestamp) => {
         return {
           start: new Date(timestamp),
-          end: new Date(timestamp + milliseconds - 1)
+          end: new Date(timestamp + milliseconds - 1),
+          label: moment(timestamp).format('LL')
+        }
+    });
+  }
+
+  convert_date_to_months(dates) {
+    return dates.map((date) => {
+        return {
+          start: moment(date).startOf('month'),
+          end: moment(date).endOf('month'),
+          label: moment(date).format('MMMM YYYY')
         }
     });
   }
 }
+
