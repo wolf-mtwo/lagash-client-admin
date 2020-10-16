@@ -23,6 +23,7 @@ angular.module('wolf', [
   'ngFileUpload',
   'md.data.table',
   'ngMdIcons',
+  'ja.qr',
   'wolf.components',
   'wolf.auth',
   'wolf.lagash'

@@ -5,6 +5,13 @@ export class BasicOption {
     this.UUID = UUID;
     this.EMPTY = 'NO EXISTE';
 
+    this.material_types = {
+      BOOK: 'BOOK',
+      THESIS: 'THESIS',
+      MAGAZINE: 'MAGAZINE',
+      NEWSPAPER: 'NEWSPAPER'
+    };
+
     this.states = [{
       value: 'GUARDADO',
       key: 'STORED'

@@ -1,5 +1,4 @@
-<!--      raul dev-->
-<div  style="text-align: center; left: 500px;">
+<div style="text-align: center; left: 500px;">
   <button onclick="print()" type="submit">Imprimir Ficha</button>
 </div>
 <br>
@@ -18,12 +17,8 @@
             <td style="vertical-align:top;width:90px;">{{vm.item.code_author}} Ej.{{vm.ejemplar.order}}</td>
             <td>{{vm.authors[0].last_name.substr(0,5) | uppercase}}, {{vm.authors[0].first_name.substr(0,10)}}...</td>
           </tr>
-          <!--          <tr>-->
-          <!--            <td style="vertical-align:top;width:90px;">{{vm.ejemplar.suffix}}</td>-->
-          <!--          </tr>-->
         </table>
       </div>
-      <!--      dev raul-->
       <div style="position:absolute;top:70px;left:500px;width:150px;text-align:end;">
         {{vm.ejemplar.inventory}}
       </div>
@@ -36,12 +31,8 @@
             <td style="vertical-align:top;width:90px;">{{vm.item.code_author}} Ej.{{vm.ejemplar.order}}</td>
             <td>{{vm.authors[0].last_name.substr(0,5) | uppercase}}, {{vm.authors[0].first_name.substr(0,10)}}...</td>
           </tr>
-          <!--          <tr>-->
-          <!--            <td style="vertical-align:top;width:90px;">{{vm.ejemplar.suffix}}</td>-->
-          <!--          </tr>-->
         </table>
       </div>
-
       <div>
         <img style="width: 330px; height: 510px;" ng-src="assets/images/ficha.png">
         <img style="width: 330px; height: 510px;" ng-src="assets/images/ficha.png">

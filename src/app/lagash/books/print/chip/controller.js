@@ -14,6 +14,7 @@ export class LagashBooksPrintChipController {
     item.code_value = this.find_code_value(item);
     item.cover = this.BasicOption.find_covers(item.cover) || this.BasicOption.EMPTY;
     this.item = item;
+    this.qr_code = this.get_qr_code();
 
     // autor
     Authors.find_authors({
@@ -80,5 +81,13 @@ export class LagashBooksPrintChipController {
       return 'V.' + item.volumen;
     }
     return '';
+  }
+
+  get_qr_code() {
+    return [
+      this.BasicOption.material_types.BOOK,
+      this.item._id,
+      this.ejemplar._id
+    ].join('|');
   }
 }

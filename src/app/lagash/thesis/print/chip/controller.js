@@ -14,6 +14,7 @@ export class LagashThesisPrintChipController {
     item.brings = this.find_brings(item.brings);
     item.cover = this.BasicOption.find_covers(item.cover) || this.BasicOption.EMPTY;
     this.item = item;
+    this.qr_code = this.get_qr_code();
 
     Authors.find_authors({
       material_id: this.item._id
@@ -69,5 +70,13 @@ export class LagashThesisPrintChipController {
       count++;
       return  count + '.' + o.toUpperCase()
     }).join('.- ');
+  }
+
+  get_qr_code() {
+    return [
+      this.BasicOption.material_types.THESIS,
+      this.item._id,
+      this.ejemplar._id
+    ].join('|');
   }
 }

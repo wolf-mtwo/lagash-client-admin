@@ -13,6 +13,7 @@ export class LagashNewspapersPrintChipController {
     item.brings = this.find_brings(item.brings);
     item.cover = this.BasicOption.find_covers(item.cover) || this.BasicOption.EMPTY;
     this.item = item;
+    this.qr_code = this.get_qr_code();
 
     // autor
     Authors.find_authors({
@@ -69,5 +70,13 @@ export class LagashNewspapersPrintChipController {
       count++;
       return  count + '.' + o.toUpperCase()
     }).join('.- ');
+  }
+  
+  get_qr_code() {
+    return [
+      this.BasicOption.material_types.NEWSPAPER,
+      this.item._id,
+      this.ejemplar._id
+    ].join('|');
   }
 }
