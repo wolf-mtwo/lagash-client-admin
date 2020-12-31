@@ -139,7 +139,7 @@ export class LagashMagazinesUpdateController {
   update_code(item) {
     var data = {};
     angular.copy(item, data);
-    data.tags = data.tags.join('');
+    data.tags = data.tags.join(',');
     this.Magazines.update({
       _id: item._id
     }, data)

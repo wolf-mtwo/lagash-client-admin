@@ -146,7 +146,7 @@ export class LagashBooksUpdateController {
   update_code(item) {
     var data = {};
     angular.copy(item, data);
-    data.tags = data.tags.join('');
+    data.tags = data.tags.join(',');
     data.illustrations = data.illustrations.join(',');
     data.brings = data.brings.join(',');
     this.Books.update({
